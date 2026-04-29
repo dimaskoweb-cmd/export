@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Export Intelligence Platform — Dmitry Skobtsov | Стратегия экспортной экспансии на рынки АТР">
+<title>Export Intelligence · Dmitry Skobtsov</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════════════════════════ */
+:root {
+  --ink: #0b0d11;
+  --ink2: #141820;
+  --ink3: #1c2230;
+  --line: #232c3d;
+  --muted: #3d4f68;
+  --dim: #6b7f99;
+  --ghost: #9aafc8;
+  --text: #d6e2f0;
+  --bright: #eaf2ff;
+  --white: #ffffff;
+
+  --blue: #3b82f6;
+  --blue-dim: rgba(59,130,246,.12);
+  --cyan: #22d3ee;
+  --green: #10b981;
+  --green-dim: rgba(16,185,129,.12);
+  --amber: #f59e0b;
+  --amber-dim: rgba(245,158,11,.1);
+  --red: #ef4444;
+  --purple: #8b5cf6;
+
+  --r: 8px;
+  --r-lg: 14px;
+  --blur-radius: 8px;
+
+  /* typography */
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Manrope', sans-serif;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 15px; }
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--ink2); }
+::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 2px; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { color: var(--cyan); }
+img { max-width: 100%; }
+
+/* ── NOISE TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; opacity: .5;
+}
+
+/* ── GLOW ORBS ── */
+.orb {
+  position: fixed; border-radius: 50%;
+  filter: blur(80px); pointer-events: none; z-index: 0;
+}
+.orb-1 { width: 600px; height: 600px; background: rgba(59,130,246,.06); top: -200px; right: -100px; animation: drift 20s ease-in-out infinite; }
+.orb-2 { width: 400px; height: 400px; background: rgba(16,185,129,.05); bottom: 20%; left: -100px; animation: drift 25s ease-in-out infinite reverse; }
+@keyframes drift { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,20px)} }
+
+/* ═══════════════════════════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(11,13,17,.88);
+  backdrop-filter: blur(24px) saturate(1.5);
+  border-bottom: 1px solid var(--line);
+  height: 56px;
+  display: flex; align-items: center;
+  padding: 0 clamp(16px,4vw,48px);
+  gap: 0;
+}
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--bright);
+  margin-right: auto;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-brand-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 10px var(--blue);
+  animation: pulse-dot 2s ease infinite;
+}
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+.nav-links {
+  display: flex; gap: 2px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 10px; font-weight: 400;
+  color: var(--dim);
+  padding: 5px 10px; border-radius: 5px;
+  transition: all .2s; letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--ink3); }
+
+.lang-toggle {
+  display: flex; gap: 2px; margin-left: 16px;
+  background: var(--ink3); border-radius: 6px; padding: 2px;
+}
+.lang-btn {
+  font-family: var(--font-mono); font-size: 10px;
+  padding: 3px 10px; border-radius: 4px; border: none;
+  cursor: pointer; color: var(--dim);
+  background: transparent; transition: all .2s; letter-spacing: .05em;
+}
+.lang-btn.active { background: var(--blue); color: var(--white); }
+
+/* mobile menu */
+.burger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 8px; margin-left: 12px;
+}
+.burger span { width: 22px; height: 2px; background: var(--ghost); border-radius: 1px; transition: all .3s; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PROMO CODE BAR
+═══════════════════════════════════════════════════════════════════ */
+.promo-bar {
+  position: fixed; top: 56px; left: 0; right: 0; z-index: 999;
+  background: rgba(11,13,17,.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  padding: 8px clamp(16px,4vw,48px);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.promo-label {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--dim); letter-spacing: .1em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.promo-input-wrap {
+  display: flex; gap: 6px; align-items: center;
+}
+.promo-input {
+  font-family: var(--font-mono); font-size: 12px;
+  background: var(--ink3); border: 1px solid var(--line);
+  color: var(--bright); padding: 5px 12px; border-radius: 6px;
+  outline: none; width: 180px; letter-spacing: .1em;
+  transition: border-color .2s;
+}
+.promo-input:focus { border-color: var(--blue); }
+.promo-input::placeholder { color: var(--muted); letter-spacing: .05em; }
+.promo-btn {
+  font-family: var(--font-mono); font-size: 10px;
+  background: var(--blue); color: var(--white);
+  border: none; padding: 6px 14px; border-radius: 6px;
+  cursor: pointer; letter-spacing: .08em; text-transform: uppercase;
+  transition: all .2s;
+}
+.promo-btn:hover { background: #2563eb; }
+.promo-status {
+  font-family: var(--font-mono); font-size: 11px;
+  padding: 4px 10px; border-radius: 5px; display: none;
+}
+.promo-status.show { display: inline-flex; align-items: center; gap: 6px; }
+.promo-status.ok { background: var(--green-dim); color: var(--green); border: 1px solid rgba(16,185,129,.2); }
+.promo-status.vip { background: rgba(139,92,246,.12); color: var(--purple); border: 1px solid rgba(139,92,246,.2); }
+.promo-status.err { background: rgba(239,68,68,.1); color: var(--red); border: 1px solid rgba(239,68,68,.2); }
+.access-badge {
+  margin-left: auto; white-space: nowrap;
+  font-family: var(--font-mono); font-size: 10px;
+  padding: 3px 10px; border-radius: 20px;
+  border: 1px solid var(--line); color: var(--muted);
+  letter-spacing: .08em;
+}
+.access-badge.preview { border-color: rgba(34,211,238,.3); color: var(--cyan); background: rgba(34,211,238,.07); }
+.access-badge.full { border-color: rgba(139,92,246,.4); color: var(--purple); background: rgba(139,92,246,.1); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════════════════════════ */
+.main { position: relative; z-index: 1; padding-top: 110px; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 clamp(16px,4vw,48px); }
+.section { padding: 72px 0; }
+.section + .section { border-top: 1px solid var(--line); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   SECTION HEADER
+═══════════════════════════════════════════════════════════════════ */
+.sec-header {
+  display: flex; align-items: flex-start; gap: 20px;
+  margin-bottom: 40px;
+}
+.sec-num {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--blue); letter-spacing: .15em;
+  padding-top: 6px; white-space: nowrap;
+}
+.sec-titles { flex: 1; }
+.sec-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 700; color: var(--bright);
+  letter-spacing: -.02em; line-height: 1.1;
+  margin-bottom: 8px;
+}
+.sec-sub {
+  font-size: 13px; color: var(--dim);
+  font-family: var(--font-mono); letter-spacing: .03em;
+}
+.sec-action { margin-left: auto; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   HERO / PREAMBLE
+═══════════════════════════════════════════════════════════════════ */
+.hero {
+  padding: 64px 0 80px;
+  border-bottom: 1px solid var(--line);
+}
+.hero-meta {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--muted); letter-spacing: .2em; text-transform: uppercase;
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-meta::before {
+  content: ''; display: block;
+  width: 32px; height: 1px; background: var(--blue);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 800; line-height: 1.0;
+  letter-spacing: -.03em;
+  color: var(--bright);
+  margin-bottom: 16px;
+}
+.hero-title .line2 { color: var(--blue); display: block; }
+.hero-title .line3 { color: var(--dim); font-size: .52em; font-weight: 400; display: block; letter-spacing: -.01em; margin-top: 4px; }
+
+.hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: start; margin-top: 48px; }
+.hero-brief { font-size: 14px; color: var(--ghost); line-height: 1.8; max-width: 640px; }
+.hero-brief strong { color: var(--text); }
+
+.meta-card {
+  background: var(--ink2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 20px 24px;
+  min-width: 280px;
+}
+.meta-row {
+  display: flex; gap: 12px; padding: 9px 0;
+  border-bottom: 1px solid var(--line); font-size: 12px;
+}
+.meta-row:last-child { border-bottom: none; padding-bottom: 0; }
+.meta-key {
+  font-family: var(--font-mono); color: var(--muted);
+  font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+  min-width: 90px; padding-top: 2px;
+}
+.meta-val { color: var(--text); font-weight: 500; }
+.meta-val.highlight { color: var(--cyan); }
+.meta-val.dim { color: var(--dim); font-size: 11px; }
+
+/* author strip */
+.author-strip {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.author-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 18px; font-weight: 700;
+  color: var(--white); flex-shrink: 0;
+  box-shadow: 0 0 0 3px var(--ink), 0 0 0 4px var(--line);
+}
+.author-info { flex: 1; }
+.author-name {
+  font-family: var(--font-display); font-size: 16px; font-weight: 700;
+  color: var(--bright); letter-spacing: -.01em;
+}
+.author-title { font-size: 12px; color: var(--dim); margin-top: 2px; }
+.author-contacts { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.contact-pill {
+  font-family: var(--font-mono); font-size: 11px;
+  padding: 4px 12px; border-radius: 20px;
+  border: 1px solid var(--line); color: var(--ghost);
+  transition: all .2s; display: flex; align-items: center; gap: 6px;
+}
+.contact-pill:hover { border-color: var(--blue); color: var(--blue); }
+.contact-pill .icon { font-size: 13px; }
+
+/* KPI bar */
+.kpi-strip {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  overflow: hidden; margin-top: 48px;
+}
+.kpi-cell { background: var(--ink2); padding: 20px 22px; }
+.kpi-val {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 800;
+  color: var(--bright); letter-spacing: -.02em; line-height: 1;
+  margin-bottom: 4px;
+}
+.kpi-val span { font-size: 14px; font-weight: 400; color: var(--dim); }
+.kpi-lbl { font-size: 11px; color: var(--dim); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   BLUR SYSTEM
+═══════════════════════════════════════════════════════════════════ */
+.blur-content {
+  position: relative;
+  transition: filter .4s ease;
+}
+/* Guest: rows 3+ are blurred */
+.blur-content[data-blur="guest"] { filter: blur(var(--blur-radius)); user-select: none; pointer-events: none; }
+/* Preview: rows 6+ are blurred */
+.blur-content[data-blur="preview"] { filter: blur(var(--blur-radius)); user-select: none; pointer-events: none; }
+
+/* Lock overlay */
+.blur-wrap {
+  position: relative; overflow: hidden;
+}
+.blur-lock {
+  display: none;
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, var(--ink) 20%, transparent 100%);
+  height: 120px; z-index: 10;
+  align-items: flex-end; padding: 16px;
+}
+.blur-lock.visible { display: flex; }
+.blur-lock-msg {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--dim); display: flex; align-items: center; gap: 8px;
+}
+.blur-lock-msg .key-icon {
+  font-size: 14px;
+}
+
+/* section-level blur overlay */
+.section-blur-wrap { position: relative; }
+.section-overlay {
+  display: none;
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(11,13,17,.95) 40%, var(--ink) 100%);
+  z-index: 20;
+  align-items: center; justify-content: center;
+  flex-direction: column; gap: 12px;
+  text-align: center;
+}
+.section-overlay.visible { display: flex; }
+.overlay-title {
+  font-family: var(--font-display); font-size: 18px; font-weight: 600;
+  color: var(--text);
+}
+.overlay-hint {
+  font-family: var(--font-mono); font-size: 11px; color: var(--dim);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CARDS & TABLES
+═══════════════════════════════════════════════════════════════════ */
+.card {
+  background: var(--ink2); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 20px 22px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--muted); }
+.card-title {
+  font-family: var(--font-display); font-size: 14px; font-weight: 600;
+  color: var(--bright); margin-bottom: 4px;
+}
+.card-sub { font-size: 11px; color: var(--dim); margin-bottom: 14px; font-family: var(--font-mono); }
+
+/* grid layouts */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.grid-auto { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+
+/* data table */
+.data-table-wrap { overflow-x: auto; border-radius: var(--r); border: 1px solid var(--line); }
+.data-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+.data-table th {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  color: var(--muted); text-align: left; padding: 10px 14px;
+  background: var(--ink3); border-bottom: 1px solid var(--line);
+  letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
+}
+.data-table td {
+  padding: 10px 14px; border-bottom: 1px solid var(--line);
+  font-size: 12px; vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: rgba(59,130,246,.04); }
+.co-name { font-weight: 600; color: var(--bright); }
+.co-type { font-size: 10px; color: var(--dim); margin-top: 1px; }
+
+/* tags */
+.tag-row { display: flex; gap: 4px; flex-wrap: wrap; }
+.tag {
+  font-family: var(--font-mono); font-size: 10px;
+  padding: 2px 7px; border-radius: 4px;
+  background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2);
+  color: #93c5fd; white-space: nowrap;
+}
+.tag.green { background: var(--green-dim); border-color: rgba(16,185,129,.25); color: #6ee7b7; }
+.tag.amber { background: var(--amber-dim); border-color: rgba(245,158,11,.2); color: #fcd34d; }
+
+/* priority pills */
+.pri { font-family: var(--font-mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.pri-h { background: var(--green-dim); color: var(--green); border: 1px solid rgba(16,185,129,.3); }
+.pri-m { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,.25); }
+.pri-l { background: var(--ink3); color: var(--muted); border: 1px solid var(--line); }
+
+/* mini bar */
+.mini-bar-wrap { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+.mini-track { width: 52px; height: 3px; background: var(--ink3); border-radius: 2px; overflow: hidden; }
+.mini-fill { height: 100%; background: var(--blue); border-radius: 2px; }
+
+/* flow bars */
+.flow-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.flow-item { display: grid; grid-template-columns: 100px 1fr 40px; gap: 8px; align-items: center; font-size: 11px; }
+.fl { color: var(--dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ft { background: var(--ink3); border-radius: 2px; height: 4px; overflow: hidden; }
+.ff { height: 100%; border-radius: 2px; transition: width 1s ease; }
+.fp { text-align: right; font-family: var(--font-mono); color: var(--ghost); font-size: 10px; }
+
+/* price mini-chart bars */
+.price-bars { display: flex; align-items: flex-end; gap: 3px; height: 40px; }
+.price-bar { flex: 1; border-radius: 2px 2px 0 0; opacity: .75; transition: opacity .2s; min-height: 4px; }
+.price-bar:hover { opacity: 1; }
+.chart-row { display: flex; justify-content: space-between; margin-top: 4px; }
+.chart-lbl { font-family: var(--font-mono); font-size: 9px; color: var(--muted); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PRICE CARDS
+═══════════════════════════════════════════════════════════════════ */
+.price-card {
+  background: var(--ink2); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 18px 20px;
+  position: relative; overflow: hidden;
+}
+.price-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.pc-blue::before { background: var(--blue); }
+.pc-cyan::before { background: var(--cyan); }
+.pc-green::before { background: var(--green); }
+.pc-amber::before { background: var(--amber); }
+.pc-purple::before { background: var(--purple); }
+.price-name { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.4; margin-bottom: 4px; }
+.price-hs { font-family: var(--font-mono); font-size: 10px; color: var(--muted); margin-bottom: 12px; }
+.price-val {
+  font-family: var(--font-display); font-size: 22px; font-weight: 800;
+  color: var(--bright); letter-spacing: -.02em;
+}
+.price-unit { font-size: 11px; font-family: var(--font-mono); color: var(--dim); }
+.price-delta { font-family: var(--font-mono); font-size: 11px; margin: 4px 0 12px; }
+.delta-up { color: var(--green); }
+.delta-down { color: var(--red); }
+.price-range { font-size: 11px; color: var(--ghost); margin-top: 8px; }
+.price-range strong { color: var(--text); }
+.price-source { font-size: 10px; color: var(--muted); margin-top: 8px; font-family: var(--font-mono); border-top: 1px solid var(--line); padding-top: 8px; }
+.price-markets { display: flex; gap: 4px; margin-top: 8px; }
+.mkt-dot { font-family: var(--font-mono); font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: 600; }
+.m-cn { background: rgba(255,71,71,.12); color: #fca5a5; }
+.m-in { background: var(--amber-dim); color: #fcd34d; }
+.m-id { background: var(--green-dim); color: #6ee7b7; }
+.m-my { background: var(--blue-dim); color: #93c5fd; }
+.m-kr { background: rgba(139,92,246,.12); color: #c4b5fd; }
+.m-vn { background: rgba(34,211,238,.1); color: #67e8f9; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MARKET TABS
+═══════════════════════════════════════════════════════════════════ */
+.tab-strip {
+  display: flex; gap: 2px; flex-wrap: wrap;
+  background: var(--ink2); padding: 4px; border-radius: 8px;
+  border: 1px solid var(--line); margin-bottom: 24px; width: fit-content;
+}
+.tab-btn {
+  font-family: var(--font-mono); font-size: 11px;
+  padding: 6px 14px; border-radius: 6px; border: none;
+  background: transparent; color: var(--dim);
+  cursor: pointer; transition: all .2s; letter-spacing: .04em;
+}
+.tab-btn:hover { color: var(--text); background: var(--ink3); }
+.tab-btn.act { background: var(--blue); color: var(--white); }
+.tab-pane { display: none; }
+.tab-pane.act { display: block; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   STRATEGY ITEMS
+═══════════════════════════════════════════════════════════════════ */
+.strat-list { display: flex; flex-direction: column; gap: 6px; }
+.strat-item {
+  display: grid; grid-template-columns: 44px 1fr auto;
+  align-items: center; gap: 14px;
+  padding: 14px 16px;
+  background: var(--ink2); border: 1px solid var(--line);
+  border-radius: var(--r); transition: border-color .2s;
+}
+.strat-item:hover { border-color: var(--muted); }
+.s-rank {
+  font-family: var(--font-display); font-size: 22px; font-weight: 800;
+  color: var(--muted); text-align: center; line-height: 1;
+}
+.s-rank.gold { color: var(--amber); }
+.s-name { font-weight: 600; font-size: 13px; color: var(--bright); margin-bottom: 2px; }
+.s-det { font-size: 11px; color: var(--dim); }
+.s-margin-box { text-align: right; }
+.s-pct { font-family: var(--font-display); font-size: 20px; font-weight: 800; color: var(--green); }
+.s-price { font-family: var(--font-mono); font-size: 10px; color: var(--dim); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   STEP TABLE (strategy roadmap)
+═══════════════════════════════════════════════════════════════════ */
+.step-table { display: flex; flex-direction: column; gap: 1px; }
+.step-row {
+  display: grid; grid-template-columns: 48px 1fr 180px;
+  gap: 0; background: var(--ink2); border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden; font-size: 12px;
+}
+.step-num {
+  background: var(--ink3); padding: 14px;
+  font-family: var(--font-display); font-size: 18px; font-weight: 800;
+  color: var(--blue); text-align: center;
+  display: flex; align-items: center; justify-content: center;
+  border-right: 1px solid var(--line);
+}
+.step-content { padding: 14px 16px; color: var(--text); line-height: 1.5; }
+.step-deadline {
+  padding: 14px; text-align: center;
+  border-left: 1px solid var(--line);
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--amber); letter-spacing: .04em;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CALENDAR TABLE
+═══════════════════════════════════════════════════════════════════ */
+.cal-table { width: 100%; border-collapse: collapse; }
+.cal-table th {
+  font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+  text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.cal-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); font-size: 12px; vertical-align: middle; }
+.cal-table tr:hover td { background: rgba(59,130,246,.04); }
+.cal-table tr:last-child td { border-bottom: none; }
+.cal-date { font-family: var(--font-mono); font-weight: 500; color: var(--blue); white-space: nowrap; }
+.cal-name { font-weight: 600; color: var(--bright); }
+.cal-loc { color: var(--dim); }
+.cal-link a { color: var(--blue); font-family: var(--font-mono); font-size: 10px; }
+.cal-link a:hover { color: var(--cyan); }
+.cflag { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 20px; font-family: var(--font-mono); font-size: 10px; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   ADVANTAGES TABLE
+═══════════════════════════════════════════════════════════════════ */
+.adv-table { width: 100%; border-collapse: collapse; }
+.adv-table th {
+  font-size: 11px; text-align: left; padding: 10px 14px;
+  background: var(--ink3); color: var(--dim);
+  border: 1px solid var(--line); text-transform: uppercase; letter-spacing: .07em;
+}
+.adv-table th:last-child { color: var(--green); }
+.adv-table td { padding: 10px 14px; border: 1px solid var(--line); font-size: 12px; vertical-align: top; }
+.adv-table td:first-child { font-weight: 600; background: var(--ink2); color: var(--text); white-space: nowrap; }
+.val-win { color: var(--green); }
+.val-lose { color: var(--red); }
+.val-neu { color: var(--dim); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   DOWNLOAD BUTTON
+═══════════════════════════════════════════════════════════════════ */
+.download-bar {
+  margin-top: 40px; padding-top: 28px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.dl-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  padding: 10px 18px; border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--ink3); color: var(--ghost);
+  cursor: pointer; transition: all .25s; letter-spacing: .05em;
+  text-decoration: none; position: relative; overflow: hidden;
+}
+.dl-btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(59,130,246,.08));
+  opacity: 0; transition: opacity .25s;
+}
+.dl-btn:hover { border-color: var(--blue); color: var(--blue); }
+.dl-btn:hover::before { opacity: 1; }
+.dl-icon { font-size: 14px; }
+.dl-locked {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--muted); display: flex; align-items: center; gap: 6px;
+  margin-left: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ALERT BOX
+═══════════════════════════════════════════════════════════════════ */
+.alert {
+  padding: 12px 16px; border-radius: var(--r);
+  border-left: 3px solid; font-size: 12px; line-height: 1.7; margin-bottom: 16px;
+}
+.alert-info { background: var(--blue-dim); border-color: var(--blue); }
+.alert-success { background: var(--green-dim); border-color: var(--green); }
+.alert-warn { background: var(--amber-dim); border-color: var(--amber); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   FOOTER / CTA
+═══════════════════════════════════════════════════════════════════ */
+.footer-cta {
+  border-top: 1px solid var(--line);
+  padding: 72px 0;
+  text-align: center;
+}
+.cta-eyebrow {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--blue); letter-spacing: .2em; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 800; color: var(--bright);
+  letter-spacing: -.02em; margin-bottom: 12px; line-height: 1.1;
+}
+.cta-sub { font-size: 14px; color: var(--dim); max-width: 520px; margin: 0 auto 32px; line-height: 1.7; }
+.cta-contacts {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+}
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  padding: 12px 24px; border-radius: 8px;
+  transition: all .25s; letter-spacing: .06em;
+}
+.cta-btn-primary {
+  background: var(--blue); color: var(--white); border: none;
+}
+.cta-btn-primary:hover { background: #2563eb; color: var(--white); transform: translateY(-1px); }
+.cta-btn-ghost {
+  background: transparent; color: var(--ghost);
+  border: 1px solid var(--line);
+}
+.cta-btn-ghost:hover { border-color: var(--muted); color: var(--text); }
+
+.footer-legal {
+  border-top: 1px solid var(--line); padding: 20px;
+  text-align: center; font-family: var(--font-mono); font-size: 10px;
+  color: var(--muted); letter-spacing: .05em;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .meta-card { min-width: auto; width: 100%; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .step-row { grid-template-columns: 44px 1fr; }
+  .step-deadline { display: none; }
+  .nav-links { display: none; }
+  .burger { display: flex; }
+  .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+  .promo-bar { gap: 8px; }
+  .promo-input { width: 140px; }
+  .access-badge { display: none; }
+  .tab-strip { width: 100%; }
+  .tab-btn { font-size: 10px; padding: 5px 10px; }
+  .strat-item { grid-template-columns: 36px 1fr; }
+  .s-margin-box { display: none; }
+}
+
+/* ── MOBILE NAV ── */
+.mobile-menu {
+  display: none; position: fixed; top: 56px; left: 0; right: 0; z-index: 998;
+  background: rgba(11,13,17,.97); backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 20px; flex-direction: column; gap: 4px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: var(--font-mono); font-size: 12px; color: var(--dim);
+  padding: 10px 12px; border-radius: 6px;
+  transition: all .2s; text-transform: uppercase; letter-spacing: .08em;
+}
+.mobile-menu a:hover { color: var(--text); background: var(--ink3); }
+
+/* ── FADE IN ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.fu { animation: fadeUp .6s ease both; }
+.fu-d1 { animation-delay: .1s; }
+.fu-d2 { animation-delay: .2s; }
+.fu-d3 { animation-delay: .3s; }
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: var(--line); margin: 28px 0; }
+
+/* ── MONO TEXT ── */
+.mono { font-family: var(--font-mono); }
+.dim-text { color: var(--dim); }
+.bright-text { color: var(--bright); }
+
+/* ── access indicator on section ── */
+.access-gate {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+  padding: 3px 10px; border-radius: 20px;
+  border: 1px solid var(--line); margin-left: 12px;
+  vertical-align: middle;
+}
+.access-gate.locked { color: var(--red); border-color: rgba(239,68,68,.3); }
+.access-gate.partial { color: var(--amber); border-color: rgba(245,158,11,.3); }
+.access-gate.open { color: var(--green); border-color: rgba(16,185,129,.3); }
+
+/* geo card */
+.geo-card { background: var(--ink2); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 16px; }
+.geo-hd { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.geo-cn { font-family: var(--font-display); font-size: 15px; font-weight: 700; }
+.ent-list { display: flex; flex-direction: column; gap: 6px; }
+.ent { padding: 8px 10px; background: var(--ink3); border-radius: 6px; }
+.ent-name { font-weight: 600; font-size: 12px; margin-bottom: 2px; }
+.ent-loc { color: var(--dim); font-size: 10px; }
+.ent-loc a { color: var(--blue); }
+.ent-tags { display: flex; gap: 3px; margin-top: 4px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND ORBS -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="nav-brand-dot"></div>
+    <span data-ru="ЭКСПОРТ · АНАЛИТИКА" data-en="EXPORT · INTELLIGENCE">ЭКСПОРТ · АНАЛИТИКА</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#markets" data-ru="Рынки" data-en="Markets">Рынки</a></li>
+    <li><a href="#importers" data-ru="Импортёры" data-en="Importers">Импортёры</a></li>
+    <li><a href="#calendar" data-ru="Выставки" data-en="Exhibitions">Выставки</a></li>
+    <li><a href="#strategy" data-ru="Стратегия" data-en="Strategy">Стратегия</a></li>
+    <li><a href="#cta" data-ru="Контакт" data-en="Contact">Контакт</a></li>
+  </ul>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+  <div class="burger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#markets" onclick="toggleMenu()" data-ru="Рынки" data-en="Markets">Рынки</a>
+  <a href="#importers" onclick="toggleMenu()" data-ru="Импортёры" data-en="Importers">Импортёры</a>
+  <a href="#calendar" onclick="toggleMenu()" data-ru="Выставки" data-en="Exhibitions">Выставки</a>
+  <a href="#strategy" onclick="toggleMenu()" data-ru="Стратегия" data-en="Strategy">Стратегия</a>
+  <a href="#cta" onclick="toggleMenu()" data-ru="Контакт" data-en="Contact">Контакт</a>
+</div>
+
+<!-- ═══════════ PROMO BAR ═══════════ -->
+<div class="promo-bar">
+  <div class="promo-label" data-ru="🔐 Код доступа:" data-en="🔐 Access code:">🔐 Код доступа:</div>
+  <div class="promo-input-wrap">
+    <input class="promo-input" type="text" id="promoInput" placeholder="ВВЕДИТЕ КОД" maxlength="20" autocomplete="off">
+    <button class="promo-btn" onclick="applyPromo()" data-ru="ПРИМЕНИТЬ" data-en="UNLOCK">ПРИМЕНИТЬ</button>
+  </div>
+  <div class="promo-status" id="promoStatus"></div>
+  <div class="access-badge" id="accessBadge" data-ru="Режим: ГОСТЬ" data-en="Mode: GUEST">Режим: ГОСТЬ</div>
+</div>
+
+<!-- ═══════════ MAIN CONTENT ═══════════ -->
+<main class="main">
+
+<!-- ── HERO / PREAMBLE ── -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-meta fu">
+      <span data-ru="Экспортная аналитика · АТР · 2026" data-en="Export Intelligence · APAC · 2026">Экспортная аналитика · АТР · 2026</span>
+    </div>
+    <h1 class="hero-title fu fu-d1">
+      Export
+      <span class="line2">Intelligence</span>
+      <span class="line3" data-ru="Стратегия экспортной экспансии на рынки Азиатско-Тихоокеанского региона" data-en="Asia-Pacific Export Expansion Strategy">Стратегия экспортной экспансии на рынки Азиатско-Тихоокеанского региона</span>
+    </h1>
+
+    <div class="hero-grid fu fu-d2">
+      <div>
+        <p class="hero-brief">
+          <strong data-ru="Для кого:" data-en="Prepared for:">Для кого:</strong> <span id="client-name" data-ru="АО «УК МидЮрал» — собственнику группы компаний" data-en="MidUral Group — owner review">АО «УК МидЮрал» — собственнику группы компаний</span><br>
+          <strong data-ru="Продукт:" data-en="Product:">Продукт:</strong> <span id="product-name" data-ru="Ферросплавы и продукты обогащения — КЗФ + КОФ" data-en="Ferroalloys & Beneficiation Products — KZF + KOF">Ферросплавы и продукты обогащения — КЗФ + КОФ</span><br>
+          <strong data-ru="Рынки:" data-en="Target markets:">Рынки:</strong> <span data-ru="Китай · Индия · Малайзия · Индонезия · Корея · Вьетнам" data-en="China · India · Malaysia · Indonesia · Korea · Vietnam">Китай · Индия · Малайзия · Индонезия · Корея · Вьетнам</span><br><br>
+          <span data-ru="Аналитика собрана на основании открытых данных биржевых площадок Fastmarkets, SMM, Metal Bulletin, Argus Media, реестров участников профильных выставок 2023–2025, баз ITC TradeMap и UN Comtrade. Методология — авторская. Стратегия — оригинальная разработка." data-en="Analysis based on Fastmarkets, SMM, Metal Bulletin, Argus Media public data, exhibition registries 2023–2025, ITC TradeMap and UN Comtrade. Methodology and strategy are original author's work.">Аналитика собрана на основании открытых данных биржевых площадок Fastmarkets, SMM, Metal Bulletin, Argus Media, реестров участников профильных выставок 2023–2025, баз ITC TradeMap и UN Comtrade. Методология — авторская. Стратегия — оригинальная разработка.</span>
+        </p>
+
+        <div class="author-strip">
+          <div class="author-avatar">DS</div>
+          <div class="author-info">
+            <div class="author-name">Dmitry Skobtsov</div>
+            <div class="author-title" data-ru="Senior Foreign Economic Activity Specialist · Export Strategy · APAC" data-en="Senior Foreign Economic Activity Specialist · Export Strategy · APAC">Senior Foreign Economic Activity Specialist · Export Strategy · APAC</div>
+          </div>
+          <div class="author-contacts">
+            <a class="contact-pill" href="https://t.me/dimasko" target="_blank">
+              <span class="icon">✈</span> @dimasko
+            </a>
+            <a class="contact-pill" href="mailto:dimasko@gmail.com">
+              <span class="icon">✉</span> dimasko@gmail.com
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="meta-card fu fu-d3">
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Отчёт" data-en="Report">Отчёт</div>
+          <div class="meta-val">#001 · Ферросплавы</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Создан" data-en="Created">Создан</div>
+          <div class="meta-val">Апрель 2026</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Версия" data-en="Version">Версия</div>
+          <div class="meta-val">v1.0</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Юр. лицо" data-en="Entity">Юр. лицо</div>
+          <div class="meta-val">АО «УК МидЮрал»</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Продукт" data-en="Product">Продукт</div>
+          <div class="meta-val">КЗФ + КОФ</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Рынки" data-en="Markets">Рынки</div>
+          <div class="meta-val highlight">6 стран АТР</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Источники" data-en="Sources">Источники</div>
+          <div class="meta-val dim">Fastmarkets · SMM · Comtrade · ICDA</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Доступ" data-en="Access">Доступ</div>
+          <div class="meta-val" id="meta-access" data-ru="Режим: ГОСТЬ" data-en="Mode: GUEST">Режим: ГОСТЬ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI STRIP -->
+    <div class="kpi-strip">
+      <div class="kpi-cell">
+        <div class="kpi-val">$6.35<span data-ru=" млрд" data-en="B"> млрд</span></div>
+        <div class="kpi-lbl" data-ru="Ёмкость рынков ЮВА" data-en="SEA market capacity">Ёмкость рынков ЮВА</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-val">6<span data-ru=" рынков" data-en=" markets"> рынков</span></div>
+        <div class="kpi-lbl" data-ru="Целевых стран АТР" data-en="Target APAC countries">Целевых стран АТР</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-val">150+</div>
+        <div class="kpi-lbl" data-ru="Импортёров в базе" data-en="Importers in database">Импортёров в базе</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-val">15</div>
+        <div class="kpi-lbl" data-ru="Приоритетных продуктов" data-en="Priority products">Приоритетных продуктов</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-val">60<span>%</span></div>
+        <div class="kpi-lbl" data-ru="Макс. маржа Cr металл." data-en="Max margin Cr metal">Макс. маржа Cr металл.</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-val">$120<span data-ru="млн" data-en="M">млн</span></div>
+        <div class="kpi-lbl" data-ru="Потенциал выручки к 2028" data-en="Revenue potential by 2028">Потенциал выручки к 2028</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 1 — EXPORT MARKETS
+═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="markets">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <div class="sec-titles">
+        <div class="sec-title" data-ru="Экспортные рынки" data-en="Export Markets">
+          Экспортные рынки
+          <span class="access-gate locked" id="gate-markets" data-ru="🔒 частично закрыто" data-en="🔒 partial access">🔒 частично закрыто</span>
+        </div>
+        <div class="sec-sub" data-ru="Цены 2025–2026 · География · Объёмы · Маржинальные продукты" data-en="Prices 2025–2026 · Geography · Volumes · Margin products">Цены 2025–2026 · География · Объёмы · Маржинальные продукты</div>
+      </div>
+    </div>
+
+    <!-- PRICE CARDS — first 2 always visible -->
+    <div class="grid-auto" style="margin-bottom:24px">
+
+      <div class="price-card pc-blue">
+        <div class="price-name" data-ru="Хром металлический алюминотермический (Cr≥98.5%)" data-en="Metallic Chromium aluminothermic (Cr≥98.5%)">Хром металлический алюминотермический (Cr≥98.5%)</div>
+        <div class="price-hs">HS 2805.30 · КЗФ · CIF Asia</div>
+        <div class="price-val">$9,200<span class="price-unit">/т</span></div>
+        <div class="price-delta delta-up">▲ +14% г/г</div>
+        <div class="price-bars">
+          <div class="price-bar" style="height:55%;background:var(--blue)"></div>
+          <div class="price-bar" style="height:62%;background:var(--blue)"></div>
+          <div class="price-bar" style="height:75%;background:var(--blue)"></div>
+          <div class="price-bar" style="height:88%;background:var(--blue)"></div>
+          <div class="price-bar" style="height:82%;background:var(--blue)"></div>
+        </div>
+        <div class="chart-row"><span class="chart-lbl">Q1'25</span><span class="chart-lbl">Q2'25</span><span class="chart-lbl">Q3'25</span><span class="chart-lbl">Q4'25</span><span class="chart-lbl">Q1'26</span></div>
+        <div class="price-range" data-ru="Прогноз 2026: <strong>$8,500–12,000/т</strong> · Маржа КЗФ: 60–70%" data-en="Forecast 2026: <strong>$8,500–12,000/t</strong> · KZF margin: 60–70%">Прогноз 2026: <strong>$8,500–12,000/т</strong> · Маржа КЗФ: 60–70%</div>
+        <div class="price-markets">
+          <span class="mkt-dot m-cn">CN</span><span class="mkt-dot m-in">IN</span><span class="mkt-dot m-my">MY</span><span class="mkt-dot m-kr">KR</span>
+        </div>
+        <div class="price-source">Fastmarkets · SMM (Shanghai Metal Market)</div>
+      </div>
+
+      <div class="price-card pc-cyan">
+        <div class="price-name" data-ru="Хром азотированный — Нитрид хрома (CrN 60–65%)" data-en="Chromium Nitride (CrN 60–65%)">Хром азотированный — Нитрид хрома (CrN 60–65%)</div>
+        <div class="price-hs">HS 2826.90 · КЗФ · OTC</div>
+        <div class="price-val">$8,100<span class="price-unit">/т</span></div>
+        <div class="price-delta delta-up">▲ +18% г/г</div>
+        <div class="price-bars">
+          <div class="price-bar" style="height:48%;background:var(--cyan)"></div>
+          <div class="price-bar" style="height:58%;background:var(--cyan)"></div>
+          <div class="price-bar" style="height:72%;background:var(--cyan)"></div>
+          <div class="price-bar" style="height:90%;background:var(--cyan)"></div>
+          <div class="price-bar" style="height:78%;background:var(--cyan)"></div>
+        </div>
+        <div class="chart-row"><span class="chart-lbl">Q1'25</span><span class="chart-lbl">Q2'25</span><span class="chart-lbl">Q3'25</span><span class="chart-lbl">Q4'25</span><span class="chart-lbl">Q1'26</span></div>
+        <div class="price-range" data-ru="Прогноз 2026: <strong>$7,000–9,500/т</strong> · Маржа КЗФ: 55–65%" data-en="Forecast 2026: <strong>$7,000–9,500/t</strong> · KZF margin: 55–65%">Прогноз 2026: <strong>$7,000–9,500/т</strong> · Маржа КЗФ: 55–65%</div>
+        <div class="price-markets">
+          <span class="mkt-dot m-cn">CN</span><span class="mkt-dot m-in">IN</span><span class="mkt-dot m-kr">KR</span>
+        </div>
+        <div class="price-source">OTC · Stainless World Asia</div>
+      </div>
+
+      <!-- BLURRED from item 3 in guest mode -->
+      <div class="blur-wrap">
+        <div class="price-card pc-green" data-blur-guest data-blur-preview-no>
+          <div class="price-name" data-ru="Феррохром низкоуглеродистый (FeCr LC, C≤0.03%)" data-en="Low-Carbon Ferrochrome (FeCr LC, C≤0.03%)">Феррохром низкоуглеродистый (FeCr LC, C≤0.03%)</div>
+          <div class="price-hs">HS 7202.49 · КЗФ · CIF China/India</div>
+          <div class="price-val">$2,080<span class="price-unit">/т</span></div>
+          <div class="price-delta delta-up">▲ +9% г/г</div>
+          <div class="price-bars">
+            <div class="price-bar" style="height:62%;background:var(--green)"></div>
+            <div class="price-bar" style="height:68%;background:var(--green)"></div>
+            <div class="price-bar" style="height:76%;background:var(--green)"></div>
+            <div class="price-bar" style="height:80%;background:var(--green)"></div>
+            <div class="price-bar" style="height:72%;background:var(--green)"></div>
+          </div>
+          <div class="chart-row"><span class="chart-lbl">Q1'25</span><span class="chart-lbl">Q2'25</span><span class="chart-lbl">Q3'25</span><span class="chart-lbl">Q4'25</span><span class="chart-lbl">Q1'26</span></div>
+          <div class="price-range">Прогноз 2026: <strong>$1,800–2,600/т</strong> · Маржа: 40–55%</div>
+          <div class="price-markets"><span class="mkt-dot m-cn">CN</span><span class="mkt-dot m-in">IN</span><span class="mkt-dot m-id">ID</span><span class="mkt-dot m-my">MY</span><span class="mkt-dot m-kr">KR</span><span class="mkt-dot m-vn">VN</span></div>
+          <div class="price-source">Fastmarkets · Metal Bulletin · CRU</div>
+        </div>
+        <div class="blur-lock visible" id="lock-price-3">
+          <div class="blur-lock-msg"><span class="key-icon">🔑</span><span data-ru="Введите код доступа для просмотра ещё 10 продуктов" data-en="Enter access code to view 10 more products">Введите код доступа для просмотра ещё 10 продуктов</span></div>
+        </div>
+      </div>
+
+      <!-- Ghost cards to show there's more content -->
+      <div class="price-card" style="opacity:.25;pointer-events:none;filter:blur(6px)">
+        <div class="price-name">Ферромолибден (FeMo, Mo65%)</div>
+        <div class="price-val">$28,400<span class="price-unit">/т</span></div>
+        <div class="price-delta delta-down">▼ –5% г/г</div>
+      </div>
+      <div class="price-card" style="opacity:.15;pointer-events:none;filter:blur(8px)">
+        <div class="price-name">Феррониобий (FeNb, Nb65%)</div>
+        <div class="price-val">$38,500<span class="price-unit">/т</span></div>
+      </div>
+    </div>
+
+    <!-- MARKET TABS — structure shown, data blurred -->
+    <div class="tab-strip">
+      <button class="tab-btn act" onclick="showTab('cn',this,'mkt')">🇨🇳 China</button>
+      <button class="tab-btn" onclick="showTab('in',this,'mkt')">🇮🇳 India</button>
+      <button class="tab-btn" onclick="showTab('id',this,'mkt')">🇮🇩 Indonesia</button>
+      <button class="tab-btn" onclick="showTab('my',this,'mkt')">🇲🇾 Malaysia</button>
+      <button class="tab-btn" onclick="showTab('kr',this,'mkt')">🇰🇷 Korea</button>
+      <button class="tab-btn" onclick="showTab('vn',this,'mkt')">🇻🇳 Vietnam</button>
+    </div>
+
+    <div class="tab-pane act" id="mkt-cn">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">🇨🇳 <span data-ru="Китай — ключевые показатели" data-en="China — key indicators">Китай — ключевые показатели</span></div>
+          <div class="card-sub" data-ru="Крупнейший мировой потребитель ферросплавов" data-en="World's largest ferroalloy consumer">Крупнейший мировой потребитель ферросплавов</div>
+          <div class="meta-row"><div class="meta-key" data-ru="Импорт 2024" data-en="Import 2024">Импорт 2024</div><div class="meta-val">~$4.2 млрд</div></div>
+          <div class="meta-row"><div class="meta-key" data-ru="Cr металл." data-en="Cr metal">Cr металл.</div><div class="meta-val">~180,000 т/год</div></div>
+          <div class="meta-row" style="filter:blur(5px);user-select:none"><div class="meta-key">Рост FeCr LC</div><div class="meta-val">████ г/г</div></div>
+          <div class="meta-row" style="filter:blur(5px);user-select:none"><div class="meta-key">Доля РФ</div><div class="meta-val">████</div></div>
+          <div class="meta-row" style="filter:blur(5px);user-select:none"><div class="meta-key">Целевая доля</div><div class="meta-val">████ к 2028</div></div>
+        </div>
+        <div class="card">
+          <div class="card-title" data-ru="Структура импорта FeCr (100%)" data-en="FeCr import structure (100%)">Структура импорта FeCr (100%)</div>
+          <div class="flow-list">
+            <div class="flow-item">
+              <span class="fl">ЮАР (Samancor)</span>
+              <div class="ft"><div class="ff" style="width:38%;background:var(--amber)"></div></div>
+              <span class="fp">38%</span>
+            </div>
+            <div class="flow-item">
+              <span class="fl">Казахстан (ERG)</span>
+              <div class="ft"><div class="ff" style="width:22%;background:var(--blue)"></div></div>
+              <span class="fp">22%</span>
+            </div>
+            <div class="flow-item" style="filter:blur(5px);user-select:none">
+              <span class="fl">████████</span>
+              <div class="ft"><div class="ff" style="width:14%;background:var(--green)"></div></div>
+              <span class="fp">██%</span>
+            </div>
+            <div class="flow-item" style="filter:blur(5px);user-select:none">
+              <span class="fl">████████</span>
+              <div class="ft"><div class="ff" style="width:8%;background:var(--red)"></div></div>
+              <span class="fp">██%</span>
+            </div>
+            <div class="flow-item" style="filter:blur(5px);user-select:none">
+              <span class="fl">████████</span>
+              <div class="ft"><div class="ff" style="width:7%;background:var(--purple)"></div></div>
+              <span class="fp">██%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="mkt-in">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">🇮🇳 <span data-ru="Индия — ключевые показатели" data-en="India — key indicators">Индия — ключевые показатели</span></div>
+          <div class="meta-row"><div class="meta-key">Импорт 2024</div><div class="meta-val">~$800 млн</div></div>
+          <div class="meta-row"><div class="meta-key" data-ru="Рост н/ж стали" data-en="SS growth">Рост н/ж стали</div><div class="meta-val" style="color:var(--green)">+15% г/г</div></div>
+          <div class="meta-row" style="filter:blur(5px);user-select:none"><div class="meta-key">Спрос FeCr LC</div><div class="meta-val">████████</div></div>
+          <div class="meta-row" style="filter:blur(5px);user-select:none"><div class="meta-key">Доля ЮАР</div><div class="meta-val">████</div></div>
+        </div>
+        <div class="card" style="filter:blur(6px);user-select:none;pointer-events:none">
+          <div class="card-title">Структура импорта (100%)</div>
+          <div class="flow-list">
+            <div class="flow-item"><span class="fl">████████████</span><div class="ft"><div class="ff" style="width:45%;background:var(--amber)"></div></div><span class="fp">██%</span></div>
+            <div class="flow-item"><span class="fl">████████████</span><div class="ft"><div class="ff" style="width:18%;background:var(--blue)"></div></div><span class="fp">██%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="mkt-id" style="filter:blur(6px);user-select:none;pointer-events:none">
+      <div class="card"><div class="card-title">🇮🇩 Indonesia · ████████</div><div style="height:80px;background:var(--ink3);border-radius:8px;margin-top:12px"></div></div>
+    </div>
+    <div class="tab-pane" id="mkt-my" style="filter:blur(6px);user-select:none;pointer-events:none">
+      <div class="card"><div class="card-title">🇲🇾 Malaysia · ████████</div><div style="height:80px;background:var(--ink3);border-radius:8px;margin-top:12px"></div></div>
+    </div>
+    <div class="tab-pane" id="mkt-kr" style="filter:blur(6px);user-select:none;pointer-events:none">
+      <div class="card"><div class="card-title">🇰🇷 Korea · ████████</div><div style="height:80px;background:var(--ink3);border-radius:8px;margin-top:12px"></div></div>
+    </div>
+    <div class="tab-pane" id="mkt-vn" style="filter:blur(6px);user-select:none;pointer-events:none">
+      <div class="card"><div class="card-title">🇻🇳 Vietnam · ████████</div><div style="height:80px;background:var(--ink3);border-radius:8px;margin-top:12px"></div></div>
+    </div>
+
+    <!-- STRATEGY TOP-2 visible, rest blurred -->
+    <div style="margin-top:32px">
+      <h3 style="font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--bright);margin-bottom:16px" data-ru="Топ-15 продуктов по маржинальности" data-en="Top-15 products by margin">Топ-15 продуктов по маржинальности</h3>
+      <div class="strat-list">
+        <div class="strat-item">
+          <div class="s-rank gold">1</div>
+          <div><div class="s-name" data-ru="Хром металлический алюминотермический (Cr≥98.5%)" data-en="Metallic Chromium aluminothermic">Хром металлический алюминотермический (Cr≥98.5%)</div><div class="s-det" data-ru="CN/IN/MY/KR · Авиация, спецсплавы, ВПК · Монополия в ЮВА" data-en="CN/IN/MY/KR · Aviation, special alloys · Regional monopoly">CN/IN/MY/KR · Авиация, спецсплавы, ВПК</div></div>
+          <div class="s-margin-box"><div class="s-pct">65%</div><div class="s-price">$8,500–12,000/т</div></div>
+        </div>
+        <div class="strat-item">
+          <div class="s-rank gold">2</div>
+          <div><div class="s-name" data-ru="Хром азотированный (нитрид CrN)" data-en="Chromium Nitride (CrN)">Хром азотированный (нитрид CrN)</div><div class="s-det" data-ru="CN/IN/KR · Авиация, нерж. сталь · КЗФ — редкий мировой производитель" data-en="CN/IN/KR · Aviation, SS · KZF rare world producer">CN/IN/KR · Авиация, нерж. сталь</div></div>
+          <div class="s-margin-box"><div class="s-pct">60%</div><div class="s-price">$7,000–9,500/т</div></div>
+        </div>
+        <!-- blurred rows 3-15 -->
+        <div style="filter:blur(6px);user-select:none;pointer-events:none">
+          <div class="strat-item"><div class="s-rank">3</div><div><div class="s-name">Феррохром LC (C&lt;0.03%)</div><div class="s-det">Все 6 рынков · Нержавеющая сталь</div></div><div class="s-margin-box"><div class="s-pct">47%</div></div></div>
+          <div class="strat-item"><div class="s-rank">4</div><div><div class="s-name">Ферромолибден (FeMo65%)</div><div class="s-det">CN/IN · Инструментальная сталь</div></div><div class="s-margin-box"><div class="s-pct">42%</div></div></div>
+          <div class="strat-item"><div class="s-rank">5</div><div><div class="s-name">Феррониобий (FeNb65%)</div><div class="s-det">CN/IN/ID · HSLA стали</div></div><div class="s-margin-box"><div class="s-pct">41%</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="download-bar">
+      <a class="dl-btn" href="#" onclick="downloadGated(event,'markets')" data-ru="⬇ Скачать: Анализ экспортных рынков АТР.pdf" data-en="⬇ Download: APAC Export Markets Analysis.pdf">⬇ Скачать: Анализ экспортных рынков АТР.pdf</a>
+      <div class="dl-locked" id="dl-lock-markets">🔑 <span data-ru="Требуется код доступа уровня PREVIEW" data-en="Requires PREVIEW access code">Требуется код доступа уровня PREVIEW</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 2 — IMPORTERS DATABASE
+═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="importers">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">02</div>
+      <div class="sec-titles">
+        <div class="sec-title" data-ru="База импортёров" data-en="Importers Database">
+          База импортёров
+          <span class="access-gate locked" id="gate-importers" data-ru="🔒 частично закрыто" data-en="🔒 partial access">🔒 частично закрыто</span>
+        </div>
+        <div class="sec-sub" data-ru="30+ компаний на каждый рынок · Контакты · Объёмы · Коэффициент привлекательности" data-en="30+ companies per market · Contacts · Volumes · Attractiveness score">30+ компаний на каждый рынок · Контакты · Объёмы · Коэффициент привлекательности</div>
+      </div>
+    </div>
+
+    <div class="alert alert-info" data-ru="В базе 180+ компаний-импортёров по 6 рынкам. Ниже показаны первые 2 позиции по каждому рынку. Введите код доступа для просмотра расширенного списка с контактами." data-en="Database contains 180+ importer companies across 6 markets. First 2 entries shown per market. Enter access code to view full list with contacts.">В базе 180+ компаний-импортёров по 6 рынкам. Ниже показаны первые 2 позиции по каждому рынку. Введите код доступа для просмотра расширенного списка с контактами.</div>
+
+    <div class="tab-strip">
+      <button class="tab-btn act" onclick="showTab('icn',this,'imp')">🇨🇳 China</button>
+      <button class="tab-btn" onclick="showTab('iin',this,'imp')">🇮🇳 India</button>
+      <button class="tab-btn" onclick="showTab('iid',this,'imp')">🇮🇩 Indonesia</button>
+      <button class="tab-btn" onclick="showTab('imy',this,'imp')">🇲🇾 Malaysia</button>
+      <button class="tab-btn" onclick="showTab('ikr',this,'imp')">🇰🇷 Korea</button>
+      <button class="tab-btn" onclick="showTab('ivn',this,'imp')">🇻🇳 Vietnam</button>
+    </div>
+
+    <div class="tab-pane act" id="imp-icn">
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th data-ru="Компания" data-en="Company">Компания</th>
+              <th data-ru="Регион" data-en="Region">Регион</th>
+              <th data-ru="Продукция" data-en="Products">Продукция</th>
+              <th data-ru="Объём" data-en="Volume">Объём</th>
+              <th data-ru="Привлек." data-en="Score">Привлек.</th>
+              <th data-ru="Приоритет" data-en="Priority">Приоритет</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mono dim-text">01</td>
+              <td><div class="co-name">TISCO — Taiyuan Iron & Steel Group</div><div class="co-type" data-ru="Произв. нержавеющей стали" data-en="Stainless steel producer">Произв. нержавеющей стали</div></td>
+              <td class="dim-text">Тайюань, Шаньси</td>
+              <td><div class="tag-row"><span class="tag">FeCr LC</span><span class="tag">Cr металл.</span></div></td>
+              <td><div class="mini-bar-wrap"><div class="mini-track"><div class="mini-fill" style="width:80%"></div></div><span>~30К т/год</span></div></td>
+              <td><span style="font-family:var(--font-display);font-size:18px;font-weight:800;color:var(--green)">9.4</span></td>
+              <td><span class="pri pri-h" data-ru="ВЫСОКИЙ" data-en="HIGH">ВЫСОКИЙ</span></td>
+            </tr>
+            <tr>
+              <td class="mono dim-text">02</td>
+              <td><div class="co-name">Sinosteel Corporation</div><div class="co-type" data-ru="Государственный трейдер" data-en="State trader">Государственный трейдер</div></td>
+              <td class="dim-text">Пекин</td>
+              <td><div class="tag-row"><span class="tag">Cr металл.</span><span class="tag">FeCr LC</span><span class="tag">FeMo</span></div></td>
+              <td><div class="mini-bar-wrap"><div class="mini-track"><div class="mini-fill" style="width:100%"></div></div><span>~80К т/год</span></div></td>
+              <td><span style="font-family:var(--font-display);font-size:18px;font-weight:800;color:var(--green)">9.8</span></td>
+              <td><span class="pri pri-h">ВЫСОКИЙ</span></td>
+            </tr>
+            <!-- BLURRED ROWS 3–30 -->
+            <tr style="filter:blur(5px);user-select:none;pointer-events:none">
+              <td class="mono">03</td><td><div class="co-name">██████████████████</div><div class="co-type">████████████</div></td>
+              <td>████████</td><td><div class="tag-row"><span class="tag">████</span><span class="tag">████</span></div></td>
+              <td>~██К т/год</td><td><span style="font-family:var(--font-display);font-size:18px;font-weight:800;color:var(--green)">█.█</span></td>
+              <td><span class="pri pri-h">██████</span></td>
+            </tr>
+            <tr style="filter:blur(6px);user-select:none;pointer-events:none">
+              <td class="mono">04</td><td><div class="co-name">████████████████████████</div></td>
+              <td>████████</td><td>████████</td><td>~██К т/год</td><td>█.█</td><td>██████</td>
+            </tr>
+            <tr style="filter:blur(7px);user-select:none;pointer-events:none">
+              <td class="mono">05–30</td><td colspan="6" style="text-align:center;color:var(--muted);font-family:var(--font-mono);font-size:11px">
+                🔑 <span data-ru="28 компаний скрыты · Введите код доступа" data-en="28 companies hidden · Enter access code">28 компаний скрыты · Введите код доступа</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="imp-iin">
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead><tr><th>#</th><th data-ru="Компания" data-en="Company">Компания</th><th data-ru="Регион" data-en="Region">Регион</th><th data-ru="Продукция" data-en="Products">Продукция</th><th data-ru="Объём" data-en="Volume">Объём</th><th>Score</th><th data-ru="Приоритет" data-en="Priority">Приоритет</th></tr></thead>
+          <tbody>
+            <tr><td class="mono dim-text">01</td><td><div class="co-name">Jindal Stainless Limited (JSL)</div><div class="co-type" data-ru="Произв. н/ж стали" data-en="SS producer">Произв. н/ж стали</div></td><td class="dim-text">Джаджпур, Одиша</td><td><div class="tag-row"><span class="tag">FeCr LC</span><span class="tag">CaSi</span></div></td><td>~25К т/год</td><td><span style="font-family:var(--font-display);font-size:18px;font-weight:800;color:var(--green)">9.2</span></td><td><span class="pri pri-h">ВЫСОКИЙ</span></td></tr>
+            <tr><td class="mono dim-text">02</td><td><div class="co-name">HAL (Hindustan Aeronautics)</div><div class="co-type" data-ru="Авиапроизводитель (гос.)" data-en="State aerospace">Авиапроизводитель (гос.)</div></td><td class="dim-text">Бангалор, Карнатака</td><td><div class="tag-row"><span class="tag green">Cr нитрид</span><span class="tag green">FeTi</span></div></td><td>~3К т/год</td><td><span style="font-family:var(--font-display);font-size:18px;font-weight:800;color:var(--green)">9.7</span></td><td><span class="pri pri-h">ВЫСОКИЙ</span></td></tr>
+            <tr style="filter:blur(5px);user-select:none;pointer-events:none"><td class="mono">03–30</td><td colspan="6" style="text-align:center;color:var(--muted);font-family:var(--font-mono);font-size:11px">🔑 28 компаний скрыты</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="imp-iid" style="filter:blur(7px);user-select:none;pointer-events:none">
+      <div class="card" style="text-align:center;padding:40px"><div class="card-title">🇮🇩 Indonesia — 30 компаний</div><div style="margin-top:12px;font-family:var(--font-mono);font-size:11px;color:var(--muted)">🔑 Требуется код доступа</div></div>
+    </div>
+    <div class="tab-pane" id="imp-imy" style="filter:blur(7px);user-select:none;pointer-events:none">
+      <div class="card" style="text-align:center;padding:40px"><div class="card-title">🇲🇾 Malaysia — 30 компаний</div><div style="margin-top:12px;font-family:var(--font-mono);font-size:11px;color:var(--muted)">🔑 Требуется код доступа</div></div>
+    </div>
+    <div class="tab-pane" id="imp-ikr" style="filter:blur(7px);user-select:none;pointer-events:none">
+      <div class="card" style="text-align:center;padding:40px"><div class="card-title">🇰🇷 Korea — 30 компаний</div><div style="margin-top:12px;font-family:var(--font-mono);font-size:11px;color:var(--muted)">🔑 Требуется код доступа</div></div>
+    </div>
+    <div class="tab-pane" id="imp-ivn" style="filter:blur(7px);user-select:none;pointer-events:none">
+      <div class="card" style="text-align:center;padding:40px"><div class="card-title">🇻🇳 Vietnam — 30 компаний</div><div style="margin-top:12px;font-family:var(--font-mono);font-size:11px;color:var(--muted)">🔑 Требуется код доступа</div></div>
+    </div>
+
+    <div class="download-bar">
+      <a class="dl-btn" href="#" onclick="downloadGated(event,'importers')" data-ru="⬇ Скачать: База импортёров по рынкам.pdf" data-en="⬇ Download: Importers Database by Markets.pdf">⬇ Скачать: База импортёров по рынкам.pdf</a>
+      <div class="dl-locked" id="dl-lock-importers">🔑 <span data-ru="Требуется код доступа уровня PREVIEW" data-en="Requires PREVIEW access">Требуется код доступа уровня PREVIEW</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 3 — EXHIBITION CALENDAR
+═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="calendar">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">03</div>
+      <div class="sec-titles">
+        <div class="sec-title" data-ru="Выставки & Реестр участников" data-en="Exhibitions & Participant Registry">
+          Выставки & Реестр участников
+          <span class="access-gate partial" id="gate-calendar" data-ru="⚡ частично открыто" data-en="⚡ partially open">⚡ частично открыто</span>
+        </div>
+        <div class="sec-sub" data-ru="Реестр 2023–2025 · Календарь 2026–2027 · 6 стран · Профильные выставки" data-en="Registry 2023–2025 · Calendar 2026–2027 · 6 countries · Industry exhibitions">Реестр 2023–2025 · Календарь 2026–2027 · 6 стран</div>
+      </div>
+    </div>
+
+    <div style="overflow-x:auto">
+      <table class="cal-table">
+        <thead>
+          <tr>
+            <th data-ru="Дата" data-en="Date">Дата</th>
+            <th data-ru="Страна" data-en="Country">Страна</th>
+            <th data-ru="Выставка" data-en="Exhibition">Выставка</th>
+            <th data-ru="Место" data-en="Venue">Место</th>
+            <th data-ru="Фокус" data-en="Focus">Фокус</th>
+            <th data-ru="Сайт" data-en="Website">Сайт</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cal-date">Март 2026</td>
+            <td><span class="cflag" style="background:rgba(255,71,71,.12);color:#fca5a5">🇨🇳 CN</span></td>
+            <td><div class="cal-name">CISMEF — China International Steel & Metal Fair</div></td>
+            <td class="cal-loc">Шанхай, SNIEC</td>
+            <td><div class="tag-row"><span class="tag">Сталь</span><span class="tag">FeCr</span></div></td>
+            <td class="cal-link"><a href="https://www.cismef.com" target="_blank">cismef.com ↗</a></td>
+          </tr>
+          <tr>
+            <td class="cal-date">Апр 2026</td>
+            <td><span class="cflag" style="background:rgba(245,158,11,.1);color:#fcd34d">🇮🇳 IN</span></td>
+            <td><div class="cal-name">India Stainless Steel Summit (ISSF)</div></td>
+            <td class="cal-loc">Мумбаи</td>
+            <td><div class="tag-row"><span class="tag">Нерж. сталь</span><span class="tag">FeCr LC</span></div></td>
+            <td class="cal-link"><a href="https://www.worldstainless.org" target="_blank">worldstainless.org ↗</a></td>
+          </tr>
+          <!-- BLURRED from row 3 -->
+          <tr style="filter:blur(5px);user-select:none;pointer-events:none">
+            <td class="cal-date">Май 2026</td>
+            <td><span class="cflag">🇰🇷 KR</span></td>
+            <td><div class="cal-name">██████████████████ 2026</div></td>
+            <td class="cal-loc">████████, ██████</td>
+            <td><div class="tag-row"><span class="tag">████</span><span class="tag">████</span></div></td>
+            <td class="cal-link">████████ ↗</td>
+          </tr>
+          <tr style="filter:blur(6px);user-select:none;pointer-events:none">
+            <td class="cal-date">Июнь 2026</td>
+            <td><span class="cflag">🇨🇳 CN</span></td>
+            <td><div class="cal-name">█████████████████████████████</div></td>
+            <td>████████</td><td>████████</td><td>████████</td>
+          </tr>
+          <tr>
+            <td colspan="6" style="text-align:center;padding:16px;font-family:var(--font-mono);font-size:11px;color:var(--muted)">
+              🔑 <span data-ru="+11 выставок скрыто · 2026–2027 · Введите код доступа для полного календаря" data-en="+11 exhibitions hidden · 2026–2027 · Enter code for full calendar">+11 выставок скрыто · Введите код доступа для полного календаря</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="download-bar">
+      <a class="dl-btn" href="#" onclick="downloadGated(event,'calendar')" data-ru="⬇ Скачать: Календарь профильных выставок 2026–2027.pdf" data-en="⬇ Download: Industry Exhibition Calendar 2026–2027.pdf">⬇ Скачать: Календарь профильных выставок 2026–2027.pdf</a>
+      <div class="dl-locked" id="dl-lock-calendar">🔑 <span data-ru="Требуется PREVIEW" data-en="Requires PREVIEW">Требуется PREVIEW</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 4 — STRATEGY
+═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="strategy">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">04</div>
+      <div class="sec-titles">
+        <div class="sec-title" data-ru="Стратегия экспортной экспансии" data-en="Export Expansion Strategy">
+          Стратегия экспортной экспансии
+          <span class="access-gate locked" id="gate-strategy" data-ru="🔒 закрыто" data-en="🔒 locked">🔒 закрыто</span>
+        </div>
+        <div class="sec-sub" data-ru="~25 страниц · Пошаговые планы · Дорожная карта 2026–2030 · 3 решения для собственника" data-en="~25 pages · Step-by-step plans · Roadmap 2026–2030 · 3 owner decisions">~25 страниц · Пошаговые планы · Дорожная карта 2026–2030</div>
+      </div>
+    </div>
+
+    <div class="alert alert-warn" data-ru="Данный раздел содержит полную стратегию экспортной экспансии, включая конкурентный анализ, продуктовый портфель, пошаговые планы входа по каждому рынку и дорожную карту 2026–2030. Доступ — по коду уровня VIP." data-en="This section contains the full export expansion strategy including competitive analysis, product portfolio, step-by-step market entry plans, and 2026–2030 roadmap. VIP access level required.">Данный раздел содержит полную стратегию экспортной экспансии. Доступ — по коду уровня VIP.</div>
+
+    <!-- STRATEGY STRUCTURE — titles visible, content blurred -->
+    <div style="display:flex;flex-direction:column;gap:12px">
+
+      <div class="card">
+        <div class="card-title" data-ru="1. Резюме для собственника" data-en="1. Executive Summary">1. Резюме для собственника</div>
+        <div style="filter:blur(6px);user-select:none;pointer-events:none;margin-top:8px">
+          <div style="height:12px;background:var(--ink3);border-radius:4px;width:90%;margin-bottom:6px"></div>
+          <div style="height:12px;background:var(--ink3);border-radius:4px;width:75%;margin-bottom:6px"></div>
+          <div style="height:12px;background:var(--ink3);border-radius:4px;width:82%"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title" data-ru="2. Конкурентная позиция vs. ЮАР / Казахстан / Китай" data-en="2. Competitive Position vs. RSA / Kazakhstan / China">2. Конкурентная позиция vs. ЮАР / Казахстан / Китай</div>
+        <div style="filter:blur(6px);user-select:none;pointer-events:none;margin-top:8px">
+          <div style="height:12px;background:var(--ink3);border-radius:4px;width:88%;margin-bottom:6px"></div>
+          <div style="height:12px;background:var(--ink3);border-radius:4px;width:60%"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title" data-ru="3. Стратегия входа: Китай — «Нишевый лидер»" data-en="3. Market Entry: China — 'Niche Leader'">3. Стратегия входа: Китай — «Нишевый лидер»</div>
+        <div style="filter:blur(6px);user-select:none;pointer-events:none;margin-top:12px">
+          <div class="step-table">
+            <div class="step-row"><div class="step-num">1</div><div class="step-content">████████████████████████████████████████</div><div class="step-deadline">████████</div></div>
+            <div class="step-row"><div class="step-num">2</div><div class="step-content">████████████████████████████████████████</div><div class="step-deadline">████████</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title" data-ru="4. Стратегии входа: Корея · Индия · Вьетнам · Малайзия · Индонезия" data-en="4. Market Entry: Korea · India · Vietnam · Malaysia · Indonesia">4. Стратегии входа: Корея · Индия · Вьетнам · Малайзия · Индонезия</div>
+        <div style="filter:blur(7px);user-select:none;pointer-events:none;margin-top:8px">
+          <div style="height:12px;background:var(--ink3);border-radius:4px;width:80%;margin-bottom:6px"></div>
+          <div style="height:12px;background:var(--ink3);border-radius:4px;width:65%"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title" data-ru="5. Дорожная карта 2026–2030 · Логистика · Финансовые условия" data-en="5. Roadmap 2026–2030 · Logistics · Financial Terms">5. Дорожная карта 2026–2030 · Логистика · Финансовые условия</div>
+        <div style="filter:blur(7px);user-select:none;pointer-events:none;margin-top:8px">
+          <div style="height:12px;background:var(--ink3);border-radius:4px;width:92%;margin-bottom:6px"></div>
+          <div style="height:12px;background:var(--ink3);border-radius:4px;width:70%"></div>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.03)">
+        <div class="card-title" data-ru="6. Три решения для собственника — требуют утверждения" data-en="6. Three Owner Decisions — Require Approval">6. Три решения для собственника — требуют утверждения</div>
+        <div style="filter:blur(7px);user-select:none;pointer-events:none;margin-top:12px">
+          <div style="padding:10px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:6px;margin-bottom:8px">РЕШЕНИЕ 1: ████████████████████████████████ — $████K–$████M</div>
+          <div style="padding:10px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:6px;margin-bottom:8px">РЕШЕНИЕ 2: ████████████████████████████████</div>
+          <div style="padding:10px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:6px">РЕШЕНИЕ 3: ████████████████████████████████</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="download-bar">
+      <a class="dl-btn" href="#" onclick="downloadGated(event,'strategy')" data-ru="⬇ Скачать: Стратегия для собственника.pdf" data-en="⬇ Download: Owner Strategy Document.pdf">⬇ Скачать: Стратегия для собственника.pdf</a>
+      <div class="dl-locked" id="dl-lock-strategy">🔑 <span data-ru="Требуется код доступа уровня VIP" data-en="Requires VIP access code">Требуется код доступа уровня VIP</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     FOOTER CTA
+═══════════════════════════════════════════════════════════════════ -->
+<div class="footer-cta" id="cta">
+  <div class="container">
+    <div class="cta-eyebrow" data-ru="Готовы к диалогу" data-en="Ready for conversation">Готовы к диалогу</div>
+    <div class="cta-title" data-ru="Хотите полный доступ<br>или сотрудничество?" data-en="Want full access<br>or partnership?">Хотите полный доступ<br>или сотрудничество?</div>
+    <p class="cta-sub" data-ru="Этот дашборд — демонстрация методологии и аналитического подхода. Полный анализ, включая контакты 180+ импортёров, пошаговую стратегию и дорожную карту — доступен при переходе к предметным переговорам." data-en="This dashboard demonstrates methodology and analytical approach. Full analysis — 180+ importer contacts, step-by-step strategy and roadmap — available in substantive negotiations.">Этот дашборд — демонстрация методологии и аналитического подхода. Полный анализ доступен при переходе к предметным переговорам.</p>
+    <div class="cta-contacts">
+      <a class="cta-btn cta-btn-primary" href="https://t.me/dimasko" target="_blank">
+        ✈ Telegram: @dimasko
+      </a>
+      <a class="cta-btn cta-btn-ghost" href="mailto:dimasko@gmail.com">
+        ✉ dimasko@gmail.com
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="footer-legal">
+  © 2026 Dmitry Skobtsov · Export Intelligence · <span data-ru="Все данные носят аналитический характер. Методология и стратегия — авторские разработки." data-en="All data is analytical in nature. Methodology and strategy are original author's work.">Методология и стратегия — авторские разработки.</span>
+</div>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════════════════ -->
+<script>
+// ── ACCESS LEVELS ───────────────────────────────────────────────────
+const CODES = {
+  'PREVIEW': 'preview',   // +20% access
+  'DS2026FULL': 'full',   // admin — full access
+};
+
+let currentAccess = 'guest';
+let currentLang = 'ru';
+
+// ── PROMO CODE ──────────────────────────────────────────────────────
+function applyPromo() {
+  const input = document.getElementById('promoInput');
+  const code = input.value.trim().toUpperCase();
+  const status = document.getElementById('promoStatus');
+  const badge = document.getElementById('accessBadge');
+  const metaAccess = document.getElementById('meta-access');
+
+  status.className = 'promo-status';
+  status.textContent = '';
+
+  if (!code) {
+    showStatus('err', '⚠ Введите код');
+    return;
+  }
+
+  if (CODES[code]) {
+    currentAccess = CODES[code];
+    applyAccess();
+    if (currentAccess === 'preview') {
+      showStatus('ok', '✓ ' + (currentLang === 'ru' ? 'Код принят · Режим: PREVIEW (+20%)' : 'Code accepted · Mode: PREVIEW (+20%)'));
+      badge.textContent = currentLang === 'ru' ? 'Режим: PREVIEW' : 'Mode: PREVIEW';
+      badge.className = 'access-badge preview';
+      if (metaAccess) metaAccess.textContent = currentLang === 'ru' ? 'Режим: PREVIEW' : 'Mode: PREVIEW';
+    } else {
+      showStatus('vip', '★ ' + (currentLang === 'ru' ? 'VIP · Полный доступ открыт' : 'VIP · Full access granted'));
+      badge.textContent = currentLang === 'ru' ? 'Режим: ADMIN FULL' : 'Mode: ADMIN FULL';
+      badge.className = 'access-badge full';
+      if (metaAccess) metaAccess.textContent = 'ADMIN FULL';
+    }
+    input.value = '';
+  } else {
+    showStatus('err', '✗ ' + (currentLang === 'ru' ? 'Неверный код' : 'Invalid code'));
+    input.style.borderColor = 'var(--red)';
+    setTimeout(() => { input.style.borderColor = ''; }, 1500);
+  }
+}
+
+function showStatus(type, msg) {
+  const s = document.getElementById('promoStatus');
+  s.className = 'promo-status show ' + type;
+  s.textContent = msg;
+  setTimeout(() => { if (type !== 'ok' && type !== 'vip') s.className = 'promo-status'; }, 3000);
+}
+
+// ── APPLY ACCESS LEVEL ──────────────────────────────────────────────
+function applyAccess() {
+  const level = currentAccess;
+
+  // Update access gates
+  document.querySelectorAll('.access-gate').forEach(gate => {
+    if (level === 'full') {
+      gate.className = 'access-gate open';
+      gate.textContent = currentLang === 'ru' ? '✓ открыто' : '✓ open';
+    } else if (level === 'preview') {
+      gate.className = 'access-gate partial';
+      gate.textContent = currentLang === 'ru' ? '⚡ PREVIEW' : '⚡ PREVIEW';
+    }
+  });
+
+  // Full access: remove all blur
+  if (level === 'full') {
+    document.querySelectorAll('[style*="filter:blur"], [style*="filter: blur"]').forEach(el => {
+      el.style.filter = '';
+      el.style.userSelect = '';
+      el.style.pointerEvents = '';
+    });
+    document.querySelectorAll('.blur-lock').forEach(el => el.classList.remove('visible'));
+
+    // Restore blurred text
+    document.querySelectorAll('td, .flow-item, .strat-item').forEach(el => {
+      if (el.style.filter) { el.style.filter = ''; el.style.userSelect = ''; el.style.pointerEvents = ''; }
+    });
+
+    // Unlock downloads
+    document.querySelectorAll('[id^="dl-lock-"]').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.dl-btn').forEach(btn => {
+      btn.onclick = function(e) { e.preventDefault(); triggerDownload(this); };
+    });
+    return;
+  }
+
+  // Preview: reveal 20% more (remove blur from preview-targeted items)
+  if (level === 'preview') {
+    document.querySelectorAll('[data-blur-preview-no]').forEach(el => {
+      el.style.filter = '';
+      el.style.userSelect = '';
+      el.style.pointerEvents = '';
+      const lock = el.parentElement.querySelector('.blur-lock');
+      if (lock) lock.classList.remove('visible');
+    });
+
+    // Show markets tabs IN/ID slightly
+    ['mkt-in', 'imp-iin'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.style.filter = ''; el.style.pointerEvents = ''; }
+    });
+    return;
+  }
+}
+
+// ── DOWNLOAD GATED ──────────────────────────────────────────────────
+function downloadGated(e, section) {
+  e.preventDefault();
+  if (currentAccess === 'full') {
+    triggerDownload(e.target);
+    return;
+  }
+  const code = currentLang === 'ru' ? 'Для скачивания файла введите код доступа уровня ' + (section === 'strategy' ? 'VIP' : 'PREVIEW') + ' в строке вверху страницы.'
+    : 'Enter ' + (section === 'strategy' ? 'VIP' : 'PREVIEW') + ' access code at the top of the page to download this file.';
+  showToast(code, 'warn');
+}
+
+function triggerDownload(btn) {
+  // In production: replace href with actual PDF URL
+  showToast(currentLang === 'ru' ? '✓ Загрузка начата' : '✓ Download started', 'ok');
+}
+
+// ── TOAST ────────────────────────────────────────────────────────────
+function showToast(msg, type) {
+  const t = document.createElement('div');
+  t.style.cssText = `
+    position:fixed;bottom:24px;right:24px;z-index:9999;
+    max-width:360px;padding:12px 18px;border-radius:8px;
+    font-family:var(--font-mono);font-size:12px;line-height:1.5;
+    background:${type==='ok'?'rgba(16,185,129,.15)':type==='warn'?'rgba(245,158,11,.12)':'rgba(239,68,68,.12)'};
+    border:1px solid ${type==='ok'?'rgba(16,185,129,.3)':type==='warn'?'rgba(245,158,11,.3)':'rgba(239,68,68,.3)'};
+    color:${type==='ok'?'var(--green)':type==='warn'?'var(--amber)':'var(--red)'};
+    animation:fadeUp .3s ease;
+  `;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 5000);
+}
+
+// ── TABS ─────────────────────────────────────────────────────────────
+function showTab(id, btn, prefix) {
+  const strip = btn.closest('.tab-strip');
+  strip.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('act'));
+  btn.classList.add('act');
+
+  const section = strip.nextElementSibling;
+  const group = strip.closest('.container') || strip.parentElement;
+  group.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('act'));
+  const target = document.getElementById(prefix + '-' + id);
+  if (target) target.classList.add('act');
+}
+
+// ── LANGUAGE ─────────────────────────────────────────────────────────
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+  document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (el.tagName === 'INPUT') {
+      el.placeholder = val;
+    } else if (val.includes('<')) {
+      el.innerHTML = val;
+    } else {
+      el.textContent = val;
+    }
+  });
+
+  // Update promo button
+  document.querySelector('.promo-btn').textContent = lang === 'ru' ? 'ПРИМЕНИТЬ' : 'UNLOCK';
+}
+
+// ── ENTER KEY on promo ───────────────────────────────────────────────
+document.getElementById('promoInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') applyPromo();
+});
+
+// ── NAV ACTIVE ───────────────────────────────────────────────────────
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section[id], .hero');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+}, { passive: true });
+
+// ── BURGER ───────────────────────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+// ── INIT LANG ────────────────────────────────────────────────────────
+document.querySelectorAll('[data-ru]').forEach(el => {
+  if (!el.getAttribute('data-en')) el.setAttribute('data-en', el.textContent || el.innerHTML);
+});
+</script>
+</body>
+</html>
