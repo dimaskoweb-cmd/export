@@ -1931,19 +1931,20 @@ const DOWNLOAD_RULES = {
 const LEVEL_NUM = { guest: 0, preview: 1, vip: 2, full: 3 };
 
 // ═══════════════════════════════════════════════════════════════════
-// SECURE FILE URLS — скрытые пути к файлам с рандомными именами
-// Файлы в репозитории должны называться ИМЕННО ТАК.
-// URL-ы не присутствуют в DOM до ввода правильного промокода —
-// они инжектируются в JS только при разблокировке.
+// SECURE FILE URLS — обфусцированные пути к PDF файлам
+// ⚠ НЕ РЕДАКТИРОВАТЬ ВРУЧНУЮ — upload_to_github.py v5.0+
+//   патчит эти значения автоматически при каждом деплое.
+// Формат: 'mkt-XXXX.pdf' где XXXX — уникальный суффикс деплоя.
+// URL-ы не присутствуют в DOM до ввода правильного промокода.
 // ═══════════════════════════════════════════════════════════════════
 // PREVIEW уровень — анализ рынков и выставки (открытые данные)
 const FILE_URLS_PREVIEW = {
-  markets:  'markets.pdf',
-  calendar: 'exhibitions.pdf',
+  markets:  'mkt-1f09.pdf',
+  calendar: 'cal-1f09.pdf',
 };
 const FILE_URLS_VIP = {
-  importers: 'importers.pdf',
-  strategy:  'strategy.pdf',
+  importers: 'imp-1f09.pdf',
+  strategy:  'str-1f09.pdf',
 };
 // Полные URL — собираются динамически только после разблокировки
 let FILE_URLS = {};
