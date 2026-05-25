@@ -1,0 +1,2379 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<!-- MASTER TEMPLATE v2.8.1 | Rules: tab-strip+showTab | container wrapper | max 2 imp-cards | roadmap-steps | no PDF in download-bar | tease principle | SKILL_init_v1.6 para.6.3+6.5 -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Export Intelligence Platform — Dmitry Skobtsov | Сыры и молочные · ГК «Сыробогатов»">
+<meta name="author" content="Dmitry Skobtsov">
+<meta name="version" content="2.8.0">
+<meta name="created" content="2026-05-10">
+<meta name="copyright" content="© 2026 Dmitry Skobtsov. Все права защищены.">
+<title>Export Intelligence · ГК «Сыробогатов» · #SRB-2026</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./index_v2_6_3_files/css2" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   TOKENS — Ivory-Bronze palette (v2.8.0)
+═══════════════════════════════════════════════════════════════════ */
+
+/* ═══ SLOT EMPTY STATE (template placeholder UI) ═══ */
+.slot-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:120px;border:1.5px dashed var(--line);border-radius:10px;margin:16px 0;
+  background:var(--ink2);color:var(--dim);text-align:center;padding:20px;}
+.slot-icon{font-size:28px;margin-bottom:8px;opacity:.4;}
+.slot-label{font-size:13px;font-weight:600;color:var(--ghost);margin-bottom:4px;}
+.slot-sub{font-family:var(--font-mono);font-size:10px;color:var(--muted);}
+.slot-sub code{background:var(--ink3);padding:1px 5px;border-radius:3px;color:var(--amber);}
+
+/* ═══ TEMPLATE v2.8.0 — заменить SRB-2026 перед публикацией ═══ */
+:root {
+  --ink: #faf7f2;
+  --ink2: #f2ede4;
+  --ink3: #e8e0d0;
+  --line: #d4c8b4;
+  --muted: #8a7a62;
+  --dim: #5c4e38;
+  --ghost: #3a2e1e;
+  --text: #2a2018;
+  --bright: #1a1208;
+  --white: #ffffff;
+
+  --blue: #8b6914;
+  --blue-dim: rgba(139,105,20,.1);
+  --cyan: #6b4e0a;
+  --green: #4a6741;
+  --green-dim: rgba(74,103,65,.1);
+  --amber: #c27a10;
+  --amber-dim: rgba(194,122,16,.1);
+  --red: #8b2020;
+  --purple: #5c3d7a;
+
+  --blur-radius: 8px;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Manrope', sans-serif;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 15px; }
+body {
+  background: #faf7f2;
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--ink2); }
+::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 2px; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { color: var(--cyan); }
+img { max-width: 100%; }
+
+/* ── NOISE TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; opacity: .5;
+}
+
+/* ── GLOW ORBS ── */
+.orb {
+  position: fixed; border-radius: 50%;
+  filter: blur(80px); pointer-events: none; z-index: 0;
+}
+.orb-1 { width: 600px; height: 600px; background: rgba(59,130,246,.06); top: -200px; right: -100px; animation: drift 20s ease-in-out infinite; }
+.orb-2 { width: 400px; height: 400px; background: rgba(16,185,129,.05); bottom: 20%; left: -100px; animation: drift 25s ease-in-out infinite reverse; }
+@keyframes drift { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,20px)} }
+
+/* ═══════════════════════════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(250,247,242,.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 2px solid var(--line);
+  box-shadow: 0 1px 6px rgba(139,105,20,.10);
+  height: 56px;
+  display: flex; align-items: center;
+  padding: 0 clamp(16px,4vw,48px);
+  gap: 0;
+}
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--bright);
+  margin-right: auto;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-brand-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 10px var(--blue);
+  animation: pulse-dot 2s ease infinite;
+}
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+.nav-links {
+  display: flex; gap: 2px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 10px; font-weight: 400;
+  color: var(--dim);
+  padding: 5px 10px; border-radius: 5px;
+  transition: all .2s; letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--ink3); }
+
+.lang-toggle {
+  display: flex; gap: 2px; margin-left: 16px;
+  background: var(--ink3); border-radius: 6px; padding: 2px;
+}
+.lang-btn {
+  font-family: var(--font-mono); font-size: 10px;
+  padding: 3px 10px; border-radius: 4px; border: none;
+  cursor: pointer; color: var(--dim);
+  background: transparent; transition: all .2s; letter-spacing: .05em;
+}
+.lang-btn.active { background: var(--blue); color: var(--white); }
+
+/* mobile menu */
+.burger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 8px; margin-left: 12px;
+}
+.burger span { width: 22px; height: 2px; background: var(--ghost); border-radius: 1px; transition: all .3s; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PROMO CODE BAR
+═══════════════════════════════════════════════════════════════════ */
+.promo-bar {
+  position: fixed; top: 56px; left: 0; right: 0; z-index: 999;
+  background: rgba(242,237,228,.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+  padding: 8px clamp(16px,4vw,48px);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.promo-label {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--dim); letter-spacing: .1em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.promo-input-wrap {
+  display: flex; gap: 6px; align-items: center;
+}
+.promo-input {
+  font-family: var(--font-mono); font-size: 12px;
+  background: var(--ink3); border: 1px solid var(--line);
+  color: var(--bright); padding: 5px 12px; border-radius: 6px;
+  outline: none; width: 180px; letter-spacing: .1em;
+  transition: border-color .2s;
+}
+.promo-input:focus { border-color: var(--blue); }
+.promo-input::placeholder { color: var(--muted); letter-spacing: .05em; }
+.promo-btn {
+  font-family: var(--font-mono); font-size: 10px;
+  background: var(--blue); color: var(--white);
+  border: none; padding: 6px 14px; border-radius: 6px;
+  cursor: pointer; letter-spacing: .08em; text-transform: uppercase;
+  transition: all .2s;
+}
+.promo-btn:hover { background: #2563eb; }
+.promo-status {
+  font-family: var(--font-mono); font-size: 11px;
+  padding: 4px 10px; border-radius: 5px; display: none;
+}
+.promo-status.show { display: inline-flex; align-items: center; gap: 6px; }
+.promo-status.ok { background: var(--green-dim); color: var(--green); border: 1px solid rgba(16,185,129,.2); }
+.promo-status.vip { background: rgba(139,92,246,.12); color: var(--purple); border: 1px solid rgba(139,92,246,.2); }
+.promo-status.err { background: rgba(239,68,68,.1); color: var(--red); border: 1px solid rgba(239,68,68,.2); }
+.access-badge {
+  margin-left: auto; white-space: nowrap;
+  font-family: var(--font-mono); font-size: 10px;
+  padding: 3px 10px; border-radius: 20px;
+  border: 1px solid var(--line); color: var(--muted);
+  letter-spacing: .08em;
+}
+.access-badge.preview { border-color: rgba(34,211,238,.3); color: var(--cyan); background: rgba(34,211,238,.07); }
+.access-badge.full { border-color: rgba(139,92,246,.4); color: var(--purple); background: rgba(139,92,246,.1); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════════════════════════ */
+.main { position: relative; z-index: 1; padding-top: 110px; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 clamp(16px,4vw,48px); }
+.section { padding: 72px 0; }
+.section + .section { border-top: 1px solid var(--line); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   SECTION HEADER
+═══════════════════════════════════════════════════════════════════ */
+.sec-header {
+  display: flex; align-items: flex-start; gap: 20px;
+  margin-bottom: 40px;
+}
+.sec-num {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--blue); letter-spacing: .15em;
+  padding-top: 6px; white-space: nowrap;
+}
+.sec-titles { flex: 1; }
+.sec-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 700; color: var(--bright);
+  letter-spacing: -.02em; line-height: 1.1;
+  margin-bottom: 8px;
+}
+.sec-sub {
+  font-size: 13px; color: var(--dim);
+  font-family: var(--font-mono); letter-spacing: .03em;
+}
+.sec-action { margin-left: auto; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   HERO / PREAMBLE
+═══════════════════════════════════════════════════════════════════ */
+.hero {
+  padding: 64px 0 80px;
+  border-bottom: 1px solid var(--line);
+}
+.hero-meta {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--muted); letter-spacing: .2em; text-transform: uppercase;
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-meta::before {
+  content: ''; display: block;
+  width: 32px; height: 1px; background: var(--blue);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 800; line-height: 1.0;
+  letter-spacing: -.03em;
+  color: var(--bright);
+  margin-bottom: 16px;
+}
+.hero-title .line2 { color: var(--blue); display: block; }
+.hero-title .line3 { color: var(--dim); font-size: .52em; font-weight: 400; display: block; letter-spacing: -.01em; margin-top: 4px; }
+
+.hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: start; margin-top: 48px; }
+.hero-brief { font-size: 14px; color: var(--ghost); line-height: 1.8; max-width: 640px; }
+.hero-brief strong { color: var(--text); }
+
+.meta-card {
+  background: var(--ink2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 20px 24px;
+  min-width: 280px;
+}
+.meta-row {
+  display: flex; gap: 12px; padding: 9px 0;
+  border-bottom: 1px solid var(--line); font-size: 12px;
+}
+.meta-row:last-child { border-bottom: none; padding-bottom: 0; }
+.meta-key {
+  font-family: var(--font-mono); color: var(--muted);
+  font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+  min-width: 90px; padding-top: 2px;
+}
+.meta-val { color: var(--text); font-weight: 500; }
+.meta-val.highlight { color: var(--cyan); }
+.meta-val.dim { color: var(--dim); font-size: 11px; }
+
+/* author strip */
+.author-strip {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.author-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 18px; font-weight: 700;
+  color: var(--white); flex-shrink: 0;
+  box-shadow: 0 0 0 3px var(--ink), 0 0 0 4px var(--line);
+}
+.author-info { flex: 1; }
+.author-name {
+  font-family: var(--font-display); font-size: 16px; font-weight: 700;
+  color: var(--bright); letter-spacing: -.01em;
+}
+.author-title { font-size: 12px; color: var(--dim); margin-top: 2px; }
+.author-contacts { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.contact-pill {
+  font-family: var(--font-mono); font-size: 11px;
+  padding: 4px 12px; border-radius: 20px;
+  border: 1px solid var(--line); color: var(--ghost);
+  transition: all .2s; display: flex; align-items: center; gap: 6px;
+}
+.contact-pill:hover { border-color: var(--blue); color: var(--blue); }
+.contact-pill .icon { font-size: 13px; }
+
+/* KPI bar */
+.kpi-strip {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  overflow: hidden; margin-top: 48px;
+}
+.kpi-cell { background: var(--ink2); padding: 20px 22px; }
+.kpi-val {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 800;
+  color: var(--bright); letter-spacing: -.02em; line-height: 1;
+  margin-bottom: 4px;
+}
+.kpi-val span { font-size: 14px; font-weight: 400; color: var(--dim); }
+.kpi-lbl { font-size: 11px; color: var(--dim); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   BLUR SYSTEM
+═══════════════════════════════════════════════════════════════════ */
+.blur-content {
+  position: relative;
+  transition: filter .4s ease;
+}
+/* Guest: rows 3+ are blurred */
+.blur-content[data-blur="guest"] { filter: blur(var(--blur-radius)); user-select: none; pointer-events: none; }
+/* Preview: rows 6+ are blurred */
+.blur-content[data-blur="preview"] { filter: blur(var(--blur-radius)); user-select: none; pointer-events: none; }
+
+/* Lock overlay */
+.blur-wrap {
+  position: relative; overflow: hidden;
+}
+.blur-lock {
+  display: none;
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, var(--ink) 20%, transparent 100%);
+  height: 120px; z-index: 10;
+  align-items: flex-end; padding: 16px;
+}
+.blur-lock.visible { display: flex; }
+.blur-lock-msg {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--dim); display: flex; align-items: center; gap: 8px;
+}
+.blur-lock-msg .key-icon {
+  font-size: 14px;
+}
+
+/* section-level blur overlay */
+.section-blur-wrap { position: relative; }
+.section-overlay {
+  display: none;
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(11,13,17,.95) 40%, var(--ink) 100%);
+  z-index: 20;
+  align-items: center; justify-content: center;
+  flex-direction: column; gap: 12px;
+  text-align: center;
+}
+.section-overlay.visible { display: flex; }
+.overlay-title {
+  font-family: var(--font-display); font-size: 18px; font-weight: 600;
+  color: var(--text);
+}
+.overlay-hint {
+  font-family: var(--font-mono); font-size: 11px; color: var(--dim);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CARDS & TABLES
+═══════════════════════════════════════════════════════════════════ */
+.card {
+  background: var(--ink2); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 20px 22px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--muted); }
+.card-title {
+  font-family: var(--font-display); font-size: 14px; font-weight: 600;
+  color: var(--bright); margin-bottom: 4px;
+}
+.card-sub { font-size: 11px; color: var(--dim); margin-bottom: 14px; font-family: var(--font-mono); }
+
+/* grid layouts */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.grid-auto { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+
+/* data table */
+.data-table-wrap { overflow-x: auto; border-radius: var(--r); border: 1px solid var(--line); }
+.data-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+.data-table th {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  color: var(--muted); text-align: left; padding: 10px 14px;
+  background: var(--ink3); border-bottom: 1px solid var(--line);
+  letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
+}
+.data-table td {
+  padding: 10px 14px; border-bottom: 1px solid var(--line);
+  font-size: 12px; vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: rgba(59,130,246,.04); }
+.co-name { font-weight: 600; color: var(--bright); }
+.co-type { font-size: 10px; color: var(--dim); margin-top: 1px; }
+
+/* tags */
+.tag-row { display: flex; gap: 4px; flex-wrap: wrap; }
+.tag {
+  font-family: var(--font-mono); font-size: 10px;
+  padding: 2px 7px; border-radius: 4px;
+  background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2);
+  color: #93c5fd; white-space: nowrap;
+}
+.tag.green { background: var(--green-dim); border-color: rgba(16,185,129,.25); color: #6ee7b7; }
+.tag.amber { background: var(--amber-dim); border-color: rgba(245,158,11,.2); color: #fcd34d; }
+
+/* priority pills */
+.pri { font-family: var(--font-mono); font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.pri-h { background: var(--green-dim); color: var(--green); border: 1px solid rgba(16,185,129,.3); }
+.pri-m { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,.25); }
+.pri-l { background: var(--ink3); color: var(--muted); border: 1px solid var(--line); }
+
+/* mini bar */
+.mini-bar-wrap { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+.mini-track { width: 52px; height: 3px; background: var(--ink3); border-radius: 2px; overflow: hidden; }
+.mini-fill { height: 100%; background: var(--blue); border-radius: 2px; }
+
+/* flow bars */
+.flow-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.flow-item { display: grid; grid-template-columns: 100px 1fr 40px; gap: 8px; align-items: center; font-size: 11px; }
+.fl { color: var(--dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ft { background: var(--ink3); border-radius: 2px; height: 4px; overflow: hidden; }
+.ff { height: 100%; border-radius: 2px; transition: width 1s ease; }
+.fp { text-align: right; font-family: var(--font-mono); color: var(--ghost); font-size: 10px; }
+
+/* price mini-chart bars */
+.price-bars { display: flex; align-items: flex-end; gap: 3px; height: 40px; }
+.price-bar { flex: 1; border-radius: 2px 2px 0 0; opacity: .75; transition: opacity .2s; min-height: 4px; }
+.price-bar:hover { opacity: 1; }
+.chart-row { display: flex; justify-content: space-between; margin-top: 4px; }
+.chart-lbl { font-family: var(--font-mono); font-size: 9px; color: var(--muted); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PRICE CARDS
+═══════════════════════════════════════════════════════════════════ */
+.price-card {
+  background: var(--ink2); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 18px 20px;
+  position: relative; overflow: hidden;
+}
+.price-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.pc-blue::before { background: var(--blue); }
+.pc-cyan::before { background: var(--cyan); }
+.pc-green::before { background: var(--green); }
+.pc-amber::before { background: var(--amber); }
+.pc-purple::before { background: var(--purple); }
+.price-name { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.4; margin-bottom: 4px; }
+.price-hs { font-family: var(--font-mono); font-size: 10px; color: var(--muted); margin-bottom: 12px; }
+.price-val {
+  font-family: var(--font-display); font-size: 22px; font-weight: 800;
+  color: var(--bright); letter-spacing: -.02em;
+}
+.price-unit { font-size: 11px; font-family: var(--font-mono); color: var(--dim); }
+.price-delta { font-family: var(--font-mono); font-size: 11px; margin: 4px 0 12px; }
+.delta-up { color: var(--green); }
+.delta-down { color: var(--red); }
+.price-range { font-size: 11px; color: var(--ghost); margin-top: 8px; }
+.price-range strong { color: var(--text); }
+.price-source { font-size: 10px; color: var(--muted); margin-top: 8px; font-family: var(--font-mono); border-top: 1px solid var(--line); padding-top: 8px; }
+.price-markets { display: flex; gap: 4px; margin-top: 8px; }
+.mkt-dot { font-family: var(--font-mono); font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: 600; }
+.m-cn { background: rgba(255,71,71,.12); color: #fca5a5; }
+.m-in { background: var(--amber-dim); color: #fcd34d; }
+.m-id { background: var(--green-dim); color: #6ee7b7; }
+.m-my { background: var(--blue-dim); color: #93c5fd; }
+.m-kr { background: rgba(139,92,246,.12); color: #c4b5fd; }
+.m-vn { background: rgba(34,211,238,.1); color: #67e8f9; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   MARKET TABS
+═══════════════════════════════════════════════════════════════════ */
+.tab-strip {
+  display: flex; gap: 2px; flex-wrap: wrap;
+  background: var(--ink2); padding: 4px; border-radius: 8px;
+  border: 1px solid var(--line); margin-bottom: 24px; width: fit-content;
+}
+.tab-btn {
+  font-family: var(--font-mono); font-size: 11px;
+  padding: 6px 14px; border-radius: 6px; border: none;
+  background: transparent; color: var(--dim);
+  cursor: pointer; transition: all .2s; letter-spacing: .04em;
+}
+.tab-btn:hover { color: var(--text); background: var(--ink3); }
+.tab-btn.act { background: var(--blue); color: var(--white); }
+.tab-pane { display: none; }
+.tab-pane.act { display: block; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   STRATEGY ITEMS
+═══════════════════════════════════════════════════════════════════ */
+.strat-list { display: flex; flex-direction: column; gap: 6px; }
+.strat-item {
+  display: grid; grid-template-columns: 44px 1fr auto;
+  align-items: center; gap: 14px;
+  padding: 14px 16px;
+  background: var(--ink2); border: 1px solid var(--line);
+  border-radius: var(--r); transition: border-color .2s;
+}
+.strat-item:hover { border-color: var(--muted); }
+.s-rank {
+  font-family: var(--font-display); font-size: 22px; font-weight: 800;
+  color: var(--muted); text-align: center; line-height: 1;
+}
+.s-rank.gold { color: var(--amber); }
+.s-name { font-weight: 600; font-size: 13px; color: var(--bright); margin-bottom: 2px; }
+.s-det { font-size: 11px; color: var(--dim); }
+.s-margin-box { text-align: right; }
+.s-pct { font-family: var(--font-display); font-size: 20px; font-weight: 800; color: var(--green); }
+.s-price { font-family: var(--font-mono); font-size: 10px; color: var(--dim); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   STEP TABLE (strategy roadmap)
+═══════════════════════════════════════════════════════════════════ */
+.step-table { display: flex; flex-direction: column; gap: 1px; }
+.step-row {
+  display: grid; grid-template-columns: 48px 1fr 180px;
+  gap: 0; background: var(--ink2); border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden; font-size: 12px;
+}
+.step-num {
+  background: var(--ink3); padding: 14px;
+  font-family: var(--font-display); font-size: 18px; font-weight: 800;
+  color: var(--blue); text-align: center;
+  display: flex; align-items: center; justify-content: center;
+  border-right: 1px solid var(--line);
+}
+.step-content { padding: 14px 16px; color: var(--text); line-height: 1.5; }
+.step-deadline {
+  padding: 14px; text-align: center;
+  border-left: 1px solid var(--line);
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--amber); letter-spacing: .04em;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CALENDAR TABLE
+═══════════════════════════════════════════════════════════════════ */
+.cal-table { width: 100%; border-collapse: collapse; }
+.cal-table th {
+  font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+  text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.cal-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); font-size: 12px; vertical-align: middle; }
+.cal-table tr:hover td { background: rgba(59,130,246,.04); }
+.cal-table tr:last-child td { border-bottom: none; }
+.cal-date { font-family: var(--font-mono); font-weight: 500; color: var(--blue); white-space: nowrap; }
+.cal-name { font-weight: 600; color: var(--bright); }
+.cal-loc { color: var(--dim); }
+.cal-link a { color: var(--blue); font-family: var(--font-mono); font-size: 10px; }
+.cal-link a:hover { color: var(--cyan); }
+.cflag { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 20px; font-family: var(--font-mono); font-size: 10px; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   ADVANTAGES TABLE
+═══════════════════════════════════════════════════════════════════ */
+.adv-table { width: 100%; border-collapse: collapse; }
+.adv-table th {
+  font-size: 11px; text-align: left; padding: 10px 14px;
+  background: var(--ink3); color: var(--dim);
+  border: 1px solid var(--line); text-transform: uppercase; letter-spacing: .07em;
+}
+.adv-table th:last-child { color: var(--green); }
+.adv-table td { padding: 10px 14px; border: 1px solid var(--line); font-size: 12px; vertical-align: top; }
+.adv-table td:first-child { font-weight: 600; background: var(--ink2); color: var(--text); white-space: nowrap; }
+.val-win { color: var(--green); }
+.val-lose { color: var(--red); }
+.val-neu { color: var(--dim); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   DOWNLOAD BUTTON
+═══════════════════════════════════════════════════════════════════ */
+.download-bar {
+  margin-top: 40px; padding-top: 28px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.dl-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  padding: 10px 18px; border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--ink3); color: var(--ghost);
+  cursor: pointer; transition: all .25s; letter-spacing: .05em;
+  text-decoration: none; position: relative; overflow: hidden;
+}
+.dl-btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(59,130,246,.08));
+  opacity: 0; transition: opacity .25s;
+}
+.dl-btn:hover { border-color: var(--blue); color: var(--blue); }
+.dl-btn:hover::before { opacity: 1; }
+.dl-icon { font-size: 14px; }
+.dl-locked {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--muted); display: flex; align-items: center; gap: 6px;
+  margin-left: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ALERT BOX
+═══════════════════════════════════════════════════════════════════ */
+.alert {
+  padding: 12px 16px; border-radius: var(--r);
+  border-left: 3px solid; font-size: 12px; line-height: 1.7; margin-bottom: 16px;
+}
+.alert-info { background: var(--blue-dim); border-color: var(--blue); }
+.alert-success { background: var(--green-dim); border-color: var(--green); }
+.alert-warn { background: var(--amber-dim); border-color: var(--amber); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   FOOTER / CTA
+═══════════════════════════════════════════════════════════════════ */
+.footer-cta {
+  border-top: 1px solid var(--line);
+  padding: 72px 0;
+  text-align: center;
+}
+.cta-eyebrow {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--blue); letter-spacing: .2em; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 800; color: var(--bright);
+  letter-spacing: -.02em; margin-bottom: 12px; line-height: 1.1;
+}
+.cta-sub { font-size: 14px; color: var(--dim); max-width: 520px; margin: 0 auto 32px; line-height: 1.7; }
+.cta-contacts {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+}
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  padding: 12px 24px; border-radius: 8px;
+  transition: all .25s; letter-spacing: .06em;
+}
+.cta-btn-primary {
+  background: var(--blue); color: var(--white); border: none;
+}
+.cta-btn-primary:hover { background: #2563eb; color: var(--white); transform: translateY(-1px); }
+.cta-btn-ghost {
+  background: transparent; color: var(--ghost);
+  border: 1px solid var(--line);
+}
+.cta-btn-ghost:hover { border-color: var(--muted); color: var(--text); }
+
+.footer-legal {
+  border-top: 1px solid var(--line); padding: 20px;
+  text-align: center; font-family: var(--font-mono); font-size: 10px;
+  color: var(--muted); letter-spacing: .05em;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .meta-card { min-width: auto; width: 100%; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .step-row { grid-template-columns: 44px 1fr; }
+  .step-deadline { display: none; }
+  .nav-links { display: none; }
+  .burger { display: flex; }
+  .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+  .promo-bar { gap: 8px; }
+  .promo-input { width: 140px; }
+  .access-badge { display: none; }
+  .tab-strip { width: 100%; }
+  .tab-btn { font-size: 10px; padding: 5px 10px; }
+  .strat-item { grid-template-columns: 36px 1fr; }
+  .s-margin-box { display: none; }
+}
+
+/* ── MOBILE NAV ── */
+.mobile-menu {
+  display: none; position: fixed; top: 56px; left: 0; right: 0; z-index: 998;
+  background: rgba(250,247,242,.98); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 20px; flex-direction: column; gap: 4px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: var(--font-mono); font-size: 12px; color: var(--dim);
+  padding: 10px 12px; border-radius: 6px;
+  transition: all .2s; text-transform: uppercase; letter-spacing: .08em;
+}
+.mobile-menu a:hover { color: var(--text); background: var(--ink3); }
+
+/* ── FADE IN ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.fu { animation: fadeUp .6s ease both; }
+.fu-d1 { animation-delay: .1s; }
+.fu-d2 { animation-delay: .2s; }
+.fu-d3 { animation-delay: .3s; }
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: var(--line); margin: 28px 0; }
+
+/* ── MONO TEXT ── */
+.mono { font-family: var(--font-mono); }
+.dim-text { color: var(--dim); }
+.bright-text { color: var(--bright); }
+
+/* ── access indicator on section ── */
+.access-gate {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+  padding: 3px 10px; border-radius: 20px;
+  border: 1px solid var(--line); margin-left: 12px;
+  vertical-align: middle;
+}
+.access-gate.locked { color: var(--red); border-color: rgba(239,68,68,.3); }
+.access-gate.partial { color: var(--amber); border-color: rgba(245,158,11,.3); }
+.access-gate.open { color: var(--green); border-color: rgba(16,185,129,.3); }
+
+/* geo card */
+.geo-card { background: var(--ink2); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 16px; }
+.geo-hd { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.geo-cn { font-family: var(--font-display); font-size: 15px; font-weight: 700; }
+.ent-list { display: flex; flex-direction: column; gap: 6px; }
+.ent { padding: 8px 10px; background: var(--ink3); border-radius: 6px; }
+.ent-name { font-weight: 600; font-size: 12px; margin-bottom: 2px; }
+.ent-loc { color: var(--dim); font-size: 10px; }
+.ent-loc a { color: var(--blue); }
+.ent-tags { display: flex; gap: 3px; margin-top: 4px; flex-wrap: wrap; }
+
+
+/* ── Price Cards row (4 col) ─────────────────────────────────── */
+.pc-legend { display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:var(--font-mono);font-size:10px;color:var(--muted);margin-bottom:12px; }
+.pc-legend span { display:flex;align-items:center;gap:5px; }
+.pc-legend-line { display:inline-block;width:18px;height:2px;border-radius:1px; }
+.pc-row { display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px; }
+@media(max-width:1100px){.pc-row{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px) {.pc-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px) {.pc-row{grid-template-columns:1fr}}
+.price-card{background:var(--ink2);border:1px solid var(--line);border-radius:12px;padding:14px 16px 12px;position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s;}
+.price-card:hover{box-shadow:0 4px 20px rgba(139,105,20,.12);transform:translateY(-2px);}
+.price-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.pc-blue::before{background:linear-gradient(90deg,#8b6914,#c27a10);}
+.pc-cyan::before{background:linear-gradient(90deg,#4a6741,#8b6914);}
+.pc-green::before{background:linear-gradient(90deg,#4a6741,#6b8e44);}
+.pc-amber::before{background:linear-gradient(90deg,#c27a10,#8b2020);}
+.pc-purple::before{background:linear-gradient(90deg,#5c3d7a,#4a6741);}
+.pc-blurred{filter:blur(5px);user-select:none;pointer-events:none;opacity:.65;}
+.price-name{font-size:12px;font-weight:700;color:var(--bright);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.price-hs{font-family:var(--font-mono);font-size:10px;color:var(--muted);margin-bottom:8px;}
+.price-val{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--bright);letter-spacing:-.02em;line-height:1;}
+.price-currency{font-family:var(--font-mono);font-size:10px;color:var(--dim);}
+.price-delta{font-family:var(--font-mono);font-size:11px;font-weight:700;margin:4px 0 6px;}
+.delta-up{color:var(--green);} .delta-down{color:var(--red);}
+.pc-spark-wrap{height:56px;margin:6px 0 4px;position:relative;}
+.pc-spark-wrap svg{width:100%;height:100%;overflow:visible;}
+.pc-spark-tip{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 8px;font-family:var(--font-mono);font-size:10px;color:var(--text);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s;z-index:20;}
+.pc-spark-tip.show{opacity:1;}
+.pc-forecast{font-family:var(--font-mono);font-size:9px;display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;}
+.fc-bull{color:var(--green);} .fc-base{color:var(--muted);} .fc-bear{color:var(--red);}
+.price-markets{display:flex;gap:3px;flex-wrap:wrap;margin-top:6px;}
+.mkt-dot{font-family:var(--font-mono);font-size:9px;padding:1px 5px;border-radius:3px;font-weight:700;}
+.m-cn{background:rgba(139,30,30,.08);color:#7c2020;} .m-ae{background:rgba(194,122,16,.10);color:#7a4e0a;}
+.m-vn{background:rgba(107,78,10,.08);color:#4a3010;} .m-my{background:rgba(139,105,20,.08);color:#5c430a;}
+.m-kr{background:rgba(92,61,122,.08);color:#3d1f5c;} .m-sg{background:rgba(74,103,65,.08);color:#2d5226;}
+.price-source{font-family:var(--font-mono);font-size:9px;color:var(--muted);margin-top:6px;border-top:1px solid var(--line);padding-top:5px;}
+@keyframes pp{0%,100%{r:3;opacity:.5}50%{r:6;opacity:0}}
+.pc-pulse{animation:pp 2.4s ease-in-out infinite;}
+
+/* ── Section divider ─────────────────────────────────────────── */
+.section-divider{height:1px;background:var(--line);margin:28px 0 24px;}
+
+/* ── PDF Content Blurb ──────────────────────────────────────── */
+.pdf-blurb{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;padding:12px 14px;background:var(--ink2);border:1px solid var(--line);border-radius:10px;}
+.pdf-blurb-col{flex:1;min-width:140px;}
+.pdf-blurb-label{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px;}
+.pdf-blurb-tags{display:flex;flex-wrap:wrap;gap:4px;}
+.pdf-blurb-item{font-family:var(--font-mono);font-size:10px;color:var(--dim);background:var(--ink3);border:1px solid var(--line);padding:3px 7px;border-radius:4px;white-space:nowrap;}
+.pdf-blurb-item::before{content:'·  ';color:var(--muted);}
+.pdf-blurb-visual{color:var(--ghost);background:rgba(139,105,20,.07);border-color:rgba(139,105,20,.2);}
+.pdf-blurb-div{width:1px;background:var(--line);margin:0 4px;align-self:stretch;}
+@media(max-width:600px){.pdf-blurb{flex-direction:column;} .pdf-blurb-div{width:100%;height:1px;margin:4px 0;}}
+
+/* ── Blur system → ivory ─────────────────────────────────────── */
+.section-overlay{background:linear-gradient(to bottom,transparent 0%,rgba(250,247,242,.96) 40%,#faf7f2 100%)!important;}
+.blur-lock{background:linear-gradient(to top,#faf7f2 20%,transparent 100%)!important;}
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND ORBS -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="nav-brand-dot"></div>
+    <span data-ru="ЭКСПОРТ · АНАЛИТИКА" data-en="EXPORT · INTELLIGENCE">ЭКСПОРТ · АНАЛИТИКА</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#markets" data-ru="Рынки" data-en="Markets" class="">Рынки</a></li>
+    <li><a href="#importers" data-ru="Импортёры" data-en="Importers" class="">Импортёры</a></li>
+    <li><a href="#calendar" data-ru="Выставки" data-en="Exhibitions" class="">Выставки</a></li>
+    <li><a href="#strategy" data-ru="Стратегия" data-en="Strategy" class="">Стратегия</a></li>
+    <li><a href="#downloads" data-ru="⬇ Скачать" data-en="⬇ Download" class="">⬇ Скачать</a></li>
+    <li><a href="#cta" data-ru="Контакт" data-en="Contact" class="">Контакт</a></li>
+  </ul>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang(&#39;ru&#39;)">RU</button>
+    <button class="lang-btn" onclick="setLang(&#39;en&#39;)">EN</button>
+  </div>
+  <div class="burger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#markets" onclick="toggleMenu()" data-ru="Рынки" data-en="Markets">Рынки</a>
+  <a href="#importers" onclick="toggleMenu()" data-ru="Импортёры" data-en="Importers">Импортёры</a>
+  <a href="#calendar" onclick="toggleMenu()" data-ru="Выставки" data-en="Exhibitions">Выставки</a>
+  <a href="#strategy" onclick="toggleMenu()" data-ru="Стратегия" data-en="Strategy">Стратегия</a>
+  <a href="#downloads" onclick="toggleMenu()" data-ru="⬇ Скачать файлы" data-en="⬇ Download files">⬇ Скачать файлы</a>
+  <a href="#" onclick="toggleMenu();setTimeout(()=&gt;scrollToContacts(),300)" data-ru="Контакт" data-en="Contact">Контакт</a>
+</div>
+
+<!-- ═══════════ TEMPLATE NOTICE ═══════════ -->
+<div style="background:rgba(139,105,20,.12);border-bottom:2px solid rgba(139,105,20,.3);padding:8px 24px;font-family:var(--font-mono);font-size:11px;color:var(--blue);letter-spacing:.06em;text-align:center;position:relative;z-index:999">
+  🛠 ШАБЛОН v2.8.0 · Заменить все <code style="background:rgba(139,105,20,.15);padding:1px 5px;border-radius:3px">SRB-2026</code> данными нового клиента перед публикацией
+</div>
+<!-- ═══════════ PROMO BAR ═══════════ -->
+<div class="promo-bar">
+  <div class="promo-label" data-ru="🔐 Код доступа:" data-en="🔐 Access code:">🔐Уровень доступа:</div>
+  <div class="promo-input-wrap">
+    <input class="promo-input" type="text" id="promoInput" placeholder="ВВЕДИТЕ КОД" maxlength="20" autocomplete="off">
+    <button class="promo-btn" onclick="applyPromo()" data-ru="ПРИМЕНИТЬ" data-en="UNLOCK">ПРИМЕНИТЬ</button>
+    <a class="promo-btn" href="#" onclick="scrollToContacts(event)" style="background: transparent; border-color: var(--muted); color: var(--ghost); text-decoration: none; padding: 6px 14px; border-radius: 6px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 5px; transition: 0.2s;" onmouseover="this.style.borderColor=&#39;var(--cyan)&#39;;this.style.color=&#39;var(--cyan)&#39;" onmouseout="this.style.borderColor=&#39;var(--muted)&#39;;this.style.color=&#39;var(--ghost)&#39;" data-ru="↓ ЗАПРОСИТЬ" data-en="↓ REQUEST">↓ ЗАПРОСИТЬ</a>
+  </div>
+  <div class="promo-status" id="promoStatus"></div>
+  <div class="access-badge preview" id="accessBadge" data-ru="Режим: ГОСТЬ" data-en="Mode: GUEST">Режим: ГОСТЬ</div>
+</div>
+
+<!-- ═══════════ MAIN CONTENT ═══════════ -->
+<main class="main">
+
+<!-- ── HERO / PREAMBLE ── -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-meta fu">
+      <span data-ru="Export Intelligence Platform · ГК «Сыробогатов»" data-en="Export Intelligence Platform · Sirobogatov Dairy Group">Export Intelligence Platform · ГК «Сыробогатов»</span>
+    </div>
+    <h1 class="hero-title fu fu-d1">
+      Export
+      <span class="line2">Intelligence</span>
+      <span class="line3" data-ru="Сыры Полутвёрдые · Плавленые · Твёрдые · Масло" data-en="Cheese Semi-hard · Processed · Hard · Butter">Сыры Полутвёрдые · Плавленые · Твёрдые · Масло</span><span class="line3" style="font-size:clamp(14px,1.8vw,22px);opacity:.75" data-ru="Бренды: Аристократ · Орловские · Сыробогатов" data-en="Brands: Aristokrat · Oryol · Sirobogatov">Бренды: Аристократ · Орловские · Сыробогатов</span>
+    </h1>
+
+    <div class="hero-grid fu fu-d2">
+      <div>
+        <p class="hero-brief">
+          <strong data-ru="Для кого:" data-en="Prepared for:">Для кого:</strong> <span id="client-name" data-ru="ГК «Сыробогатов»" data-en="Sirobogatov Dairy Group">ГК «Сыробогатов»</span><br>
+          <strong data-ru="Продукт:" data-en="Product:">Продукт:</strong> <span id="product-name" data-ru="Сыры · Масло · HS 0406 / 0405" data-en="Cheese & Butter · HS 0406/0405">Сыры · Масло · HS 0406 / 0405</span><br>
+          <strong data-ru="Рынки:" data-en="Target markets:">Рынки:</strong> <span data-ru="КЗ · ОАЭ · КНР · КСА · VN · KR · JP · ID · MY · TR" data-en="KZ · UAE · CN · SA · VN · KR · JP · ID · MY · TR">КЗ · ОАЭ · КНР · КСА · VN · KR · JP · ID · MY · TR</span><br><br>
+          <span data-ru="Аналитика на основе ITC TradeMap, UN Comtrade, IndexBox, USDA FAS 2023–2024. Методология и стратегия — авторская разработка Скобцов Д.О." data-en="Analysis based on Fastmarkets, SMM, Metal Bulletin, Argus Media public data, exhibition registries 2023–2025, ITC TradeMap and UN Comtrade. Methodology and strategy are original author&#39;s work.">Аналитика на основе ITC TradeMap, UN Comtrade, IndexBox, USDA FAS 2023–2024. Методология и стратегия — авторская разработка Скобцов Д.О.</span>
+        </p>
+
+        <div class="author-strip">
+          <div class="author-avatar">DS</div>
+          <div class="author-info">
+            <div class="author-name">Dmitry Skobtsov</div>
+            <div class="author-title" data-ru="Senior Foreign Economic Activity Specialist · Export Strategy · APAC" data-en="Senior Foreign Economic Activity Specialist · Export Strategy · APAC">Senior Foreign Economic Activity Specialist · Export Strategy · APAC</div>
+          </div>
+          <div class="author-contacts">
+            <a class="contact-pill" href="tel:+79199903500">
+              <span class="icon">📞</span> +7 919 990-35-00
+            </a>
+            <a class="contact-pill" href="https://t.me/dimasko" target="_blank">
+              <span class="icon">✈</span> Telegram
+            </a>
+            <a class="contact-pill" href="mailto:dimasko@gmail.com">
+              <span class="icon">✉</span> dimasko@gmail.com
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="meta-card fu fu-d3">
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Отчёт" data-en="Report">Отчёт</div>
+          <div class="meta-val">#SRB-2026 · Сыры / Масло</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Создан" data-en="Created">Создан</div>
+          <div class="meta-val">Май 2026</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Версия" data-en="Version">Версия</div>
+          <div class="meta-val" style="color:var(--cyan)" id="ver-meta-card"></div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Юр. лицо" data-en="Entity">Юр. лицо</div>
+          <div class="meta-val">ГК «Сыробогатов»</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Продукт" data-en="Product">Продукт</div>
+          <div class="meta-val">Сыры / Масло</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Рынки" data-en="Markets">Рынки</div>
+          <div class="meta-val highlight">10 рынков: Азия · Бл. Восток · СНГ</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Источники" data-en="Sources">Источники</div>
+          <div class="meta-val dim">ITC TradeMap · UN Comtrade · IndexBox · USDA FAS</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="Доступ" data-en="Access">Доступ</div>
+          <div class="meta-val" id="meta-access" data-ru="Режим: ГОСТЬ" data-en="Mode: GUEST">Режим: ГОСТЬ</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key" data-ru="© Автор" data-en="© Author">© Автор</div>
+          <div class="meta-val" style="color:var(--dim);font-size:11px">Скобцов Д.О. · Все права защищены</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI STRIP -->
+    <div class="kpi-strip">
+      <div class="kpi-cell">
+  <div class="kpi-val">🌍 5.1 <span>млрд $</span></div>
+  <div class="kpi-lbl" data-ru="Ёмкость рынков" data-en="Market capacity">Ёмкость рынков</div>
+</div><div class="kpi-cell">
+  <div class="kpi-val">🗺 10 <span>стран</span></div>
+  <div class="kpi-lbl" data-ru="Целевых рынков" data-en="Target markets">Целевых рынков</div>
+</div><div class="kpi-cell">
+  <div class="kpi-val">🏭 80+ <span></span></div>
+  <div class="kpi-lbl" data-ru="Импортёров в базе" data-en="Importers in DB">Импортёров в базе</div>
+</div><div class="kpi-cell">
+  <div class="kpi-val">📦 5 <span>линеек</span></div>
+  <div class="kpi-lbl" data-ru="Приор. продуктов" data-en="Priority products">Приор. продуктов</div>
+</div><div class="kpi-cell">
+  <div class="kpi-val">💹 31 <span>%</span></div>
+  <div class="kpi-lbl" data-ru="Макс. маржа*" data-en="Max margin*">Макс. маржа*</div>
+</div><div class="kpi-cell">
+  <div class="kpi-val">💰 15 <span>млн $</span></div>
+  <div class="kpi-lbl" data-ru="Потенциал к 2028" data-en="Revenue 2028">Потенциал к 2028</div>
+</div><div class="kpi-cell">
+  <div class="kpi-val">📈 12.5 <span>% CAGR</span></div>
+  <div class="kpi-lbl" data-ru="Рост рынков" data-en="Market CAGR">Рост рынков</div>
+</div><div class="kpi-cell">
+  <div class="kpi-val">⏱ 2 <span>мес.</span></div>
+  <div class="kpi-lbl" data-ru="До поставки (рынок 1)" data-en="To shipment (market 1)">До поставки (рынок 1)</div>
+</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 1 — EXPORT MARKETS
+═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="markets">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">01</div>
+      <div class="sec-titles">
+        <div class="sec-title" data-ru="Экспортные рынки" data-en="Export Markets">Экспортные рынки</div>
+        <div class="sec-sub" data-ru="10 рынков · ITC TradeMap · UN Comtrade 2024 · Маржа · Тепловая карта" data-en="10 markets · ITC TradeMap · UN Comtrade 2024 · Margin · Heatmap">10 рынков · ITC TradeMap · UN Comtrade 2024 · Маржа · Тепловая карта</div>
+      </div>
+    </div>
+
+        <!-- MARKETS_CONTENT — Вставить контент из SKILL_export-market →
+        <!-- MARKETS_CONTENT -->
+    <!-- ═══ SLOT 1: SECTION_01_CONTENT ═══
+         Заполняется автоматически из SKILL_export-market.
+         НЕ редактировать вручную — только через маппинг плейсхолдеров. ═══ -->
+    <!-- MARKETS_CONTENT -->
+    <!-- MARKET TABS -->
+    <div class="tab-strip">
+      <button class="tab-btn act" onclick="showTab('kz',this,'mkt')" data-ru="🇰🇿 КЗ · Quick Start" data-en="🇰🇿 KZ · Quick Start">🇰🇿 КЗ · Quick Start</button>
+      <button class="tab-btn" onclick="showTab('ae',this,'mkt')" data-ru="🇦🇪 ОАЭ" data-en="🇦🇪 UAE">🇦🇪 ОАЭ</button>
+      <button class="tab-btn" onclick="showTab('cn',this,'mkt')" data-ru="🇨🇳 КНР" data-en="🇨🇳 China">🇨🇳 КНР</button>
+      <button class="tab-btn" onclick="showTab('sa',this,'mkt')" data-ru="🇸🇦 КСА" data-en="🇸🇦 SA">🇸🇦 КСА</button>
+      <button class="tab-btn" id="tab-mkt-vn" style="filter:blur(2px);pointer-events:none" data-ru="🇻🇳 VN" data-en="🇻🇳 VN">🇻🇳 VN</button>
+      <button class="tab-btn" id="tab-mkt-kr" style="filter:blur(2px);pointer-events:none" data-ru="🇰🇷 KR" data-en="🇰🇷 KR">🇰🇷 KR</button>
+    </div>
+
+    <!-- KZ TAB -->
+    <div class="tab-pane act" id="mkt-kz">
+      <div style="background:rgba(74,103,65,.08);border:1px solid rgba(74,103,65,.2);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:var(--text)">🟢 <strong>Quick Start · ЕАЭС · 0% пошлина.</strong> Первая поставка 4–8 нед. Рейтинг: <strong style="color:var(--green)">СТРАТЕГИЧЕСКИЙ</strong></div>
+
+      <!-- ДИНАМИКА ИМПОРТА + КОНКУРЕНТЫ -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <!-- Left: import dynamics -->
+        <div class="card">
+          <div class="card-title" data-ru="Импорт сыров в Казахстан · HS 0406" data-en="Cheese imports to Kazakhstan">Импорт сыров · Казахстан · HS 0406</div>
+          <div class="card-sub">UN Comtrade · KAZSTAT · тыс. т / $млн</div>
+          <div style="display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:8px;font-family:var(--font-mono);font-size:11px;margin-top:8px">
+            <div style="color:var(--muted)">Год</div><div style="color:var(--muted)">Тонн</div><div style="color:var(--muted)">USD млн</div><div style="color:var(--muted)">Δ</div>
+            <div>2022</div><div>28 400 т</div><div>$107M</div><div style="color:var(--muted)">—</div>
+            <div>2023</div><div>31 200 т</div><div>$128M</div><div style="color:var(--green)">+10%</div>
+            <div style="color:var(--blue);font-weight:700">2024</div><div style="font-weight:700">34 000 т</div><div style="font-weight:700">$142M</div><div style="color:var(--green);font-weight:700">+11%</div>
+          </div>
+          <div style="margin-top:12px;font-family:var(--font-mono);font-size:10px;color:var(--muted)">CAGR 2022–2024: <span style="color:var(--green)">+6.2%</span> · Прогноз 2025: ~$158M</div>
+          <!-- bar chart -->
+          <div style="display:flex;align-items:flex-end;gap:8px;height:48px;margin-top:10px">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1"><div style="background:var(--muted);width:100%;height:50%;border-radius:2px 2px 0 0;opacity:.6"></div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted)">2022</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1"><div style="background:var(--blue);width:100%;height:75%;border-radius:2px 2px 0 0;opacity:.7"></div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted)">2023</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1"><div style="background:var(--green);width:100%;height:100%;border-radius:2px 2px 0 0"></div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted)">2024</div></div>
+          </div>
+        </div>
+        <!-- Right: competitors -->
+        <div class="card">
+          <div class="card-title" data-ru="Страны-конкуренты · доля рынка КЗ" data-en="Competitor countries · KZ market share">Конкуренты · состав импорта КЗ</div>
+          <div class="card-sub">ITC TradeMap 2024 · HS 0406 · топ экспортёры</div>
+          <div class="flow-list" style="margin-top:10px">
+            <div class="flow-item"><div class="flow-label">🇷🇺 Россия</div><div style="background:var(--green);height:10px;border-radius:3px;width:72%"></div><div style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--green)">72%</div></div>
+            <div class="flow-item"><div class="flow-label">🇧🇾 Беларусь</div><div style="background:var(--blue);height:10px;border-radius:3px;width:18%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--blue)">18%</div></div>
+            <div class="flow-item"><div class="flow-label">🇺🇦 Украина</div><div style="background:var(--amber);height:10px;border-radius:3px;width:5%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber)">5%</div></div>
+            <div class="flow-item"><div class="flow-label">🇩🇪 Германия</div><div style="background:var(--muted);height:10px;border-radius:3px;width:3%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">3%</div></div>
+            <div class="flow-item"><div class="flow-label">🌍 Прочие</div><div style="background:var(--line);height:10px;border-radius:3px;width:2%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">2%</div></div>
+          </div>
+          <div style="margin-top:10px;padding:8px 10px;background:var(--ink3);border-radius:6px;font-size:11px;color:var(--dim)"><strong>Вывод:</strong> Россия доминирует (72%) — проверенный канал сбыта. Сыробогатов конкурирует с собственными соотечественниками, но имеет ценовое + бренд-преимущество.</div>
+        </div>
+      </div>
+
+      <!-- ЦЕНЫ + МАРЖА -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px">
+        <div class="price-card"><div class="price-name">Импорт 2024</div><div class="price-val">34 тыс. т</div><div class="price-range">$142M · HS 0406</div><div class="price-source">KAZSTAT 2024</div></div>
+        <div class="price-card"><div class="price-name">Сред. цена CIF</div><div class="price-val" style="color:var(--blue)">$4 176/т</div><div class="price-range">↗ +4% vs 2023</div><div class="price-source">ITC TradeMap 2024</div></div>
+        <div class="price-card"><div class="price-name">Маржа* / Пошлина</div><div class="price-val" style="color:var(--amber)">~18%</div><div class="price-range">Пошлина 0% ЕАЭС</div><div class="price-source">EXW ~$2 800/т est.</div></div>
+        <div class="price-card"><div class="price-name">CAGR рынка</div><div class="price-val" style="color:var(--green)">+6.2%</div><div class="price-range">Срок входа 1–2 мес.</div><div class="price-source">UN Comtrade 2024</div></div>
+      </div>
+
+      <!-- БАРЬЕРЫ + ПЛАТЁЖ -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="padding:12px 14px;background:var(--ink2);border:1px solid var(--line);border-radius:8px;font-size:12px">
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Барьеры входа</div>
+          <div style="margin-bottom:4px">📋 Пошлина: <strong style="color:var(--green)">0% (ЕАЭС)</strong></div>
+          <div style="margin-bottom:4px">📋 Сертификация: EAC (уже есть у РФ-производителей)</div>
+          <div style="margin-bottom:4px">📋 Стоимость входа: ~$5 000–10 000 · 1–2 мес.</div>
+          <div style="font-style:italic;color:var(--dim);margin-top:8px;font-size:11px"><strong>Возможность:</strong> 72% рынка уже у РФ — проверенный спрос. <span style="color:var(--green)">Конкуренция знакомая, барьер минимален.</span></div>
+        </div>
+        <div style="padding:12px 14px;background:var(--ink2);border:1px solid var(--line);border-radius:8px;font-size:12px">
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Платёжные каналы</div>
+          <div style="margin-bottom:4px">💳 RUB/KZT — прямые расчёты без конверсии</div>
+          <div style="margin-bottom:4px">💳 Kaspi Bank, Halyk Bank — без санкционных рисков</div>
+          <div style="margin-bottom:4px">💳 Предоплата 100% или T/T 30 дней</div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--green);margin-top:8px">Первый шаг: Magnum Cash&Carry → рефтрейлер 8–10 т → WorldFood KZ сент. 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AE TAB -->
+    <div class="tab-pane" id="mkt-ae">
+      <div style="background:rgba(139,105,20,.08);border:1px solid rgba(139,105,20,.2);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13px">🏆 <strong>Стратегический · 0% пошлина · $424M.</strong> Рейтинг: <strong style="color:var(--blue)">СТРАТЕГИЧЕСКИЙ</strong> · Halal ESMA → Transmed → Carrefour, LuLu GCC</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="card">
+          <div class="card-title">Импорт сыров · ОАЭ · HS 0406</div>
+          <div class="card-sub">ITC TradeMap · UAE Federal Customs · тыс. т / $млн</div>
+          <div style="display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:8px;font-family:var(--font-mono);font-size:11px;margin-top:8px">
+            <div style="color:var(--muted)">Год</div><div style="color:var(--muted)">Тонн</div><div style="color:var(--muted)">USD млн</div><div style="color:var(--muted)">Δ</div>
+            <div>2022</div><div>62 800 т</div><div>$337M</div><div style="color:var(--muted)">—</div>
+            <div>2023</div><div>67 500 т</div><div>$381M</div><div style="color:var(--green)">+13%</div>
+            <div style="color:var(--blue);font-weight:700">2024</div><div style="font-weight:700">73 000 т</div><div style="font-weight:700">$424M</div><div style="color:var(--green);font-weight:700">+11%</div>
+          </div>
+          <div style="margin-top:10px;font-family:var(--font-mono);font-size:10px;color:var(--muted)">CAGR: <span style="color:var(--green)">+4.7%</span> · Сред. цена CIF: <span style="color:var(--blue);font-weight:700">$5 817/т</span> · ↗ +6% vs 2023</div>
+          <div style="display:flex;align-items:flex-end;gap:8px;height:48px;margin-top:10px">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1"><div style="background:var(--muted);width:100%;height:60%;border-radius:2px 2px 0 0;opacity:.6"></div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted)">2022</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1"><div style="background:var(--blue);width:100%;height:80%;border-radius:2px 2px 0 0;opacity:.7"></div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted)">2023</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1"><div style="background:var(--green);width:100%;height:100%;border-radius:2px 2px 0 0"></div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted)">2024</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Конкуренты · состав импорта ОАЭ</div>
+          <div class="card-sub">ITC TradeMap 2024 · HS 0406 · топ-экспортёры</div>
+          <div class="flow-list" style="margin-top:10px">
+            <div class="flow-item"><div class="flow-label">🇺🇸 США</div><div style="background:var(--red);height:10px;border-radius:3px;width:28%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--red);font-weight:700">28%</div></div>
+            <div class="flow-item"><div class="flow-label">🇩🇰 Дания</div><div style="background:var(--amber);height:10px;border-radius:3px;width:22%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber);font-weight:700">22%</div></div>
+            <div class="flow-item"><div class="flow-label">🇦🇺 Австралия</div><div style="background:var(--amber);height:10px;border-radius:3px;width:18%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber)">18%</div></div>
+            <div class="flow-item"><div class="flow-label">🇳🇿 Нов. Зеландия</div><div style="background:var(--muted);height:10px;border-radius:3px;width:15%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">15%</div></div>
+            <div class="flow-item"><div class="flow-label">🇷🇺 Россия</div><div style="background:var(--green);height:10px;border-radius:3px;width:2%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--green);font-weight:700">&lt;2%</div></div>
+          </div>
+          <div style="margin-top:10px;padding:8px 10px;background:var(--ink3);border-radius:6px;font-size:11px;color:var(--dim)"><strong>Ниша РФ:</strong> Натуральный сыр без ЗМЖ, –20% vs US/EU. <span style="color:var(--green)">Доля РФ &lt;2% при ёмкости $424M — незанятая ниша.</span></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px">
+        <div class="price-card"><div class="price-name">Импорт 2024</div><div class="price-val">73 тыс. т</div><div class="price-range">$424M · HS 0406</div><div class="price-source">ITC TradeMap 2024</div></div>
+        <div class="price-card"><div class="price-name">Сред. цена CIF</div><div class="price-val" style="color:var(--blue)">$5 817/т</div><div class="price-range">↗ +6% vs 2023</div><div class="price-source">UAE Customs 2024</div></div>
+        <div class="price-card"><div class="price-name">Маржа* / Пошлина</div><div class="price-val" style="color:var(--green)">~29%</div><div class="price-range">Пошлина 0%</div><div class="price-source">EXW ~$2 800/т est.</div></div>
+        <div class="price-card"><div class="price-name">CAGR рынка</div><div class="price-val" style="color:var(--green)">+4.7%</div><div class="price-range">Срок входа 2–3 мес.*</div><div class="price-source">IndexBox UAE 2024</div></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="padding:12px 14px;background:var(--ink2);border:1px solid var(--line);border-radius:8px;font-size:12px">
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Барьеры входа</div>
+          <div style="margin-bottom:4px">📋 Пошлина: <strong style="color:var(--green)">0%</strong></div>
+          <div style="margin-bottom:4px">📋 Халяль-сертификат ESMA: <strong style="color:var(--red)">обязателен</strong></div>
+          <div style="margin-bottom:4px">📋 Ветеринарное соглашение UAE–РФ: действует</div>
+          <div style="margin-bottom:4px">📋 Стоимость входа: ~$20 000–35 000 · 2–3 мес.</div>
+          <div style="font-style:italic;color:var(--dim);margin-top:8px;font-size:11px"><strong style="color:var(--amber)">Риск:</strong> без халяль — переговоры на GULFOOD номинальные.</div>
+        </div>
+        <div style="padding:12px 14px;background:var(--ink2);border:1px solid var(--line);border-radius:8px;font-size:12px">
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Платёжные каналы</div>
+          <div style="margin-bottom:4px">💳 AED/USD через ОАЭ-банки (нет санкций)</div>
+          <div style="margin-bottom:4px">💳 Mashreq Bank, ADCB — работают с РФ</div>
+          <div style="margin-bottom:4px">💳 L/C или T/T 30 дней после 1 поставки</div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--green);margin-top:8px">Первый шаг: Transmed Overseas (халяль склад Jebel Ali) → GULFOOD март 2027</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CN TAB -->
+    <div class="tab-pane" id="mkt-cn">
+      <div style="background:rgba(74,103,65,.08);border:1px solid rgba(74,103,65,.2);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13px">🇨🇳 <strong>Стратегический · $895M · CAGR +12.5%.</strong> Рейтинг: <strong style="color:var(--blue)">91 — СТРАТЕГИЧЕСКИЙ</strong> · Доля РФ &lt;1.8% — незанятая ниша. GACC 4–8 мес.</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="card">
+          <div class="card-title">Импорт сыров · КНР · HS 0406</div>
+          <div class="card-sub">ITC TradeMap · GACC · тыс. т / $млн</div>
+          <div style="display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:8px;font-family:var(--font-mono);font-size:11px;margin-top:8px">
+            <div style="color:var(--muted)">Год</div><div style="color:var(--muted)">Тонн</div><div style="color:var(--muted)">USD млн</div><div style="color:var(--muted)">Δ</div>
+            <div>2022</div><div>142 000 т</div><div>$693M</div><div style="color:var(--muted)">—</div>
+            <div>2023</div><div>158 000 т</div><div>$779M</div><div style="color:var(--green)">+12%</div>
+            <div style="color:var(--blue);font-weight:700">2024</div><div style="font-weight:700">173 000 т</div><div style="font-weight:700">$895M</div><div style="color:var(--green);font-weight:700">+15%</div>
+          </div>
+          <div style="margin-top:10px;font-family:var(--font-mono);font-size:10px;color:var(--muted)">CAGR 2013–2024: <span style="color:var(--green)">+12.5%</span> · Прогноз 2026: <span style="color:var(--green)">~$1 150M</span> · Сред. CIF: <span style="color:var(--blue)">$5 186/т</span></div>
+          <div style="display:flex;align-items:flex-end;gap:8px;height:48px;margin-top:10px">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1"><div style="background:var(--muted);width:100%;height:58%;border-radius:2px 2px 0 0;opacity:.6"></div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted)">2022</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1"><div style="background:var(--blue);width:100%;height:78%;border-radius:2px 2px 0 0;opacity:.7"></div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted)">2023</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1"><div style="background:var(--green);width:100%;height:100%;border-radius:2px 2px 0 0"></div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted)">2024</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Конкуренты · состав импорта КНР</div>
+          <div class="card-sub">ITC TradeMap 2024 · HS 0406 · GACC данные</div>
+          <div class="flow-list" style="margin-top:10px">
+            <div class="flow-item"><div class="flow-label">🇳🇿 Нов. Зеландия</div><div style="background:var(--red);height:10px;border-radius:3px;width:62%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--red);font-weight:700">62%</div></div>
+            <div class="flow-item"><div class="flow-label">🇦🇺 Австралия</div><div style="background:var(--amber);height:10px;border-radius:3px;width:16%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber)">16%</div></div>
+            <div class="flow-item"><div class="flow-label">🇪🇺 ЕС (Польша, Дания)</div><div style="background:var(--amber);height:10px;border-radius:3px;width:12%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber)">12%</div></div>
+            <div class="flow-item"><div class="flow-label">🇺🇸 США</div><div style="background:var(--muted);height:10px;border-radius:3px;width:6%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">6%</div></div>
+            <div class="flow-item"><div class="flow-label">🇷🇺 Россия</div><div style="background:var(--green);height:10px;border-radius:3px;width:2%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--green);font-weight:700">~1.8% ▲</div></div>
+          </div>
+          <div style="margin-top:10px;padding:8px 10px;background:rgba(74,103,65,.08);border-radius:6px;font-size:11px;color:var(--text)"><strong style="color:var(--green)">Возможность:</strong> Крупнейший рынок АТР: рост +14.5% CAGR. РФ 1.8% при $895M — колоссальный потенциал. CTM-формат снижает барьер через локальный бренд.<br><strong style="color:var(--amber)">Риск:</strong> GACC 4–8 мес. Конкуренция НЗ/AU в premium.</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px">
+        <div class="price-card"><div class="price-name">Импорт 2024</div><div class="price-val">173 тыс. т</div><div class="price-range">$895M · HS 0406</div><div class="price-source">ITC TradeMap 2024</div></div>
+        <div class="price-card"><div class="price-name">Сред. цена CIF</div><div class="price-val" style="color:var(--blue)">$5 186/т</div><div class="price-range">↗ +8% vs 2022</div><div class="price-source">GACC / TradeMap 2024</div></div>
+        <div class="price-card"><div class="price-name">Маржа* / Пошлина</div><div class="price-val" style="color:var(--green)">~28%</div><div class="price-range">Пошлина 12% MFN</div><div class="price-source">EXW ~$2 800/т est.</div></div>
+        <div class="price-card"><div class="price-name">CAGR 10 лет</div><div class="price-val" style="color:var(--green)">+12.5%</div><div class="price-range">Прогноз 2026: $1.15B</div><div class="price-source">ITC TradeMap</div></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="padding:12px 14px;background:var(--ink2);border:1px solid var(--line);border-radius:8px;font-size:12px">
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Барьеры входа</div>
+          <div style="margin-bottom:4px">📋 Пошлина: <strong style="color:var(--amber)">12.0% MFN</strong></div>
+          <div style="margin-bottom:4px">📋 GACC регистрация производителя: <strong style="color:var(--red)">обязательна</strong></div>
+          <div style="margin-bottom:4px">📋 GB/T стандарт · Халяль (опционально)</div>
+          <div style="margin-bottom:4px">📋 Стоимость входа: ~$35 000 · 4–8 мес.</div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--blue);margin-top:8px">Первый шаг: GACC-заявка в течение 30 дней. Выйти на 5 GACC-авторизованных импортёров (Shanghai Dairy, Sanyuan).</div>
+        </div>
+        <div style="padding:12px 14px;background:var(--ink2);border:1px solid var(--line);border-radius:8px;font-size:12px">
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;margin-bottom:8px">Платёжные каналы</div>
+          <div style="margin-bottom:4px">💳 CNY через Vostro-счёт в ВТБ/Газпромбанк</div>
+          <div style="margin-bottom:4px">💳 WeChat Pay через посредника</div>
+          <div style="margin-bottom:4px">💳 Предоплата CNY / T/T через Bank of China</div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--green);margin-top:8px">CNY-расчёты стабилизируются. Ожидается расширение каналов через Bank of China.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SA TAB -->
+    <div class="tab-pane" id="mkt-sa">
+      <div style="background:rgba(139,105,20,.08);border:1px solid rgba(139,105,20,.2);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13px">🇸🇦 <strong>Стратегический · $872M · 0% пошлина.</strong> Макс. маржа ~31%* · Vision 2030 — рост HoReCa · Халяль SASO обязателен</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="card">
+          <div class="card-title">Импорт сыров · КСА · HS 0406</div>
+          <div class="card-sub">GASTAT · ITC TradeMap · тыс. т / $млн</div>
+          <div style="display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:8px;font-family:var(--font-mono);font-size:11px;margin-top:8px">
+            <div style="color:var(--muted)">Год</div><div style="color:var(--muted)">Тонн</div><div style="color:var(--muted)">USD млн</div><div style="color:var(--muted)">Δ</div>
+            <div>2022</div><div>168 000 т</div><div>$723M</div><div style="color:var(--muted)">—</div>
+            <div>2023</div><div>184 000 т</div><div>$798M</div><div style="color:var(--green)">+10%</div>
+            <div style="color:var(--blue);font-weight:700">2024</div><div style="font-weight:700">197 000 т</div><div style="font-weight:700">$872M</div><div style="color:var(--green);font-weight:700">+9%</div>
+          </div>
+          <div style="margin-top:10px;font-family:var(--font-mono);font-size:10px;color:var(--muted)">CAGR: <span style="color:var(--green)">+8.8%</span> · Сред. CIF: <span style="color:var(--blue)">$4 426/т</span> · Прогноз 2025: ~$960M</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Конкуренты · состав импорта КСА</div>
+          <div class="card-sub">ITC TradeMap 2024 · HS 0406</div>
+          <div class="flow-list" style="margin-top:10px">
+            <div class="flow-item"><div class="flow-label">🇺🇸 США</div><div style="background:var(--red);height:10px;border-radius:3px;width:35%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--red);font-weight:700">35%</div></div>
+            <div class="flow-item"><div class="flow-label">🇩🇰 Дания</div><div style="background:var(--amber);height:10px;border-radius:3px;width:25%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber)">25%</div></div>
+            <div class="flow-item"><div class="flow-label">🇳🇿 Нов. Зеландия</div><div style="background:var(--amber);height:10px;border-radius:3px;width:20%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber)">20%</div></div>
+            <div class="flow-item"><div class="flow-label">🇦🇺 Австралия</div><div style="background:var(--muted);height:10px;border-radius:3px;width:12%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">12%</div></div>
+            <div class="flow-item"><div class="flow-label">🇷🇺 Россия</div><div style="background:var(--green);height:10px;border-radius:3px;width:1%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--green);font-weight:700">&lt;1%</div></div>
+          </div>
+          <div style="margin-top:10px;padding:8px 10px;background:rgba(74,103,65,.08);border-radius:6px;font-size:11px;color:var(--text)"><strong style="color:var(--green)">Ниша:</strong> Халяль-сертифицированный сыр из РФ конкурентен по цене vs US/EU на 15–20%. <span style="color:var(--amber)">Вход через ОАЭ-дистрибьютора → SFDA регистрация.</span></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div class="price-card"><div class="price-name">Импорт 2024</div><div class="price-val">197 тыс. т</div><div class="price-range">$872M · HS 0406</div><div class="price-source">GASTAT · TradeMap</div></div>
+        <div class="price-card"><div class="price-name">Сред. цена CIF</div><div class="price-val" style="color:var(--blue)">$4 426/т</div><div class="price-range">↗ +5% vs 2023</div><div class="price-source">ITC TradeMap 2024</div></div>
+        <div class="price-card"><div class="price-name">Маржа* / Пошлина</div><div class="price-val" style="color:var(--green)">~31%</div><div class="price-range">Пошлина 0% · Лидер</div><div class="price-source">Халяль SASO/SFDA</div></div>
+        <div class="price-card"><div class="price-name">CAGR рынка</div><div class="price-val" style="color:var(--green)">+8.8%</div><div class="price-range">Vision 2030 эффект</div><div class="price-source">ITC TradeMap</div></div>
+      </div>
+    </div>
+
+    <!-- HEATMAP TABLE -->
+    <div class="data-table-wrap" style="margin-top:28px">
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--ink2)">Матрица маржинальности · ITC TradeMap · UN Comtrade 2024 · *estimated</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Рынок</th><th>Импорт $M</th><th>CAGR</th><th>Пошлина</th><th>Маржа*</th><th>K-Score</th><th>Приоритет</th></tr>
+        </thead>
+        <tbody>
+          <tr data-preview-row><td>🇰🇿 Казахстан</td><td>$142M</td><td style="color:var(--green)">+6.2%</td><td style="color:var(--green)">0% ЕАЭС</td><td style="color:var(--amber)">~18%</td><td style="color:var(--blue);font-weight:700">K=89</td><td><span style="background:rgba(194,122,16,.12);color:var(--amber);font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px">QUICK</span></td></tr>
+          <tr data-preview-row><td>🇦🇪 ОАЭ</td><td>$424M</td><td style="color:var(--green)">+4.7%</td><td style="color:var(--green)">0%</td><td style="color:var(--green)">~29%</td><td style="color:var(--blue);font-weight:700">K=84</td><td><span style="background:rgba(74,103,65,.12);color:var(--green);font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px">СТРАТЕГ.</span></td></tr>
+          <tr data-preview-row><td>🇸🇦 КСА</td><td>$872M</td><td style="color:var(--green)">+8.8%</td><td style="color:var(--green)">0%</td><td style="color:var(--green)">~31%</td><td style="color:var(--blue);font-weight:700">K=79</td><td><span style="background:rgba(74,103,65,.12);color:var(--green);font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px">СТРАТЕГ.</span></td></tr>
+          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇨🇳 КНР</td><td>$895M</td><td>+12.5%</td><td>12%</td><td>~28%</td><td>K=81</td><td>СТРАТЕГ.</td></tr>
+          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇻🇳 Вьетнам</td><td>$68M</td><td>+9.1%</td><td>5–10%</td><td>~26%</td><td>K=69</td><td>РОСТ</td></tr>
+          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇮🇩 Индонезия</td><td>$95M</td><td>+7.3%</td><td>5%</td><td>~25%</td><td>K=65</td><td>ПЕРСПЕКТ.</td></tr>
+          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇰🇷 Ю. Корея</td><td>$1 000M</td><td>+3.8%</td><td>36%</td><td>~24%</td><td>K=73</td><td>СТРАТЕГ.</td></tr>
+          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇯🇵 Япония</td><td>$1 300M</td><td>+2.1%</td><td>29.8%</td><td>~22%</td><td>K=71</td><td>СТРАТЕГ.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="download-bar">
+      <a class="dl-btn" href="#" onclick="downloadGated(event,&#39;markets&#39;)" data-ru="⬇ Скачать: Анализ экспортных рынков (PDF 12 стр.)" data-en="⬇ Download: Export Markets Analysis (PDF 12 pp.)">⬇ Скачать: Анализ экспортных рынков (PDF 12 стр.)</a>
+      <div class="dl-locked" id="dl-lock-markets" style="display:flex">🔑 <span data-ru="Требуется код доступа уровня PREVIEW" data-en="Requires PREVIEW access code">Требуется код доступа уровня PREVIEW</span></div>
+    </div>
+    <div class="pdf-blurb"><div class="pdf-blurb-col"><div class="pdf-blurb-label">Содержимое</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item">market overview</span><span class="pdf-blurb-item">pricing analytics</span><span class="pdf-blurb-item">FOB/CIF spreads</span><span class="pdf-blurb-item">import dynamics</span><span class="pdf-blurb-item">HS codes</span><span class="pdf-blurb-item">margin map</span><span class="pdf-blurb-item">country risk</span><span class="pdf-blurb-item">competitor landscape</span><span class="pdf-blurb-item">logistics routes</span><span class="pdf-blurb-item">tariff barriers</span><span class="pdf-blurb-item">top opportunities</span><span class="pdf-blurb-item">recommended entry sequence</span></div></div><div class="pdf-blurb-div"></div><div class="pdf-blurb-col"><div class="pdf-blurb-label">Визуально</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item pdf-blurb-visual">heatmaps</span><span class="pdf-blurb-item pdf-blurb-visual">price charts</span><span class="pdf-blurb-item pdf-blurb-visual">market cards</span><span class="pdf-blurb-item pdf-blurb-visual">APAC geo blocks</span><span class="pdf-blurb-item pdf-blurb-visual">commodity ribbons</span></div></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 2 — IMPORTERS DATABASE
+═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="importers">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">02</div>
+      <div class="sec-titles">
+        <div class="sec-title" data-ru="База импортёров" data-en="Importers Database">База импортёров</div>
+        <div class="sec-sub" data-ru="80+ компаний · K-Score · Tier-1/2/3 · Контакты · Первый контакт" data-en="80+ companies · K-Score · Tier-1/2/3 · Contacts · First contact">80+ компаний · K-Score · Tier-1/2/3 · Контакты · Первый контакт</div>
+      </div>
+    </div>
+
+    <!-- IMPORTERS_CONTENT -->
+    <!-- IMPORTERS_CONTENT -->
+    <!-- ═══ SLOT 2: SECTION_02_CONTENT ═══
+         Заполняется автоматически из SKILL_importer-database.
+         НЕ редактировать вручную — только через маппинг плейсхолдеров. ═══ -->
+    <!-- IMPORTERS_CONTENT -->
+    <div style="background:rgba(194,122,16,.08);border:1px solid rgba(194,122,16,.2);border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:13px">🔑 <strong>Топ-3 для немедленного контакта:</strong> Magnum KZ (K=89) · Transmed UAE (K=84) · Shanghai Dairy CN (K=81)</div>
+
+    <div class="tab-strip">
+      <button class="tab-btn act" onclick="showTab('ikz',this,'imp')" data-ru="🇰🇿 Казахстан" data-en="🇰🇿 Kazakhstan">🇰🇿 Казахстан</button>
+      <button class="tab-btn" onclick="showTab('iae',this,'imp')" data-ru="🇦🇪 ОАЭ" data-en="🇦🇪 UAE">🇦🇪 ОАЭ</button>
+      <button class="tab-btn" onclick="showTab('icn',this,'imp')" data-ru="🇨🇳 КНР" data-en="🇨🇳 China">🇨🇳 КНР</button>
+      <button class="tab-btn" style="filter:blur(2px);pointer-events:none" data-ru="🌏 ЮВА+" data-en="🌏 SEA+">🌏 ЮВА+</button>
+    </div>
+
+    <div class="tab-pane act" id="imp-ikz">
+      <div class="card" style="margin-bottom:12px;border-left:3px solid var(--green)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div><div class="card-title">Magnum Cash &amp; Carry</div><div class="card-sub">Ритейл-сеть · 120+ гипермаркетов · Алматы · Tier-1</div></div>
+          <div style="background:rgba(74,103,65,.12);border:1px solid rgba(74,103,65,.3);border-radius:8px;padding:8px 14px;text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--green)">89</div><div style="font-family:var(--font-mono);font-size:9px;color:var(--green)">K-SCORE</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px">
+          <div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Объём dairy</div><div style="font-size:12px;font-weight:600">~$200M/год</div></div>
+          <div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Private Label</div><div style="font-size:12px;font-weight:600">Активно</div></div>
+          <div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Опыт с РФ</div><div style="font-size:12px;font-weight:600">Да — VBD</div></div>
+          <div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Срок контракта</div><div style="font-size:12px;font-weight:600">6–8 нед.</div></div>
+        </div>
+        <div style="background:var(--ink3);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--dim)">Пробная партия 1 рефтрейлер → Aristokrat Old + слайсы. <strong>WorldFood Kazakhstan</strong> сент. 2026.</div>
+      </div>
+      <div class="blur-wrap">
+        <div class="blur-content" style="filter:blur(5px);user-select:none;pointer-events:none">
+          <div class="card" style="border-left:3px solid var(--blue)">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+              <div><div class="card-title">Raimbek Group</div><div class="card-sub">FMCG дистрибьютор · охват вся РК · K=82 · Tier-1</div></div>
+              <div style="background:rgba(139,105,20,.12);border-radius:8px;padding:8px 14px;text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--blue)">82</div><div style="font-family:var(--font-mono);font-size:9px;color:var(--blue)">K-SCORE</div></div>
+            </div>
+            <div style="font-size:12px;color:var(--dim)">Собственный рефавтопарк. Эксклюзивный контракт — потенциал на всю РК. X5 Kazakhstan.</div>
+          </div>
+        </div>
+        <div class="blur-lock visible" style="display:flex">
+          <div class="blur-lock-msg">🔑 <span data-ru="Введите код PREVIEW для доступа" data-en="Enter PREVIEW code for access">Введите код PREVIEW для доступа</span></div>
+        </div>
+      </div>
+      <!-- SUPPLIER NATIONALITY COMPOSITION KZ -->
+      <div style="margin-top:16px;padding:14px 16px;background:var(--ink2);border:1px solid var(--line);border-radius:10px">
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">Нац. состав текущих поставщиков сыра в КЗ · ITC TradeMap 2024</div>
+        <div class="flow-list">
+          <div class="flow-item"><div class="flow-label" style="font-weight:700;color:var(--green)">🇷🇺 Россия</div><div style="background:var(--green);height:12px;border-radius:3px;width:72%"></div><div style="font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--green)">72%</div></div>
+          <div class="flow-item"><div class="flow-label">🇧🇾 Беларусь</div><div style="background:var(--blue);height:12px;border-radius:3px;width:18%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--blue)">18%</div></div>
+          <div class="flow-item"><div class="flow-label">🇺🇦 Украина</div><div style="background:var(--amber);height:12px;border-radius:3px;width:5%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--amber)">5%</div></div>
+          <div class="flow-item"><div class="flow-label">🇩🇪 Германия</div><div style="background:var(--muted);height:12px;border-radius:3px;width:3%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">3%</div></div>
+          <div class="flow-item"><div class="flow-label">🌍 Прочие</div><div style="background:var(--line);height:12px;border-radius:3px;width:2%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">2%</div></div>
+        </div>
+        <div style="margin-top:10px;font-size:12px;color:var(--dim)">РФ уже занимает 72% рынка — текущие поставщики: Белебеевский МК, Милком, Вимм-Билль-Данн. <strong style="color:var(--green)">Сыробогатов конкурирует с известными участниками, но предлагает более широкий ассортимент и выгодный private label.</strong></div>
+      </div>
+
+      <div class="data-table-wrap" style="margin-top:16px">
+        <table class="data-table">
+          <thead><tr><th>Компания</th><th>Тип</th><th>Город</th><th>K-Score</th><th>Контакт</th></tr></thead>
+          <tbody>
+            <tr><td style="font-weight:600">Magnum Cash&Carry</td><td>Ритейл</td><td>Алматы</td><td style="color:var(--green);font-weight:700;font-family:var(--font-mono)">89</td><td style="font-family:var(--font-mono);font-size:11px">purchase@magnum.kz</td></tr>
+            <tr><td style="font-weight:600">Raimbek Group</td><td>Дистрибьютор</td><td>Алматы</td><td style="color:var(--green);font-weight:700;font-family:var(--font-mono)">82</td><td style="font-family:var(--font-mono);font-size:11px">info@raimbek.kz</td></tr>
+            <tr><td style="font-weight:600">Arbuz.kz (Kaspi)</td><td>E-commerce</td><td>Алматы</td><td style="color:var(--blue);font-weight:700;font-family:var(--font-mono)">79</td><td style="font-family:var(--font-mono);font-size:11px">seller@kaspi.kz</td></tr>
+            <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>Метро Казахстан</td><td>B2B ритейл</td><td>Алматы</td><td style="font-family:var(--font-mono)">74</td><td style="font-family:var(--font-mono);font-size:11px">████████████</td></tr>
+            <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>Asia Foods KZ</td><td>Дистрибьютор</td><td>Астана</td><td style="font-family:var(--font-mono)">71</td><td style="font-family:var(--font-mono);font-size:11px">████████████</td></tr>
+            <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>Lactalis KZ</td><td>Представительство</td><td>Алматы</td><td style="font-family:var(--font-mono)">68</td><td style="font-family:var(--font-mono);font-size:11px">████████████</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="imp-iae">
+      <!-- SUPPLIER NATIONALITY ОАЭ -->
+      <div style="margin-bottom:16px;padding:14px 16px;background:var(--ink2);border:1px solid var(--line);border-radius:10px">
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">Нац. состав текущих поставщиков сыра в ОАЭ · ITC TradeMap 2024</div>
+        <div class="flow-list">
+          <div class="flow-item"><div class="flow-label" style="color:var(--red)">🇺🇸 США</div><div style="background:var(--red);height:12px;border-radius:3px;width:28%"></div><div style="font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--red)">28%</div></div>
+          <div class="flow-item"><div class="flow-label" style="color:var(--amber)">🇩🇰 Дания</div><div style="background:var(--amber);height:12px;border-radius:3px;width:22%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--amber)">22%</div></div>
+          <div class="flow-item"><div class="flow-label">🇦🇺 Австралия</div><div style="background:var(--amber);height:12px;border-radius:3px;width:18%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--amber)">18%</div></div>
+          <div class="flow-item"><div class="flow-label">🇳🇿 Нов. Зеландия</div><div style="background:var(--muted);height:12px;border-radius:3px;width:15%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">15%</div></div>
+          <div class="flow-item"><div class="flow-label" style="font-weight:700;color:var(--green)">🇷🇺 Россия</div><div style="background:var(--green);height:12px;border-radius:3px;width:2%"></div><div style="font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--green)">&lt;2% → ЦЕЛЬ</div></div>
+        </div>
+        <div style="margin-top:10px;font-size:12px;color:var(--dim)">США и Дания — лидеры (50%). РФ &lt;2% при ёмкости $424M. <strong style="color:var(--green)">Позиционирование: натуральный халяль-сыр, –20% vs US/EU — незанятая ниша.</strong></div>
+      </div>
+
+      <div class="card" style="margin-bottom:12px;border-left:3px solid var(--green)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div><div class="card-title">Transmed Overseas FZE</div><div class="card-sub">FMCG дистрибьютор · Jebel Ali FZ · ОАЭ · Tier-1</div></div>
+          <div style="background:rgba(74,103,65,.12);border:1px solid rgba(74,103,65,.3);border-radius:8px;padding:8px 14px;text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--green)">84</div><div style="font-family:var(--font-mono);font-size:9px;color:var(--green)">K-SCORE</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px">
+          <div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Охват</div><div style="font-size:12px;font-weight:600">ОАЭ+КСА+Оман</div></div>
+          <div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Халяль склад</div><div style="font-size:12px;font-weight:600">Да · Jebel Ali</div></div>
+          <div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Клиенты</div><div style="font-size:12px;font-weight:600">Carrefour · LuLu</div></div>
+          <div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Email</div><div style="font-size:11px;font-family:var(--font-mono)">export@transmed.com</div></div>
+        </div>
+        <div style="background:var(--ink3);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--dim)">После халяль — немедленный контакт. <strong>GULFOOD</strong> март 2027.</div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="imp-icn">
+      <div class="card" style="margin-bottom:12px;border-left:3px solid var(--green)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div><div class="card-title">Shanghai Dairy Group Co.</div><div class="card-sub">Dairy импортёр · GACC авторизован · Shanghai · Tier-1</div></div>
+          <div style="background:rgba(74,103,65,.12);border:1px solid rgba(74,103,65,.3);border-radius:8px;padding:8px 14px;text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--green)">81</div><div style="font-family:var(--font-mono);font-size:9px;color:var(--green)">K-SCORE</div></div>
+        </div>
+        <div style="background:var(--ink3);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--dim)">Может выступить спонсором GACC-регистрации. Клиенты: RT-Mart, Sam's Club CN. Контакт: Tridge / Alibaba.</div>
+      </div>
+      <!-- SUPPLIER NATIONALITY КНР -->
+      <div style="margin:16px 0;padding:14px 16px;background:var(--ink2);border:1px solid var(--line);border-radius:10px">
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">Нац. состав текущих поставщиков сыра в КНР · ITC TradeMap 2024</div>
+        <div class="flow-list">
+          <div class="flow-item"><div class="flow-label" style="color:var(--red)">🇳🇿 Нов. Зеландия</div><div style="background:var(--red);height:12px;border-radius:3px;width:62%"></div><div style="font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--red)">62%</div></div>
+          <div class="flow-item"><div class="flow-label" style="color:var(--amber)">🇦🇺 Австралия</div><div style="background:var(--amber);height:12px;border-radius:3px;width:16%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--amber)">16%</div></div>
+          <div class="flow-item"><div class="flow-label">🇪🇺 ЕС (Польша, Дания)</div><div style="background:var(--amber);height:12px;border-radius:3px;width:12%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--amber)">12%</div></div>
+          <div class="flow-item"><div class="flow-label">🇺🇸 США</div><div style="background:var(--muted);height:12px;border-radius:3px;width:6%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">6%</div></div>
+          <div class="flow-item"><div class="flow-label" style="font-weight:700;color:var(--green)">🇷🇺 Россия</div><div style="background:var(--green);height:12px;border-radius:3px;width:2%"></div><div style="font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--green)">~1.8% ▲</div></div>
+        </div>
+        <div style="margin-top:10px;font-size:12px;color:var(--dim)">НЗ доминирует (62%). РФ 1.8% с ростом — тренд подтверждён. <strong style="color:var(--blue)">CTM формат (private label) снижает барьер через локальный бренд покупателя.</strong></div>
+      </div>
+      <div class="blur-wrap" style="margin-top:0">
+        <div class="blur-content" style="filter:blur(5px);user-select:none;pointer-events:none">
+          <div class="card" style="border-left:3px solid var(--blue)">
+            <div class="card-title">Beijing Sanyuan Foods · K=80</div>
+            <div class="card-sub">Dairy холдинг · SSE 600073 · JD Fresh, Hema, Ole · Tier-1</div>
+            <div style="font-size:12px;color:var(--dim)">Один из крупнейших dairy холдингов КНР. Выручка $1.2B. Контакт через CIIE Shanghai 2026...</div>
+          </div>
+        </div>
+        <div class="blur-lock visible" style="display:flex">
+          <div class="blur-lock-msg">🔑 <span data-ru="Введите код PREVIEW" data-en="Enter PREVIEW code">Введите код PREVIEW</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="download-bar" style="align-items:center;gap:12px">
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--dim)" data-ru="⬇ Скачать: База импортёров (PDF 16 стр.)" data-en="⬇ Download: Importer Database (PDF 16 pp.)">⬇ Скачать: База импортёров (PDF 16 стр.)</div>
+      <a class="cta-btn cta-btn-primary" href="#" onclick="scrollToContacts(event)" style="font-size:11px;padding:8px 16px;text-decoration:none" data-ru="📅 Пригласить на встречу" data-en="📅 Invite to meeting">📅 Пригласить на встречу</a>
+    </div>
+    <div class="pdf-blurb"><div class="pdf-blurb-col"><div class="pdf-blurb-label">Содержимое</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item">importer registry</span><span class="pdf-blurb-item">verified buyers</span><span class="pdf-blurb-item">distributor chains</span><span class="pdf-blurb-item">procurement profiles</span><span class="pdf-blurb-item">trade history</span><span class="pdf-blurb-item">exhibition participation</span><span class="pdf-blurb-item">company segmentation</span><span class="pdf-blurb-item">decision-maker structure</span><span class="pdf-blurb-item">onboarding priority</span><span class="pdf-blurb-item">CRM-ready contact tables</span></div></div><div class="pdf-blurb-div"></div><div class="pdf-blurb-col"><div class="pdf-blurb-label">Визуально</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item pdf-blurb-visual">institutional registry style</span><span class="pdf-blurb-item pdf-blurb-visual">dark ivory tables</span><span class="pdf-blurb-item pdf-blurb-visual">verification badges</span><span class="pdf-blurb-item pdf-blurb-visual">relationship maps</span></div></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 3 — EXHIBITION CALENDAR
+═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="calendar">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">03</div>
+      <div class="sec-titles">
+        <div class="sec-title" data-ru="Выставки &amp; Реестр участников" data-en="Exhibitions &amp; Participant Registry">Выставки &amp; Реестр участников</div>
+        <div class="sec-sub" data-ru="18 выставок · 2026–2027 · 3 ОБЯЗАТ. · Бюджет ₽5.6 млн · Стратегия" data-en="18 exhibitions · 2026–2027 · 3 MANDATORY · Budget · Strategy">18 выставок · 2026–2027 · 3 ОБЯЗАТ. · Бюджет ₽5.6 млн · Стратегия</div>
+      </div>
+    </div>
+
+    <!-- CALENDAR_CONTENT -->
+    <!-- CALENDAR_CONTENT -->
+    <!-- ═══ SLOT 3: SECTION_03_CONTENT ═══
+         Заполняется автоматически из SKILL_exhibition-calendar.
+         НЕ редактировать вручную — только через маппинг плейсхолдеров. ═══ -->
+    <!-- CALENDAR_CONTENT -->
+    <table class="cal-table">
+      <thead>
+        <tr>
+          <th data-ru="Выставка" data-en="Exhibition">Выставка</th>
+          <th data-ru="Дата" data-en="Date">Дата</th>
+          <th data-ru="Место" data-en="Location">Место</th>
+          <th data-ru="Приоритет" data-en="Priority">Приоритет</th>
+          <th data-ru="Целевые компании" data-en="Target companies">Целевые компании</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="cal-name">WorldFood Kazakhstan</span></td><td><span class="cal-date">Сент. 2026</span></td><td><span class="cal-loc">🇰🇿 Алматы · КИЦА</span></td><td><span style="background:rgba(74,103,65,.12);color:var(--green);font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px">ОБЯЗАТ.</span></td><td style="font-size:12px;color:var(--dim)">Magnum, Raimbek, Arbuz — первые переговоры КЗ</td></tr>
+        <tr><td><span class="cal-name">SIAL China 2026</span></td><td><span class="cal-date">Май 2026</span></td><td><span class="cal-loc">🇨🇳 Shanghai · NECC</span></td><td><span style="background:rgba(139,105,20,.12);color:var(--amber);font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px">ПРИОР.</span></td><td style="font-size:12px;color:var(--dim)">Shanghai Dairy, JD Fresh, GACC-спонсоры</td></tr>
+        <tr><td><span class="cal-name">SIAL Paris 2026</span></td><td><span class="cal-date">17–21 окт. 2026</span></td><td><span class="cal-loc">🇫🇷 Paris · Villepinte</span></td><td><span style="background:rgba(139,105,20,.12);color:var(--amber);font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px">ПРИОР.</span></td><td style="font-size:12px;color:var(--dim)">Глобальный имидж · азиатские байеры</td></tr>
+        <tr><td><span class="cal-name">GULFOOD Dubai 2027</span></td><td><span class="cal-date">15–19 март 2027</span></td><td><span class="cal-loc">🇦🇪 Dubai · DWTC</span></td><td><span style="background:rgba(74,103,65,.12);color:var(--green);font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px">ОБЯЗАТ.</span></td><td style="font-size:12px;color:var(--dim)">LuLu, Carrefour, Almarai — весь GCC-регион</td></tr>
+        <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td><span class="cal-name">CIIE Shanghai 2026</span></td><td><span class="cal-date">Нояб. 2026</span></td><td><span class="cal-loc">🇨🇳 Shanghai</span></td><td>РЕКОМЕН.</td><td>Гос. площадка РФ · РЭЦ</td></tr>
+        <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td><span class="cal-name">FOODEX Japan 2027</span></td><td><span class="cal-date">Март 2027</span></td><td><span class="cal-loc">🇯🇵 Tokyo</span></td><td>РЕКОМЕН.</td><td>Meiji, Snow Brand, Aeon</td></tr>
+        <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td><span class="cal-name">Food & Hotel Vietnam</span></td><td><span class="cal-date">Март 2027</span></td><td><span class="cal-loc">🇻🇳 HCMC</span></td><td>РЕКОМЕН.</td><td>VNM Vinamilk, BigC, Saigon</td></tr>
+        <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td><span class="cal-name">Seoul Food & Hotel</span></td><td><span class="cal-date">Май 2027</span></td><td><span class="cal-loc">🇰🇷 Seoul · COEX</span></td><td>РЕК.</td><td>Pulmuone, CJ Freshway</td></tr>
+      </tbody>
+    </table>
+    <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--line)">Полный список 18 выставок · бюджет ₽5.6 млн 2026–2027 — в PDF-документе (A4 Landscape)</div>
+    <div class="download-bar">
+      <a class="dl-btn" href="#" onclick="downloadGated(event,&#39;calendar&#39;)" data-ru="⬇ Скачать: Выставочный календарь 2026–2027 (PDF 4 стр.)" data-en="⬇ Download: Exhibition Calendar 2026–2027 (PDF 4 pp.)">⬇ Скачать: Выставочный календарь 2026–2027 (PDF 4 стр.)</a>
+      <div class="dl-locked" id="dl-lock-calendar" style="display:flex">🔑 <span data-ru="Требуется PREVIEW" data-en="Requires PREVIEW">Требуется PREVIEW</span></div>
+    </div>
+    <div class="pdf-blurb"><div class="pdf-blurb-col"><div class="pdf-blurb-label">Содержимое</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item">exhibition calendar</span><span class="pdf-blurb-item">participant registries</span><span class="pdf-blurb-item">market relevance score</span><span class="pdf-blurb-item">exhibitor heatmap</span><span class="pdf-blurb-item">networking strategy</span><span class="pdf-blurb-item">travel windows</span><span class="pdf-blurb-item">conversion probability</span><span class="pdf-blurb-item">target booth categories</span><span class="pdf-blurb-item">follow-up workflow</span></div></div><div class="pdf-blurb-div"></div><div class="pdf-blurb-col"><div class="pdf-blurb-label">Визуально</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item pdf-blurb-visual">timeline spreads</span><span class="pdf-blurb-item pdf-blurb-visual">expo cards</span><span class="pdf-blurb-item pdf-blurb-visual">country ribbons</span><span class="pdf-blurb-item pdf-blurb-visual">event priority indicators</span></div></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 4 — STRATEGY
+═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="strategy">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">04</div>
+      <div class="sec-titles">
+        <div class="sec-title" data-ru="Стратегия экспортной экспансии" data-en="Export Expansion Strategy">Стратегия экспортной экспансии</div>
+        <div class="sec-sub" data-ru="SWOT × 3 рынка · Roadmap 2026–2030 · Платёжные решения" data-en="SWOT × 3 markets · Roadmap 2026–2030 · Payment solutions">SWOT × 3 рынка · Roadmap 2026–2030 · Платёжные решения</div>
+      </div>
+    </div>
+
+    <!-- STRATEGY_CONTENT — Вставить контент из SKILL_export-strategy -->
+    <!-- STRATEGY_CONTENT -->
+    <!-- ═══ SLOT 4: SECTION_04_CONTENT ═══
+         Заполняется автоматически из SKILL_export-strategy.
+         НЕ редактировать вручную — только через маппинг плейсхолдеров. ═══ -->
+    <!-- STRATEGY_CONTENT -->
+    <div style="background:rgba(74,103,65,.08);border:1px solid rgba(74,103,65,.2);border-radius:10px;padding:16px 20px;margin-bottom:24px;font-size:13px;color:var(--text)">
+      💡 <strong>3 ключевых решения для ГК «Сыробогатов»:</strong><br>
+      <strong>1.</strong> Казахстан прямо сейчас — 4–8 нед. до поставки при нулевых барьерах ЕАЭС.<br>
+      <strong>2.</strong> Халяль + GACC параллельно — открывают $2+ млрд рынков. Запустить в Q3 2026.<br>
+      <strong>3.</strong> Нужен ВЭД-архитектор, не менеджер продаж.
+    </div>
+
+    <div id="strat-steps-inner">
+      <div class="strat-list">
+        <div class="strat-item" style="border-left:3px solid #10b981">
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#10b981;text-align:center">1</div>
+          <div><div style="font-weight:700;font-size:14px;color:var(--bright);margin-bottom:4px">Казахстан — первые поставки</div><div style="font-size:12px;color:var(--dim)">Magnum Cash&Carry + Raimbek. Рефтрейлер 8–10 т. Aristokrat Old + плавленые. Предоплата.</div></div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-align:right;white-space:nowrap">⏱ 4–8 нед.<br>0% ЕАЭС</div>
+        </div>
+        <div class="strat-item" style="border-left:3px solid #10b981">
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#10b981;text-align:center">2</div>
+          <div><div style="font-weight:700;font-size:14px;color:var(--bright);margin-bottom:4px">Запуск халяль-сертификации</div><div style="font-size:12px;color:var(--dim)">ДУМ РФ или ESMA-признанный центр. Срок 3–6 мес. Открывает ОАЭ ($424M), КСА ($872M).</div></div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-align:right;white-space:nowrap">⏱ 3–6 мес.<br>~₽500 тыс.</div>
+        </div>
+        <div class="strat-item" data-blur-preview-no style="border-left:3px solid #3b82f6">
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#3b82f6;text-align:center">3</div>
+          <div><div style="font-weight:700;font-size:14px;color:var(--bright);margin-bottom:4px">Подача документов в GACC (КНР)</div><div style="font-size:12px;color:var(--dim)">CIFER регистрация завода. HACCP/FSSC + ветсертификат РФ–КНР. Срок 6–9 мес.</div></div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-align:right;white-space:nowrap">⏱ 6–9 мес.<br>~₽1–2 млн</div>
+        </div>
+        <div class="strat-item" data-blur-preview-no style="border-left:3px solid #3b82f6">
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#3b82f6;text-align:center">4</div>
+          <div><div style="font-weight:700;font-size:14px;color:var(--bright);margin-bottom:4px">ОАЭ — вход через Transmed Overseas</div><div style="font-size:12px;color:var(--dim)">После халяль. Пробная партия → Carrefour UAE, LuLu. GULFOOD Dubai март 2027.</div></div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-align:right;white-space:nowrap">⏱ Q1 2027<br>~29% маржа</div>
+        </div>
+        <div class="strat-item" style="border-left:3px solid var(--blue)">
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--blue);text-align:center">5</div>
+          <div><div style="font-weight:700;font-size:14px;color:var(--bright);margin-bottom:4px">КНР — первые поставки после GACC</div><div style="font-size:12px;color:var(--dim)">Shanghai Dairy Group + Sanyuan. JD Fresh, Sam's Club CN. Aristokrat Old + processed.</div></div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-align:right;white-space:nowrap">⏱ Q2–Q3 2027<br>~28% маржа</div>
+        </div>
+        <div class="strat-item" style="border-left:3px solid var(--blue)">
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--blue);text-align:center">6</div>
+          <div><div style="font-weight:700;font-size:14px;color:var(--bright);margin-bottom:4px">ЮВА — Вьетнам + Малайзия</div><div style="font-size:12px;color:var(--dim)">Processed cheese slices. VNM Vinamilk, BigC. Food & Hotel Vietnam март 2027.</div></div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-align:right;white-space:nowrap">⏱ Q2–Q3 2027<br>~26% маржа</div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px;background:var(--ink2);border:1px solid var(--line);border-radius:12px;padding:20px">
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px">Финансовый горизонт 2026–2030 · *оценочный</div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px">
+          <div style="text-align:center"><div style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--bright)">$0.3M</div><div style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">2026 · КЗ</div></div>
+          <div style="text-align:center"><div style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--amber)">$3M</div><div style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">2027 · +ОАЭ+CN</div></div>
+          <div style="text-align:center"><div style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--blue)">$6M</div><div style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">2028 · +KSA+KR</div></div>
+          <div style="text-align:center"><div style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--green)">$10M</div><div style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">2029 · +ЮВА</div></div>
+          <div style="text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--green)">$15M+</div><div style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">2030 · полный</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="download-bar" style="align-items:center;gap:12px">
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--dim)" data-ru="📋 7 стр." data-en="📋 7 pp.">📋 7 стр.</div>
+      <a class="cta-btn cta-btn-primary" href="#" onclick="scrollToContacts(event)" style="font-size:11px;padding:8px 16px;text-decoration:none" data-ru="📅 Пригласить на встречу" data-en="📅 Invite to meeting">📅 Пригласить на встречу</a>
+    </div>
+
+    <div class="pdf-blurb"><div class="pdf-blurb-col"><div class="pdf-blurb-label">Содержимое</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item">executive summary</span><span class="pdf-blurb-item">phased expansion roadmap</span><span class="pdf-blurb-item">GTM strategy</span><span class="pdf-blurb-item">market prioritization</span><span class="pdf-blurb-item">sales architecture</span><span class="pdf-blurb-item">distributor acquisition</span><span class="pdf-blurb-item">pricing strategy</span><span class="pdf-blurb-item">negotiation strategy</span><span class="pdf-blurb-item">entry scenarios</span><span class="pdf-blurb-item">risk matrix</span><span class="pdf-blurb-item">6–12 month roadmap</span><span class="pdf-blurb-item">KPI system</span><span class="pdf-blurb-item">investment logic</span></div></div><div class="pdf-blurb-div"></div><div class="pdf-blurb-col"><div class="pdf-blurb-label">Визуально</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item pdf-blurb-visual">consulting deck style</span><span class="pdf-blurb-item pdf-blurb-visual">strategy ladders</span><span class="pdf-blurb-item pdf-blurb-visual">roadmap flows</span><span class="pdf-blurb-item pdf-blurb-visual">expansion matrix</span><span class="pdf-blurb-item pdf-blurb-visual">decision trees</span></div></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SECTION 5 — DOWNLOADS + ACCESS MATRIX
+═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="downloads" style="border-top:1px solid var(--line)">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">05</div>
+      <div class="sec-titles">
+        <div class="sec-title" data-ru="Скачать материалы" data-en="Download Materials">Скачать материалы</div>
+        <div class="sec-sub" data-ru="Матрица доступа · Уровни открытия файлов · Промо-коды" data-en="Access matrix · File unlock levels · Promo codes">Матрица доступа · Уровни открытия файлов · Промо-коды</div>
+      </div>
+    </div>
+
+    <!-- ACCESS MATRIX TABLE -->
+    <div style="overflow-x:auto;margin-bottom:32px">
+      <table style="width:100%;border-collapse:collapse;min-width:640px">
+        <thead>
+          <tr>
+            <th style="font-family:var(--font-mono);font-size:10px;text-align:left;padding:10px 16px;background:var(--ink3);color:var(--muted);border:1px solid var(--line);text-transform:uppercase;letter-spacing:.08em" data-ru="Файл / Содержание" data-en="File / Contents">Файл / Содержание</th>
+            <th style="font-family:var(--font-mono);font-size:10px;text-align:center;padding:10px 16px;background:var(--ink3);color:var(--muted);border:1px solid var(--line);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap">ГОСТЬ</th>
+            <th style="font-family:var(--font-mono);font-size:10px;text-align:center;padding:10px 16px;background:rgba(34,211,238,.08);color:var(--cyan);border:1px solid var(--line);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap">PREVIEW</th>
+            <th style="font-family:var(--font-mono);font-size:10px;text-align:center;padding:10px 16px;background:rgba(139,92,246,.08);color:var(--purple);border:1px solid var(--line);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap">VIP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:14px 16px;border:1px solid var(--line);vertical-align:top">
+              <div style="font-weight:600;font-size:13px;color:var(--bright);margin-bottom:4px" data-ru="📊 Анализ экспортных рынков (PDF 12 стр.)" data-en="📊 Export Markets Analysis (PDF 12 pp.)">📊 Анализ экспортных рынков (PDF 12 стр.)</div>
+              <div style="font-size:11px;color:var(--dim)" data-ru="10 рынков · тепловая карта маржинальности · ITC TradeMap" data-en="10 markets · margin heatmap · ITC TradeMap">10 рынков · тепловая карта маржинальности · ITC TradeMap</div>
+            </td>
+            <td style="padding:14px 16px;border:1px solid var(--line);text-align:center;font-size:20px">✗</td>
+            <td style="padding:14px 16px;border:1px solid var(--line);text-align:center;font-size:20px;background:rgba(34,211,238,.04)">✅</td>
+            <td style="padding:14px 16px;border:1px solid var(--line);text-align:center;font-size:20px;background:rgba(139,92,246,.04)">✅</td>
+          </tr>
+          <tr>
+            <td style="padding:14px 16px;border:1px solid var(--line);vertical-align:top;background:var(--ink2)">
+              <div style="font-weight:600;font-size:13px;color:var(--bright);margin-bottom:4px" data-ru="🗓 Выставочный календарь 2026–2027 (PDF 4 стр.)" data-en="🗓 Exhibition Calendar 2026–2027 (PDF 4 pp.)">🗓 Выставочный календарь 2026–2027 (PDF 4 стр.)</div>
+              <div style="font-size:11px;color:var(--dim)" data-ru="18 выставок · бюджет · чеклист подготовки" data-en="18 exhibitions · budget · preparation checklist">18 выставок · бюджет · чеклист подготовки</div>
+            </td>
+            <td style="padding:14px 16px;border:1px solid var(--line);text-align:center;font-size:20px;background:var(--ink2)">✗</td>
+            <td style="padding:14px 16px;border:1px solid var(--line);text-align:center;font-size:20px;background:rgba(34,211,238,.04)">✅</td>
+            <td style="padding:14px 16px;border:1px solid var(--line);text-align:center;font-size:20px;background:rgba(139,92,246,.04)">✅</td>
+          </tr>
+          <tr>
+            <td style="padding:14px 16px;border:1px solid var(--line);vertical-align:top">
+              <div style="font-weight:600;font-size:13px;color:var(--bright);margin-bottom:4px" data-ru="🏭 База импортёров по рынкам" data-en="🏭 Importers Database by Markets">🏭 База импортёров по рынкам</div>
+              <div style="font-size:11px;color:var(--dim)" data-ru="Tier-1/2/3 · стратегия первого контакта" data-en="Tier-1/2/3 · first contact strategy">Tier-1/2/3 · стратегия первого контакта</div>
+            </td>
+            <td style="padding:14px 16px;border:1px solid var(--line);text-align:center;font-size:20px">✗</td>
+            <td style="padding:14px 16px;border:1px solid var(--line);text-align:center;font-size:14px;color:var(--muted)">✗</td>
+            <td style="padding:14px 16px;border:1px solid var(--line);text-align:center;background:rgba(139,92,246,.04)"><span style="font-family:var(--font-mono);font-size:11px;color:var(--purple)" data-ru="📅 Встреча" data-en="📅 Meeting">📅 Встреча</span></td>
+          </tr>
+          <tr>
+            <td style="padding:14px 16px;border:1px solid var(--line);vertical-align:top;background:var(--ink2)">
+              <div style="font-weight:600;font-size:13px;color:var(--bright);margin-bottom:4px" data-ru="📋 Стратегия экспортной экспансии (PDF 7 стр.)" data-en="📋 Export Strategy Report (PDF 7 pp.)">📋 Стратегия экспортной экспансии (PDF 7 стр.)</div>
+              <div style="font-size:11px;color:var(--dim)" data-ru="3 фазы · 9 шагов · SWOT · платёжные решения" data-en="3 phases · 9 steps · SWOT · payment solutions">3 фазы · 9 шагов · SWOT · платёжные решения</div>
+            </td>
+            <td style="padding:14px 16px;border:1px solid var(--line);text-align:center;font-size:20px;background:var(--ink2)">✗</td>
+            <td style="padding:14px 16px;border:1px solid var(--line);text-align:center;font-size:14px;color:var(--muted);background:var(--ink2)">✗</td>
+            <td style="padding:14px 16px;border:1px solid var(--line);text-align:center;background:rgba(139,92,246,.04)"><span style="font-family:var(--font-mono);font-size:11px;color:var(--purple)" data-ru="📅 Встреча" data-en="📅 Meeting">📅 Встреча</span></td>
+          </tr>
+          <!-- CODE ROW -->
+          <tr>
+            <td style="padding:12px 16px;border:1px solid var(--line);background:var(--ink3)">
+              <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em" data-ru="КОД ДОСТУПА" data-en="ACCESS CODE">КОД ДОСТУПА</div>
+            </td>
+            <td style="padding:12px 16px;border:1px solid var(--line);text-align:center;background:var(--ink3)">
+              <span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)" data-ru="Не требуется" data-en="None required">Не требуется</span>
+            </td>
+            <td style="padding:12px 16px;border:1px solid var(--line);text-align:center;background:rgba(34,211,238,.06)">
+              <button onclick="scrollToContacts(event)" style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--cyan); background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.3); padding: 6px 16px; border-radius: 6px; cursor: pointer; letter-spacing: 0.06em; transition: 0.2s;" onmouseover="this.style.background=&#39;rgba(34,211,238,.2)&#39;" onmouseout="this.style.background=&#39;rgba(34,211,238,.1)&#39;" data-ru="↓ ЗАПРОСИТЬ" data-en="↓ REQUEST">↓ ЗАПРОСИТЬ</button>
+            </td>
+            <td style="padding:12px 16px;border:1px solid var(--line);text-align:center;background:rgba(139,92,246,.08)">
+              <span style="font-family:var(--font-mono);font-size:11px;color:var(--purple)" data-ru="Выдаётся при переговорах об оффере · доступ к встрече" data-en="Issued during offer negotiations · access to meeting"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DOWNLOAD BUTTONS ROW -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
+
+      <!-- File 1: markets — PREVIEW -->
+      <div style="background:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:11px;font-weight:600;color:var(--bright)" data-ru="📊 Анализ экспортных рынков (PDF 12 стр.)" data-en="📊 Export Markets Analysis (PDF 12 pp.)">📊 Анализ экспортных рынков (PDF 12 стр.)</div>
+        <div style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.2);width:fit-content">PREVIEW: эелктронный формат</div>
+        <a class="dl-btn" id="dl-btn-markets" href="#" onclick="triggerDownload(event,&#39;markets&#39;)" data-ru="⬇ Скачать PDF" data-en="⬇ Download PDF" style="opacity: 0.4; pointer-events: none; border-color: var(--blue); color: var(--blue);">⬇ Скачать PDF</a>
+        <div class="dl-locked" id="dl-lock-markets" style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">🔑 <span data-ru="Введите код PREVIEW" data-en="Enter PREVIEW code">Введите код PREVIEW</span></div>
+      </div>
+
+      <!-- File 2: calendar — PREVIEW -->
+      <div style="background:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:11px;font-weight:600;color:var(--bright)" data-ru="🗓 Календарь выставок 2026–2027" data-en="🗓 Exhibition Calendar 2026–2027">🗓 Календарь выставок 2026–2027</div>
+        <div style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.2);width:fit-content">PREVIEW: эелктронный формат</div>
+        <a class="dl-btn" id="dl-btn-calendar" href="#" onclick="triggerDownload(event,&#39;calendar&#39;)" data-ru="⬇ Скачать PDF" data-en="⬇ Download PDF" style="opacity: 0.4; pointer-events: none; border-color: var(--blue); color: var(--blue);">⬇ Скачать PDF</a>
+        <div class="dl-locked" id="dl-lock-calendar" style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">🔑 <span data-ru="Введите код PREVIEW" data-en="Enter PREVIEW code">Введите код PREVIEW</span></div>
+      </div>
+
+      <!-- File 3: importers — VIP → встреча / ADMIN → скачать -->
+      <div id="card-importers" style="background:var(--ink2);border:1px solid rgba(139,92,246,.2);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:11px;font-weight:600;color:var(--bright)" data-ru="🏭 База импортёров по рынкам" data-en="🏭 Importers Database">🏭 База импортёров по рынкам</div>
+        <div id="badge-importers" style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(139,92,246,.15);color:var(--purple);border:1px solid rgba(139,92,246,.3);width:fit-content" data-ru="ТОЛЬКО НА ВСТРЕЧЕ" data-en="MEETING ONLY">БУМАЖНЫЙ ФОРМАТ (ОЗНАКОМЛЕНИЕ)</div>
+        <div id="desc-importers" style="font-size:11px;color:var(--dim)" data-ru="80+ компаний · K-Score · контакты ЛПР" data-en="80+ companies · K-Score · decision maker contacts">80+ компаний · K-Score · контакты ЛПР</div>
+        <!-- old desc removed -->
+        <div style="display:none" data-ru="80+ компаний · K-Score · контакты ЛПР" data-en="80+ companies · K-Score · decision maker contacts">80+ компаний · K-Score · контакты ЛПР</div>
+        <a id="action-importers" class="cta-btn cta-btn-primary" href="#" onclick="scrollToContacts(event)" style="font-size:11px;padding:8px 14px;text-align:center;border-radius:6px;text-decoration:none" data-ru="📅 Пригласить на встречу" data-en="📅 Invite to meeting">📅 Пригласить на встречу</a>
+      </div>
+
+      <!-- File 4: strategy — VIP → встреча / ADMIN → скачать -->
+      <div id="card-strategy" style="background:var(--ink2);border:1px solid rgba(139,92,246,.2);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:11px;font-weight:600;color:var(--bright)" data-ru="📋 Стратегия для собственника" data-en="📋 Owner Strategy Document">📋 Стратегия для собственника</div>
+        <div style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(139,92,246,.15);color:var(--purple);border:1px solid rgba(139,92,246,.3);width:fit-content" data-ru="ТОЛЬКО НА ВСТРЕЧЕ" data-en="MEETING ONLY">БУМАЖНЫЙ ФОРМАТ (ОЗНАКОМЛЕНИЕ)</div>
+        <div style="font-size:11px;color:var(--dim)" data-ru="SWOT × 3 рынка · Roadmap 9 шагов · Финансы" data-en="SWOT × 3 markets · Roadmap 9 steps · Financials">SWOT × 3 рынка · Roadmap 9 шагов · Финансы</div>
+        <a id="action-strategy" class="cta-btn cta-btn-primary" href="#" onclick="scrollToContacts(event)" style="font-size:11px;padding:8px 14px;text-align:center;border-radius:6px;text-decoration:none" data-ru="📅 Пригласить на встречу" data-en="📅 Invite to meeting">📅 Пригласить на встречу</a>
+      </div>
+
+    </div>
+
+    <!-- FILE STATUS NOTE -->
+    <div id="file-status-note" style="margin-top:20px;padding:12px 16px;border-radius:8px;border:1px solid var(--line);background:var(--ink2);font-family:var(--font-mono);font-size:11px;color:var(--dim);display:none">
+      ℹ️ <span id="file-status-text"></span>
+    </div>
+
+  </div>
+</section>
+
+<!-- фраза над контактами — граница между downloads и CTA -->
+<div style="text-align:center;padding:40px 0 0;border-top:1px solid var(--line)">
+  <div class="cta-eyebrow" data-ru="Нельзя получить новые результаты старыми инструментами" data-en="You can&#39;t get new results with old tools">Technology helped. AI amplified. I delivered.</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     FOOTER CTA
+═══════════════════════════════════════════════════════════════════ -->
+<div class="footer-cta" id="cta">
+  <div class="container">
+
+    <!-- ФОРМАТ СОТРУДНИЧЕСТВА -->
+    <div style="margin-bottom:20px;text-align:center">
+      <div style="font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--blue);letter-spacing:.18em;text-transform:uppercase" data-ru="Возможный формат сотрудничества" data-en="Possible cooperation format">Возможный формат сотрудничества</div>
+    </div>
+    <div style="margin:0 0 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+
+      <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:16px 18px">
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">● ШТАТ</div>
+        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="Зам. КД по ВЭД / Рук. отдела ВЭД" data-en="Deputy CD / Head of FEA dept.">Зам. КД по ВЭД / Рук. отдела ВЭД</div>
+        <div style="font-size:11px;color:var(--dim)" data-ru="Оперативное управление: контракты, логистика, комплаенс, выход на АТР. Полная дорожная карта реализуется изнутри." data-en="Operations: contracts, logistics, compliance, APAC entry. Full roadmap implemented internally.">Оперативное управление экспортными контрактами: документы, логистика, комплаенс, согласно запросам вакансии.</div>
+      </div>
+
+      <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:16px 18px">
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">● АГЕНТ</div>
+        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="Внешний агент по экспорту" data-en="External Export Agent">Внешний агент по экспорту</div>
+        <div style="font-size:11px;color:var(--dim)" data-ru="Поиск покупателей, переговоры, подготовка сделки. Комиссия от закрытых контрактов. Нулевые постоянные расходы для компании." data-en="Buyer search, negotiations, deal prep. Commission on closed contracts. Zero fixed costs." class="">Поиск покупателей, переговоры от лица производства, подготовка сделки. Комиссия от закрытых контрактов. Нулевые постоянные расходы для компании.</div>
+      </div>
+
+      <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:16px 18px">
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--amber);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">● ПРОЕКТ</div>
+        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="Проектный контракт (ГПХ)" data-en="Project Contract (GPC)">Проектный контракт (ГПХ)</div>
+        <div style="font-size:11px;color:var(--dim)" data-ru="Фиксированный оклад за проект: аналитика → пилот → рамочный контракт → поставка." data-en="Fixed fee per project: analytics → pilot → framework contract → delivery.">Фиксированный оклад за проект: аналитика → пилот → рамочный контракт → поставка.</div>
+      </div>
+
+      <div style="background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);border-radius:10px;padding:16px 18px">
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--purple);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">● ПРЕДСТАВИТЕЛЬ</div>
+        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="Представитель в стране экспорта" data-en="In-country Representative">Представитель в стране экспорта</div>
+        <div style="font-size:11px;color:var(--dim)" data-ru="Релокация. Контроль поставок на склад. Выход на локальные торговые онлайн-площадки. Управление офисом и складом представительства." data-en="Relocation. Shipment control to warehouse. Local retail market entry. Office and warehouse management.">Релокация. Контроль поставок на склад. Выход на локальные торговые онлайн-площадки. Управление офисом и складом представительства.</div>
+      </div>
+
+      <div style="background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.2);border-radius:10px;padding:16px 18px">
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">● АУТСОРС</div>
+        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="ВЭД на аутсорсе (абонемент)" data-en="FEA Outsourcing (retainer)">ВЭД на аутсорсе (абонемент)</div>
+        <div style="font-size:11px;color:var(--dim)" data-ru="Ведение всей имеющейся ВЭД удалённо: документы, таможня, валютный контроль, логистика." data-en="Remote management of all existing FEA: docs, customs, FX control, logistics.">Ведение всей имеющейся ВЭД юр.лица удалённо: документы, таможня, валютный контроль, логистика.</div>
+      </div>
+
+    </div>
+
+    <!-- ПРОЦЕДУРНАЯ ПОСЛЕДОВАТЕЛЬНОСТЬ -->
+    <div style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);border-radius:12px;padding:20px 24px;margin-bottom:32px">
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px" data-ru="📋 Формат предметной встречи" data-en="📋 Meeting agenda">📋 Формат предметной встречи</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;font-size:12px;color:var(--ghost)">
+        <div><span style="color:var(--blue);font-family:var(--font-mono)">01 /</span> <span data-ru="Обратная связь по дашборду и стратегии (15 мин)" data-en="Dashboard &amp; strategy feedback (15 min)">Обратная связь по дашборду и стратегии (15 мин)</span></div>
+        <div><span style="color:var(--blue);font-family:var(--font-mono)">02 /</span> <span data-ru="Уточнение продукта, объёма, целевого рынка" data-en="Product, volume, target market clarification">Уточнение продукта, объёма, целевого рынка</span></div>
+        <div><span style="color:var(--blue);font-family:var(--font-mono)">03 /</span> <span data-ru="Целевая цена экспорта (CIF / FOB / DAP) и сертификация" data-en="Target export price (CIF/FOB/DAP) + certification">Целевая цена экспорта (CIF / FOB / DAP) и сертификация</span></div>
+        <div><span style="color:var(--blue);font-family:var(--font-mono)">04 /</span> <span data-ru="Разрешительная документация и уникальность продукта" data-en="Permits, licenses, product uniqueness">Разрешительная документация и уникальность продукта</span></div>
+        <div><span style="color:var(--blue);font-family:var(--font-mono)">05 /</span> <span data-ru="Решение: формат сотрудничества и следующий шаг" data-en="Decision: cooperation format &amp; next step">Решение: формат сотрудничества и следующий шаг</span></div>
+      </div>
+    </div>
+
+    <!-- КОНТАКТЫ с телефоном -->
+    <div class="cta-contacts">
+      <a class="cta-btn cta-btn-ghost" href="https://t.me/dimasko" target="_blank" style="display:inline-flex;align-items:center;gap:8px">
+        <span style="font-size:15px">✈</span> Telegram
+      </a>
+      <a class="cta-btn cta-btn-ghost" href="tel:+79199903500" style="display:inline-flex;align-items:center;gap:8px">
+        <span style="font-size:15px">📞</span> +7 919 990-35-00
+      </a>
+      <a class="cta-btn cta-btn-ghost" href="mailto:dimasko@gmail.com">
+        ✉ dimasko@gmail.com
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="footer-legal">
+  <div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center">
+    <div>
+      <strong style="color:var(--ghost)">© 2026 Скобцов Дмитрий Олегович (Dmitry Skobtsov)</strong> · Export Intelligence Platform · <span id="ver-footer"></span>
+    </div>
+    <div style="font-size:11px;color:var(--muted);max-width:720px">
+      <span data-ru="Все аналитические материалы, методология, стратегия экспортной экспансии, база импортёров и дорожная карта, представленные на данном ресурсе и в прилагаемых документах, являются интеллектуальной собственностью автора и защищены авторским правом (ст. 1259 ГК РФ). Воспроизведение, копирование, распространение или использование в коммерческих целях без письменного согласия автора запрещено." data-en="All analytical materials, methodology, export expansion strategy, importer database and roadmap presented on this resource and in attached documents are the intellectual property of the author and protected by copyright. Reproduction, copying, distribution or commercial use without written consent of the author is prohibited.">Все аналитические материалы, методология, стратегия экспортной экспансии, база импортёров и дорожная карта, представленные на данном ресурсе и в прилагаемых документах, являются интеллектуальной собственностью автора и защищены авторским правом (ст. 1259 ГК РФ). Воспроизведение, копирование, распространение или использование в коммерческих целях без письменного согласия автора запрещено.</span>
+    </div>
+    <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:.08em">
+      <span data-ru="Данные носят аналитический характер. Источники: ITC TradeMap · UN Comtrade · IndexBox · USDA FAS" data-en="Data is analytical in nature. Sources: ITC TradeMap · UN Comtrade · IndexBox · USDA FAS">Данные носят аналитический характер. Источники: ITC TradeMap · UN Comtrade · IndexBox · USDA FAS</span>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     JAVASCRIPT — v2.1 fixed
+═══════════════════════════════════════════════════════════════════ -->
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// ВЕРСИЯ ДАШБОРДА — менять ТОЛЬКО ЗДЕСЬ при каждой редакции
+// Автоматически подставляется в meta-card и footer
+// ═══════════════════════════════════════════════════════════════════
+const DASHBOARD_VERSION = '2.8.1';
+const DASHBOARD_DATE    = '20.05.2026';
+const DASHBOARD_LABEL   = 'v' + DASHBOARD_VERSION + ' · ' + DASHBOARD_DATE + ' · TEMPLATE';
+
+(function applyVersion() {
+  const metaCard  = document.getElementById('ver-meta-card');
+  const footer    = document.getElementById('ver-footer');
+  if (metaCard) metaCard.textContent = DASHBOARD_LABEL;
+  if (footer)   footer.textContent   = DASHBOARD_LABEL;
+})();
+
+// ═══════════════════════════════════════════════════════════════════
+// CONFIG v2.1 — измените промокоды перед деплоем
+// ВАЖНО: промокоды хранятся здесь как хэши SHA-256 для защиты.
+// Сгенерируйте хэш командой: echo -n "ВАШ_КОД" | sha256sum
+// ═══════════════════════════════════════════════════════════════════
+
+// SHA-256 хэши промокодов (коды хранятся только у вас локально в promo_codes.txt)
+// Хэши: SRBLITE2026 (preview) / SRBVIP2026 (vip) / SRBADMIN2026 (full)
+const CODES_HASH = {
+  'ffe75334681d4b13283953e7cdcdab1e4a6f391a34f101304609c0a2d7d76942': 'preview', // SRBLITE2026
+  '194ce8c7b8486affbd7747ecc5d57ef03cdbe819d71fe080a486f8390e51cc33': 'vip',     // SRBVIP2026
+};
+
+// Асинхронная проверка кода через SHA-256
+async function hashCode(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Download permission matrix
+const DOWNLOAD_RULES = {
+  markets:   { minLevel: 1 },  // preview+
+  calendar:  { minLevel: 1 },  // preview+
+  importers: { minLevel: 2 },  // vip+
+  strategy:  { minLevel: 2 },  // vip+
+};
+const LEVEL_NUM = { guest: 0, preview: 1, vip: 2, full: 3 };
+
+// ═══════════════════════════════════════════════════════════════════
+// SECURE FILE URLS — обфусцированные пути к PDF файлам
+// ⚠ НЕ РЕДАКТИРОВАТЬ ВРУЧНУЮ — upload_to_github.py v5.0+
+//   патчит эти значения автоматически при каждом деплое.
+// Формат: 'mkt-XXXX.pdf' где XXXX — уникальный суффикс деплоя.
+// URL-ы не присутствуют в DOM до ввода правильного промокода.
+// ═══════════════════════════════════════════════════════════════════
+// PREVIEW уровень — анализ рынков и выставки (открытые данные)
+const FILE_URLS_PREVIEW = {
+  markets:  'markets_final.html',
+  calendar: 'cal-45a0.pdf',
+};
+const FILE_URLS_VIP = {
+  importers: 'importers_final.html',
+  strategy:  'strategy_final.html',
+};
+// Полные URL — собираются динамически только после разблокировки
+let FILE_URLS = {};
+
+const FILE_NAMES = {
+  markets:   { ru: 'Анализ рынков',   en: 'Market Analysis' },
+  calendar:  { ru: 'Выставочный календарь',  en: 'Exhibition Calendar' },
+  importers: { ru: 'База импортёров', en: 'Importer Database' },
+  strategy:  { ru: 'Стратегия',  en: 'Strategy' },
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// ACCESS LOG — журнал доступа через jsonbin.io (бесплатно)
+// Регистрация: https://jsonbin.io → API Keys → скопируйте X-Master-Key
+// ═══════════════════════════════════════════════════════════════════
+const LOG_CONFIG = {
+  enabled: true,
+  // ↓ Вставьте ваш ключ jsonbin.io и ID бина после регистрации
+  masterKey: '$2a$10__REPLACE_WITH_YOUR_JSONBIN_KEY__',
+  binId:     '__REPLACE_WITH_YOUR_BIN_ID__',
+  // Если ключ не задан — логи пишутся только в localStorage (локально)
+};
+
+async function writeLog(event, data) {
+  const ts = new Date().toISOString();
+  const entry = { ts, event, ...data, ua: navigator.userAgent.substring(0,80) };
+
+  // 1. Всегда пишем в localStorage (доступно при открытии своего браузера)
+  const local = JSON.parse(localStorage.getItem('ds_export_log') || '[]');
+  local.push(entry);
+  localStorage.setItem('ds_export_log', JSON.stringify(local.slice(-200)));
+
+  // 2. Если jsonbin настроен — пишем в облако
+  if (LOG_CONFIG.enabled && LOG_CONFIG.masterKey.includes('REPLACE') === false) {
+    try {
+      // Получаем текущий лог из бина
+      const getR = await fetch(`https://api.jsonbin.io/v3/b/${LOG_CONFIG.binId}/latest`, {
+        headers: { 'X-Master-Key': LOG_CONFIG.masterKey }
+      });
+      const current = getR.ok ? (await getR.json()).record : { logs: [] };
+      current.logs = (current.logs || []).slice(-500);
+      current.logs.push(entry);
+
+      // Пишем обновлённый лог обратно
+      await fetch(`https://api.jsonbin.io/v3/b/${LOG_CONFIG.binId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': LOG_CONFIG.masterKey,
+        },
+        body: JSON.stringify(current),
+      });
+    } catch(e) { /* jsonbin недоступен — продолжаем без ошибки */ }
+  }
+
+  // 3. Пытаемся получить IP через публичный сервис (best-effort)
+  try {
+    const ipR = await fetch('https://api.ipapi.is/?q=&fields=ip,country_name,city');
+    if (ipR.ok) {
+      const ipData = await ipR.json();
+      entry.ip = ipData.ip;
+      entry.geo = `${ipData.city || ''}, ${ipData.country_name || ''}`.trim();
+      // Обновляем последнюю запись в localStorage с IP
+      const lg = JSON.parse(localStorage.getItem('ds_export_log') || '[]');
+      if (lg.length) { lg[lg.length-1] = {...lg[lg.length-1], ...{ip: entry.ip, geo: entry.geo}}; }
+      localStorage.setItem('ds_export_log', JSON.stringify(lg));
+    }
+  } catch(e) { /* IP-сервис недоступен */ }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════════
+let currentAccess = 'guest';
+let currentLang   = 'ru';
+
+// ═══════════════════════════════════════════════════════════════════
+// PROMO CODE — async SHA-256 verification
+// ═══════════════════════════════════════════════════════════════════
+async function applyPromo() {
+  const input  = document.getElementById('promoInput');
+  const code   = (input.value || '').trim().toUpperCase();
+  const badge  = document.getElementById('accessBadge');
+  const meta   = document.getElementById('meta-access');
+  const btn    = document.querySelector('.promo-btn');
+
+  if (!code) { showStatus('err', '⚠ ' + (currentLang === 'ru' ? 'Введите код' : 'Enter code')); return; }
+
+  // Показываем состояние проверки
+  btn.textContent = '...';
+  btn.disabled = true;
+
+  const hash  = await hashCode(code);
+  const level = CODES_HASH[hash];
+
+  btn.textContent = currentLang === 'ru' ? 'ПРИМЕНИТЬ' : 'UNLOCK';
+  btn.disabled = false;
+
+  if (!level) {
+    showStatus('err', '✗ ' + (currentLang === 'ru' ? 'Неверный код' : 'Invalid code'));
+    input.style.borderColor = 'var(--red)';
+    setTimeout(() => { input.style.borderColor = ''; }, 1500);
+    // Логируем неудачную попытку
+    writeLog('promo_fail', { code_entered: code.substring(0,4) + '***', hash_prefix: hash.substring(0,8) });
+    return;
+  }
+
+  currentAccess = level;
+  input.value = '';
+
+  // Логируем успешный ввод кода
+  writeLog('promo_success', { level, page: window.location.href, report: 'SRB-2026' });
+
+  const msgs = {
+    preview: { ru: '✓ Доступны 2 файла для скачивания', en: '✓ 2 files available for download' },
+    vip:     { ru: '★ VIP · Все 4 файла открыты для скачивания',   en: '★ VIP · All 4 files available' },
+    full:    { ru: '★ ADMIN · Полный доступ ко всем данным',        en: '★ ADMIN · Full access to all data' },
+  };
+  const badgeLabels = {
+    preview: { ru: 'Режим: PREVIEW', en: 'Mode: PREVIEW' },
+    vip:     { ru: 'Режим: VIP',     en: 'Mode: VIP' },
+    full:    { ru: 'Режим: ADMIN',   en: 'Mode: ADMIN' },
+  };
+
+  showStatus(level === 'preview' ? 'ok' : 'vip', msgs[level][currentLang]);
+  badge.textContent = badgeLabels[level][currentLang];
+  badge.className   = 'access-badge ' + (level === 'preview' ? 'preview' : 'full');
+  if (meta) meta.textContent = badgeLabels[level][currentLang];
+
+  applyAccess();
+}
+
+function showStatus(type, msg) {
+  const s = document.getElementById('promoStatus');
+  s.className   = 'promo-status show ' + type;
+  s.textContent = msg;
+  if (type === 'err') setTimeout(() => { s.className = 'promo-status'; }, 3000);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// APPLY ACCESS — the core blur/unblur engine
+// ═══════════════════════════════════════════════════════════════════
+function applyAccess() {
+  const lvl = LEVEL_NUM[currentAccess] || 0;
+
+  if (lvl >= 1) {
+    FILE_URLS = { ...FILE_URLS_PREVIEW };
+  }
+  if (lvl >= 2) {
+    FILE_URLS = { ...FILE_URLS_PREVIEW, ...FILE_URLS_VIP };
+  }
+
+  // 1. Update section header badges
+  document.querySelectorAll('.access-gate').forEach(gate => {
+    if (lvl >= 2) { gate.className = 'access-gate open'; gate.textContent = '✓ открыто'; }
+    else if (lvl === 1) { gate.className = 'access-gate partial'; gate.textContent = '⚡ PREVIEW'; }
+    else { gate.className = 'access-gate locked'; }
+  });
+
+  // 2. FULL / VIP — smooth blur removal
+  if (lvl >= 2) {
+    document.querySelectorAll('*').forEach(el => {
+      const s = el.style;
+      if (s.filter && s.filter.includes('blur')) {
+        el.style.transition = 'filter 0.6s ease, opacity 0.6s ease';
+        s.filter = 'blur(0px)'; s.userSelect = ''; s.pointerEvents = '';
+        if (s.opacity && parseFloat(s.opacity) < 1) s.opacity = '1';
+        setTimeout(() => { s.filter = ''; s.transition = ''; }, 700);
+      }
+    });
+    document.querySelectorAll('.blur-lock').forEach(el => {
+      el.style.transition = 'opacity 0.5s ease'; el.style.opacity = '0';
+      setTimeout(() => { el.classList.remove('visible'); el.style.opacity = ''; el.style.transition = ''; }, 550);
+    });
+    document.querySelectorAll('.section-overlay').forEach(el => {
+      el.style.transition = 'opacity 0.5s ease'; el.style.opacity = '0';
+      setTimeout(() => { el.classList.remove('visible'); el.style.opacity = ''; el.style.transition = ''; }, 550);
+    });
+    document.querySelectorAll('.tab-pane').forEach(el => {
+      el.style.transition = 'filter 0.6s ease'; el.style.filter = 'blur(0px)';
+      el.style.pointerEvents = ''; el.style.userSelect = '';
+      setTimeout(() => { el.style.filter = ''; el.style.transition = ''; }, 700);
+    });
+    document.querySelectorAll('tr, .flow-item, .strat-item, .card').forEach(el => {
+      if (el.style.filter) {
+        el.style.transition = 'filter 0.6s ease'; el.style.filter = 'blur(0px)';
+        el.style.userSelect = ''; el.style.pointerEvents = '';
+        setTimeout(() => { el.style.filter = ''; el.style.transition = ''; }, 700);
+      }
+    });
+  }
+
+  // 3. PREVIEW — selectively reveal +20% content
+  if (lvl === 1) {
+    // Reveal items tagged data-blur-preview-no
+    document.querySelectorAll('[data-blur-preview-no]').forEach(el => {
+      el.style.filter = '';
+      el.style.userSelect = '';
+      el.style.pointerEvents = '';
+      const lock = el.parentElement?.querySelector('.blur-lock');
+      if (lock) lock.classList.remove('visible');
+    });
+    // Reveal VN and MY export market tabs on PREVIEW
+    ['mkt-vn', 'mkt-my'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.style.transition = 'filter 0.6s ease, opacity 0.6s ease';
+        el.style.filter = 'blur(0px)';
+        el.style.pointerEvents = '';
+        el.style.userSelect = '';
+        el.style.opacity = '1';
+        setTimeout(() => { el.style.filter = ''; el.style.transition = ''; }, 700);
+      }
+    });
+    // Reveal India market tab (partial)
+    ['mkt-in', 'imp-iin'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.style.filter = ''; el.style.pointerEvents = ''; el.style.userSelect = ''; }
+    });
+    // Reveal additional price cards (3rd and 4th)
+    document.querySelectorAll('.price-card').forEach((card, i) => {
+      if (i <= 3) { card.style.filter = ''; card.style.pointerEvents = ''; card.style.opacity = '1'; }
+    });
+    // Reveal strategy items 3-5
+    document.querySelectorAll('.strat-item').forEach((item, i) => {
+      if (i <= 4) { item.style.filter = ''; item.style.pointerEvents = ''; item.style.userSelect = ''; }
+    });
+    // Reveal partial table rows in importers (first 5)
+    document.querySelectorAll('.data-table tbody tr').forEach((row, i) => {
+      if (i < 4) { row.style.filter = ''; row.style.pointerEvents = ''; row.style.userSelect = ''; }
+    });
+    // Show CN and IN flow bars fully
+    document.querySelectorAll('.flow-item').forEach(item => {
+      item.style.filter = '';
+      item.style.userSelect = '';
+    });
+    // Reveal 3 more calendar rows
+    document.querySelectorAll('.cal-table tbody tr').forEach((row, i) => {
+      if (i < 4) { row.style.filter = ''; row.style.pointerEvents = ''; row.style.userSelect = ''; }
+    });
+    // Reveal all data-preview-row elements (real content, not ████)
+    document.querySelectorAll('[data-preview-row]').forEach(el => {
+      el.style.filter = '';
+      el.style.pointerEvents = '';
+      el.style.userSelect = '';
+    });
+  }
+
+  // 4. Update download buttons
+  updateDownloads();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DOWNLOAD SYSTEM
+// ═══════════════════════════════════════════════════════════════════
+function updateDownloads() {
+  const lvl = LEVEL_NUM[currentAccess] || 0;
+
+  ['markets','calendar','importers','strategy'].forEach(section => {
+    const rule    = DOWNLOAD_RULES[section];
+    const lockEl  = document.getElementById('dl-lock-' + section);
+    const btnEl   = document.getElementById('dl-btn-' + section);
+    const hasAccess = lvl >= rule.minLevel;
+
+    if (hasAccess) {
+      if (lockEl) lockEl.style.display = 'none';
+      if (btnEl) {
+        btnEl.style.opacity = '1';
+        btnEl.style.borderColor = 'var(--blue)';
+        btnEl.style.color = 'var(--blue)';
+        btnEl.style.pointerEvents = 'auto';
+        btnEl.setAttribute('onclick', `triggerDownload(event,'${section}')`);
+      }
+    } else {
+      if (lockEl) lockEl.style.display = 'flex';
+      if (btnEl) { btnEl.style.opacity = '0.4'; btnEl.style.pointerEvents = 'none'; }
+    }
+  });
+
+  // ADMIN (full) — transform importers & strategy cards into download buttons
+  if (lvl >= 3) {
+    const lang = currentLang || 'ru';
+    ['importers', 'strategy'].forEach(section => {
+      const badge  = document.getElementById('badge-' + section);
+      const desc   = document.getElementById('desc-' + section);
+      const action = document.getElementById('action-' + section);
+      const card   = document.getElementById('card-' + section);
+      if (badge) {
+        badge.textContent = lang === 'ru' ? 'ДОСТУП ADMIN' : 'ADMIN ACCESS';
+        badge.style.background = 'rgba(74,103,65,.12)';
+        badge.style.color = 'var(--green)';
+        badge.style.border = '1px solid rgba(74,103,65,.3)';
+      }
+      if (action) {
+        action.className = 'dl-btn';
+        action.textContent = lang === 'ru' ? '⬇ Скачать PDF' : '⬇ Download PDF';
+        action.style.cssText = 'display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;font-weight:500;padding:10px 18px;border-radius:8px;border:1px solid var(--blue);background:var(--ink3);color:var(--blue);cursor:pointer;transition:all .25s;letter-spacing:.05em;text-decoration:none;opacity:1;pointer-events:auto;text-align:center;justify-content:center';
+        action.setAttribute('onclick', `triggerDownload(event,'${section}')`);
+      }
+      if (card) card.style.borderColor = 'var(--line)';
+    });
+  }
+}
+
+function downloadGated(e, section) {
+  e.preventDefault();
+  const lvl = LEVEL_NUM[currentAccess] || 0;
+  const rule = DOWNLOAD_RULES[section];
+  if (lvl >= rule.minLevel) {
+    doDownload(section);
+  } else {
+    const msg = currentLang === 'ru'
+      ? '🔑 Недостаточный уровень доступа. Введите код выше.'
+      : '🔑 Insufficient access level. Enter code above.';
+    showToast(msg, 'warn');
+  }
+}
+
+function triggerDownload(e, section) {
+  if (e && e.preventDefault) e.preventDefault();
+  doDownload(section);
+}
+
+function doDownload(section) {
+  const url   = FILE_URLS[section];
+  const label = FILE_NAMES[section]?.[currentLang] || (section + '.pdf');
+
+  if (!url) { showToast('⚠ URL не задан', 'warn'); return; }
+
+  // Логируем скачивание с уровнем доступа
+  writeLog('download', {
+    section,
+    file: label,
+    access_level: currentAccess,
+    page: window.location.href,
+    report: 'SRB-2026',
+  });
+
+  // Check if file actually exists before triggering download
+  fetch(url, { method: 'HEAD' })
+    .then(res => {
+      if (res.ok) {
+        // File exists — trigger real download
+        const a = document.createElement('a');
+        a.href     = url;
+        a.download = label;
+        a.rel      = 'noopener';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => document.body.removeChild(a), 200);
+        showToast('⬇ ' + (currentLang === 'ru' ? 'Скачивание: ' : 'Downloading: ') + label, 'ok');
+      } else {
+        showFileNotReady(section);
+      }
+    })
+    .catch(() => {
+      window.open(url, '_blank');
+      showToast('⬇ ' + (currentLang === 'ru' ? 'Открывается: ' : 'Opening: ') + label, 'ok');
+    });
+}
+
+function showFileNotReady(section) {
+  const note = document.getElementById('file-status-note');
+  const text = document.getElementById('file-status-text');
+  const path = FILE_URLS[section];
+  if (note && text) {
+    text.textContent = currentLang === 'ru'
+      ? `PDF ещё не загружен. Добавьте файл ${path} в папку продукта на GitHub.`
+      : `PDF not uploaded yet. Add file ${path} to your product folder on GitHub.`;
+    note.style.display = 'block';
+    note.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  showToast(currentLang === 'ru'
+    ? `⚠ Файл не найден: ${path} — загрузите PDF на GitHub`
+    : `⚠ File not found: ${path} — upload PDF to GitHub`, 'warn');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════════════════════════
+function showToast(msg, type) {
+  // Remove existing toasts
+  document.querySelectorAll('.toast-msg').forEach(t => t.remove());
+
+  const t = document.createElement('div');
+  t.className = 'toast-msg';
+  t.style.cssText = `
+    position:fixed;bottom:24px;right:24px;z-index:9999;
+    max-width:380px;padding:14px 20px;border-radius:10px;
+    font-family:var(--font-mono);font-size:12px;line-height:1.6;
+    box-shadow:0 8px 32px rgba(0,0,0,.4);
+    background:${type==='ok'?'rgba(16,185,129,.18)':type==='warn'?'rgba(245,158,11,.15)':'rgba(239,68,68,.15)'};
+    border:1px solid ${type==='ok'?'rgba(16,185,129,.4)':type==='warn'?'rgba(245,158,11,.4)':'rgba(239,68,68,.4)'};
+    color:${type==='ok'?'var(--green)':type==='warn'?'var(--amber)':'var(--red)'};
+    animation:fadeUp .3s ease;cursor:pointer;
+  `;
+  t.textContent = msg;
+  t.onclick = () => t.remove();
+  document.body.appendChild(t);
+  setTimeout(() => { if (t.parentNode) t.remove(); }, 6000);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════════════════════════════════
+function showTab(id, btn, prefix) {
+  const strip = btn.closest('.tab-strip');
+  strip.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('act'));
+  btn.classList.add('act');
+  const container = strip.parentElement;
+  container.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('act'));
+  const target = document.getElementById(prefix + '-' + id);
+  if (target) target.classList.add('act');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// LANGUAGE SWITCHER
+// ═══════════════════════════════════════════════════════════════════
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  const activeBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (!val) return;
+    if (el.tagName === 'INPUT') {
+      el.placeholder = el.getAttribute('data-' + lang + '-placeholder') || val;
+    } else if (val.includes('<')) {
+      el.innerHTML = val;
+    } else {
+      el.textContent = val;
+    }
+  });
+
+  document.querySelector('.promo-btn').textContent = lang === 'ru' ? 'ПРИМЕНИТЬ' : 'UNLOCK';
+  document.getElementById('promoInput').placeholder  = lang === 'ru' ? 'ВВЕДИТЕ КОД' : 'ENTER CODE';
+  updateDownloads();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// NAVIGATION ACTIVE STATE
+// ═══════════════════════════════════════════════════════════════════
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  document.querySelectorAll('section[id], div[id="cta"], div[id="downloads"]').forEach(s => {
+    if (window.scrollY >= s.offsetTop - 90) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+}, { passive: true });
+
+// ═══════════════════════════════════════════════════════════════════
+// BURGER MENU
+// ═══════════════════════════════════════════════════════════════════
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// SCROLL TO BOTTOM — используется всеми кнопками "Запросить"
+// ═══════════════════════════════════════════════════════════════════
+function scrollToContacts(e) {
+  if (e) e.preventDefault();
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// ENTER KEY on promo input
+// ═══════════════════════════════════════════════════════════════════
+document.getElementById('promoInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') applyPromo();
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// LOG VIEWER — просмотр журнала (только для вас, через консоль браузера)
+// Введите в консоли: showAccessLog()
+// ═══════════════════════════════════════════════════════════════════
+function showAccessLog() {
+  const logs = JSON.parse(localStorage.getItem('ds_export_log') || '[]');
+  if (!logs.length) { console.log('Журнал пуст'); return; }
+  console.group(`📋 Access Log Export Intelligence — ${logs.length} записей`);
+  logs.forEach((e,i) => {
+    const icon = e.event === 'download' ? '⬇' : e.event === 'promo_success' ? '✓' : '✗';
+    console.log(`${icon} [${e.ts}] ${e.event} | Level: ${e.level || e.access_level || '—'} | ${e.file || e.section || ''} | IP: ${e.ip || '?'} | ${e.geo || ''}`);
+  });
+  console.groupEnd();
+  return logs;
+}
+window.showAccessLog = showAccessLog;
+
+// Логируем первое посещение страницы
+writeLog('page_view', { page: window.location.href, report: 'SRB-2026', lang: navigator.language });
+
+// ═══════════════════════════════════════════════════════════════════
+// INIT — set initial download button states
+// ═══════════════════════════════════════════════════════════════════
+updateDownloads();</script>
+
+
+
+
+
+
+<script>
+/* Strategy blur — снять при VIP/admin */
+(function(){
+  function applyStratBlur(){
+    var lvl=['guest','preview','vip','admin'].indexOf(window.currentAccess||'guest');
+    var inn=document.getElementById('strat-steps-inner');
+    if(!inn)return;
+    if(lvl>=2){ inn.style.filter='none'; inn.style.opacity='1'; inn.style.pointerEvents=''; }
+    else       { inn.style.filter='blur(5px)'; inn.style.opacity='.7'; inn.style.pointerEvents='none'; }
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    applyStratBlur();
+    var orig=window.applyAccess;
+    window.applyAccess=function(){if(orig)orig.apply(this,arguments);applyStratBlur();};
+  });
+})();
+</script>
+</body></html>
