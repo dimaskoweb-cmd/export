@@ -1657,7 +1657,7 @@ body::before {
       <div style="background:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px">
         <div style="font-size:11px;font-weight:600;color:var(--bright)" data-ru="📊 Анализ экспортных рынков (PDF 12 стр.)" data-en="📊 Export Markets Analysis (PDF 12 pp.)">📊 Анализ экспортных рынков (PDF 12 стр.)</div>
         <div style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.2);width:fit-content">PREVIEW: эелктронный формат</div>
-        <a class="dl-btn" id="dl-btn-markets" href="#" onclick="triggerDownload(event,&#39;markets&#39;)" data-ru="⬇ Скачать PDF" data-en="⬇ Download PDF" style="opacity: 0.4; pointer-events: none; border-color: var(--blue); color: var(--blue);">⬇ Скачать PDF</a>
+        <a class="dl-btn" id="dl-btn-markets" href="#" onclick="downloadGated(event,'markets')" data-ru="⬇ Скачать PDF" data-en="⬇ Download PDF" style="opacity:0.4;pointer-events:none">⬇ Скачать PDF</a>
         <div class="dl-locked" id="dl-lock-markets" style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">🔑 <span data-ru="Введите код PREVIEW" data-en="Enter PREVIEW code">Введите код PREVIEW</span></div>
       </div>
 
@@ -1665,7 +1665,7 @@ body::before {
       <div style="background:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px">
         <div style="font-size:11px;font-weight:600;color:var(--bright)" data-ru="🗓 Календарь выставок 2026–2027" data-en="🗓 Exhibition Calendar 2026–2027">🗓 Календарь выставок 2026–2027</div>
         <div style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.2);width:fit-content">PREVIEW: эелктронный формат</div>
-        <a class="dl-btn" id="dl-btn-calendar" href="#" onclick="triggerDownload(event,&#39;calendar&#39;)" data-ru="⬇ Скачать PDF" data-en="⬇ Download PDF" style="opacity: 0.4; pointer-events: none; border-color: var(--blue); color: var(--blue);">⬇ Скачать PDF</a>
+        <a class="dl-btn" id="dl-btn-calendar" href="#" onclick="downloadGated(event,'calendar')" data-ru="⬇ Скачать PDF" data-en="⬇ Download PDF" style="opacity:0.4;pointer-events:none">⬇ Скачать PDF</a>
         <div class="dl-locked" id="dl-lock-calendar" style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">🔑 <span data-ru="Введите код PREVIEW" data-en="Enter PREVIEW code">Введите код PREVIEW</span></div>
       </div>
 
@@ -2112,7 +2112,10 @@ function applyAccess() {
 // ═══════════════════════════════════════════════════════════════════
 function updateDownloads() {
   const lvl = LEVEL_NUM[currentAccess] || 0;
+  const lang = currentLang || 'ru';
+  const DL_STYLE = 'display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;font-weight:500;padding:10px 18px;border-radius:8px;border:1px solid var(--blue);background:var(--ink3);color:var(--blue);cursor:pointer;letter-spacing:.05em;text-decoration:none;opacity:1;pointer-events:auto;text-align:center;justify-content:center';
 
+  // ── Кнопки скачивания в блоке #downloads ──────────────────────────
   ['markets','calendar','importers','strategy'].forEach(section => {
     const rule    = DOWNLOAD_RULES[section];
     const lockEl  = document.getElementById('dl-lock-' + section);
@@ -2120,17 +2123,11 @@ function updateDownloads() {
     const hasAccess = lvl >= rule.minLevel;
 
     if (hasAccess) {
-      if (lockEl) lockEl.style.display = 'none';
-      if (btnEl) {
-        btnEl.style.opacity = '1';
-        btnEl.style.borderColor = 'var(--blue)';
-        btnEl.style.color = 'var(--blue)';
-        btnEl.style.pointerEvents = 'auto';
-        btnEl.setAttribute('onclick', `triggerDownload(event,'${section}')`);
-      }
+      if (lockEl) { lockEl.style.display = 'none'; }
+      if (btnEl)  { btnEl.style.opacity = '1'; btnEl.style.pointerEvents = 'auto'; }
     } else {
-      if (lockEl) lockEl.style.display = 'flex';
-      if (btnEl) { btnEl.style.opacity = '0.4'; btnEl.style.pointerEvents = 'none'; }
+      if (lockEl) { lockEl.style.display = 'flex'; }
+      if (btnEl)  { btnEl.style.opacity = '0.4'; btnEl.style.pointerEvents = 'none'; }
     }
   });
 
@@ -2159,12 +2156,9 @@ function updateDownloads() {
     });
   }
 
-  // VIP (lvl≥2) — transform importers & strategy invite → download
+  // VIP (lvl≥2) — transform importers & strategy invite → download buttons
   if (lvl >= 2) {
-    const lang = currentLang || 'ru';
-    const DL_STYLE = 'display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;font-weight:500;padding:10px 18px;border-radius:8px;border:1px solid var(--blue);background:var(--ink3);color:var(--blue);cursor:pointer;letter-spacing:.05em;text-decoration:none;opacity:1;pointer-events:auto;text-align:center;justify-content:center';
     ['importers', 'strategy'].forEach(section => {
-      // Transform the card action button (PDF cards in the access-locked section)
       ['action-' + section, 'action-' + section + '-bar'].forEach(id => {
         const el = document.getElementById(id);
         if (el) {
@@ -2203,41 +2197,44 @@ function triggerDownload(e, section) {
 }
 
 function doDownload(section) {
-  const url   = FILE_URLS[section];
-  const label = FILE_NAMES[section]?.[currentLang] || (section + '.pdf');
+  // Резолвим URL напрямую по уровню — не полагаемся на состояние FILE_URLS
+  const lvl = LEVEL_NUM[currentAccess] || 0;
+  const ALL_URLS = { ...FILE_URLS_PREVIEW, ...FILE_URLS_VIP };
+  const url   = lvl >= 1 ? ALL_URLS[section] : null;
+  const label = FILE_NAMES[section]?.[currentLang] || section;
 
-  if (!url) { showToast('⚠ URL не задан', 'warn'); return; }
+  if (!url) {
+    showToast('🔑 ' + (currentLang === 'ru'
+      ? 'Введите код доступа для скачивания'
+      : 'Enter access code to download'), 'warn');
+    document.getElementById('promoInput')?.focus();
+    return;
+  }
 
-  // Логируем скачивание с уровнем доступа
+  // Проверяем что уровень доступа позволяет скачать этот файл
+  const rule = DOWNLOAD_RULES[section];
+  if (lvl < rule.minLevel) {
+    showToast('🔑 ' + (currentLang === 'ru'
+      ? 'Введите код более высокого уровня'
+      : 'Enter a higher access code'), 'warn');
+    document.getElementById('promoInput')?.focus();
+    return;
+  }
+
   writeLog('download', {
-    section,
-    file: label,
-    access_level: currentAccess,
-    page: window.location.href,
-    report: 'SRB-2026',
+    section, file: label, access_level: currentAccess,
+    page: window.location.href, report: 'SRB-2026',
   });
 
-  // Check if file actually exists before triggering download
-  fetch(url, { method: 'HEAD' })
-    .then(res => {
-      if (res.ok) {
-        // File exists — trigger real download
-        const a = document.createElement('a');
-        a.href     = url;
-        a.download = label;
-        a.rel      = 'noopener';
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => document.body.removeChild(a), 200);
-        showToast('⬇ ' + (currentLang === 'ru' ? 'Скачивание: ' : 'Downloading: ') + label, 'ok');
-      } else {
-        showFileNotReady(section);
-      }
-    })
-    .catch(() => {
-      window.open(url, '_blank');
-      showToast('⬇ ' + (currentLang === 'ru' ? 'Открывается: ' : 'Opening: ') + label, 'ok');
-    });
+  // Открываем файл — работает локально и на GitHub Pages
+  const a = document.createElement('a');
+  a.href   = url;
+  a.target = '_blank';
+  a.rel    = 'noopener';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => document.body.removeChild(a), 200);
+  showToast('⬇ ' + (currentLang === 'ru' ? 'Открывается: ' : 'Opening: ') + label, 'ok');
 }
 
 function showFileNotReady(section) {
