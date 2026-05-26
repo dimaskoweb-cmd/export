@@ -2257,15 +2257,33 @@ function doDownload(section) {
     page: window.location.href, report: 'SRB-2026',
   });
 
-  // Скачиваем файл (не открываем в браузере)
-  const a = document.createElement('a');
-  a.href     = url;
-  a.download = label + '.pdf';  // принудительное скачивание
-  a.rel      = 'noopener';
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(() => document.body.removeChild(a), 200);
-  showToast('⬇ ' + (currentLang === 'ru' ? 'Скачивается: ' : 'Downloading: ') + label, 'ok');
+  // Проверяем что файл существует, затем скачиваем
+  fetch(url, { method: 'HEAD' })
+    .then(res => {
+      if (res.ok) {
+        const a = document.createElement('a');
+        a.href     = url;
+        a.download = label + '.pdf';
+        a.rel      = 'noopener';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => document.body.removeChild(a), 200);
+        showToast('⬇ ' + (currentLang === 'ru' ? 'Скачивается: ' : 'Downloading: ') + label, 'ok');
+      } else {
+        showFileNotReady(section);
+      }
+    })
+    .catch(() => {
+      // Fallback если HEAD недоступен — скачиваем напрямую
+      const a = document.createElement('a');
+      a.href     = url;
+      a.download = label + '.pdf';
+      a.rel      = 'noopener';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => document.body.removeChild(a), 200);
+      showToast('⬇ ' + (currentLang === 'ru' ? 'Скачивается: ' : 'Downloading: ') + label, 'ok');
+    });
 }
 
 function showFileNotReady(section) {
