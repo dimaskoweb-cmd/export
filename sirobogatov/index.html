@@ -2257,15 +2257,15 @@ function doDownload(section) {
     page: window.location.href, report: 'SRB-2026',
   });
 
-  // Открываем файл — работает локально и на GitHub Pages
+  // Скачиваем файл (не открываем в браузере)
   const a = document.createElement('a');
-  a.href   = url;
-  a.target = '_blank';
-  a.rel    = 'noopener';
+  a.href     = url;
+  a.download = label + '.pdf';  // принудительное скачивание
+  a.rel      = 'noopener';
   document.body.appendChild(a);
   a.click();
   setTimeout(() => document.body.removeChild(a), 200);
-  showToast('⬇ ' + (currentLang === 'ru' ? 'Открывается: ' : 'Opening: ') + label, 'ok');
+  showToast('⬇ ' + (currentLang === 'ru' ? 'Скачивается: ' : 'Downloading: ') + label, 'ok');
 }
 
 function showFileNotReady(section) {
