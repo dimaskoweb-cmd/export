@@ -874,10 +874,6 @@ body::before {
   <a href="#" onclick="toggleMenu();setTimeout(()=&gt;scrollToContacts(),300)" data-ru="Контакт" data-en="Contact">Контакт</a>
 </div>
 
-<!-- ═══════════ TEMPLATE NOTICE ═══════════ -->
-<div style="background:rgba(139,105,20,.12);border-bottom:2px solid rgba(139,105,20,.3);padding:8px 24px;font-family:var(--font-mono);font-size:11px;color:var(--blue);letter-spacing:.06em;text-align:center;position:relative;z-index:999">
-  🛠 ШАБЛОН v2.8.0 · Заменить все <code style="background:rgba(139,105,20,.15);padding:1px 5px;border-radius:3px">SRB-2026</code> данными нового клиента перед публикацией
-</div>
 <!-- ═══════════ PROMO BAR ═══════════ -->
 <div class="promo-bar">
   <div class="promo-label" data-ru="🔐 Код доступа:" data-en="🔐 Access code:">🔐Уровень доступа:</div>
@@ -977,13 +973,13 @@ body::before {
     <!-- KPI STRIP -->
     <div class="kpi-strip">
       <div class="kpi-cell">
-  <div class="kpi-val">🌍 5.1 <span>млрд $</span></div>
+  <div class="kpi-val">🌍 4.1 <span>млрд $</span></div>
   <div class="kpi-lbl" data-ru="Ёмкость рынков" data-en="Market capacity">Ёмкость рынков</div>
 </div><div class="kpi-cell">
-  <div class="kpi-val">🗺 10 <span>стран</span></div>
+  <div class="kpi-val">🗺 8 <span>стран</span></div>
   <div class="kpi-lbl" data-ru="Целевых рынков" data-en="Target markets">Целевых рынков</div>
 </div><div class="kpi-cell">
-  <div class="kpi-val">🏭 80+ <span></span></div>
+  <div class="kpi-val">🏭 161 <span></span></div>
   <div class="kpi-lbl" data-ru="Импортёров в базе" data-en="Importers in DB">Импортёров в базе</div>
 </div><div class="kpi-cell">
   <div class="kpi-val">📦 5 <span>линеек</span></div>
@@ -1014,24 +1010,22 @@ body::before {
       <div class="sec-num">01</div>
       <div class="sec-titles">
         <div class="sec-title" data-ru="Экспортные рынки" data-en="Export Markets">Экспортные рынки</div>
-        <div class="sec-sub" data-ru="10 рынков · ITC TradeMap · UN Comtrade 2024 · Маржа · Тепловая карта" data-en="10 markets · ITC TradeMap · UN Comtrade 2024 · Margin · Heatmap">10 рынков · ITC TradeMap · UN Comtrade 2024 · Маржа · Тепловая карта</div>
+        <div class="sec-sub" data-ru="8 рынков · ITC TradeMap · UN Comtrade 2024 · Маржа · Тепловая карта" data-en="10 markets · ITC TradeMap · UN Comtrade 2024 · Margin · Heatmap">8 рынков · ITC TradeMap · UN Comtrade 2024 · Маржа · Тепловая карта</div>
       </div>
     </div>
 
-        <!-- MARKETS_CONTENT — Вставить контент из SKILL_export-market →
-        <!-- MARKETS_CONTENT -->
-    <!-- ═══ SLOT 1: SECTION_01_CONTENT ═══
-         Заполняется автоматически из SKILL_export-market.
-         НЕ редактировать вручную — только через маппинг плейсхолдеров. ═══ -->
-    <!-- MARKETS_CONTENT -->
+        
+        
+    
+    
     <!-- MARKET TABS -->
     <div class="tab-strip">
       <button class="tab-btn act" onclick="showTab('kz',this,'mkt')" data-ru="🇰🇿 КЗ · Quick Start" data-en="🇰🇿 KZ · Quick Start">🇰🇿 КЗ · Quick Start</button>
       <button class="tab-btn" onclick="showTab('ae',this,'mkt')" data-ru="🇦🇪 ОАЭ" data-en="🇦🇪 UAE">🇦🇪 ОАЭ</button>
       <button class="tab-btn" onclick="showTab('cn',this,'mkt')" data-ru="🇨🇳 КНР" data-en="🇨🇳 China">🇨🇳 КНР</button>
       <button class="tab-btn" onclick="showTab('sa',this,'mkt')" data-ru="🇸🇦 КСА" data-en="🇸🇦 SA">🇸🇦 КСА</button>
-      <button class="tab-btn" id="tab-mkt-vn" style="filter:blur(2px);pointer-events:none" data-ru="🇻🇳 VN" data-en="🇻🇳 VN">🇻🇳 VN</button>
-      <button class="tab-btn" id="tab-mkt-kr" style="filter:blur(2px);pointer-events:none" data-ru="🇰🇷 KR" data-en="🇰🇷 KR">🇰🇷 KR</button>
+      <button class="tab-btn" id="tab-mkt-vn" onclick="showTab('vn',this,'mkt')" data-ru="🇻🇳 VN · PREVIEW" data-en="🇻🇳 VN · PREVIEW">🇻🇳 VN</button>
+      <button class="tab-btn" id="tab-mkt-kr" style="filter:blur(2px);pointer-events:none" data-ru="🌏 ЮВА+" data-en="🌏 SEA+">🌏 ЮВА+</button>
     </div>
 
     <!-- KZ TAB -->
@@ -1063,11 +1057,11 @@ body::before {
           <div class="card-title" data-ru="Страны-конкуренты · доля рынка КЗ" data-en="Competitor countries · KZ market share">Конкуренты · состав импорта КЗ</div>
           <div class="card-sub">ITC TradeMap 2024 · HS 0406 · топ экспортёры</div>
           <div class="flow-list" style="margin-top:10px">
-            <div class="flow-item"><div class="flow-label">🇷🇺 Россия</div><div style="background:var(--green);height:10px;border-radius:3px;width:72%"></div><div style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--green)">72%</div></div>
-            <div class="flow-item"><div class="flow-label">🇧🇾 Беларусь</div><div style="background:var(--blue);height:10px;border-radius:3px;width:18%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--blue)">18%</div></div>
-            <div class="flow-item"><div class="flow-label">🇺🇦 Украина</div><div style="background:var(--amber);height:10px;border-radius:3px;width:5%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber)">5%</div></div>
-            <div class="flow-item"><div class="flow-label">🇩🇪 Германия</div><div style="background:var(--muted);height:10px;border-radius:3px;width:3%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">3%</div></div>
-            <div class="flow-item"><div class="flow-label">🌍 Прочие</div><div style="background:var(--line);height:10px;border-radius:3px;width:2%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">2%</div></div>
+            <div class="flow-item"><div class="flow-label">🇷🇺 Россия</div><div style="background:var(--green);height:10px;border-radius:3px;width:58%"></div><div style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--green)">58%</div></div>
+            <div class="flow-item"><div class="flow-label">🇧🇾 Беларусь</div><div style="background:var(--blue);height:10px;border-radius:3px;width:23%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--blue)">23%</div></div>
+            <div class="flow-item"><div class="flow-label">🇺🇦 Украина*</div><div style="background:var(--amber);height:10px;border-radius:3px;width:7%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber)">7%</div></div>
+            <div class="flow-item"><div class="flow-label">🇩🇪 Германия</div><div style="background:var(--muted);height:10px;border-radius:3px;width:5%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">5%</div></div>
+            <div class="flow-item"><div class="flow-label">🌍 Прочие</div><div style="background:var(--line);height:10px;border-radius:3px;width:7%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">7%</div></div>
           </div>
           <div style="margin-top:10px;padding:8px 10px;background:var(--ink3);border-radius:6px;font-size:11px;color:var(--dim)"><strong>Вывод:</strong> Россия доминирует (72%) — проверенный канал сбыта. Сыробогатов конкурирует с собственными соотечественниками, но имеет ценовое + бренд-преимущество.</div>
         </div>
@@ -1260,6 +1254,49 @@ body::before {
       </div>
     </div>
 
+    <!-- VN TAB — blur:guest, unlock:PREVIEW -->
+    <div class="tab-pane" id="mkt-vn" style="filter:blur(5px);pointer-events:none;user-select:none">
+      <div style="background:rgba(194,122,16,.08);border:1px solid rgba(194,122,16,.2);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:var(--text)">🟡 <strong>Высокий рост · CAGR +9.1%.</strong> Пошлина 5–10%. Доступен через RCEP-агента. Рейтинг: <strong style="color:var(--amber)">GROWTH · K=74</strong></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="card">
+          <div class="card-title">Импорт сыров · Вьетнам · HS 0406</div>
+          <div class="card-sub">ITC TradeMap · UN Comtrade · тыс. т / $млн</div>
+          <div style="display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:8px;font-family:var(--font-mono);font-size:11px;margin-top:8px">
+            <div style="color:var(--muted)">Год</div><div style="color:var(--muted)">Тонн</div><div style="color:var(--muted)">USD млн</div><div style="color:var(--muted)">Δ</div>
+            <div>2022</div><div>10 100 т</div><div>$57M</div><div style="color:var(--muted)">—</div>
+            <div>2023</div><div>11 400 т</div><div>$63M</div><div style="color:var(--green)">+10.5%</div>
+            <div style="color:var(--blue);font-weight:700">2024</div><div style="font-weight:700">12 300 т</div><div style="font-weight:700">$68M</div><div style="color:var(--green);font-weight:700">+7.9%</div>
+          </div>
+          <div style="margin-top:10px;font-family:var(--font-mono);font-size:10px;color:var(--muted)">CAGR: <span style="color:var(--green)">+9.1%</span> · CIF: <span style="color:var(--blue)">$4 800/т</span> · Маржа: ~26%</div>
+          <div style="display:flex;align-items:flex-end;gap:8px;height:48px;margin-top:10px">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1"><div style="background:var(--muted);width:100%;height:50%;border-radius:2px 2px 0 0;opacity:.6"></div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted)">2022</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1"><div style="background:var(--blue);width:100%;height:75%;border-radius:2px 2px 0 0;opacity:.7"></div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted)">2023</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1"><div style="background:var(--green);width:100%;height:100%;border-radius:2px 2px 0 0"></div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted)">2024</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Конкуренты · состав импорта VN</div>
+          <div class="card-sub">ITC TradeMap 2024 · HS 0406</div>
+          <div class="flow-list" style="margin-top:10px">
+            <div class="flow-item"><div class="flow-label" style="color:var(--red)">🇳🇿 Нов. Зеландия</div><div style="background:var(--red);height:10px;border-radius:3px;width:38%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--red);font-weight:700">38%</div></div>
+            <div class="flow-item"><div class="flow-label">🇦🇺 Австралия</div><div style="background:var(--amber);height:10px;border-radius:3px;width:23%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber)">23%</div></div>
+            <div class="flow-item"><div class="flow-label">🇫🇷 Франция</div><div style="background:var(--amber);height:10px;border-radius:3px;width:14%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--amber)">14%</div></div>
+            <div class="flow-item"><div class="flow-label">🇺🇸 США</div><div style="background:var(--muted);height:10px;border-radius:3px;width:10%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">10%</div></div>
+            <div class="flow-item"><div class="flow-label" style="font-weight:700;color:var(--green)">🇷🇺 Россия</div><div style="background:var(--green);height:10px;border-radius:3px;width:2%"></div><div style="font-family:var(--font-mono);font-size:11px;color:var(--green);font-weight:700">~2% ▲</div></div>
+          </div>
+          <div style="margin-top:10px;padding:8px 10px;background:rgba(74,103,65,.08);border-radius:6px;font-size:11px">
+            <strong style="color:var(--green)">Ниша:</strong> НЗ/AU не поставляют плавленые и рассольные. РФ конкурентен по цене на 15–20%. Вход через Vinamilk (K=80).
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div class="price-card"><div class="price-name">Импорт 2024</div><div class="price-val">12.3 тыс. т</div><div class="price-range">$68M · HS 0406</div></div>
+        <div class="price-card"><div class="price-name">Сред. цена CIF</div><div class="price-val" style="color:var(--blue)">$4 800/т</div><div class="price-range">↗ +3% vs 2023</div></div>
+        <div class="price-card"><div class="price-name">Маржа* / Пошлина</div><div class="price-val" style="color:var(--green)">~26%</div><div class="price-range">Пошлина 5–10% RCEP</div></div>
+        <div class="price-card"><div class="price-name">CAGR рынка</div><div class="price-val" style="color:var(--green)">+9.1%</div><div class="price-range">2022–2024 · ITC</div></div>
+      </div>
+    </div>
+
     <!-- HEATMAP TABLE -->
     <div class="data-table-wrap" style="margin-top:28px">
       <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--ink2)">Матрица маржинальности · ITC TradeMap · UN Comtrade 2024 · *estimated</div>
@@ -1268,14 +1305,14 @@ body::before {
           <tr><th>Рынок</th><th>Импорт $M</th><th>CAGR</th><th>Пошлина</th><th>Маржа*</th><th>K-Score</th><th>Приоритет</th></tr>
         </thead>
         <tbody>
-          <tr data-preview-row><td>🇰🇿 Казахстан</td><td>$142M</td><td style="color:var(--green)">+6.2%</td><td style="color:var(--green)">0% ЕАЭС</td><td style="color:var(--amber)">~18%</td><td style="color:var(--blue);font-weight:700">K=89</td><td><span style="background:rgba(194,122,16,.12);color:var(--amber);font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px">QUICK</span></td></tr>
-          <tr data-preview-row><td>🇦🇪 ОАЭ</td><td>$424M</td><td style="color:var(--green)">+4.7%</td><td style="color:var(--green)">0%</td><td style="color:var(--green)">~29%</td><td style="color:var(--blue);font-weight:700">K=84</td><td><span style="background:rgba(74,103,65,.12);color:var(--green);font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px">СТРАТЕГ.</span></td></tr>
-          <tr data-preview-row><td>🇸🇦 КСА</td><td>$872M</td><td style="color:var(--green)">+8.8%</td><td style="color:var(--green)">0%</td><td style="color:var(--green)">~31%</td><td style="color:var(--blue);font-weight:700">K=79</td><td><span style="background:rgba(74,103,65,.12);color:var(--green);font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px">СТРАТЕГ.</span></td></tr>
-          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇨🇳 КНР</td><td>$895M</td><td>+12.5%</td><td>12%</td><td>~28%</td><td>K=81</td><td>СТРАТЕГ.</td></tr>
-          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇻🇳 Вьетнам</td><td>$68M</td><td>+9.1%</td><td>5–10%</td><td>~26%</td><td>K=69</td><td>РОСТ</td></tr>
-          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇮🇩 Индонезия</td><td>$95M</td><td>+7.3%</td><td>5%</td><td>~25%</td><td>K=65</td><td>ПЕРСПЕКТ.</td></tr>
-          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇰🇷 Ю. Корея</td><td>$1 000M</td><td>+3.8%</td><td>36%</td><td>~24%</td><td>K=73</td><td>СТРАТЕГ.</td></tr>
-          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇯🇵 Япония</td><td>$1 300M</td><td>+2.1%</td><td>29.8%</td><td>~22%</td><td>K=71</td><td>СТРАТЕГ.</td></tr>
+          <tr data-preview-row><td>🇰🇿 Казахстан</td><td>$142M</td><td style="color:var(--green)">+6.2%</td><td style="color:var(--green)">0% ЕАЭС</td><td style="color:var(--amber)">~18%</td><td style="color:var(--blue);font-weight:700">K=87</td><td><span style="background:rgba(194,122,16,.12);color:var(--amber);font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px">QUICK</span></td></tr>
+          <tr data-preview-row><td>🇦🇪 ОАЭ</td><td>$424M</td><td style="color:var(--green)">+4.7%</td><td style="color:var(--green)">0%</td><td style="color:var(--green)">~29%</td><td style="color:var(--blue);font-weight:700">K=82</td><td><span style="background:rgba(74,103,65,.12);color:var(--green);font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px">СТРАТЕГ.</span></td></tr>
+          <tr data-preview-row><td>🇸🇦 КСА</td><td>$872M</td><td style="color:var(--green)">+8.8%</td><td style="color:var(--green)">0%</td><td style="color:var(--green)">~31%</td><td style="color:var(--blue);font-weight:700">K=84</td><td><span style="background:rgba(74,103,65,.12);color:var(--green);font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px">СТРАТЕГ.</span></td></tr>
+          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇨🇳 КНР</td><td>$895M</td><td>+12.5%</td><td>12%</td><td>~28%</td><td>K=87</td><td>СТРАТЕГ.</td></tr>
+          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇻🇳 Вьетнам</td><td>$68M</td><td>+9.1%</td><td>5–10%</td><td>~26%</td><td>K=74</td><td>РОСТ</td></tr>
+          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇮🇩 Индонезия</td><td>$210M</td><td>+7.4%</td><td>5%</td><td>~24%</td><td>K=71</td><td>ПЕРСПЕКТ.</td></tr>
+          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇲🇾 Малайзия</td><td>$185M</td><td>+6.8%</td><td>5%</td><td>~23%</td><td>K=68</td><td>ПЕРСПЕКТ.</td></tr>
+          <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>🇮🇳 Индия</td><td>$95M</td><td>+11.2%</td><td>30%</td><td>~12%</td><td>K=55</td><td>ГОРИЗОНТ</td></tr>
         </tbody>
       </table>
     </div>
@@ -1300,13 +1337,11 @@ body::before {
       </div>
     </div>
 
-    <!-- IMPORTERS_CONTENT -->
-    <!-- IMPORTERS_CONTENT -->
-    <!-- ═══ SLOT 2: SECTION_02_CONTENT ═══
-         Заполняется автоматически из SKILL_importer-database.
-         НЕ редактировать вручную — только через маппинг плейсхолдеров. ═══ -->
-    <!-- IMPORTERS_CONTENT -->
-    <div style="background:rgba(194,122,16,.08);border:1px solid rgba(194,122,16,.2);border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:13px">🔑 <strong>Топ-3 для немедленного контакта:</strong> Magnum KZ (K=89) · Transmed UAE (K=84) · Shanghai Dairy CN (K=81)</div>
+    
+    
+    
+    
+    <div style="background:rgba(194,122,16,.08);border:1px solid rgba(194,122,16,.2);border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:13px">🔑 <strong>Топ-3 для немедленного контакта:</strong> Transmed UAE (K=91) · Magnum KZ (K=87) · Shanghai Bright Dairy CN (K=89)</div>
 
     <div class="tab-strip">
       <button class="tab-btn act" onclick="showTab('ikz',this,'imp')" data-ru="🇰🇿 Казахстан" data-en="🇰🇿 Kazakhstan">🇰🇿 Казахстан</button>
@@ -1318,8 +1353,8 @@ body::before {
     <div class="tab-pane act" id="imp-ikz">
       <div class="card" style="margin-bottom:12px;border-left:3px solid var(--green)">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-          <div><div class="card-title">Magnum Cash &amp; Carry</div><div class="card-sub">Ритейл-сеть · 120+ гипермаркетов · Алматы · Tier-1</div></div>
-          <div style="background:rgba(74,103,65,.12);border:1px solid rgba(74,103,65,.3);border-radius:8px;padding:8px 14px;text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--green)">89</div><div style="font-family:var(--font-mono);font-size:9px;color:var(--green)">K-SCORE</div></div>
+          <div><div class="card-title">Magnum Cash &amp; Carry</div><div class="card-sub">Ритейл-сеть · 110+ гипермаркетов · Алматы · Tier-1</div></div>
+          <div style="background:rgba(74,103,65,.12);border:1px solid rgba(74,103,65,.3);border-radius:8px;padding:8px 14px;text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--green)">87</div><div style="font-family:var(--font-mono);font-size:9px;color:var(--green)">K-SCORE</div></div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px">
           <div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Объём dairy</div><div style="font-size:12px;font-weight:600">~$200M/год</div></div>
@@ -1347,20 +1382,20 @@ body::before {
       <div style="margin-top:16px;padding:14px 16px;background:var(--ink2);border:1px solid var(--line);border-radius:10px">
         <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">Нац. состав текущих поставщиков сыра в КЗ · ITC TradeMap 2024</div>
         <div class="flow-list">
-          <div class="flow-item"><div class="flow-label" style="font-weight:700;color:var(--green)">🇷🇺 Россия</div><div style="background:var(--green);height:12px;border-radius:3px;width:72%"></div><div style="font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--green)">72%</div></div>
-          <div class="flow-item"><div class="flow-label">🇧🇾 Беларусь</div><div style="background:var(--blue);height:12px;border-radius:3px;width:18%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--blue)">18%</div></div>
-          <div class="flow-item"><div class="flow-label">🇺🇦 Украина</div><div style="background:var(--amber);height:12px;border-radius:3px;width:5%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--amber)">5%</div></div>
-          <div class="flow-item"><div class="flow-label">🇩🇪 Германия</div><div style="background:var(--muted);height:12px;border-radius:3px;width:3%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">3%</div></div>
-          <div class="flow-item"><div class="flow-label">🌍 Прочие</div><div style="background:var(--line);height:12px;border-radius:3px;width:2%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">2%</div></div>
+          <div class="flow-item"><div class="flow-label" style="font-weight:700;color:var(--green)">🇷🇺 Россия</div><div style="background:var(--green);height:12px;border-radius:3px;width:58%"></div><div style="font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--green)">58%</div></div>
+          <div class="flow-item"><div class="flow-label">🇧🇾 Беларусь</div><div style="background:var(--blue);height:12px;border-radius:3px;width:23%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--blue)">23%</div></div>
+          <div class="flow-item"><div class="flow-label">🇺🇦 Украина*</div><div style="background:var(--amber);height:12px;border-radius:3px;width:7%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--amber)">7%</div></div>
+          <div class="flow-item"><div class="flow-label">🇩🇪 Германия</div><div style="background:var(--muted);height:12px;border-radius:3px;width:5%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">5%</div></div>
+          <div class="flow-item"><div class="flow-label">🌍 Прочие</div><div style="background:var(--line);height:12px;border-radius:3px;width:7%"></div><div style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">7%</div></div>
         </div>
-        <div style="margin-top:10px;font-size:12px;color:var(--dim)">РФ уже занимает 72% рынка — текущие поставщики: Белебеевский МК, Милком, Вимм-Билль-Данн. <strong style="color:var(--green)">Сыробогатов конкурирует с известными участниками, но предлагает более широкий ассортимент и выгодный private label.</strong></div>
+        <div style="margin-top:10px;font-size:12px;color:var(--dim)">РФ занимает 58% рынка — конкуренция с белорусскими (23%) производителями в массовом сегменте. <strong style="color:var(--green)">Ниша Сыробогатова: твёрдые выдержанные (Aristokrat Old) — дефицит в премиум-сегменте Алматы.</strong></div>
       </div>
 
       <div class="data-table-wrap" style="margin-top:16px">
         <table class="data-table">
           <thead><tr><th>Компания</th><th>Тип</th><th>Город</th><th>K-Score</th><th>Контакт</th></tr></thead>
           <tbody>
-            <tr><td style="font-weight:600">Magnum Cash&Carry</td><td>Ритейл</td><td>Алматы</td><td style="color:var(--green);font-weight:700;font-family:var(--font-mono)">89</td><td style="font-family:var(--font-mono);font-size:11px">purchase@magnum.kz</td></tr>
+            <tr><td style="font-weight:600">Magnum Cash&Carry</td><td>Ритейл</td><td>Алматы</td><td style="color:var(--green);font-weight:700;font-family:var(--font-mono)">87</td><td style="font-family:var(--font-mono);font-size:11px">purchase@magnum.kz</td></tr>
             <tr><td style="font-weight:600">Raimbek Group</td><td>Дистрибьютор</td><td>Алматы</td><td style="color:var(--green);font-weight:700;font-family:var(--font-mono)">82</td><td style="font-family:var(--font-mono);font-size:11px">info@raimbek.kz</td></tr>
             <tr><td style="font-weight:600">Arbuz.kz (Kaspi)</td><td>E-commerce</td><td>Алматы</td><td style="color:var(--blue);font-weight:700;font-family:var(--font-mono)">79</td><td style="font-family:var(--font-mono);font-size:11px">seller@kaspi.kz</td></tr>
             <tr style="filter:blur(4px);user-select:none;pointer-events:none"><td>Метро Казахстан</td><td>B2B ритейл</td><td>Алматы</td><td style="font-family:var(--font-mono)">74</td><td style="font-family:var(--font-mono);font-size:11px">████████████</td></tr>
@@ -1388,7 +1423,7 @@ body::before {
       <div class="card" style="margin-bottom:12px;border-left:3px solid var(--green)">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
           <div><div class="card-title">Transmed Overseas FZE</div><div class="card-sub">FMCG дистрибьютор · Jebel Ali FZ · ОАЭ · Tier-1</div></div>
-          <div style="background:rgba(74,103,65,.12);border:1px solid rgba(74,103,65,.3);border-radius:8px;padding:8px 14px;text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--green)">84</div><div style="font-family:var(--font-mono);font-size:9px;color:var(--green)">K-SCORE</div></div>
+          <div style="background:rgba(74,103,65,.12);border:1px solid rgba(74,103,65,.3);border-radius:8px;padding:8px 14px;text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--green)">91</div><div style="font-family:var(--font-mono);font-size:9px;color:var(--green)">K-SCORE</div></div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px">
           <div><div style="font-family:var(--font-mono);font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Охват</div><div style="font-size:12px;font-weight:600">ОАЭ+КСА+Оман</div></div>
@@ -1403,8 +1438,8 @@ body::before {
     <div class="tab-pane" id="imp-icn">
       <div class="card" style="margin-bottom:12px;border-left:3px solid var(--green)">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-          <div><div class="card-title">Shanghai Dairy Group Co.</div><div class="card-sub">Dairy импортёр · GACC авторизован · Shanghai · Tier-1</div></div>
-          <div style="background:rgba(74,103,65,.12);border:1px solid rgba(74,103,65,.3);border-radius:8px;padding:8px 14px;text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--green)">81</div><div style="font-family:var(--font-mono);font-size:9px;color:var(--green)">K-SCORE</div></div>
+          <div><div class="card-title">Shanghai Bright Dairy &amp; Food Co.</div><div class="card-sub">Молочный холдинг · GACC авторизован · Shanghai · Tier-1</div></div>
+          <div style="background:rgba(74,103,65,.12);border:1px solid rgba(74,103,65,.3);border-radius:8px;padding:8px 14px;text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--green)">89</div><div style="font-family:var(--font-mono);font-size:9px;color:var(--green)">K-SCORE</div></div>
         </div>
         <div style="background:var(--ink3);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--dim)">Может выступить спонсором GACC-регистрации. Клиенты: RT-Mart, Sam's Club CN. Контакт: Tridge / Alibaba.</div>
       </div>
@@ -1454,12 +1489,10 @@ body::before {
       </div>
     </div>
 
-    <!-- CALENDAR_CONTENT -->
-    <!-- CALENDAR_CONTENT -->
-    <!-- ═══ SLOT 3: SECTION_03_CONTENT ═══
-         Заполняется автоматически из SKILL_exhibition-calendar.
-         НЕ редактировать вручную — только через маппинг плейсхолдеров. ═══ -->
-    <!-- CALENDAR_CONTENT -->
+    
+    
+    
+    
     <table class="cal-table">
       <thead>
         <tr>
@@ -1503,12 +1536,10 @@ body::before {
       </div>
     </div>
 
-    <!-- STRATEGY_CONTENT — Вставить контент из SKILL_export-strategy -->
-    <!-- STRATEGY_CONTENT -->
-    <!-- ═══ SLOT 4: SECTION_04_CONTENT ═══
-         Заполняется автоматически из SKILL_export-strategy.
-         НЕ редактировать вручную — только через маппинг плейсхолдеров. ═══ -->
-    <!-- STRATEGY_CONTENT -->
+    
+    
+    
+    
     <div style="background:rgba(74,103,65,.08);border:1px solid rgba(74,103,65,.2);border-radius:10px;padding:16px 20px;margin-bottom:24px;font-size:13px;color:var(--text)">
       💡 <strong>3 ключевых решения для ГК «Сыробогатов»:</strong><br>
       <strong>1.</strong> Казахстан прямо сейчас — 4–8 нед. до поставки при нулевых барьерах ЕАЭС.<br>
@@ -1799,7 +1830,7 @@ body::before {
 // ═══════════════════════════════════════════════════════════════════
 const DASHBOARD_VERSION = '2.8.1';
 const DASHBOARD_DATE    = '20.05.2026';
-const DASHBOARD_LABEL   = 'v' + DASHBOARD_VERSION + ' · ' + DASHBOARD_DATE + ' · TEMPLATE';
+const DASHBOARD_LABEL   = 'v' + DASHBOARD_VERSION + ' · ' + DASHBOARD_DATE + ' · #SRB-2026';
 
 (function applyVersion() {
   const metaCard  = document.getElementById('ver-meta-card');
@@ -2388,7 +2419,7 @@ updateDownloads();</script>
 /* Strategy blur — снять при VIP/admin */
 (function(){
   function applyStratBlur(){
-    var lvl=['guest','preview','vip','admin'].indexOf(window.currentAccess||'guest');
+    var lvlMap={guest:0,preview:1,vip:2,full:3};var lvl=lvlMap[window.currentAccess||'guest']||0;
     var inn=document.getElementById('strat-steps-inner');
     if(!inn)return;
     if(lvl>=2){ inn.style.filter='none'; inn.style.opacity='1'; inn.style.pointerEvents=''; }
