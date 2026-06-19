@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru"><head>
-<!-- MASTER TEMPLATE v2.8.2 | Rules: tab-strip+showTab | container wrapper | max 2 imp-cards | roadmap-steps | no PDF in download-bar | tease principle | SKILL_init_v2.1 | FIXES: slot-empty comments only, CODES_HASH full not admin, FILE_URLS .html placeholders, VIP lvl>=2 transform -->
+<!-- MASTER TEMPLATE v2.8.3 | Rules: tab-strip+showTab | container wrapper | max 2 imp-cards | roadmap-steps | no PDF in download-bar | tease principle | SKILL_init_v2.1 | FIXES: slot-empty comments only, CODES_HASH full not admin, FILE_URLS .html placeholders, VIP lvl>=2 transform -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1421,7 +1421,7 @@ body::before {
 // ВЕРСИЯ ДАШБОРДА — менять ТОЛЬКО ЗДЕСЬ при каждой редакции
 // Автоматически подставляется в meta-card и footer
 // ═══════════════════════════════════════════════════════════════════
-const DASHBOARD_VERSION = '2.8.2';
+const DASHBOARD_VERSION = '2.8.3';
 const DASHBOARD_DATE    = '20.05.2026';
 const DASHBOARD_LABEL   = 'v' + DASHBOARD_VERSION + ' · ' + DASHBOARD_DATE + ' · TEMPLATE';
 
@@ -1821,38 +1821,23 @@ function doDownload(section) {
 
   if (!url) { showToast('⚠ URL не задан', 'warn'); return; }
 
-  // Логируем скачивание с уровнем доступа
+  // FIX v2.8.3: fetch HEAD убран. GitHub Pages блокирует HEAD-запросы
+  // (CORS), давая ложное «файл не найден» даже если файл реально существует.
+  // Placeholder-guard: если URL = нераскрытый шаблон — показать предупреждение.
+  if (url.indexOf('{{') !== -1 || url.indexOf('XXXX') !== -1) {
+    showFileNotReady(section); return;
+  }
+
   writeLog('download', {
-    section,
-    file: label,
+    section, file: label,
     access_level: currentAccess,
     page: window.location.href,
     report: 'NKA-2026',
   });
 
-  // Check if file actually exists before triggering download
-  fetch(url, { method: 'HEAD' })
-    .then(res => {
-      if (res.ok) {
-        // File exists — trigger real download
-        const a = document.createElement('a');
-        a.href     = url;
-        a.download = label;
-        a.rel      = 'noopener';
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => document.body.removeChild(a), 200);
-        showToast('⬇ ' + (currentLang === 'ru' ? 'Скачивание: ' : 'Downloading: ') + label, 'ok');
-      } else {
-        showFileNotReady(section);
-      }
-    })
-    .catch(() => {
-      window.open(url, '_blank');
-      showToast('⬇ ' + (currentLang === 'ru' ? 'Открывается: ' : 'Opening: ') + label, 'ok');
-    });
+  window.open(url, '_blank');
+  showToast('⬇ ' + (currentLang === 'ru' ? 'Открывается: ' : 'Opening: ') + label, 'ok');
 }
-
 function showFileNotReady(section) {
   const note = document.getElementById('file-status-note');
   const text = document.getElementById('file-status-text');
