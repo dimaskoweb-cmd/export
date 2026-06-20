@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru"><head>
-<!-- MASTER TEMPLATE v2.8.3 | Rules: tab-strip+showTab | container wrapper | max 2 imp-cards | roadmap-steps | no PDF in download-bar | tease principle | SKILL_init_v2.1 | FIXES: slot-empty comments only, CODES_HASH full not admin, FILE_URLS .html placeholders, VIP lvl>=2 transform -->
+<!-- MASTER TEMPLATE v2.8.4 | Rules: tab-strip+showTab | container wrapper | max 2 imp-cards | roadmap-steps | no PDF in download-bar | tease principle | SKILL_init_v2.1 | FIXES: slot-empty comments only, CODES_HASH full not admin, FILE_URLS .html placeholders, VIP lvl>=2 transform -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1421,7 +1421,7 @@ body::before {
 // ВЕРСИЯ ДАШБОРДА — менять ТОЛЬКО ЗДЕСЬ при каждой редакции
 // Автоматически подставляется в meta-card и footer
 // ═══════════════════════════════════════════════════════════════════
-const DASHBOARD_VERSION = '2.8.3';
+const DASHBOARD_VERSION = '2.8.4';
 const DASHBOARD_DATE    = '20.05.2026';
 const DASHBOARD_LABEL   = 'v' + DASHBOARD_VERSION + ' · ' + DASHBOARD_DATE + ' · TEMPLATE';
 
@@ -1816,26 +1816,35 @@ function triggerDownload(e, section) {
 }
 
 function doDownload(section) {
-  const url   = FILE_URLS[section];
-  const label = FILE_NAMES[section]?.[currentLang] || (section + '.pdf');
+  const rawUrl = FILE_URLS[section];
+  const label  = FILE_NAMES[section]?.[currentLang] || (section + '.pdf');
 
-  if (!url) { showToast('⚠ URL не задан', 'warn'); return; }
+  if (!rawUrl) { showToast('⚠ URL не задан', 'warn'); return; }
 
-  // FIX v2.8.3: fetch HEAD убран. GitHub Pages блокирует HEAD-запросы
-  // (CORS), давая ложное «файл не найден» даже если файл реально существует.
-  // Placeholder-guard: если URL = нераскрытый шаблон — показать предупреждение.
-  if (url.indexOf('{{') !== -1 || url.indexOf('XXXX') !== -1) {
+  // Placeholder-guard
+  if (rawUrl.indexOf('{{') !== -1 || rawUrl.indexOf('XXXX') !== -1) {
     showFileNotReady(section); return;
   }
 
+  // FIX v2.8.4: строим абсолютный URL через new URL() —
+  // относительный путь (напр. 'markets_final.html') может не разрешиться
+  // правильно если браузер открывает страницу через редирект или у index.html есть query-параметры.
+  // new URL(rawUrl, base) всегда даёт правильный путь.
+  const base = window.location.href.split('?')[0].split('#')[0]; // index.html без ?# частей
+  const folder = base.substring(0, base.lastIndexOf('/') + 1);   // папка дашборда
+  const absUrl = folder + rawUrl;                                 // https://...nkagat/markets_final.html
+
+  console.log('[EIP download]', section, '\u2192', absUrl);
+
   writeLog('download', {
     section, file: label,
+    url: absUrl,
     access_level: currentAccess,
     page: window.location.href,
     report: 'NKA-2026',
   });
 
-  window.open(url, '_blank');
+  window.open(absUrl, '_blank');
   showToast('⬇ ' + (currentLang === 'ru' ? 'Открывается: ' : 'Opening: ') + label, 'ok');
 }
 function showFileNotReady(section) {
