@@ -1,4 +1,10 @@
 {
-  "preview": {},
-  "vip": {}
+  "preview": {
+    "markets": "mkt-dd77.pdf",
+    "calendar": "cal-dd77.pdf"
+  },
+  "vip": {
+    "importers": "imp-dd77.pdf",
+    "strategy": "str-dd77.pdf"
+  }
 }
