@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru"><head>
-<!-- MASTER TEMPLATE v2.8.5 | Rules: tab-strip+showTab | container wrapper | max 2 imp-cards | roadmap-steps | no PDF in download-bar | tease principle | SKILL_init_v2.1 | FIXES: slot-empty comments only, CODES_HASH full not admin, FILE_URLS .html placeholders, VIP lvl>=2 transform -->
+<!-- MASTER TEMPLATE v2.8.4 | Rules: tab-strip+showTab | container wrapper | max 2 imp-cards | roadmap-steps | no PDF in download-bar | tease principle | SKILL_init_v2.1 | FIXES: slot-empty comments only, CODES_HASH full not admin, FILE_URLS .html placeholders, VIP lvl>=2 transform -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1300,7 +1300,7 @@ body::before {
         <div id="desc-importers" style="font-size:11px;color:var(--dim)" data-ru="Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ" data-en="XJ Distributors · Polysilicon Plants · Freight Operators KZ→XJ">Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ</div>
         <!-- old desc removed -->
         <div style="display:none" data-ru="Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ" data-en="XJ Distributors · Polysilicon Plants · Freight Operators KZ→XJ">Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ</div>
-        <a id="action-importers-bar" class="cta-btn cta-btn-primary" href="#" onclick="scrollToContacts(event)" style="font-size:11px;padding:8px 14px;text-align:center;border-radius:6px;text-decoration:none" data-ru="📅 Пригласить на встречу" data-en="📅 Invite to meeting">📅 Пригласить на встречу</a>
+        <a id="action-importers" class="cta-btn cta-btn-primary" href="#" onclick="scrollToContacts(event)" style="font-size:11px;padding:8px 14px;text-align:center;border-radius:6px;text-decoration:none" data-ru="📅 Пригласить на встречу" data-en="📅 Invite to meeting">📅 Пригласить на встречу</a>
       </div>
 
       <!-- File 4: strategy — VIP → встреча / ADMIN → скачать -->
@@ -1308,7 +1308,7 @@ body::before {
         <div style="font-size:11px;font-weight:600;color:var(--bright)" data-ru="📋 Стратегия для собственника" data-en="📋 Owner Strategy Document">📋 Стратегия для собственника</div>
         <div style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(139,92,246,.15);color:var(--purple);border:1px solid rgba(139,92,246,.3);width:fit-content" data-ru="ТОЛЬКО НА ВСТРЕЧЕ" data-en="MEETING ONLY">БУМАЖНЫЙ ФОРМАТ (ОЗНАКОМЛЕНИЕ)</div>
         <div style="font-size:11px;color:var(--dim)" data-ru="3 фазы · SWOT · Roadmap · Финмодель 2026–2030" data-en="3 phases · SWOT · Roadmap · Financial model 2026–2030">3 фазы · SWOT · Roadmap · Финмодель 2026–2030</div>
-        <a id="action-strategy-bar" class="cta-btn cta-btn-primary" href="#" onclick="scrollToContacts(event)" style="font-size:11px;padding:8px 14px;text-align:center;border-radius:6px;text-decoration:none" data-ru="📅 Пригласить на встречу" data-en="📅 Invite to meeting">📅 Пригласить на встречу</a>
+        <a id="action-strategy" class="cta-btn cta-btn-primary" href="#" onclick="scrollToContacts(event)" style="font-size:11px;padding:8px 14px;text-align:center;border-radius:6px;text-decoration:none" data-ru="📅 Пригласить на встречу" data-en="📅 Invite to meeting">📅 Пригласить на встречу</a>
       </div>
 
     </div>
@@ -1470,12 +1470,12 @@ const LEVEL_NUM = { guest: 0, preview: 1, vip: 2, full: 3 };
 // ═══════════════════════════════════════════════════════════════════
 // PREVIEW уровень — анализ рынков и выставки (открытые данные)
 const FILE_URLS_PREVIEW = {
-  markets:  'mkt-c6b3.pdf',   // пример: 'markets_final.html' или 'markets-XXXX.pdf'
-  calendar: 'cal-c6b3.pdf',  // пример: 'exhibitions_final.html'
+  markets:  'markets_final.html',   // пример: 'markets_final.html' или 'markets-XXXX.pdf'
+  calendar: 'exhibitions_final.html',  // пример: 'exhibitions_final.html'
 };
 const FILE_URLS_VIP = {
-  importers: 'imp-c6b3.pdf', // пример: 'importers_final.html'
-  strategy:  'str-c6b3.pdf',  // пример: 'strategy_final.html'
+  importers: 'importers_final.html', // пример: 'importers_final.html'
+  strategy:  'strategy_final.html',  // пример: 'strategy_final.html'
 };
 // Полные URL — собираются динамически только после разблокировки
 let FILE_URLS = {};
@@ -1731,12 +1731,6 @@ function applyAccess() {
 // ═══════════════════════════════════════════════════════════════════
 // DOWNLOAD SYSTEM
 // ═══════════════════════════════════════════════════════════════════
-const DL_STYLE = 'display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);'
-  + 'font-size:11px;font-weight:500;padding:8px 16px;border-radius:8px;'
-  + 'border:1px solid var(--blue);background:transparent;color:var(--blue);'
-  + 'cursor:pointer;transition:all .25s;letter-spacing:.05em;text-decoration:none;'
-  + 'opacity:1;pointer-events:auto;text-align:center;justify-content:center;';
-
 function updateDownloads() {
   const lvl = LEVEL_NUM[currentAccess] || 0;
 
@@ -1761,23 +1755,18 @@ function updateDownloads() {
     }
   });
 
-  // VIP (lvl≥2) — transform importers & strategy: «Пригласить» → «Скачать PDF»
-  // Трансформируем ВСЕ кнопки секции (action-X) И download-bar (action-X-bar)
+  // VIP (lvl≥2) — transform importers & strategy invite → download buttons
   if (lvl >= 2) {
     const lang2 = currentLang || 'ru';
-    const dlLabel = lang2 === 'ru' ? '⬇ Скачать PDF' : '⬇ Download PDF';
     ['importers', 'strategy'].forEach(section => {
-      // Список всех id которые нужно трансформировать для этой секции
-      ['action-' + section, 'action-' + section + '-bar'].forEach(elId => {
-        const el = document.getElementById(elId);
-        if (!el) return;
-        el.className = 'dl-btn';
-        el.textContent = dlLabel;
-        el.style.cssText = DL_STYLE;
-        el.removeAttribute('data-ru');
-        el.removeAttribute('data-en');
-        el.setAttribute('href', '#');
-        el.setAttribute('onclick', `return triggerDownload(event,'${section}')`);
+      ['action-' + section, 'action-' + section + '-bar'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.className = 'dl-btn';
+          el.textContent = lang2 === 'ru' ? '⬇ Скачать PDF' : '⬇ Download PDF';
+          el.style.cssText = DL_STYLE;
+          el.setAttribute('onclick', `triggerDownload(event,'${section}')`);
+        }
       });
     });
   }
@@ -1796,25 +1785,11 @@ function updateDownloads() {
         badge.style.color = 'var(--green)';
         badge.style.border = '1px solid rgba(74,103,65,.3)';
       }
-      // Трансформируем action-X и action-X-bar
-      const dlLabelAdmin = lang === 'ru' ? '⬇ Скачать PDF' : '⬇ Download PDF';
-      ['action-' + section, 'action-' + section + '-bar'].forEach(elId => {
-        const el = document.getElementById(elId);
-        if (!el) return;
-        el.className = 'dl-btn';
-        el.textContent = dlLabelAdmin;
-        el.style.cssText = DL_STYLE;
-        el.removeAttribute('data-ru');
-        el.removeAttribute('data-en');
-        el.setAttribute('href', '#');
-        el.setAttribute('onclick', `return triggerDownload(event,'${section}')`);
-      });
-      // Legacy: если есть отдельный action id
       if (action) {
         action.className = 'dl-btn';
-        action.textContent = dlLabelAdmin;
-        action.style.cssText = DL_STYLE;
-        action.setAttribute('onclick', `return triggerDownload(event,'${section}')`);
+        action.textContent = lang === 'ru' ? '⬇ Скачать PDF' : '⬇ Download PDF';
+        action.style.cssText = 'display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;font-weight:500;padding:10px 18px;border-radius:8px;border:1px solid var(--blue);background:var(--ink3);color:var(--blue);cursor:pointer;transition:all .25s;letter-spacing:.05em;text-decoration:none;opacity:1;pointer-events:auto;text-align:center;justify-content:center';
+        action.setAttribute('onclick', `triggerDownload(event,'${section}')`);
       }
       if (card) card.style.borderColor = 'var(--line)';
     });
@@ -1851,7 +1826,7 @@ function doDownload(section) {
     showFileNotReady(section); return;
   }
 
-  // FIX v2.8.5: строим абсолютный URL через new URL() —
+  // FIX v2.8.4: строим абсолютный URL через new URL() —
   // относительный путь (напр. 'markets_final.html') может не разрешиться
   // правильно если браузер открывает страницу через редирект или у index.html есть query-параметры.
   // new URL(rawUrl, base) всегда даёт правильный путь.
