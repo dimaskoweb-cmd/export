@@ -1,5 +1,8 @@
 {
-  "preview": {},
+  "preview": {
+    "markets": "mkt-6ccf.pdf",
+    "calendar": "cal-6ccf.pdf"
+  },
   "vip": {
     "strategy": "str-6ccf.pdf"
   }
