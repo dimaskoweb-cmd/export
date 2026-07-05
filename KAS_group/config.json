@@ -4,6 +4,7 @@
     "calendar": "cal-6ccf.pdf"
   },
   "vip": {
+    "importers": "imp-6ccf.pdf",
     "strategy": "str-6ccf.pdf"
   }
 }
