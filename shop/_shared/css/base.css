@@ -1,0 +1,46 @@
+/* ============================================================
+   VVK SHOP — общий дизайн-токен слой для всех витрин /shop/*
+   Не менять точечно под один продукт — сюда только общее.
+   ============================================================ */
+:root{
+  --paper:      #efead9;   /* тон овсяной/пшеничной бумаги, фон */
+  --paper-2:    #e4dcc4;   /* карточки, чуть темнее */
+  --ink:        #231f1a;   /* основной текст, тёплый почти-чёрный */
+  --ink-soft:   #5c5648;   /* второстепенный текст */
+  --wheat-green:#5b6b3f;   /* основной акцент — цвет колоса/поля */
+  --wheat-green-dark:#404b2c;
+  --paprika:    #b5502a;   /* редкий акцент — предупреждения, CTA-обводка */
+  --line:       rgba(35,31,26,.14);
+  --card-shadow: 0 1px 0 rgba(35,31,26,.06);
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body:    "Inter", -apple-system, "Segoe UI", sans-serif;
+  --font-mono:    "JetBrains Mono", "SFMono-Regular", monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:var(--paper); color:var(--ink); font-family:var(--font-body); }
+body{ font-size:16px; line-height:1.55; }
+
+h1,h2,h3{ font-family:var(--font-display); font-weight:600; letter-spacing:-.01em; margin:0 0 .3em; }
+a{ color:var(--wheat-green-dark); }
+
+.container{ max-width:1120px; margin:0 auto; padding:0 20px; }
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5em;
+  font-family:var(--font-mono); font-size:13px; letter-spacing:.02em; text-transform:uppercase;
+  padding:.75em 1.3em; border-radius:3px; border:1px solid var(--ink);
+  background:var(--ink); color:var(--paper); cursor:pointer; transition:transform .15s ease, background .15s ease;
+}
+.btn:hover{ background:var(--wheat-green-dark); border-color:var(--wheat-green-dark); }
+.btn.secondary{ background:transparent; color:var(--ink); }
+.btn.secondary:hover{ background:var(--ink); color:var(--paper); }
+
+.badge{
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.03em; text-transform:uppercase;
+  padding:.2em .55em; border-radius:2px; border:1px solid var(--line); color:var(--ink-soft);
+}
+.badge.warn{ color:#7a3a1c; border-color:rgba(181,80,42,.4); background:rgba(181,80,42,.08); }
+
+::selection{ background:var(--wheat-green); color:var(--paper); }
