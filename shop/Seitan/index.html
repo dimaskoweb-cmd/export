@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Высший Вкус — Vysshiy Vkus | Seitan export catalog</title>
+<meta name="description" content="Высший Вкус — пшеничный сейтан премиум-класса. Каталог, состав, сборка тестового заказа для оптовых покупателей.">
+<link rel="stylesheet" href="../_shared/css/fonts.css">
+<link rel="stylesheet" href="../_shared/css/base.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="container site-bar">
+    <div class="logo">Высший Вкус</div>
+    <div class="lang-switch" id="lang-switch"></div>
+  </div>
+</header>
+
+<div class="network-notice" id="network-notice" data-i18n="network_notice"></div>
+
+<section class="hero">
+  <div class="container">
+    <h1 data-i18n="hero_title">Высший Вкус</h1>
+    <p data-i18n="hero_subtitle">Пшеничный сейтан премиум-класса. Мощность производства — 2–3 контейнера в месяц.</p>
+    <div class="hero-meta" data-i18n="brand_tagline">Растительное мясо на основе сейтана · Экспортная линейка</div>
+  </div>
+</section>
+
+<section class="about-product">
+  <div class="container">
+    <div class="about-badges">
+      <div class="about-badge">
+        <span class="about-badge-icon">🌾</span>
+        <span data-i18n="about_plantbased_title">100% растительный состав</span>
+        <span class="about-badge-sub" data-i18n="about_plantbased_sub">Без мяса, без молока, без яиц — основа рецептуры: пшеничная клейковина (сейтан)</span>
+      </div>
+      <div class="about-badge warn">
+        <span class="about-badge-icon">⏳</span>
+        <span data-i18n="about_halal_title">Халяль-сертификация</span>
+        <span class="about-badge-sub" data-i18n="about_halal_sub">В процессе оформления — статус будет обновлён по каждому SKU по факту получения</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="catalog">
+  <div class="container">
+    <div class="catalog-head">
+      <h2 data-i18n="catalog_title">Ассортимент</h2>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container">
+    <div data-i18n="footer_company">ООО «Высший Вкус» · пгт. Афипский, Краснодарский край</div>
+    <div style="margin-top:6px" data-i18n="footer_disclaimer">Информация о статусе сертификации приведена по состоянию на дату публикации и может измениться.</div>
+  </div>
+</footer>
+
+<!-- Плавающая панель "сборки тестового заказа" -->
+<div class="cart-panel collapsed" id="cart-panel">
+  <div class="cart-head" id="cart-head">
+    <span data-i18n="cart_title">Ваш тестовый заказ</span>
+    <span class="count" id="cart-count">0</span>
+  </div>
+  <div class="cart-body" id="cart-body"></div>
+  <div style="padding:0 16px 16px">
+    <button class="btn" id="cart-checkout-btn" style="width:100%; justify-content:center" data-i18n="cart_checkout">Оформить запрос</button>
+  </div>
+
+  <form class="order-form" id="order-form" novalidate>
+    <label data-i18n="form_company">Компания</label>
+    <input id="f-company" type="text" required>
+    <label data-i18n="form_contact_person">Контактное лицо</label>
+    <input id="f-contact" type="text" required>
+    <label data-i18n="form_email">Email</label>
+    <input id="f-email" type="email" required>
+    <label data-i18n="form_phone">Телефон / WhatsApp</label>
+    <input id="f-phone" type="tel" required>
+    <label data-i18n="form_market">Целевой рынок</label>
+    <input id="f-market" type="text" required>
+
+    <div class="form-section-title" data-i18n="form_delivery_address">Адрес доставки</div>
+    <div class="form-row">
+      <div>
+        <label data-i18n="form_country">Страна</label>
+        <input id="f-country" type="text" required>
+      </div>
+      <div>
+        <label data-i18n="form_postal_code">Почтовый индекс</label>
+        <input id="f-postal" type="text" required>
+      </div>
+    </div>
+    <label data-i18n="form_city">Город</label>
+    <input id="f-city" type="text" required>
+    <div class="form-row">
+      <div>
+        <label data-i18n="form_street">Улица</label>
+        <input id="f-street" type="text" required>
+      </div>
+      <div>
+        <label data-i18n="form_building">Дом</label>
+        <input id="f-building" type="text" required>
+      </div>
+      <div>
+        <label data-i18n="form_apt_office">Кв. / офис</label>
+        <input id="f-apt" type="text">
+      </div>
+    </div>
+
+    <label data-i18n="form_comment">Комментарий</label>
+    <textarea id="f-comment"></textarea>
+    <div class="form-actions">
+      <button type="button" class="btn" id="submit-email" data-i18n="form_submit_email">Отправить письмом</button>
+      <button type="button" class="btn secondary" id="submit-copy" data-i18n="form_submit_copy">Скопировать текст заказа</button>
+    </div>
+    <div class="form-actions">
+      <button type="button" class="btn secondary" id="print-proforma" data-i18n="form_print_proforma">Сформировать pro-forma (PDF/печать)</button>
+    </div>
+  </form>
+
+  <div class="thankyou" id="thankyou">
+    <div class="thankyou-title" data-i18n="thankyou_title">Спасибо за заказ!</div>
+    <div class="thankyou-text" data-i18n="thankyou_message">Я проведу расчёт сроков и деталей и обязательно вернусь к вам с ним по готовности для подтверждения.</div>
+  </div>
+</div>
+
+<script src="../_shared/js/i18n-core.js"></script>
+<script src="../_shared/js/cart-core.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
