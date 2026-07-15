@@ -1,0 +1,311 @@
+{
+  "_meta": {
+    "brand": "Высший Вкус",
+    "source": "Прайс-лист FCA пгт. Афипский, май 2026 (Prais_2026.pdf) + export-economics-3konteynera.md",
+    "currency": "RUB",
+    "price_basis": "EXW / FCA пгт. Афипский, розничная фасовка",
+    "note_pricing": "Указанные цены — розничная брендированная упаковка. Bulk/foodservice цена для экспорта не подтверждена производителем (см. открытый вопрос D-8).",
+    "note_nutrition": "Данные по белкам/жирам/углеводам/ккал отсутствуют в прайс-листе кроме отмеченных случаев. Не досочинять — оставлять null до получения от технолога (открытый вопрос D-7).",
+    "note_halal": "Халяль-сертификат не получен. На витрине статус должен отображаться как 'в процессе', а не как факт.",
+    "translation_status": {
+      "ru": "verified_source",
+      "zh": "verified_source",
+      "en": "draft_needs_review",
+      "hi": "not_translated"
+    }
+  },
+  "categories": [
+    { "id": "boiled_sausage", "name": { "ru": "Варёные колбасы", "en": "Boiled sausages", "zh": "熟制香肠", "hi": "" } },
+    { "id": "smoked_dried", "name": { "ru": "Вялено-копчёные колбасы", "en": "Dry-smoked sausages", "zh": "风干熏制香肠", "hi": "" } },
+    { "id": "seitan", "name": { "ru": "Сейтан", "en": "Seitan", "zh": "面筋（素肉）", "hi": "" } },
+    { "id": "franks", "name": { "ru": "Сосиски и сардельки", "en": "Franks & sausages", "zh": "小麦香肠/维也纳香肠", "hi": "" } },
+    { "id": "pate", "name": { "ru": "Паштеты", "en": "Pâtés", "zh": "小麦酱（肉酱）", "hi": "" } }
+  ],
+  "products": [
+    {
+      "id": "doktorskaya",
+      "sku_no": 1,
+      "category": "boiled_sausage",
+      "name": { "ru": "Колбаса пшеничная Классика со вкусом Докторской", "en": "Wheat Sausage \"Classic – Doktorskaya style\"", "zh": "经典小麦香肠，带有医生风味", "hi": "" },
+      "weight_g": 300,
+      "price_rub": { "tier_2pallet": 344, "tier_1container": 273 },
+      "composition": {
+        "ru": "клейковина пшеничная гидратированная, вода питьевая, масло подсолнечное рафинированное дезодорированное, масло кокосовое рафинированное дезодорированное, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, дрожжевой экстракт, стабилизатор, комплексная пищевая добавка: декстроза, мальтодекстрин, черный перец, мускат, кардамон, чили, горчица, ароматизатор пищевой (жареного мяса) идентичный натуральному, ароматизатор дыма, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
+        "zh": "水合小麦筋、饮用水、精炼脱臭葵花籽油、精炼脱臭椰子油、增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；食用盐、酵母提取物、稳定剂、复合食品添加剂：葡萄糖、麦芽糊精、黑胡椒、肉豆蔻、豆蔻、辣椒、芥末、食品香精（烤肉味，类天然）、烟熏香精、甜菜红、辣椒提取物、抗氧化剂（柠檬酸）。",
+        "en": "hydrated wheat gluten, drinking water, refined deodorized sunflower oil, refined deodorized coconut oil, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, yeast extract, stabilizer, complex food additive (dextrose, maltodextrin, black pepper, nutmeg, cardamom, chili, mustard), nature-identical roasted-meat flavouring, smoke flavouring, betanin, paprika extract, antioxidant (citric acid).",
+        "hi": ""
+      },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending"
+    },
+    {
+      "id": "osobaya",
+      "sku_no": 2,
+      "category": "boiled_sausage",
+      "name": { "ru": "Колбаса пшеничная Особая", "en": "Wheat Sausage \"Special\"", "zh": "特制小麦香肠", "hi": "" },
+      "weight_g": 300,
+      "price_rub": { "tier_2pallet": 360, "tier_1container": 290 },
+      "composition": {
+        "ru": "клейковина гидратированная, вода питьевая, масло подсолнечное рафинированное дезодорированное, масло кокосовое рафинированное дезодорированное, загустители: гуаровая камедь, каррагинан, тара камедь; соль пищевая, дрожжевой экстракт, кориандр, комплексная пищевая добавка: декстроза, мальтодекстрин, пряности и экстракты специй, антиокислитель, ароматизатор дыма, ароматизатор бекон, ароматизатор пищевой идентичный натуральному, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
+        "zh": "水合小麦筋、饮用水、精炼脱臭葵花籽油、精炼脱臭椰子油、增稠剂：瓜尔豆胶、卡拉胶、塔拉胶；食用盐、酵母提取物、芫荽、复合食品添加剂：葡萄糖、麦芽糊精、香料及香料提取物、抗氧化剂、烟熏香精、培根香精、类天然食品香精、甜菜红（贝塔宁）、辣椒提取物、抗氧化剂（柠檬酸）。",
+        "en": "hydrated gluten, drinking water, refined deodorized sunflower oil, refined deodorized coconut oil, thickeners (guar gum, carrageenan, tara gum), salt, yeast extract, coriander, complex food additive (dextrose, maltodextrin, spices and spice extracts), antioxidant, smoke flavouring, bacon flavouring, nature-identical flavouring, betanin, paprika extract, antioxidant (citric acid).",
+        "hi": ""
+      },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending"
+    },
+    {
+      "id": "tallinskaya_150",
+      "sku_no": 3,
+      "category": "smoked_dried",
+      "name": { "ru": "Колбаса пшеничная вялено-копчёная Таллинская (малая)", "en": "Dry-smoked Wheat Sausage \"Tallinskaya\" (small)", "zh": "塔林干熏小麦香肠（小）", "hi": "" },
+      "weight_g": 150,
+      "price_rub": { "tier_2pallet": 252, "tier_1container": 200 },
+      "composition": {
+        "ru": "клейковина пшеничная гидратированная, масло кокосовое рафинированное дезодорированное, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; полисахарид альгинат натрия, соль пищевая, дрожжевой экстракт, стабилизатор, комплексная пищевая добавка: ароматизатор «Сервелат», пряности и экстракты специй, декстроза, мальтодекстрин, ароматизатор пищевой идентичный натуральному, антиокислитель, ароматизатор дыма, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
+        "zh": "水合小麦筋、精炼脱臭椰子油、增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；海藻酸钠（多糖）、食用盐、酵母提取物、稳定剂、复合食品添加剂：风味剂'塞尔维拉特'、香料及香料提取物、葡萄糖、麦芽糊精、类天然食品香精、抗氧化剂、烟熏香精、甜菜红（贝塔宁）、辣椒提取物、抗氧化剂（柠檬酸）。",
+        "en": "hydrated wheat gluten, refined deodorized coconut oil, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), sodium alginate, salt, yeast extract, stabilizer, complex food additive (\"Servelat\" flavouring, spices and spice extracts, dextrose, maltodextrin), nature-identical flavouring, antioxidant, smoke flavouring, betanin, paprika extract, antioxidant (citric acid).",
+        "hi": ""
+      },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending"
+    },
+    {
+      "id": "tallinskaya_250",
+      "sku_no": "3b",
+      "category": "smoked_dried",
+      "name": { "ru": "Колбаса пшеничная вялено-копчёная Таллинская (большая)", "en": "Dry-smoked Wheat Sausage \"Tallinskaya\" (large)", "zh": "塔林干熏小麦香肠（大）", "hi": "" },
+      "weight_g": 250,
+      "price_rub": { "tier_2pallet": 350, "tier_1container": 305 },
+      "composition": { "ru": "см. Таллинская (малая) — рецептура идентична, отличается только фасовка.", "zh": "见塔林干熏小麦香肠（小）— 配方相同，仅包装规格不同。", "en": "Same recipe as the small pack — see Tallinskaya (small); only pack size differs.", "hi": "" },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending"
+    },
+    {
+      "id": "pepperoni",
+      "sku_no": 4,
+      "category": "smoked_dried",
+      "name": { "ru": "Колбаса пшеничная вялено-копчёная Пепперони", "en": "Dry-smoked Wheat Sausage \"Pepperoni\"", "zh": "意大利辣香肠（干熏小麦香肠）", "hi": "" },
+      "weight_g": 120,
+      "price_rub": { "tier_2pallet": 246, "tier_1container": 195 },
+      "composition": {
+        "ru": "клейковина пшеничная гидратированная, масло кокосовое рафинированное дезодорированное, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, дрожжевой экстракт, стабилизатор, комплексная пищевая добавка: декстроза, мальтодекстрин, перец белый, перец черный, мускат, кардамон, чили, перец черный горошком, горчица, ароматизатор (жареного мяса) идентичный натуральному, ароматизатор дыма, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
+        "zh": "水合小麦筋、精炼脱臭椰子油、增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；食用盐、酵母提取物、稳定剂、复合食品添加剂：葡萄糖、麦芽糊精、白胡椒、黑胡椒、肉豆蔻、豆蔻、辣椒、整粒黑胡椒、芥末、食品香精（烤肉味，类天然）、烟熏香精、甜菜红（贝塔宁）、辣椒提取物、抗氧化剂（柠檬酸）。",
+        "en": "hydrated wheat gluten, refined deodorized coconut oil, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, yeast extract, stabilizer, complex food additive (dextrose, maltodextrin, white pepper, black pepper, nutmeg, cardamom, chili, whole black peppercorn, mustard), nature-identical roasted-meat flavouring, smoke flavouring, betanin, paprika extract, antioxidant (citric acid).",
+        "hi": ""
+      },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending"
+    },
+    {
+      "id": "vegachicken",
+      "sku_no": 5,
+      "category": "seitan",
+      "name": { "ru": "Сейтан ВегаЧикен", "en": "Seitan \"VegaChicken\"", "zh": "素肉维加鸡肉", "hi": "" },
+      "weight_g": 200,
+      "price_rub": { "tier_2pallet": 236, "tier_1container": 190 },
+      "composition": {
+        "ru": "клейковина пшеничная гидратированная, вода питьевая, масло кокосовое рафинированное дезодорированное, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, экстракт чили, стабилизатор, комплексная пищевая добавка: ароматизатор «Курица», мальтодекстрин, декстроза.",
+        "zh": "水合小麦筋、饮用水、精炼脱臭椰子油、增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；食用盐、辣椒提取物、稳定剂、复合食品添加剂：风味剂'鸡肉'、麦芽糊精、葡萄糖。",
+        "en": "hydrated wheat gluten, drinking water, refined deodorized coconut oil, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, chili extract, stabilizer, complex food additive (\"Chicken\" flavouring, maltodextrin, dextrose).",
+        "hi": ""
+      },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending",
+      "ingredient_flag": "Ароматизатор «Курица» — источник (натуральный/идентичный натуральному) не указан в составе; требует уточнения у производителя для халяль-аудита (см. вопрос D-11)."
+    },
+    {
+      "id": "krabchiki",
+      "sku_no": 6,
+      "category": "seitan",
+      "name": { "ru": "Сейтан Крабчики", "en": "Seitan \"Crab-style\"", "zh": "面筋蟹", "hi": "" },
+      "weight_g": 200,
+      "price_rub": { "tier_2pallet": 252, "tier_1container": 200 },
+      "composition": {
+        "ru": "клейковина пшеничная гидратированная, вода питьевая, масло кокосовое рафинированное дезодорированное, загустители: гуаровая камедь, каррагинан, камедь тары; соль пищевая, экстракт чили, стабилизатор, комплексная пищевая добавка: ароматизатор «Креветка», декстроза, антиокислитель (лимонная кислота), экстракт паприки, бетанин.",
+        "zh": "水合小麦筋、饮用水、精炼脱臭椰子油、增稠剂：瓜尔豆胶、卡拉胶、塔拉胶；食用盐、辣椒提取物、稳定剂、复合食品添加剂：香精'虾味'、葡萄糖、抗氧化剂（柠檬酸）、辣椒提取物、甜菜红（贝塔宁）。",
+        "en": "hydrated wheat gluten, drinking water, refined deodorized coconut oil, thickeners (guar gum, carrageenan, tara gum), salt, chili extract, stabilizer, complex food additive (\"Shrimp\" flavouring, dextrose, antioxidant citric acid, paprika extract, betanin).",
+        "hi": ""
+      },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending",
+      "ingredient_flag": "Ароматизатор «Креветка» — источник не указан (может быть животного происхождения); требует уточнения перед халяль-аудитом."
+    },
+    {
+      "id": "shpikachki",
+      "sku_no": 7,
+      "category": "franks",
+      "name": { "ru": "Сардельки пшеничные Шпикачки", "en": "Wheat Franks \"Shpikachki\"", "zh": "小麦香肠", "hi": "" },
+      "weight_g": 300,
+      "price_rub": { "tier_2pallet": 340, "tier_1container": 267 },
+      "composition": {
+        "ru": "клейковина пшеничная гидратированная, вода питьевая, масло подсолнечное рафинированное дезодорированное, масло кокосовое рафинированное дезодорированное, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, дрожжевой экстракт, стабилизатор, комплексная пищевая добавка: декстроза, мальтодекстрин, ароматизатор (жаренное мясо) идентичный натуральному, кардамон, черный перец, мускат, горчица, ароматизатор дыма, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
+        "zh": "水合小麦筋、饮用水、精炼脱臭葵花籽油、精炼脱臭椰子油、增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；食用盐、酵母提取物、稳定剂、复合食品添加剂：葡萄糖、麦芽糊精、食品香精（烤肉味，类天然）、豆蔻、黑胡椒、肉豆蔻、芥末、烟熏香精、甜菜红（贝塔宁）、辣椒提取物、抗氧化剂（柠檬酸）。",
+        "en": "hydrated wheat gluten, drinking water, refined deodorized sunflower oil, refined deodorized coconut oil, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, yeast extract, stabilizer, complex food additive (dextrose, maltodextrin, nature-identical roasted-meat flavouring, cardamom, black pepper, nutmeg, mustard), smoke flavouring, betanin, paprika extract, antioxidant (citric acid).",
+        "hi": ""
+      },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": 18.6, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending"
+    },
+    {
+      "id": "nezhnye",
+      "sku_no": 8,
+      "category": "franks",
+      "name": { "ru": "Сосиски пшеничные Нежные", "en": "Wheat Sausages \"Tender\"", "zh": "嫩小麦香肠", "hi": "" },
+      "weight_g": 200,
+      "price_rub": { "tier_2pallet": 240, "tier_1container": 190 },
+      "composition": {
+        "ru": "клейковина пшеничная гидратированная, вода питьевая, масло подсолнечное рафинированное дезодорированное, масло кокосовое рафинированное дезодорированное, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, дрожжевой экстракт, стабилизатор, комплексная пищевая добавка: декстроза, мальтодекстрин, перец белый, перец черный, кориандр, паприка, горчица, ароматизатор пищевой идентичный натуральному, ароматизатор дыма, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
+        "zh": null,
+        "en": "hydrated wheat gluten, drinking water, refined deodorized sunflower oil, refined deodorized coconut oil, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, yeast extract, stabilizer, complex food additive (dextrose, maltodextrin, white pepper, black pepper, coriander, paprika, mustard), nature-identical flavouring, smoke flavouring, betanin, paprika extract, antioxidant (citric acid).",
+        "hi": ""
+      },
+      "composition_note": "Китайский текст состава для этой позиции не захвачен полностью в выдержке из прайса — сверить с оригиналом Prais_2026.pdf перед публикацией.",
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending"
+    },
+    {
+      "id": "pikantnye",
+      "sku_no": 9,
+      "category": "franks",
+      "name": { "ru": "Сосиски пшеничные Пикантные", "en": "Wheat Sausages \"Piquant\"", "zh": "辣味小麦香肠", "hi": "" },
+      "weight_g": 200,
+      "price_rub": { "tier_2pallet": 240, "tier_1container": 190 },
+      "composition": {
+        "ru": "клейковина пшеничная гидратированная, вода питьевая, масло подсолнечное рафинированное дезодорированное, масло кокосовое рафинированное, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, стабилизатор, дрожжевой экстракт, комплексная пищевая добавка: пряности и экстракты специй (кардамон, мускат, чили, горчица), декстроза, мальтодекстрин, ароматизатор пищевой, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
+        "zh": "水合小麦筋、饮用水、精炼脱臭葵花籽油、精炼脱臭椰子油、增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；食用盐、稳定剂、酵母提取物、复合食品添加剂：香料及香料提取物（豆蔻、肉豆蔻、辣椒、芥末）、葡萄糖、麦芽糊精、食品香精、甜菜红（贝塔宁）、辣椒提取物、抗氧化剂（柠檬酸）。",
+        "en": "hydrated wheat gluten, drinking water, refined deodorized sunflower oil, refined coconut oil, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, stabilizer, yeast extract, complex food additive (spices and spice extracts: cardamom, nutmeg, chili, mustard), dextrose, maltodextrin, flavouring, betanin, paprika extract, antioxidant (citric acid).",
+        "hi": ""
+      },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending"
+    },
+    {
+      "id": "botanic_original",
+      "sku_no": 10,
+      "category": "franks",
+      "name": { "ru": "Сосиски пшеничные Botanic Original", "en": "Wheat Sausages \"Botanic Original\"", "zh": "植物原味小麦香肠", "hi": "" },
+      "weight_g": 200,
+      "price_rub": { "tier_2pallet": 245, "tier_1container": 192 },
+      "composition": {
+        "ru": "клейковина пшеничная гидратированная, вода питьевая, масло подсолнечное рафинированное дезодорированное, масло кокосовое рафинированное дезодорированное, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, дрожжевой экстракт, комплексная пищевая добавка: декстроза, мальтодекстрин, мускатный орех, черный перец, кардамон, кориандр, горчица, мята, ароматизатор со вкусом чернослива, ароматизатор пищевой, ароматизатор дыма, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
+        "zh": "水合小麦筋、饮用水、精炼脱臭葵花籽油、精炼脱臭椰子油、增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；食用盐、酵母提取物、复合食品添加剂：葡萄糖、麦芽糊精、肉豆蔻、黑胡椒、豆蔻、芫荽、芥末、薄荷、李子（西梅）风味香精、食用香精、烟熏香精、甜菜红（贝塔宁）、辣椒提取物、抗氧化剂（柠檬酸）。",
+        "en": "hydrated wheat gluten, drinking water, refined deodorized sunflower oil, refined deodorized coconut oil, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, yeast extract, complex food additive (dextrose, maltodextrin, nutmeg, black pepper, cardamom, coriander, mustard, mint), prune-flavour flavouring, food flavouring, smoke flavouring, betanin, paprika extract, antioxidant (citric acid).",
+        "hi": ""
+      },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending"
+    },
+    {
+      "id": "delicious_classic",
+      "sku_no": 11,
+      "category": "franks",
+      "name": { "ru": "Сосиски пшеничные Delicious Classic", "en": "Wheat Sausages \"Delicious Classic\"", "zh": "美味经典的小麦香肠", "hi": "" },
+      "weight_g": 200,
+      "price_rub": { "tier_2pallet": 245, "tier_1container": 192 },
+      "composition": {
+        "ru": "клейковина пшеничная гидратированная, вода питьевая, масло подсолнечное рафинированное дезодорированное, масло кокосовое рафинированное дезодорированное, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, дрожжевой экстракт, стабилизатор, комплексная пищевая добавка: декстроза, мальтодекстрин, кориандр, паприка, мускат, тмин, чили, горчица, растительный гидролизат, ароматизаторы (жареного мяса, мясной) идентичный натуральному, ароматизатор дыма, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
+        "zh": "水合小麦筋、饮用水、精炼脱臭葵花籽油、精炼脱臭椰子油、增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；食用盐、酵母提取物、稳定剂、复合食品添加剂：葡萄糖、麦芽糊精、香菜籽、辣椒粉、肉豆蔻、孜然、辣椒（干）、芥末、植物水解物、食品香精（烤肉味、肉味，类天然）、烟熏香精、甜菜红（贝塔宁）、辣椒提取物、抗氧化剂（柠檬酸）。",
+        "en": "hydrated wheat gluten, drinking water, refined deodorized sunflower oil, refined deodorized coconut oil, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, yeast extract, stabilizer, complex food additive (dextrose, maltodextrin, coriander, paprika, nutmeg, cumin, chili, mustard, vegetable hydrolysate), nature-identical roasted-meat/meaty flavourings, smoke flavouring, betanin, paprika extract, antioxidant (citric acid).",
+        "hi": ""
+      },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending",
+      "ingredient_flag": "«Растительный гидролизат» — конкретный источник не указан; требует уточнения у производителя (вопрос D-12)."
+    },
+    {
+      "id": "s_gribami",
+      "sku_no": 12,
+      "category": "franks",
+      "name": { "ru": "Сосиски пшеничные с Грибами", "en": "Wheat Sausages with Mushrooms", "zh": "蘑菇小麦香肠", "hi": "" },
+      "weight_g": 200,
+      "price_rub": { "tier_2pallet": 283, "tier_1container": 220 },
+      "composition": {
+        "ru": "клейковина пшеничная гидратированная, вода питьевая, масло кокосовое рафинированное дезодорированное, масло подсолнечное рафинированное дезодорированное, грибы сушеные шиитаке, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, дрожжевой экстракт, стабилизатор, комплексная пищевая добавка: декстроза, мальтодекстрин, мускат, горчица, кориандр, ароматизатор лесных грибов, ароматизатор дыма, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
+        "zh": "水合小麦筋、饮用水、精炼脱臭椰子油、精炼脱臭葵花籽油、干香菇、增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；食用盐、酵母提取物、稳定剂、复合食品添加剂：葡萄糖、麦芽糊精、肉豆蔻、芥末、芫荽、森林蘑菇香精、烟熏香精、甜菜红（贝塔宁）、辣椒提取物、抗氧化剂（柠檬酸）。",
+        "en": "hydrated wheat gluten, drinking water, refined deodorized coconut oil, refined deodorized sunflower oil, dried shiitake mushrooms, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, yeast extract, stabilizer, complex food additive (dextrose, maltodextrin, nutmeg, mustard, coriander), forest-mushroom flavouring, smoke flavouring, betanin, paprika extract, antioxidant (citric acid).",
+        "hi": ""
+      },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending"
+    },
+    {
+      "id": "pate_gribnoy",
+      "sku_no": 13,
+      "category": "pate",
+      "name": { "ru": "Паштет пшеничный с грибами", "en": "Wheat Pâté with Mushrooms", "zh": "蘑菇小麦酱", "hi": "" },
+      "weight_g": 125,
+      "price_rub": { "tier_2pallet": 283, "tier_1container": 225 },
+      "composition": {
+        "ru": "клейковина пшеничная гидратированная, вода питьевая, масло подсолнечное рафинированное, масло кокосовое рафинированное дезодорированное, грибы сушеные: шиитаке, белые; загустители: гуаровая камедь, каррагинан, тара камедь; соль пищевая, дрожжевой экстракт, стабилизатор, комплексная пищевая добавка: пряности и экстракты специй, декстроза, мальтодекстрин, антиокислитель.",
+        "zh": "水合小麦筋、饮用水、精炼葵花籽油、精炼脱臭椰子油、干香菇、干牛肝菌；增稠剂：瓜尔豆胶、卡拉胶、塔拉胶；食用盐、酵母提取物、稳定剂、复合食品添加剂：香料及香料提取物、葡萄糖、麦芽糊精；抗氧化剂。",
+        "en": "hydrated wheat gluten, drinking water, refined sunflower oil, refined deodorized coconut oil, dried mushrooms (shiitake, porcini), thickeners (guar gum, carrageenan, tara gum), salt, yeast extract, stabilizer, complex food additive (spices and spice extracts, dextrose, maltodextrin), antioxidant.",
+        "hi": ""
+      },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending"
+    },
+    {
+      "id": "pate_chicken_free",
+      "sku_no": 14,
+      "category": "pate",
+      "name": { "ru": "Паштет пшеничный Чикен-Фри", "en": "Wheat Pâté \"Chicken-Free\"", "zh": "炸鸡小麦酱", "hi": "" },
+      "weight_g": 125,
+      "price_rub": { "tier_2pallet": 262, "tier_1container": 208 },
+      "composition": {
+        "ru": "клейковина пшеничная гидратированная, вода питьевая, масло подсолнечное рафинированное дезодорированное, масло кокосовое рафинированное дезодорированное, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, экстракт чили, стабилизатор, комплексная пищевая добавка: ароматизатор «Курица», горчица, мальтодекстрин, декстроза.",
+        "zh": "水合小麦筋、饮用水、精炼脱臭葵花籽油、精炼脱臭椰子油；增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；食用盐、辣椒提取物、稳定剂、复合食品添加剂：鸡肉香精、芥末、麦芽糊精、葡萄糖。",
+        "en": "hydrated wheat gluten, drinking water, refined deodorized sunflower oil, refined deodorized coconut oil, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, chili extract, stabilizer, complex food additive (\"Chicken\" flavouring, mustard, maltodextrin, dextrose).",
+        "hi": ""
+      },
+      "allergens": ["gluten"],
+      "shelf_life_months": 12,
+      "storage_temp_c": -18,
+      "nutrition_per_100g": { "protein_g": null, "fat_g": null, "carb_g": null, "kcal": null },
+      "halal_status": "pending",
+      "ingredient_flag": "Ароматизатор «Курица» — источник не указан; требует уточнения (вопрос D-11)."
+    }
+  ]
+}
