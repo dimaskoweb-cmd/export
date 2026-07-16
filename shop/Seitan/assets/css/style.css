@@ -2,7 +2,7 @@ header.site{
   position:sticky; top:0; z-index:50; background:var(--paper); border-bottom:1px solid var(--line);
 }
 .site-bar{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
-.logo{ font-family:var(--font-display); font-size:20px; font-weight:600; }
+.site-logo{ height:40px; width:auto; display:block; }
 .lang-switch{ display:flex; gap:6px; }
 .lang-switch button{
   font-family:var(--font-mono); font-size:12px; padding:6px 10px; border-radius:3px;
@@ -155,8 +155,9 @@ header.site{
 .card-detail dd{ margin:2px 0 0; }
 
 .cart-panel{
-  position:fixed; right:16px; bottom:16px; width:min(360px, calc(100vw - 32px));
-  background:var(--paper); border:1px solid var(--ink); border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,.18);
+  position:fixed; right:16px; bottom:16px; width:min(470px, calc(100vw - 32px));
+  background:rgba(239,234,217,.82); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  border:1px solid var(--ink); border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,.18);
   z-index:60; max-height:80vh; display:flex; flex-direction:column; overflow-y:auto;
 }
 .cart-panel.collapsed .cart-body{ display:none; }
@@ -167,11 +168,12 @@ header.site{
   border-bottom:1px solid var(--line);
 }
 .cart-summary-line:empty{ display:none; }
-.summary-row{ display:flex; justify-content:space-between; gap:8px; padding:2px 0; }
+.summary-row{ display:flex; justify-content:space-between; align-items:baseline; gap:8px; padding:2px 0; white-space:nowrap; overflow:hidden; }
+.summary-row .summary-name{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .summary-qty{ font-family:var(--font-mono); color:var(--ink); flex-shrink:0; }
 .cart-body{ padding:0 16px 16px; overflow-y:auto; }
 .cart-item{ display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid var(--line); font-size:13px; }
-.cart-item .name{ flex:1; }
+.cart-item .name{ flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .cart-item input[type=number]{ width:52px; font-family:var(--font-mono); padding:4px; border:1px solid var(--line); border-radius:3px; }
 .cart-item .remove{ color:var(--paprika); cursor:pointer; font-size:12px; background:none; border:none; }
 .cart-empty{ padding:20px 0; color:var(--ink-soft); font-size:13px; text-align:center; }
