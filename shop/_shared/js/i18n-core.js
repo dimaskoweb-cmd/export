@@ -10,6 +10,7 @@
 class VVKi18n {
   constructor(opts){
     this.dictPath = opts.dictPath || 'data/i18n/';
+    this.version = opts.version || '';
     this.langs = opts.langs || ['ru','en'];
     this.lang = opts.default || 'ru';
     this.dicts = {};
@@ -19,7 +20,7 @@ class VVKi18n {
   async init(){
     await Promise.all(this.langs.map(async l => {
       try{
-        const res = await fetch(`${this.dictPath}${l}.json`);
+        const res = await fetch(`${this.dictPath}${l}.json${this.version ? '?' + this.version : ''}`);
         this.dicts[l] = await res.json();
       }catch(e){
         console.error('[i18n] не удалось загрузить словарь', l, e);
