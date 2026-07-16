@@ -39,7 +39,12 @@
     document.getElementById('network-notice').classList.toggle('visible', i18n.lang === 'zh');
   }
 
-  const LANG_FLAGS = { ru: '🇷🇺', en: '🇬🇧', zh: '🇨🇳', hi: '🇮🇳' };
+  const LANG_FLAGS = {
+    ru: `<svg viewBox="0 0 30 20" width="20" height="14"><rect width="30" height="20" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#1435a1"/><rect y="13.33" width="30" height="6.67" fill="#d52b1e"/></svg>`,
+    en: `<svg viewBox="0 0 30 20" width="20" height="14"><rect width="30" height="20" fill="#00247d"/><path d="M0 0L30 20M30 0L0 20" stroke="#fff" stroke-width="4"/><path d="M0 0L30 20M30 0L0 20" stroke="#cf142b" stroke-width="1.6"/><path d="M15 0V20M0 10H30" stroke="#fff" stroke-width="6.6"/><path d="M15 0V20M0 10H30" stroke="#cf142b" stroke-width="4"/></svg>`,
+    zh: `<svg viewBox="0 0 30 20" width="20" height="14"><rect width="30" height="20" fill="#de2910"/><g fill="#ffde00"><circle cx="6" cy="6" r="2.6"/><circle cx="12.5" cy="2.3" r="0.8"/><circle cx="14.7" cy="6.9" r="0.8"/><circle cx="14" cy="10.7" r="0.8"/><circle cx="11" cy="9.5" r="0.8"/></g></svg>`,
+    hi: `<svg viewBox="0 0 30 20" width="20" height="14"><rect width="30" height="6.67" fill="#ff9933"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#138808"/><circle cx="15" cy="10" r="2.2" fill="none" stroke="#000080" stroke-width="0.5"/></svg>`
+  };
 
   function pad(n){ return String(n).padStart(2, '0'); }
 
@@ -216,7 +221,12 @@
         <div class="comp-preview">${compositionPreview(comp)}</div>
         <div class="card-actions">
           <button class="btn secondary" data-action="expand">${i18n.t('card_details')}</button>
-          <button class="btn" data-action="add">${inCart ? i18n.t('card_added') + ' ✓' : i18n.t('card_add')}</button>
+          <div class="qty-stepper">
+            <button type="button" data-action="qty-minus" aria-label="-">−</button>
+            <input type="number" min="1" value="1" data-qty-input>
+            <button type="button" data-action="qty-plus" aria-label="+">+</button>
+          </div>
+          <button class="btn" data-action="add">${inCart ? i18n.t('card_added') + ' ✓ (' + inCart + ')' : i18n.t('card_add')}</button>
         </div>
         <div class="card-detail">
           <dt>${i18n.t('card_composition')}</dt><dd>${comp}</dd>
@@ -230,11 +240,20 @@
 
     grid.querySelectorAll('.card').forEach(card => {
       const id = card.getAttribute('data-id');
+      const qtyInput = card.querySelector('[data-qty-input]');
+
       card.querySelector('[data-action="expand"]').addEventListener('click', () => {
         card.classList.toggle('expanded');
       });
+      card.querySelector('[data-action="qty-minus"]').addEventListener('click', () => {
+        qtyInput.value = Math.max(1, (parseInt(qtyInput.value, 10) || 1) - 1);
+      });
+      card.querySelector('[data-action="qty-plus"]').addEventListener('click', () => {
+        qtyInput.value = (parseInt(qtyInput.value, 10) || 1) + 1;
+      });
       card.querySelector('[data-action="add"]').addEventListener('click', () => {
-        cart.add(id, 1);
+        const qty = Math.max(1, parseInt(qtyInput.value, 10) || 1);
+        cart.add(id, qty);
         renderCatalog();
         renderCart();
       });
@@ -244,13 +263,23 @@
   function renderCart(){
     const body = document.getElementById('cart-body');
     const countEl = document.getElementById('cart-count');
+    const summaryEl = document.getElementById('cart-summary-line');
     const ids = Object.keys(cart.items);
     countEl.textContent = cart.count();
 
     if (ids.length === 0){
+      summaryEl.textContent = '';
       body.innerHTML = `<div class="cart-empty">${i18n.t('cart_empty')}</div>`;
       return;
     }
+
+    // Краткая сводка "что и сколько" — видна и когда панель свёрнута
+    summaryEl.textContent = ids.map(id => {
+      const p = productById(id);
+      if (!p) return '';
+      const name = p.name[i18n.lang] || p.name.en || p.name.ru;
+      return `${name} ×${cart.items[id]}`;
+    }).filter(Boolean).join(' · ');
 
     body.innerHTML = ids.map(id => {
       const p = productById(id);
@@ -311,110 +340,14 @@
     return true;
   }
 
-  function showThankYou(){
+  let lastOrderEmail = '';
+
+  function showThankYou(email){
+    lastOrderEmail = email || '';
     document.getElementById('order-form').classList.remove('open');
-    document.getElementById('thankyou').classList.add('visible');
-  }
-
-  function escapeHtml(str){
-    return String(str || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  }
-
-  function openProforma(formData){
-    const ids = Object.keys(cart.items);
-    const rows = ids.map((id, i) => {
-      const p = productById(id);
-      if (!p) return '';
-      const qty = cart.items[id];
-      const totalKg = (p.weight_g * qty / 1000).toFixed(2);
-      return `<tr>
-        <td>${i + 1}</td>
-        <td>${escapeHtml(p.name.en || p.name.ru)}</td>
-        <td class="num">${p.weight_g} g</td>
-        <td class="num">${qty}</td>
-        <td class="num">${totalKg} kg</td>
-      </tr>`;
-    }).join('');
-
-    const totalPacks = ids.reduce((sum, id) => sum + cart.items[id], 0);
-    const totalKg = ids.reduce((sum, id) => {
-      const p = productById(id);
-      return sum + (p ? p.weight_g * cart.items[id] / 1000 : 0);
-    }, 0).toFixed(2);
-
-    const now = new Date();
-    const ref = 'PF-' + now.toISOString().slice(0,10).replace(/-/g,'') + '-' + String(now.getTime()).slice(-4);
-    const dateStr = now.toISOString().slice(0,10);
-
-    const addressLine = [formData.street, formData.building, formData.apt].filter(Boolean).join(' ');
-
-    const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<title>Pro-Forma Invoice ${ref}</title>
-<style>
-  @page{ size:A4; margin:18mm; }
-  body{ font-family:'Inter',Arial,sans-serif; font-size:12px; color:#231f1a; }
-  h1{ font-size:20px; margin:0 0 4px; }
-  .ref{ font-family:'JetBrains Mono',monospace; font-size:11px; color:#5c5648; margin-bottom:20px; }
-  .cols{ display:flex; justify-content:space-between; gap:24px; margin-bottom:20px; }
-  .col{ flex:1; }
-  .col h2{ font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:#5b6b3f; border-bottom:1px solid #ddd; padding-bottom:4px; margin-bottom:8px; }
-  table{ width:100%; border-collapse:collapse; margin:16px 0; }
-  th,td{ border:1px solid #ccc; padding:6px 8px; text-align:left; font-size:11px; }
-  th{ background:#f2efe4; }
-  td.num, th.num{ text-align:right; }
-  tfoot td{ font-weight:700; background:#f7f5ee; }
-  .note{ font-size:10px; color:#5c5648; margin-top:18px; line-height:1.5; }
-  .sign{ display:flex; justify-content:space-between; margin-top:60px; }
-  .sign div{ width:45%; border-top:1px solid #999; padding-top:6px; font-size:10px; }
-  @media print{ .no-print{ display:none; } }
-</style></head><body>
-  <button class="no-print" onclick="window.print()" style="float:right">Print</button>
-  <h1>PRO-FORMA INVOICE — TRIAL ORDER</h1>
-  <div class="ref">Reference: ${ref} &nbsp;·&nbsp; Date: ${dateStr}</div>
-
-  <div class="cols">
-    <div class="col">
-      <h2>Seller / Manufacturer</h2>
-      Vysshiy Vkus LLC (ООО «Высший Вкус»)<br>
-      Afipsky, Krasnodar Region, Russia
-    </div>
-    <div class="col">
-      <h2>Buyer</h2>
-      ${escapeHtml(formData.company)}<br>
-      Attn: ${escapeHtml(formData.contact)}<br>
-      Tel: ${escapeHtml(formData.phone)} &nbsp;·&nbsp; Email: ${escapeHtml(formData.email)}
-    </div>
-    <div class="col">
-      <h2>Delivery address</h2>
-      ${escapeHtml(addressLine)}<br>
-      ${escapeHtml(formData.city)}, ${escapeHtml(formData.postal)}<br>
-      ${escapeHtml(formData.country)} &nbsp;·&nbsp; Target market: ${escapeHtml(formData.market)}
-    </div>
-  </div>
-
-  <table>
-    <thead><tr><th>#</th><th>Product</th><th class="num">Unit weight</th><th class="num">Qty (packs)</th><th class="num">Total weight</th></tr></thead>
-    <tbody>${rows}</tbody>
-    <tfoot><tr><td colspan="3"></td><td class="num">${totalPacks}</td><td class="num">${totalKg} kg</td></tr></tfoot>
-  </table>
-
-  ${formData.comment ? `<div><strong>Comment:</strong> ${escapeHtml(formData.comment)}</div>` : ''}
-
-  <div class="note">
-    This is a pro-forma document for a trial/sample order, for reference purposes only and does not constitute a binding commercial invoice.
-    Final commercial terms (Incoterms, payment terms, lead time, certification status) will be confirmed separately in writing.
-  </div>
-
-  <div class="sign">
-    <div>For the Seller</div>
-    <div>For the Buyer</div>
-  </div>
-</body></html>`;
-
-    const win = window.open('', '_blank');
-    if (!win){ alert('Please allow pop-ups to view the pro-forma document.'); return; }
-    win.document.write(html);
-    win.document.close();
+    const el = document.getElementById('thankyou');
+    el.querySelector('.thankyou-text').textContent = i18n.t('thankyou_message', { email: lastOrderEmail || '—' });
+    el.classList.add('visible');
   }
 
   function wireOrderForm(){
@@ -425,13 +358,24 @@
       form.classList.toggle('open');
     });
 
-    document.getElementById('submit-email').addEventListener('click', () => {
+    document.getElementById('submit-order').addEventListener('click', () => {
       if (!formIsValid(form)) return;
-      const text = buildOrderText(readForm());
-      const subject = encodeURIComponent('Trial order — Высший Вкус');
-      const body = encodeURIComponent(text);
-      window.location.href = `mailto:${MANAGER_EMAIL}?subject=${subject}&body=${body}`;
-      showThankYou();
+      const formData = readForm();
+
+      // 1) Настоящий PDF — скачивается сразу на устройство покупателя
+      buildProformaPdf(formData);
+
+      // 2) Письмо, адресованное на почту производителя И на почту покупателя (копия),
+      //    с текстом заказа. PDF приложить автоматически mailto не может (ограничение
+      //    протокола/браузера, не наш код) — он уже скачан, покупателю нужно вручную
+      //    прикрепить скачанный файл перед отправкой.
+      const text = buildOrderText(formData);
+      const subject = encodeURIComponent('Trial order — Высший Вкус / Vysshiy Vkus');
+      const body = encodeURIComponent(text + '\n\n[Приложите скачанный PDF pro-forma к этому письму перед отправкой]');
+      const cc = encodeURIComponent(formData.email || '');
+      window.location.href = `mailto:${MANAGER_EMAIL}?cc=${cc}&subject=${subject}&body=${body}`;
+
+      showThankYou(formData.email);
     });
 
     document.getElementById('submit-copy').addEventListener('click', async () => {
@@ -443,13 +387,101 @@
         console.error(e);
         alert(text); // запасной вариант — показать текст, если буфер обмена недоступен
       }
-      showThankYou();
+    });
+  }
+
+  function escapeHtml(str){
+    return String(str || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function buildProformaPdf(formData){
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+    const ids = Object.keys(cart.items);
+
+    const now = new Date();
+    const ref = 'PF-' + now.toISOString().slice(0,10).replace(/-/g,'') + '-' + String(now.getTime()).slice(-4);
+    const dateStr = now.toISOString().slice(0,10);
+    const addressLine = [formData.street, formData.building, formData.apt].filter(Boolean).join(' ');
+
+    const marginL = 15;
+    let y = 20;
+
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(16);
+    doc.text('PRO-FORMA INVOICE — TRIAL ORDER', marginL, y);
+    y += 6;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(90);
+    doc.text(`Reference: ${ref}   ·   Date: ${dateStr}`, marginL, y);
+    doc.setTextColor(0);
+    y += 10;
+
+    function block(title, lines){
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(9);
+      doc.text(title.toUpperCase(), marginL, y);
+      y += 5;
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
+      lines.forEach(line => { doc.text(line, marginL, y); y += 5; });
+      y += 3;
+    }
+
+    block('Seller / Manufacturer', ['Vysshiy Vkus LLC (OOO "Vysshiy Vkus")', 'Afipsky, Krasnodar Region, Russia']);
+    block('Buyer', [String(formData.company||''), `Attn: ${formData.contact||''}`, `Tel: ${formData.phone||''}  Email: ${formData.email||''}`]);
+    block('Delivery address', [addressLine, `${formData.city||''}, ${formData.postal||''}`, `${formData.country||''}   Target market: ${formData.market||''}`]);
+
+    y += 2;
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(9);
+    const colX = { no: marginL, name: marginL+10, weight: marginL+110, qty: marginL+140, total: marginL+165 };
+    doc.text('#', colX.no, y); doc.text('Product', colX.name, y); doc.text('Unit wt', colX.weight, y);
+    doc.text('Qty', colX.qty, y); doc.text('Total wt', colX.total, y);
+    y += 2;
+    doc.setLineWidth(0.2); doc.line(marginL, y, 195, y);
+    y += 5;
+
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+    let totalPacks = 0, totalKg = 0;
+    ids.forEach((id, i) => {
+      const p = productById(id);
+      if (!p) return;
+      const qty = cart.items[id];
+      const kg = p.weight_g * qty / 1000;
+      totalPacks += qty; totalKg += kg;
+      const name = (p.name.en || p.name.ru);
+      doc.text(String(i+1), colX.no, y);
+      doc.text(name.length > 42 ? name.slice(0,42)+'…' : name, colX.name, y);
+      doc.text(`${p.weight_g} g`, colX.weight, y);
+      doc.text(String(qty), colX.qty, y);
+      doc.text(`${kg.toFixed(2)} kg`, colX.total, y);
+      y += 6;
+      if (y > 270){ doc.addPage(); y = 20; }
     });
 
-    document.getElementById('print-proforma').addEventListener('click', () => {
-      if (!formIsValid(form)) return;
-      openProforma(readForm());
-    });
+    y += 2; doc.line(marginL, y, 195, y); y += 6;
+    doc.setFont('helvetica', 'bold');
+    doc.text(`Total: ${totalPacks} packs   /   ${totalKg.toFixed(2)} kg`, colX.qty, y);
+    y += 12;
+
+    if (formData.comment){
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+      doc.text(`Comment: ${formData.comment}`, marginL, y, { maxWidth: 180 });
+      y += 10;
+    }
+
+    doc.setFontSize(8); doc.setTextColor(120);
+    doc.text('This is a pro-forma document for a trial/sample order, for reference purposes only and does not constitute', marginL, y); y += 4;
+    doc.text('a binding commercial invoice. Final commercial terms will be confirmed separately in writing.', marginL, y);
+    doc.setTextColor(0);
+
+    y += 30;
+    doc.setFontSize(9);
+    doc.line(marginL, y, marginL+70, y);
+    doc.line(120, y, 190, y);
+    y += 5;
+    doc.text('For the Seller', marginL, y);
+    doc.text('For the Buyer', 120, y);
+
+    const filename = `${ref}-VysshiyVkus.pdf`;
+    doc.save(filename);
+    return { ref, filename };
   }
 
   function readForm(){
@@ -498,6 +530,9 @@
     renderBrandAccordion();
     renderIngredients();
     renderAudience();
+    if (document.getElementById('thankyou').classList.contains('visible')){
+      showThankYou(lastOrderEmail);
+    }
   });
   cart.onChange(() => { /* renderCart уже вызывается явно в обработчиках выше */ });
 
