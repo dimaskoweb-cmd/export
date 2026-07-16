@@ -12,8 +12,17 @@
   // поднять локальный сервер, например: python3 -m http.server
   // На GitHub Pages это ограничение не действует.
 
-  const MANAGER_EMAIL = 'orders@vysshiyvkus.example'; // TODO: заменить на реальный email менеджера
-  const CONTACT_MODE = 'simple'; // приёмник заказа: mailto + копирование текста (без внешних сервисов)
+  const MANAGER_EMAIL = 'dimasko.web@gmail.com';
+
+  // Настройки EmailJS — реальная автоматическая отправка (без CDN, SDK лежит локально в _shared/js/)
+  const EMAILJS_SERVICE_ID = 'service_07prkee';
+  const EMAILJS_TEMPLATE_ID = 'template_en4vgvo';
+  const EMAILJS_PUBLIC_KEY = 'o_Bglgv3113ZCB4OP';
+  // Внимание: при отправке письмо реально уходит через api.emailjs.com — это внешний
+  // запрос из браузера покупателя (не с нашего сервера, его нет). Если у покупателя
+  // заблокирован доступ к api.emailjs.com (в редких сетях бывает) — сработает
+  // автоматический fallback на mailto (см. wireOrderForm).
+  if (window.emailjs) emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
   const i18n = new VVKi18n({ dictPath: 'data/i18n/', langs: ['ru','en','zh','hi'], default: 'ru' });
   const cart = new VVKCart({ namespace: 'seitan' });
@@ -278,7 +287,7 @@
       const p = productById(id);
       if (!p) return '';
       const name = p.name[i18n.lang] || p.name.en || p.name.ru;
-      return `<div class="summary-row">${name} <span class="summary-qty">×${cart.items[id]}</span></div>`;
+      return `<div class="summary-row"><span class="summary-name">${name}</span> <span class="summary-qty">×${cart.items[id]}</span></div>`;
     }).filter(Boolean).join('');
 
     body.innerHTML = ids.map(id => {
@@ -348,6 +357,16 @@
     const el = document.getElementById('thankyou');
     el.querySelector('.thankyou-text').textContent = i18n.t('thankyou_message', { email: lastOrderEmail || '—' });
     el.classList.add('visible');
+
+    // Через 30 секунд — плашка автоматически очищается и сворачивается, готова к новому заказу
+    clearTimeout(window._vvkThankYouTimer);
+    window._vvkThankYouTimer = setTimeout(() => {
+      el.classList.remove('visible');
+      cart.clear();
+      renderCatalog();
+      renderCart();
+      document.getElementById('cart-panel').classList.add('collapsed');
+    }, 30000);
   }
 
   function wireOrderForm(){
@@ -358,22 +377,58 @@
       form.classList.toggle('open');
     });
 
-    document.getElementById('submit-order').addEventListener('click', () => {
+    document.getElementById('submit-order').addEventListener('click', async () => {
       if (!formIsValid(form)) return;
       const formData = readForm();
+      const btn = document.getElementById('submit-order');
+      const originalLabel = btn.textContent;
 
-      // 1) Настоящий PDF — скачивается сразу на устройство покупателя
+      // 1) Настоящий PDF — скачивается сразу на устройство покупателя (это функция браузера,
+      //    не зависит от тарифа EmailJS)
       buildProformaPdf(formData);
-
-      // 2) Письмо, адресованное на почту производителя И на почту покупателя (копия),
-      //    с текстом заказа. PDF приложить автоматически mailto не может (ограничение
-      //    протокола/браузера, не наш код) — он уже скачан, покупателю нужно вручную
-      //    прикрепить скачанный файл перед отправкой.
       const text = buildOrderText(formData);
-      const subject = encodeURIComponent('Order for samples — Высший Вкус / Vysshiy Vkus');
-      const body = encodeURIComponent(text + '\n\n[Приложите скачанный PDF pro-forma к этому письму перед отправкой]');
-      const cc = encodeURIComponent(formData.email || '');
-      window.location.href = `mailto:${MANAGER_EMAIL}?cc=${cc}&subject=${subject}&body=${body}`;
+      const addressLine = [formData.street, formData.building, formData.apt].filter(Boolean).join(', ');
+
+      const templateParams = {
+        to_email: MANAGER_EMAIL,       // основной получатель — производство
+        cc_email: formData.email,      // копия покупателю (в шаблоне EmailJS поле CC должно быть {{cc_email}})
+        reply_to: formData.email,
+        company: formData.company,
+        contact: formData.contact,
+        phone: formData.phone,
+        email: formData.email,
+        country: formData.country,
+        market: formData.market,
+        delivery_address: `${addressLine}, ${formData.city}, ${formData.postal}, ${formData.country}`,
+        order_text: text,
+        comment: formData.comment || '—'
+        // pdf_attachment убран: на бесплатном тарифе EmailJS вложения (Static/Dynamic) недоступны —
+        // требуют платного плана Personal ($9/мес) и выше. Если апгрейднете — верните этот параметр
+        // и настройте в шаблоне Dynamic Attachment с именем pdf_attachment.
+      };
+
+      let sentByEmailJS = false;
+      if (window.emailjs){
+        btn.textContent = '…';
+        btn.disabled = true;
+        try{
+          await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+          sentByEmailJS = true;
+        }catch(e){
+          console.error('EmailJS send failed, falling back to mailto:', e);
+        }
+        btn.textContent = originalLabel;
+        btn.disabled = false;
+      }
+
+      // 2) Честный fallback — если EmailJS недоступен/не настроен/заблокирован у покупателя,
+      //    открываем черновик письма вместо тихой потери заказа
+      if (!sentByEmailJS){
+        const subject = encodeURIComponent('Order for samples — Высший Вкус / Vysshiy Vkus');
+        const body = encodeURIComponent(text + '\n\n[Приложите скачанный PDF pro-forma к этому письму перед отправкой]');
+        const cc = encodeURIComponent(formData.email || '');
+        window.location.href = `mailto:${MANAGER_EMAIL}?cc=${cc}&subject=${subject}&body=${body}`;
+      }
 
       showThankYou(formData.email);
     });
@@ -407,6 +462,11 @@
     const marginL = 15;
     let y = 20;
 
+    if (window.LOGO_BASE64){
+      try{ doc.addImage(window.LOGO_BASE64, 'PNG', marginL, 8, 32, 12.7); }catch(e){ console.error('logo in PDF failed', e); }
+      y = 30;
+    }
+
     doc.setFont('helvetica', 'bold'); doc.setFontSize(16);
     doc.text('ORDER FOR SAMPLES', marginL, y);
     y += 6;
@@ -428,7 +488,7 @@
       'Vysshiy Vkus LLC (OOO "Vysshiy Vkus")',
       'Office: Beregovaya str. 146, bld. 19, unit 3/82, Krasnodar, Russia',
       'Production: Smolenskoe hwy 44, Seversky, Afipskiy, Krasnodar Region, Russia',
-      'INN: — (to be confirmed)'
+      'INN: 2311236404'
     ]);
     block('Recipient (samples shipped free of charge)', [
       String(formData.company||''), `Attn: ${formData.contact||''}`,
@@ -486,7 +546,8 @@
 
     const filename = `${ref}-VysshiyVkus.pdf`;
     doc.save(filename);
-    return { ref, filename };
+    const base64 = doc.output('datauristring'); // полная data-uri строка — то, что ждёт EmailJS variable attachment
+    return { ref, filename, base64 };
   }
 
   function readForm(){
