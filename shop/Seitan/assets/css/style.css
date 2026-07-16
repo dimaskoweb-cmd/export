@@ -33,6 +33,65 @@ header.site{
 .about-badge-sub{ font-size:13px; color:var(--ink-soft); }
 .about-badge.warn{ background:rgba(181,80,42,.06); border-color:rgba(181,80,42,.25); }
 
+.header-right{ display:flex; align-items:center; gap:16px; }
+.clock{
+  font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); white-space:nowrap;
+  letter-spacing:.02em;
+}
+
+/* ===== Бренд-аккордеон (7 пунктов бренд-бука) ===== */
+.brand-section{ padding:40px 0; border-bottom:1px solid var(--line); }
+.acc-item{ border-bottom:1px solid var(--line); }
+.acc-item:first-child{ border-top:1px solid var(--line); }
+.acc-head{
+  display:flex; align-items:center; justify-content:space-between; padding:16px 4px; cursor:pointer;
+  font-family:var(--font-display); font-size:18px; font-weight:600;
+}
+.acc-head .num{ font-family:var(--font-mono); font-size:12px; color:var(--wheat-green); margin-right:10px; }
+.acc-head .arrow{ font-family:var(--font-mono); font-size:14px; color:var(--ink-soft); transition:transform .15s ease; }
+.acc-item.open .acc-head .arrow{ transform:rotate(180deg); }
+.acc-body{ display:none; padding:0 4px 20px; color:var(--ink-soft); font-size:14px; line-height:1.7; }
+.acc-item.open .acc-body{ display:block; }
+.acc-body .mission{ margin-top:10px; padding:10px 14px; background:var(--paper-2); border-left:2px solid var(--wheat-green); border-radius:0 4px 4px 0; }
+.acc-body .mission-label{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--wheat-green-dark); margin-bottom:4px; }
+.values-grid, .steps-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; margin-top:6px; }
+.values-grid .v-title, .steps-grid .s-title{ color:var(--ink); font-weight:600; font-size:14px; margin-bottom:4px; }
+.steps-grid .s-num{ font-family:var(--font-mono); color:var(--wheat-green); font-size:12px; }
+.adv-list{ list-style:none; margin:6px 0 0; padding:0; }
+.adv-list li{ padding:6px 0 6px 22px; position:relative; }
+.adv-list li::before{ content:'●'; position:absolute; left:0; color:var(--wheat-green); font-size:8px; top:12px; }
+.adv-closing{ margin-top:14px; font-style:italic; color:var(--ink); }
+.storage-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; margin-top:6px; }
+.storage-grid > div{ background:var(--paper-2); border-radius:6px; padding:12px 14px; }
+.storage-grid .label{ font-family:var(--font-mono); font-size:10px; text-transform:uppercase; color:var(--wheat-green-dark); margin-bottom:4px; }
+
+/* ===== Секция ингредиентов ===== */
+.ingredients-section{ padding:40px 0; border-bottom:1px solid var(--line); }
+.ing-intro{ max-width:640px; color:var(--ink-soft); margin-bottom:22px; }
+.ing-features{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
+.ing-feature{ background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:16px; }
+.ing-feature .ing-icon{ font-size:22px; }
+.ing-feature .ing-title{ font-family:var(--font-display); font-weight:600; font-size:15px; margin:6px 0 4px; }
+.ing-feature .ing-body{ font-size:13px; color:var(--ink-soft); }
+.ing-feature.warn{ background:rgba(181,80,42,.06); border-color:rgba(181,80,42,.25); }
+.free-of-strip{ display:flex; gap:10px; flex-wrap:wrap; margin-top:18px; }
+.free-of-strip span{
+  font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.03em;
+  background:var(--wheat-green); color:var(--paper); padding:6px 14px; border-radius:999px;
+}
+
+/* ===== Секция аудитории ===== */
+.audience-section{ padding:40px 0; border-bottom:1px solid var(--line); }
+.audience-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
+.audience-card{ text-align:left; }
+.audience-card .aud-icon{ font-size:26px; }
+.audience-card .aud-title{ font-family:var(--font-display); font-weight:600; font-size:15px; margin:6px 0 4px; }
+.audience-card .aud-body{ font-size:13px; color:var(--ink-soft); }
+
+/* ===== Мини-галерея в развороте карточки ===== */
+.card-gallery{ display:flex; gap:6px; margin-top:8px; }
+.card-gallery img{ width:56px; height:56px; object-fit:cover; border-radius:4px; border:1px solid var(--line); }
+
 .catalog{ padding:48px 0 100px; }
 .catalog-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:12px; }
 .filters{ display:flex; gap:8px; flex-wrap:wrap; }
