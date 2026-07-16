@@ -5,7 +5,7 @@
   "about_halal_title": "Halal certification",
   "about_halal_sub": "In progress — status will be updated per SKU once certification is granted",
   "hero_title": "Vysshiy Vkus",
-  "hero_subtitle": "Premium wheat seitan. Production capacity: 2–3 containers per month.",
+  "hero_subtitle": "Premium wheat seitan for you, your family, and a happy, healthy life.",
   "hero_cta": "Build a trial order",
   "catalog_title": "Product range",
   "filter_all": "All categories",
@@ -48,6 +48,6 @@
   "thankyou_title": "Thank you for your order!",
   "thankyou_message": "Your order has been sent to production for calculation, and I will get back to you with the timeline and details. A copy of your order was sent to your email ({email}).",
   "footer_company": "Vysshiy Vkus LLC · Afipsky, Krasnodar region, Russia",
-  "footer_official_site": "Official website: vsvkus.ru",
+  "footer_official_site": "www.vsvkus.ru",
   "footer_disclaimer": "Certification status is shown as of the publication date and may change."
 }
