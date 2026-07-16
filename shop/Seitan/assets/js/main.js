@@ -13,6 +13,7 @@
   // На GitHub Pages это ограничение не действует.
 
   const MANAGER_EMAIL = 'dimasko.web@gmail.com';
+  const ASSET_VERSION = 'v=1784231422'; // бампаем при каждом деплое — иначе GitHub Pages/браузер может отдавать старые data-файлы из кэша
 
   // Настройки EmailJS — реальная автоматическая отправка (без CDN, SDK лежит локально в _shared/js/)
   const EMAILJS_SERVICE_ID = 'service_07prkee';
@@ -24,7 +25,7 @@
   // автоматический fallback на mailto (см. wireOrderForm).
   if (window.emailjs) emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
-  const i18n = new VVKi18n({ dictPath: 'data/i18n/', langs: ['ru','en','zh','hi'], default: 'ru' });
+  const i18n = new VVKi18n({ dictPath: 'data/i18n/', langs: ['ru','en','zh','hi'], default: 'ru', version: ASSET_VERSION });
   const cart = new VVKCart({ namespace: 'seitan' });
 
   let PRODUCTS = [];
@@ -33,12 +34,12 @@
   let activeFilter = 'all';
 
   async function loadData(){
-    const res = await fetch('data/products.json');
+    const res = await fetch(`data/products.json?${ASSET_VERSION}`);
     const data = await res.json();
     PRODUCTS = data.products;
     CATEGORIES = data.categories;
 
-    const brandRes = await fetch('data/brand.json');
+    const brandRes = await fetch(`data/brand.json?${ASSET_VERSION}`);
     BRAND = await brandRes.json();
   }
 
