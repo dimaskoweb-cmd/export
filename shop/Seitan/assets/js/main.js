@@ -20,6 +20,7 @@
 
   let PRODUCTS = [];
   let CATEGORIES = [];
+  let BRAND = null;
   let activeFilter = 'all';
 
   async function loadData(){
@@ -27,6 +28,9 @@
     const data = await res.json();
     PRODUCTS = data.products;
     CATEGORIES = data.categories;
+
+    const brandRes = await fetch('data/brand.json');
+    BRAND = await brandRes.json();
   }
 
   function productById(id){ return PRODUCTS.find(p => p.id === id); }
@@ -36,6 +40,117 @@
   }
 
   const LANG_FLAGS = { ru: '🇷🇺', en: '🇬🇧', zh: '🇨🇳', hi: '🇮🇳' };
+
+  function pad(n){ return String(n).padStart(2, '0'); }
+
+  function startClock(){
+    const el = document.getElementById('header-clock');
+    function tick(){
+      const d = new Date();
+      // Универсальный формат ISO-подобный — без региональной неоднозначности (день/месяц не перепутать)
+      const str = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+      el.textContent = str;
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  function renderBrandAccordion(){
+    const el = document.getElementById('brand-accordion');
+    const lang = i18n.lang;
+    const b = BRAND;
+
+    const valuesHtml = b.values.items.map(v => `
+      <div><div class="v-title">${v.title[lang] || v.title.en}</div><div>${v.body[lang] || v.body.en}</div></div>
+    `).join('');
+
+    const assortmentHtml = `<p>${b.assortment.intro[lang] || b.assortment.intro.en}</p>` + b.assortment.categories.map(c => `
+      <div style="margin-top:14px"><div class="v-title">${c.title[lang] || c.title.en}</div><div>${c.body[lang] || c.body.en}</div></div>
+    `).join('');
+
+    const stepsHtml = b.production_steps.steps.map((s, i) => `
+      <div><div class="s-title"><span class="s-num">${i+1}.</span> ${s.title[lang] || s.title.en}</div><div>${s.body[lang] || s.body.en}</div></div>
+    `).join('') + `<p style="margin-top:14px">${b.production_steps.founder_note[lang] || b.production_steps.founder_note.en}</p>`;
+
+    const advHtml = `<ul class="adv-list">` + b.advantages.items.map(a => `<li>${a[lang] || a.en}</li>`).join('') + `</ul>
+      <div class="adv-closing">${b.advantages.closing[lang] || b.advantages.closing.en}</div>`;
+
+    const st = b.storage_transport;
+    const storageHtml = `<div class="storage-grid">
+      <div><div class="label">${lang==='ru'?'Заморозка':lang==='zh'?'冷冻':lang==='hi'?'फ्रोज़न':'Frozen'}</div>${st.frozen[lang] || st.frozen.en}</div>
+      <div><div class="label">${lang==='ru'?'Охлаждённо':lang==='zh'?'冷藏':lang==='hi'?'चिल्ड':'Chilled'}</div>${st.chilled[lang] || st.chilled.en}</div>
+      <div><div class="label">${lang==='ru'?'Транспортировка':lang==='zh'?'运输':lang==='hi'?'परिवहन':'Transport'}</div>${st.transport[lang] || st.transport.en}</div>
+    </div>`;
+
+    const sections = [
+      { title: b.concept.title, body: `<p>${b.concept.body[lang] || b.concept.body.en}</p><div class="mission"><div class="mission-label">${b.concept.mission_label[lang] || b.concept.mission_label.en}</div>${b.concept.mission[lang] || b.concept.mission.en}</div>` },
+      { title: b.values.title, body: `<div class="values-grid">${valuesHtml}</div>` },
+      { title: b.assortment.title, body: assortmentHtml },
+      { title: b.production_steps.title, body: `<div class="steps-grid">${stepsHtml}</div>` },
+      { title: b.advantages.title, body: advHtml },
+      { title: b.storage_transport.title, body: storageHtml },
+    ];
+
+    el.innerHTML = sections.map((s, i) => `
+      <div class="acc-item${i===0 ? ' open' : ''}" data-idx="${i}">
+        <div class="acc-head"><span><span class="num">0${i+1}</span>${s.title[lang] || s.title.en}</span><span class="arrow">▾</span></div>
+        <div class="acc-body">${s.body}</div>
+      </div>
+    `).join('');
+
+    el.querySelectorAll('.acc-head').forEach(head => {
+      head.addEventListener('click', () => {
+        head.parentElement.classList.toggle('open');
+      });
+    });
+  }
+
+  function renderIngredients(){
+    const el = document.getElementById('ingredients-container');
+    const lang = i18n.lang;
+    const ing = BRAND.ingredients;
+
+    const featuresHtml = ing.features.map(f => `
+      <div class="ing-feature">
+        <div class="ing-icon">${f.icon}</div>
+        <div class="ing-title">${f.title[lang] || f.title.en}</div>
+        <div class="ing-body">${f.body[lang] || f.body.en}</div>
+      </div>
+    `).join('');
+
+    // Честная плашка про халяль — статус реальный (в процессе), не выдаваемый за "не требуется"
+    const halalFeature = `
+      <div class="ing-feature warn">
+        <div class="ing-icon">⏳</div>
+        <div class="ing-title">${i18n.t('about_halal_title')}</div>
+        <div class="ing-body">${i18n.t('about_halal_sub')}</div>
+      </div>`;
+
+    const freeOfHtml = ing.free_of.map(x => `<span>${x[lang] || x.en}</span>`).join('');
+
+    el.innerHTML = `
+      <h2>${ing.title[lang] || ing.title.en}</h2>
+      <p class="ing-intro">${ing.intro[lang] || ing.intro.en}</p>
+      <div class="ing-features">${featuresHtml}${halalFeature}</div>
+      <div class="free-of-strip">${freeOfHtml}</div>
+    `;
+  }
+
+  function renderAudience(){
+    const el = document.getElementById('audience-container');
+    const lang = i18n.lang;
+    const aud = BRAND.audience;
+
+    const cardsHtml = aud.groups.map(g => `
+      <div class="audience-card">
+        <div class="aud-icon">${g.icon}</div>
+        <div class="aud-title">${g.title[lang] || g.title.en}</div>
+        <div class="aud-body">${g.body[lang] || g.body.en}</div>
+      </div>
+    `).join('');
+
+    el.innerHTML = `<h2>${aud.title[lang] || aud.title.en}</h2><div class="audience-grid">${cardsHtml}</div>`;
+  }
 
   function renderLangSwitch(){
     const el = document.getElementById('lang-switch');
@@ -82,6 +197,10 @@
       const catObj = CATEGORIES.find(c => c.id === p.category);
       const catName = catObj ? (catObj.name[lang] || catObj.name.en) : '';
 
+      const galleryHtml = (p.images && p.images.length)
+        ? `<div class="card-gallery">${p.images.map(img => `<img src="assets/img/products/${img.file}" alt="" loading="lazy">`).join('')}</div>`
+        : '';
+
       return `
       <div class="card" data-id="${p.id}">
         <span class="cat-tag">${catName}</span>
@@ -101,6 +220,7 @@
         </div>
         <div class="card-detail">
           <dt>${i18n.t('card_composition')}</dt><dd>${comp}</dd>
+          ${galleryHtml}
           <dt>${i18n.t('card_shelf_life')}</dt><dd>${p.shelf_life_months} ${i18n.t('card_shelf_life_value').replace('{temp}', p.storage_temp_c)}</dd>
           ${p.nutrition_per_100g && p.nutrition_per_100g.protein_g ? `<dt>Белок / Protein</dt><dd>${p.nutrition_per_100g.protein_g} г/100г</dd>` : ''}
           ${p.ingredient_flag ? `<dt>⚠</dt><dd>${p.ingredient_flag}</dd>` : ''}
@@ -363,6 +483,10 @@
   renderCatalog();
   renderCart();
   renderNetworkNotice();
+  renderBrandAccordion();
+  renderIngredients();
+  renderAudience();
+  startClock();
   wireOrderForm();
   wireCartToggle();
 
@@ -371,6 +495,9 @@
     renderCatalog();
     renderCart();
     renderNetworkNotice();
+    renderBrandAccordion();
+    renderIngredients();
+    renderAudience();
   });
   cart.onChange(() => { /* renderCart уже вызывается явно в обработчиках выше */ });
 
