@@ -41,12 +41,13 @@
   "form_apt_office": "单元/办公室",
   "form_print_proforma": "生成形式发票（PDF/打印）",
   "form_comment": "备注",
+  "form_submit_order": "提交订单",
   "form_submit_email": "通过邮件发送",
   "form_submit_copy": "复制订单文本",
   "form_copied": "订单文本已复制到剪贴板",
   "form_required": "请填写所有必填项",
   "thankyou_title": "感谢您的订单！",
-  "thankyou_message": "我将核算交期和细节，确认后会第一时间亲自与您联系确认。",
+  "thankyou_message": "您的订单已发送至生产部门进行核算，我会就交期和细节与您联系。订单副本已发送至您的邮箱（{email}）。",
   "footer_company": "Vysshiy Vkus LLC · 俄罗斯克拉斯诺达尔边疆区阿菲普斯基",
   "footer_disclaimer": "认证状态为发布日期时的信息，可能会有变化。"
 }
