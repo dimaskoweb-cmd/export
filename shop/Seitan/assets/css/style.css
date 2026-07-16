@@ -8,7 +8,8 @@ header.site{
   font-family:var(--font-mono); font-size:12px; padding:6px 10px; border-radius:3px;
   border:1px solid var(--line); background:transparent; color:var(--ink-soft); cursor:pointer;
 }
-.lang-switch button .flag{ font-size:14px; margin-right:2px; }
+.lang-switch button .flag{ display:inline-flex; align-items:center; margin-right:4px; border-radius:2px; overflow:hidden; }
+.lang-switch button .flag svg{ display:block; }
 .lang-switch button.active{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
 
 .network-notice{
@@ -133,8 +134,18 @@ header.site{
 .card .weight{ font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); }
 .card .badges{ display:flex; gap:6px; flex-wrap:wrap; }
 .card .comp-preview{ font-size:13px; color:var(--ink-soft); max-height:3.2em; overflow:hidden; }
-.card .card-actions{ display:flex; gap:8px; margin-top:auto; }
-.card .card-actions .btn{ flex:1; justify-content:center; padding:.6em 1em; font-size:12px; }
+.card .card-actions{ display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; }
+.card .card-actions .btn{ flex:1; justify-content:center; padding:.6em 1em; font-size:12px; min-width:90px; }
+.card .card-actions > button[data-action="expand"]{ flex-basis:100%; }
+.qty-stepper{ display:flex; align-items:center; border:1px solid var(--line); border-radius:4px; overflow:hidden; }
+.qty-stepper button{
+  background:var(--paper-2); border:none; width:28px; height:32px; cursor:pointer; font-size:14px; color:var(--ink);
+}
+.qty-stepper input{
+  width:36px; height:32px; border:none; border-left:1px solid var(--line); border-right:1px solid var(--line);
+  text-align:center; font-family:var(--font-mono); font-size:13px; -moz-appearance:textfield;
+}
+.qty-stepper input::-webkit-outer-spin-button, .qty-stepper input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
 
 .card-detail{
   border-top:1px dashed var(--line); margin-top:6px; padding-top:10px; font-size:13px; color:var(--ink-soft); display:none;
@@ -146,11 +157,16 @@ header.site{
 .cart-panel{
   position:fixed; right:16px; bottom:16px; width:min(360px, calc(100vw - 32px));
   background:var(--paper); border:1px solid var(--ink); border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,.18);
-  z-index:60; max-height:80vh; display:flex; flex-direction:column;
+  z-index:60; max-height:80vh; display:flex; flex-direction:column; overflow-y:auto;
 }
 .cart-panel.collapsed .cart-body{ display:none; }
 .cart-head{ display:flex; align-items:center; justify-content:space-between; padding:14px 16px; cursor:pointer; }
 .cart-head .count{ font-family:var(--font-mono); background:var(--wheat-green); color:var(--paper); border-radius:999px; padding:2px 9px; font-size:12px; }
+.cart-summary-line{
+  padding:0 16px 10px; font-size:12px; color:var(--ink-soft); line-height:1.5;
+  border-bottom:1px solid var(--line);
+}
+.cart-summary-line:empty{ display:none; }
 .cart-body{ padding:0 16px 16px; overflow-y:auto; }
 .cart-item{ display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid var(--line); font-size:13px; }
 .cart-item .name{ flex:1; }
