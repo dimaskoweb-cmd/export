@@ -40,12 +40,13 @@
   "form_apt_office": "Apt. / office",
   "form_print_proforma": "Generate pro-forma (PDF/print)",
   "form_comment": "Comment",
+  "form_submit_order": "Send order",
   "form_submit_email": "Send by email",
   "form_submit_copy": "Copy order text",
   "form_copied": "Order text copied to clipboard",
   "form_required": "Please fill in all required fields",
   "thankyou_title": "Thank you for your order!",
-  "thankyou_message": "I will work out the timeline and details and get back to you personally with a confirmation once it's ready.",
+  "thankyou_message": "Your order has been sent to production for calculation, and I will get back to you with the timeline and details. A copy of your order was sent to your email ({email}).",
   "footer_company": "Vysshiy Vkus LLC · Afipsky, Krasnodar region, Russia",
   "footer_disclaimer": "Certification status is shown as of the publication date and may change."
 }
