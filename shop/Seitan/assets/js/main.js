@@ -273,13 +273,13 @@
       return;
     }
 
-    // Краткая сводка "что и сколько" — видна и когда панель свёрнута
-    summaryEl.textContent = ids.map(id => {
+    // Краткая сводка "что и сколько" — видна и когда панель свёрнута, каждая позиция с новой строки
+    summaryEl.innerHTML = ids.map(id => {
       const p = productById(id);
       if (!p) return '';
       const name = p.name[i18n.lang] || p.name.en || p.name.ru;
-      return `${name} ×${cart.items[id]}`;
-    }).filter(Boolean).join(' · ');
+      return `<div class="summary-row">${name} <span class="summary-qty">×${cart.items[id]}</span></div>`;
+    }).filter(Boolean).join('');
 
     body.innerHTML = ids.map(id => {
       const p = productById(id);
@@ -308,7 +308,7 @@
 
   function buildOrderText(formData){
     const lines = [];
-    lines.push('=== Тестовый заказ / Trial order — Высший Вкус ===');
+    lines.push('=== Заказ образцов (бесплатно) / Order for samples (free of charge) — Высший Вкус ===');
     lines.push('');
     Object.keys(cart.items).forEach(id => {
       const p = productById(id);
@@ -370,7 +370,7 @@
       //    протокола/браузера, не наш код) — он уже скачан, покупателю нужно вручную
       //    прикрепить скачанный файл перед отправкой.
       const text = buildOrderText(formData);
-      const subject = encodeURIComponent('Trial order — Высший Вкус / Vysshiy Vkus');
+      const subject = encodeURIComponent('Order for samples — Высший Вкус / Vysshiy Vkus');
       const body = encodeURIComponent(text + '\n\n[Приложите скачанный PDF pro-forma к этому письму перед отправкой]');
       const cc = encodeURIComponent(formData.email || '');
       window.location.href = `mailto:${MANAGER_EMAIL}?cc=${cc}&subject=${subject}&body=${body}`;
@@ -408,7 +408,7 @@
     let y = 20;
 
     doc.setFont('helvetica', 'bold'); doc.setFontSize(16);
-    doc.text('PRO-FORMA INVOICE — TRIAL ORDER', marginL, y);
+    doc.text('ORDER FOR SAMPLES', marginL, y);
     y += 6;
     doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(90);
     doc.text(`Reference: ${ref}   ·   Date: ${dateStr}`, marginL, y);
@@ -424,9 +424,18 @@
       y += 3;
     }
 
-    block('Seller / Manufacturer', ['Vysshiy Vkus LLC (OOO "Vysshiy Vkus")', 'Afipsky, Krasnodar Region, Russia']);
-    block('Buyer', [String(formData.company||''), `Attn: ${formData.contact||''}`, `Tel: ${formData.phone||''}  Email: ${formData.email||''}`]);
-    block('Delivery address', [addressLine, `${formData.city||''}, ${formData.postal||''}`, `${formData.country||''}   Target market: ${formData.market||''}`]);
+    block('Seller / Manufacturer', [
+      'Vysshiy Vkus LLC (OOO "Vysshiy Vkus")',
+      'Office: Beregovaya str. 146, bld. 19, unit 3/82, Krasnodar, Russia',
+      'Production: Smolenskoe hwy 44, Seversky, Afipskiy, Krasnodar Region, Russia',
+      'INN: — (to be confirmed)'
+    ]);
+    block('Recipient (samples shipped free of charge)', [
+      String(formData.company||''), `Attn: ${formData.contact||''}`,
+      addressLine, `${formData.city||''}, ${formData.postal||''}, ${formData.country||''}`,
+      `Tel: ${formData.phone||''}   Email: ${formData.email||''}`,
+      `Target market: ${formData.market||''}`
+    ]);
 
     y += 2;
     doc.setFont('helvetica', 'bold'); doc.setFontSize(9);
@@ -467,17 +476,13 @@
     }
 
     doc.setFontSize(8); doc.setTextColor(120);
-    doc.text('This is a pro-forma document for a trial/sample order, for reference purposes only and does not constitute', marginL, y); y += 4;
-    doc.text('a binding commercial invoice. Final commercial terms will be confirmed separately in writing.', marginL, y);
+    doc.text('Samples are provided free of charge for evaluation purposes. This document is not a commercial invoice', marginL, y); y += 4;
+    doc.text('and has no monetary value. Final commercial terms for a wholesale order will be confirmed separately.', marginL, y);
     doc.setTextColor(0);
 
-    y += 30;
-    doc.setFontSize(9);
-    doc.line(marginL, y, marginL+70, y);
-    doc.line(120, y, 190, y);
-    y += 5;
-    doc.text('For the Seller', marginL, y);
-    doc.text('For the Buyer', 120, y);
+    y += 20;
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(9);
+    doc.text('PIC: Dmitry Skobtsov, +7 919 990 35 00', marginL, y);
 
     const filename = `${ref}-VysshiyVkus.pdf`;
     doc.save(filename);
