@@ -49,5 +49,6 @@
   "thankyou_title": "感谢您的订单！",
   "thankyou_message": "您的订单已发送至生产部门进行核算，我会就交期和细节与您联系。订单副本已发送至您的邮箱（{email}）。",
   "footer_company": "Vysshiy Vkus LLC · 俄罗斯克拉斯诺达尔边疆区阿菲普斯基",
+  "footer_official_site": "官方网站：vsvkus.ru",
   "footer_disclaimer": "认证状态为发布日期时的信息，可能会有变化。"
 }
