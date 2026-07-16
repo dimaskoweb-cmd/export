@@ -68,6 +68,7 @@
     <span data-i18n="cart_title">Ваш тестовый заказ</span>
     <span class="count" id="cart-count">0</span>
   </div>
+  <div class="cart-summary-line" id="cart-summary-line"></div>
   <div class="cart-body" id="cart-body"></div>
   <div style="padding:0 16px 16px">
     <button class="btn" id="cart-checkout-btn" style="width:100%; justify-content:center" data-i18n="cart_checkout">Оформить запрос</button>
@@ -116,11 +117,10 @@
     <label data-i18n="form_comment">Комментарий</label>
     <textarea id="f-comment"></textarea>
     <div class="form-actions">
-      <button type="button" class="btn" id="submit-email" data-i18n="form_submit_email">Отправить письмом</button>
-      <button type="button" class="btn secondary" id="submit-copy" data-i18n="form_submit_copy">Скопировать текст заказа</button>
+      <button type="button" class="btn" id="submit-order" data-i18n="form_submit_order">Отправить заказ</button>
     </div>
     <div class="form-actions">
-      <button type="button" class="btn secondary" id="print-proforma" data-i18n="form_print_proforma">Сформировать pro-forma (PDF/печать)</button>
+      <button type="button" class="btn secondary" id="submit-copy" data-i18n="form_submit_copy">Скопировать текст заказа</button>
     </div>
   </form>
 
@@ -130,6 +130,7 @@
   </div>
 </div>
 
+<script src="../_shared/js/jspdf.umd.min.js"></script>
 <script src="../_shared/js/i18n-core.js"></script>
 <script src="../_shared/js/cart-core.js"></script>
 <script src="assets/js/main.js"></script>
