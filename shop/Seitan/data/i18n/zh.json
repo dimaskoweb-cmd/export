@@ -6,7 +6,7 @@
   "about_halal_title": "清真认证",
   "about_halal_sub": "认证办理中 — 各产品的认证状态将在取得后逐一更新",
   "hero_title": "Vysshiy Vkus 至味素食",
-  "hero_subtitle": "优质小麦面筋（素肉）。生产能力：每月2–3个集装箱。",
+  "hero_subtitle": "优质小麦面筋（素肉）——为您、您的家人，以及幸福健康的生活。",
   "hero_cta": "组建试订单",
   "catalog_title": "产品系列",
   "filter_all": "全部分类",
@@ -49,6 +49,6 @@
   "thankyou_title": "感谢您的订单！",
   "thankyou_message": "您的订单已发送至生产部门进行核算，我会就交期和细节与您联系。订单副本已发送至您的邮箱（{email}）。",
   "footer_company": "Vysshiy Vkus LLC · 俄罗斯克拉斯诺达尔边疆区阿菲普斯基",
-  "footer_official_site": "官方网站：vsvkus.ru",
+  "footer_official_site": "www.vsvkus.ru",
   "footer_disclaimer": "认证状态为发布日期时的信息，可能会有变化。"
 }
