@@ -14,7 +14,10 @@
 <header class="site">
   <div class="container site-bar">
     <div class="logo">Высший Вкус</div>
-    <div class="lang-switch" id="lang-switch"></div>
+    <div class="header-right">
+      <div class="clock" id="header-clock"></div>
+      <div class="lang-switch" id="lang-switch"></div>
+    </div>
   </div>
 </header>
 
@@ -28,21 +31,18 @@
   </div>
 </section>
 
-<section class="about-product">
+<section class="brand-section">
   <div class="container">
-    <div class="about-badges">
-      <div class="about-badge">
-        <span class="about-badge-icon">🌾</span>
-        <span data-i18n="about_plantbased_title">100% растительный состав</span>
-        <span class="about-badge-sub" data-i18n="about_plantbased_sub">Без мяса, без молока, без яиц — основа рецептуры: пшеничная клейковина (сейтан)</span>
-      </div>
-      <div class="about-badge warn">
-        <span class="about-badge-icon">⏳</span>
-        <span data-i18n="about_halal_title">Халяль-сертификация</span>
-        <span class="about-badge-sub" data-i18n="about_halal_sub">В процессе оформления — статус будет обновлён по каждому SKU по факту получения</span>
-      </div>
-    </div>
+    <div class="accordion" id="brand-accordion"></div>
   </div>
+</section>
+
+<section class="ingredients-section">
+  <div class="container" id="ingredients-container"></div>
+</section>
+
+<section class="audience-section">
+  <div class="container" id="audience-container"></div>
 </section>
 
 <section class="catalog">
