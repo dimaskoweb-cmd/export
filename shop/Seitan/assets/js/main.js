@@ -13,7 +13,7 @@
   // На GitHub Pages это ограничение не действует.
 
   const MANAGER_EMAIL = 'dimasko.web@gmail.com';
-  const ASSET_VERSION = 'v=1784231422'; // бампаем при каждом деплое — иначе GitHub Pages/браузер может отдавать старые data-файлы из кэша
+  const ASSET_VERSION = 'v=1784248820'; // бампаем при каждом деплое — иначе GitHub Pages/браузер может отдавать старые data-файлы из кэша
 
   // Настройки EmailJS — реальная автоматическая отправка (без CDN, SDK лежит локально в _shared/js/)
   const EMAILJS_SERVICE_ID = 'service_07prkee';
@@ -198,6 +198,20 @@
     return text.length > 90 ? text.slice(0, 90) + '…' : text;
   }
 
+  function openLightbox(src){
+    let box = document.getElementById('vvk-lightbox');
+    if (!box){
+      box = document.createElement('div');
+      box.id = 'vvk-lightbox';
+      box.className = 'vvk-lightbox';
+      box.innerHTML = '<img alt="">';
+      box.addEventListener('click', () => box.classList.remove('open'));
+      document.body.appendChild(box);
+    }
+    box.querySelector('img').src = src;
+    box.classList.add('open');
+  }
+
   function renderCatalog(){
     const grid = document.getElementById('grid');
     const lang = i18n.lang;
@@ -212,16 +226,27 @@
       const catObj = CATEGORIES.find(c => c.id === p.category);
       const catName = catObj ? (catObj.name[lang] || catObj.name.en) : '';
 
-      const galleryHtml = (p.images && p.images.length)
-        ? `<div class="card-gallery">${p.images.map(img => `<img src="assets/img/products/${img.file}" alt="" loading="lazy">`).join('')}</div>`
+      const hasPhoto = p.images && p.images.length > 0;
+      const mainPhoto = hasPhoto ? p.images[0].file : null;
+
+      const thumbInner = hasPhoto
+        ? `<img src="assets/img/products/${mainPhoto}" alt="${name}" loading="lazy">`
+        : `${name}<br><span style="opacity:.6">(фото → assets/img/products/${p.id}.jpg)</span>`;
+
+      const galleryHtml = (p.images && p.images.length > 1)
+        ? `<div class="card-gallery">${p.images.map(img => `<img src="assets/img/products/${img.file}" alt="" loading="lazy" data-lightbox="assets/img/products/${img.file}">`).join('')}</div>`
         : '';
+
+      const aboutText = p.about && (p.about[lang] || p.about.en);
+      const nut = p.nutrition_per_100g;
+      const hasFullNutrition = nut && nut.protein_g != null && nut.fat_g != null && nut.carb_g != null && nut.kcal != null;
 
       return `
       <div class="card" data-id="${p.id}">
         <span class="cat-tag">${catName}</span>
-        <div class="thumb">
+        <div class="thumb${hasPhoto ? ' has-photo' : ''}" ${hasPhoto ? `data-lightbox="assets/img/products/${mainPhoto}"` : ''}>
           <span class="weight-stamp">${p.weight_g}<small>g</small></span>
-          ${name}<br><span style="opacity:.6">(фото → assets/img/products/${p.id}.jpg)</span>
+          ${thumbInner}
         </div>
         <h3>${name}</h3>
         <div class="badges">
@@ -239,14 +264,29 @@
           <button class="btn" data-action="add">${inCart ? i18n.t('card_added') + ' ✓ (' + inCart + ')' : i18n.t('card_add')}</button>
         </div>
         <div class="card-detail">
+          ${aboutText ? `<dt>${i18n.t('card_about')}</dt><dd>${aboutText}</dd>` : ''}
           <dt>${i18n.t('card_composition')}</dt><dd>${comp}</dd>
           ${galleryHtml}
           <dt>${i18n.t('card_shelf_life')}</dt><dd>${p.shelf_life_months} ${i18n.t('card_shelf_life_value').replace('{temp}', p.storage_temp_c)}</dd>
-          ${p.nutrition_per_100g && p.nutrition_per_100g.protein_g ? `<dt>Белок / Protein</dt><dd>${p.nutrition_per_100g.protein_g} г/100г</dd>` : ''}
+          ${hasFullNutrition ? `
+          <dt>${i18n.t('card_nutrition')}</dt>
+          <dd><table class="nutri-table">
+            <tr><td>${i18n.t('nutri_protein')}</td><td>${nut.protein_g} g</td></tr>
+            <tr><td>${i18n.t('nutri_fat')}</td><td>${nut.fat_g} g</td></tr>
+            <tr><td>${i18n.t('nutri_carb')}</td><td>${nut.carb_g} g</td></tr>
+            <tr><td>${i18n.t('nutri_kcal')}</td><td>${nut.kcal} kcal</td></tr>
+          </table></dd>` : (nut && nut.protein_g ? `<dt>Белок / Protein</dt><dd>${nut.protein_g} г/100г</dd>` : '')}
           ${p.ingredient_flag ? `<dt>⚠</dt><dd>${p.ingredient_flag}</dd>` : ''}
         </div>
       </div>`;
     }).join('');
+
+    grid.querySelectorAll('[data-lightbox]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openLightbox(el.getAttribute('data-lightbox'));
+      });
+    });
 
     grid.querySelectorAll('.card').forEach(card => {
       const id = card.getAttribute('data-id');
