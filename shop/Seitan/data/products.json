@@ -163,9 +163,9 @@
       "sku_no": 3,
       "category": "smoked_dried",
       "name": {
-        "ru": "Колбаса пшеничная вялено-копчёная Таллинская (малая)",
-        "en": "Dry-smoked Wheat Sausage \"Tallinskaya\" (small)",
-        "zh": "塔林干熏小麦香肠（小）",
+        "ru": "Колбаса пшеничная вялено-копчёная Таллинская",
+        "en": "Dry-smoked Wheat Sausage \"Tallinskaya\"",
+        "zh": "塔林干熏小麦香肠",
         "hi": ""
       },
       "weight_g": 150,
@@ -198,54 +198,6 @@
           "file": "tallinskaya.jpg"
         }
       ],
-      "ingredient_flag": "beef flavoring"
-    },
-    {
-      "id": "tallinskaya_250",
-      "sku_no": "3b",
-      "category": "smoked_dried",
-      "name": {
-        "ru": "Колбаса пшеничная вялено-копчёная Таллинская (большая)",
-        "en": "Dry-smoked Wheat Sausage \"Tallinskaya\" (large)",
-        "zh": "塔林干熏小麦香肠（大）",
-        "hi": ""
-      },
-      "weight_g": 250,
-      "price_rub": {
-        "tier_2pallet": 350,
-        "tier_1container": 305
-      },
-      "composition": {
-        "ru": "см. Таллинская (малая) — рецептура идентична, отличается только фасовка.",
-        "zh": "见塔林干熏小麦香肠（小）— 配方相同，仅包装规格不同。",
-        "en": "Hydrated wheat gluten, refined deodorized coconut oil, thickeners: guar gum, carrageenan, tara gum; sodium alginate polysaccharide, edible salt, yeast extract, stabilizer, complex food additive: Cervelat flavoring, spices and spice extracts, dextrose, maltodextrin, beef flavoring, antioxidant, smoke flavoring; colorant - iron oxides.",
-        "hi": ""
-      },
-      "allergens": [
-        "gluten"
-      ],
-      "shelf_life_months": 12,
-      "storage_temp_c": -18,
-      "nutrition_per_100g": {
-        "protein_g": 27,
-        "fat_g": 15,
-        "carb_g": 15,
-        "kcal": 300
-      },
-      "halal_status": "pending",
-      "shelf_life_frozen": "12 months at -18°C",
-      "shelf_life_chilled": "90 days at +2...+6°C, 75% RH",
-      "images": [
-        {
-          "file": "tallinskaya.jpg"
-        }
-      ],
-      "about": {
-        "ru": "Вялено-копчёная пшеничная колбаса «Таллинская». Сочетает лучшее — плотную аппетитную текстуру, яркий пикантный вкус копчёной колбасы и красивый срез с вкраплениями растительного «сала». Секрет вкуса — в гармоничном сочетании специй, длительной вялке и холодном копчении на фруктовой щепе. Отлично подходит для веганской пиццы, бутербродов, закусок и праздничного стола.",
-        "en": "Dried and smoked wheat sausage \"Tallinskaya\". Combines dense, appetizing texture with a bright, piquant smoked-sausage taste and a beautiful cut interspersed with plant-based \"lard\". The secret lies in natural spices, long drying, and cold smoking on fruit chips. Perfect for vegan pizza, sandwiches, appetizers, and festive dishes.",
-        "zh": "风干烟熏小麦香肠«塔林»。兼具紧实诱人的质地与烟熏香肠鲜明浓郁的口感，切面点缀着植物«肥膘»，十分美观。其独特风味秘诀在于天然香料的和谐搭配、长时间风干及果木冷熏工艺。非常适合素食披萨、三明治、开胃菜和节日餐桌。",
-        "hi": "सूखा और स्मोक्ड गेहूं सॉसेज «तालिन्स्काया»। घने, स्वादिष्ट बनावट को स्मोक्ड सॉसेज के तीखे स्वाद के साथ जोड़ता है। इसका रहस्य प्राकृतिक मसालों, लंबे समय तक सुखाने और फलों की लकड़ी पर ठंडे धूम्रपान में है। वीगन पिज़्ज़ा, सैंडविच और उत्सव के व्यंजनों के लिए बिल्कुल सही।"
-      },
       "ingredient_flag": "beef flavoring"
     },
     {
@@ -584,44 +536,6 @@
         "hi": "बोटानिक ओरिजिनल गेहूं सॉसेज। रसीले और स्वादिष्ट, समृद्ध मांसयुक्त स्वाद के साथ — बिना किसी पशु वसा के, केवल प्लांट-आधारित सामग्री से बने। उच्च गेहूं प्रोटीन सामग्री इन्हें सक्रिय लोगों, कम-कार्ब आहार लेने वालों, उपवास करने वालों, शाकाहारियों, या मांस के स्वस्थ विकल्प की तलाश करने वालों के लिए एक बेहतरीन विकल्प बनाती है। \"बोटानिक ओरिजिनल\" उबालने पर नरम और तलने पर स्वादिष्ट कुरकुरे — हर रूप में उतना ही स्वादिष्ट।"
       },
       "ingredient_flag": "beef flavoring"
-    },
-    {
-      "id": "delicious_classic",
-      "sku_no": 11,
-      "category": "franks",
-      "name": {
-        "ru": "Сосиски пшеничные Delicious Classic",
-        "en": "Wheat Sausages \"Delicious Classic\"",
-        "zh": "美味经典的小麦香肠",
-        "hi": ""
-      },
-      "weight_g": 200,
-      "price_rub": {
-        "tier_2pallet": 245,
-        "tier_1container": 192
-      },
-      "composition": {
-        "ru": "клейковина пшеничная гидратированная, вода питьевая, масло подсолнечное рафинированное дезодорированное, масло кокосовое рафинированное дезодорированное, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, дрожжевой экстракт, стабилизатор, комплексная пищевая добавка: декстроза, мальтодекстрин, кориандр, паприка, мускат, тмин, чили, горчица, растительный гидролизат, ароматизаторы (жареного мяса, мясной) идентичный натуральному, ароматизатор дыма, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
-        "zh": "水合小麦筋、饮用水、精炼脱臭葵花籽油、精炼脱臭椰子油、增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；食用盐、酵母提取物、稳定剂、复合食品添加剂：葡萄糖、麦芽糊精、香菜籽、辣椒粉、肉豆蔻、孜然、辣椒（干）、芥末、植物水解物、食品香精（烤肉味、肉味，类天然）、烟熏香精、甜菜红（贝塔宁）、辣椒提取物、抗氧化剂（柠檬酸）。",
-        "en": "hydrated wheat gluten, drinking water, refined deodorized sunflower oil, refined deodorized coconut oil, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, yeast extract, stabilizer, complex food additive (dextrose, maltodextrin, coriander, paprika, nutmeg, cumin, chili, mustard, vegetable hydrolysate), nature-identical roasted-meat/meaty flavourings, smoke flavouring, betanin, paprika extract, antioxidant (citric acid).",
-        "hi": ""
-      },
-      "allergens": [
-        "gluten"
-      ],
-      "shelf_life_months": 12,
-      "storage_temp_c": -18,
-      "nutrition_per_100g": {
-        "protein_g": null,
-        "fat_g": null,
-        "carb_g": null,
-        "kcal": null
-      },
-      "halal_status": "pending",
-      "ingredient_flag": "«Растительный гидролизат» — конкретный источник не указан; требует уточнения у производителя (вопрос D-12).",
-      "shelf_life_frozen": "12 months at -18°C",
-      "shelf_life_chilled": "90 days at +2...+6°C, 75% RH",
-      "images": []
     },
     {
       "id": "s_gribami",
