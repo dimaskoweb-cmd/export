@@ -108,7 +108,7 @@
         "zh": "经典风味小麦香肠«多克托尔斯卡娅»口味。清淡、营养又极其美味，采用天然植物原料制成，是重视食品安全并希望补充全价蛋白的理想之选。基础成分为易消化的小麦蛋白，富含氨基酸、镁、铁和B族维生素。芳香香料与提取物的和谐搭配，重现了记忆中经典的肉香与口感。«经典款»用途广泛：可用于沙拉、三明治、热菜，甚至清淡小吃。",
         "hi": "'डॉक्टर्स' स्वाद वाला क्लासिक गेहूं सॉसेज। हल्का, पौष्टिक और अविश्वसनीय रूप से स्वादिष्ट, प्राकृतिक प्लांट-आधारित सामग्री से बना। आधार है आसानी से पचने वाला गेहूं प्रोटीन, जो अमीनो एसिड, मैग्नीशियम, आयरन और बी-विटामिन से भरपूर है। \"क्लासिक\" बहुमुखी है: सलाद, सैंडविच, गर्म व्यंजन और हल्के नाश्ते में भी बढ़िया।"
       },
-      "ingredient_flag": "Официальная карточка указывает «pork flavoring» в составе рядом с плашкой «100% VEGAN» на этой же карточке — это особенно чувствительно для халяль/кошер-аудита. Требует явного письменного подтверждения от производителя о природе этого ароматизатора."
+      "ingredient_flag": "pork flavoring"
     },
     {
       "id": "osobaya",
@@ -128,7 +128,7 @@
       "composition": {
         "ru": "клейковина гидратированная, вода питьевая, масло подсолнечное рафинированное дезодорированное, масло кокосовое рафинированное дезодорированное, загустители: гуаровая камедь, каррагинан, тара камедь; соль пищевая, дрожжевой экстракт, кориандр, комплексная пищевая добавка: декстроза, мальтодекстрин, пряности и экстракты специй, антиокислитель, ароматизатор дыма, ароматизатор бекон, ароматизатор пищевой идентичный натуральному, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
         "zh": "水合小麦筋、饮用水、精炼脱臭葵花籽油、精炼脱臭椰子油、增稠剂：瓜尔豆胶、卡拉胶、塔拉胶；食用盐、酵母提取物、芫荽、复合食品添加剂：葡萄糖、麦芽糊精、香料及香料提取物、抗氧化剂、烟熏香精、培根香精、类天然食品香精、甜菜红（贝塔宁）、辣椒提取物、抗氧化剂（柠檬酸）。",
-        "en": "hydrated gluten, drinking water, refined deodorized sunflower oil, refined deodorized coconut oil, thickeners (guar gum, carrageenan, tara gum), salt, yeast extract, coriander, complex food additive (dextrose, maltodextrin, spices and spice extracts), antioxidant, smoke flavouring, bacon flavouring, nature-identical flavouring, betanin, paprika extract, antioxidant (citric acid).",
+        "en": "Hydrated gluten, drinking water, refined deodorized sunflower oil, refined deodorized coconut oil, thickeners: guar gum, carrageenan, tara gum; edible salt, yeast extract, coriander, complex food additive: dextrose, maltodextrin, spices and spice extracts, antioxidant, smoke flavoring, bacon flavoring, chicken flavoring; color - iron oxide.",
         "hi": ""
       },
       "allergens": [
@@ -137,15 +137,26 @@
       "shelf_life_months": 12,
       "storage_temp_c": -18,
       "nutrition_per_100g": {
-        "protein_g": null,
-        "fat_g": null,
-        "carb_g": null,
-        "kcal": null
+        "protein_g": 19,
+        "fat_g": 24,
+        "carb_g": 7,
+        "kcal": 320
       },
       "halal_status": "pending",
       "shelf_life_frozen": "12 months at -18°C",
       "shelf_life_chilled": "90 days at +2...+6°C, 75% RH",
-      "images": []
+      "images": [
+        {
+          "file": "osobaya.jpg"
+        }
+      ],
+      "about": {
+        "ru": "Нежная, но насыщенная — эта колбаса сочетает любимый вкус колбасы с деликатной мягкостью курицы, при этом полностью растительная. Основа — пшеничный белок, отмытый по нашей запатентованной технологии, что даёт уникальную текстуру, максимально близкую к мясу, сохраняя полезные свойства продукта. «Особая» содержит пшеничную клетчатку, полезную для пищеварения — можно наслаждаться вкусом, не беспокоясь о фигуре или холестерине. Отлично подходит для бутербродов, закусок и горячих блюд.",
+        "en": "Tender yet rich, this sausage combines the beloved flavor of sausage with the delicate tenderness of chicken, but is made entirely from plant-based ingredients. The base is wheat protein, prepared using our proprietary, patented technology for washing fresh wheat protein, achieving a unique texture as close as possible to meat while preserving the product's beneficial properties. \"Special\" contains wheat fiber, which supports digestive health and allows you to enjoy the flavor without worrying about your figure or cholesterol. Perfect for sandwiches, appetizers, and hot dishes.",
+        "zh": "细嫩却浓郁——这款香肠融合了人们钟爱的香肠风味与鸡肉般的柔嫩口感，却完全采用植物原料制成。基础成分是我们采用专利工艺清洗的小麦蛋白，带来最接近肉类的独特口感，同时保留产品的营养价值。«特制款»含有小麦纤维，有益消化健康——尽情享受美味，无需担心体重或胆固醇。非常适合三明治、开胃菜和热菜。",
+        "hi": "कोमल फिर भी समृद्ध — यह सॉसेज सॉसेज के पसंदीदा स्वाद को चिकन जैसी नाज़ुक कोमलता के साथ जोड़ता है, फिर भी पूरी तरह प्लांट-आधारित सामग्री से बना है। आधार है हमारी पेटेंट तकनीक से धुला गेहूं प्रोटीन, जो मांस के जितना संभव करीब बनावट देता है। \"स्पेशल\" में गेहूं फाइबर है, जो पाचन स्वास्थ्य में मदद करता है। सैंडविच, ऐपेटाइज़र और गर्म व्यंजनों के लिए बिल्कुल सही।"
+      },
+      "ingredient_flag": "bacon flavoring, chicken flavoring"
     },
     {
       "id": "tallinskaya_150",
@@ -239,7 +250,7 @@
       "composition": {
         "ru": "клейковина пшеничная гидратированная, масло кокосовое рафинированное дезодорированное, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, дрожжевой экстракт, стабилизатор, комплексная пищевая добавка: декстроза, мальтодекстрин, перец белый, перец черный, мускат, кардамон, чили, перец черный горошком, горчица, ароматизатор (жареного мяса) идентичный натуральному, ароматизатор дыма, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
         "zh": "水合小麦筋、精炼脱臭椰子油、增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；食用盐、酵母提取物、稳定剂、复合食品添加剂：葡萄糖、麦芽糊精、白胡椒、黑胡椒、肉豆蔻、豆蔻、辣椒、整粒黑胡椒、芥末、食品香精（烤肉味，类天然）、烟熏香精、甜菜红（贝塔宁）、辣椒提取物、抗氧化剂（柠檬酸）。",
-        "en": "hydrated wheat gluten, refined deodorized coconut oil, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, yeast extract, stabilizer, complex food additive (dextrose, maltodextrin, white pepper, black pepper, nutmeg, cardamom, chili, whole black peppercorn, mustard), nature-identical roasted-meat flavouring, smoke flavouring, betanin, paprika extract, antioxidant (citric acid).",
+        "en": "Hydrated wheat gluten, refined deodorized coconut oil, thickeners: guar gum, carrageenan, tara gum; sodium alginate polysaccharide, edible salt, yeast extract, chili extract, stabilizer, complex food additive: spices and spice extracts, dextrose, maltodextrin, antioxidant, Vienna sausage flavoring, Pepper sausage flavoring, smoke flavoring; colorant - iron oxides.",
         "hi": ""
       },
       "allergens": [
@@ -248,15 +259,25 @@
       "shelf_life_months": 12,
       "storage_temp_c": -18,
       "nutrition_per_100g": {
-        "protein_g": null,
-        "fat_g": null,
-        "carb_g": null,
-        "kcal": null
+        "protein_g": 26,
+        "fat_g": 8,
+        "carb_g": 30,
+        "kcal": 300
       },
       "halal_status": "pending",
       "shelf_life_frozen": "12 months at -18°C",
       "shelf_life_chilled": "90 days at +2...+6°C, 75% RH",
-      "images": []
+      "images": [
+        {
+          "file": "pepperoni.jpg"
+        }
+      ],
+      "about": {
+        "ru": "Растительные колбаски пепперони. Ароматные, пикантные и насыщенные по вкусу — изготовлены из пшеничного белка и отборных натуральных ингредиентов. В составе только растительные масла, специи и травы, дающие гармоничный, сбалансированный вкус. Отличная закуска, компаньон к супам с дымком, прекрасно сочетается с гарнирами и украсит любой стол.",
+        "en": "Vegetable Pepperoni Sausages. Fragrant, savory, and rich in flavor, these sausages, made with wheat protein and selected natural ingredients, will become a versatile addition to your diet. They contain only vegetable oils, spices, and herbs, creating a harmonious, balanced flavor. Nutritious, healthy, and completely plant-based.",
+        "zh": "植物意大利辣香肠。香气浓郁、口感醇厚，采用小麦蛋白和精选天然原料制成，是您日常饮食的百搭之选。仅含植物油、香料和香草，风味和谐均衡。营养健康，完全植物基。",
+        "hi": "वेजिटेबल पेपरोनी सॉसेज। सुगंधित, स्वादिष्ट और भरपूर स्वाद वाले, गेहूं प्रोटीन और चुनिंदा प्राकृतिक सामग्री से बने ये सॉसेज आपके आहार में बहुमुखी बन जाएंगे। इनमें केवल वनस्पति तेल, मसाले और जड़ी-बूटियां हैं। पौष्टिक, स्वस्थ और पूरी तरह प्लांट-आधारित।"
+      }
     },
     {
       "id": "vegachicken",
@@ -418,7 +439,8 @@
         "zh": "小麦香肠«嫩滑»。家常、柔软、口感和谐，让这款香肠用途十分广泛。其成分包含新鲜清洗的小麦蛋白，由我们的专家采用专有工艺手工清洗，保留了营养特性和天然成分。«嫩滑»适合多种饮食方式，包括素食和斋戒。",
         "hi": "गेहूं सॉसेज «टेंडर»। घरेलू, मुलायम और सामंजस्यपूर्ण स्वाद इन सॉसेज को वाकई बहुमुखी बनाता है। इनमें ताज़ा धुला हुआ गेहूं प्रोटीन है, जिसे हमारे विशेषज्ञ अपनी विशेष तकनीक से हाथ से धोते हैं। «टेंडर» विभिन्न प्रकार के आहारों के लिए उपयुक्त है, जिसमें वीगन आहार और उपवास शामिल हैं।"
       },
-      "ingredient_flag": "Официальная карточка указывает «pork flavoring» в составе рядом с «100% VEGAN». ВАЖНО: официальная карточка также указывает вес 300г, а в нашем экспортном прайс-листе для этой позиции — 200г. Это расхождение НЕ исправлено автоматически — нужно уточнить у производителя, какой вес актуален для экспортной поставки."
+      "ingredient_flag": "pork flavoring",
+      "data_note": "Вес по официальной карточке производителя — 300г, в экспортном прайс-листе — 200г. Уточнить у производителя актуальный вес для экспортной поставки."
     },
     {
       "id": "pikantnye",
@@ -503,7 +525,7 @@
         "zh": "植物原味小麦香肠 Botanic Original。多汁美味，口感浓郁似肉，不含动物脂肪，仅采用植物原料制成。高含量小麦蛋白，是运动人群、低碳水饮食者、斋戒人士、素食者，或单纯寻找健康肉类替代品人群的理想之选。«Botanic Original»无论煮制还是煎制都同样美味：水煮软嫩多汁，煎制外皮香脆。丰盛又营养的早餐、午餐或晚餐之选！",
         "hi": "बोटानिक ओरिजिनल गेहूं सॉसेज। रसीले और स्वादिष्ट, समृद्ध मांसयुक्त स्वाद के साथ — बिना किसी पशु वसा के, केवल प्लांट-आधारित सामग्री से बने। उच्च गेहूं प्रोटीन सामग्री इन्हें सक्रिय लोगों, कम-कार्ब आहार लेने वालों, उपवास करने वालों, शाकाहारियों, या मांस के स्वस्थ विकल्प की तलाश करने वालों के लिए एक बेहतरीन विकल्प बनाती है। \"बोटानिक ओरिजिनल\" उबालने पर नरम और तलने पर स्वादिष्ट कुरकुरे — हर रूप में उतना ही स्वादिष्ट।"
       },
-      "ingredient_flag": "Официальная карточка указывает «beef flavoring» в составе рядом с плашкой «100% VEGAN» на этой же карточке — требует подтверждения от производителя, что это ароматизатор без животного сырья (для халяль-аудита)."
+      "ingredient_flag": "beef flavoring"
     },
     {
       "id": "delicious_classic",
@@ -561,7 +583,7 @@
       "composition": {
         "ru": "клейковина пшеничная гидратированная, вода питьевая, масло кокосовое рафинированное дезодорированное, масло подсолнечное рафинированное дезодорированное, грибы сушеные шиитаке, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, дрожжевой экстракт, стабилизатор, комплексная пищевая добавка: декстроза, мальтодекстрин, мускат, горчица, кориандр, ароматизатор лесных грибов, ароматизатор дыма, бетанин, экстракт паприки, антиокислитель (лимонная кислота).",
         "zh": "水合小麦筋、饮用水、精炼脱臭椰子油、精炼脱臭葵花籽油、干香菇、增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；食用盐、酵母提取物、稳定剂、复合食品添加剂：葡萄糖、麦芽糊精、肉豆蔻、芥末、芫荽、森林蘑菇香精、烟熏香精、甜菜红（贝塔宁）、辣椒提取物、抗氧化剂（柠檬酸）。",
-        "en": "hydrated wheat gluten, drinking water, refined deodorized coconut oil, refined deodorized sunflower oil, dried shiitake mushrooms, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, yeast extract, stabilizer, complex food additive (dextrose, maltodextrin, nutmeg, mustard, coriander), forest-mushroom flavouring, smoke flavouring, betanin, paprika extract, antioxidant (citric acid).",
+        "en": "Hydrated gluten, drinking water, refined deodorized coconut oil, refined deodorized sunflower oil, dried mushrooms: shiitake, porcini; thickeners: guar gum, carrageenan, tara gum; edible salt, yeast extract, nutmeg extract, coriander, stabilizer, complex food additive: dextrose, maltodextrin, spices and spice extracts, antioxidant, smoke flavoring; color - iron oxide.",
         "hi": ""
       },
       "allergens": [
@@ -570,15 +592,25 @@
       "shelf_life_months": 12,
       "storage_temp_c": -18,
       "nutrition_per_100g": {
-        "protein_g": null,
-        "fat_g": null,
-        "carb_g": null,
-        "kcal": null
+        "protein_g": 18,
+        "fat_g": 14,
+        "carb_g": 13,
+        "kcal": 244
       },
       "halal_status": "pending",
       "shelf_life_frozen": "12 months at -18°C",
       "shelf_life_chilled": "90 days at +2...+6°C, 75% RH",
-      "images": []
+      "images": [
+        {
+          "file": "s_gribami.jpg"
+        }
+      ],
+      "about": {
+        "ru": "Пшеничные сосиски с грибами шиитаке. Ароматные и вкусные, шиитаке придают насыщенный, глубокий вкус. Эти грибы добавляют уникальную глубину и характерный аромат любому блюду. Подходят для любого приёма пищи: варка, обжарка до золотистой корочки, хот-дог, добавление в салат — или прямо из упаковки, как и вся продукция «Высший Вкус», полностью готовы к употреблению.",
+        "en": "Wheat sausages with shiitake mushrooms. Fragrant and delicious, shiitake mushrooms impart a rich, aromatic flavor, adding unique depth to any dish. Perfect for any meal: boiled, fried until golden brown, made into a hot dog, added to a salad, or enjoyed straight from the package.",
+        "zh": "香菇小麦香肠。香气扑鼻、口感美味，香菇带来浓郁醇厚的风味，为任何菜肴增添独特深度和特有香气。适合任何一餐：水煮、煎至金黄、做热狗、加入沙拉，或直接从包装中取出食用。",
+        "hi": "शिइताके मशरूम के साथ गेहूं सॉसेज। सुगंधित और स्वादिष्ट, शिइताके मशरूम एक समृद्ध, सुगंधित स्वाद देते हैं, जो किसी भी व्यंजन में अनूठी गहराई जोड़ते हैं। किसी भी भोजन के लिए बिल्कुल सही: उबालकर, सुनहरा होने तक तलकर, हॉट डॉग बनाकर, सलाद में डालकर, या सीधे पैकेज से।"
+      }
     },
     {
       "id": "pate_gribnoy",
@@ -598,7 +630,7 @@
       "composition": {
         "ru": "клейковина пшеничная гидратированная, вода питьевая, масло подсолнечное рафинированное, масло кокосовое рафинированное дезодорированное, грибы сушеные: шиитаке, белые; загустители: гуаровая камедь, каррагинан, тара камедь; соль пищевая, дрожжевой экстракт, стабилизатор, комплексная пищевая добавка: пряности и экстракты специй, декстроза, мальтодекстрин, антиокислитель.",
         "zh": "水合小麦筋、饮用水、精炼葵花籽油、精炼脱臭椰子油、干香菇、干牛肝菌；增稠剂：瓜尔豆胶、卡拉胶、塔拉胶；食用盐、酵母提取物、稳定剂、复合食品添加剂：香料及香料提取物、葡萄糖、麦芽糊精；抗氧化剂。",
-        "en": "hydrated wheat gluten, drinking water, refined sunflower oil, refined deodorized coconut oil, dried mushrooms (shiitake, porcini), thickeners (guar gum, carrageenan, tara gum), salt, yeast extract, stabilizer, complex food additive (spices and spice extracts, dextrose, maltodextrin), antioxidant.",
+        "en": "Hydrated gluten, drinking water, refined sunflower oil, refined deodorized coconut oil, dried mushrooms (shiitake), dextrose, maltodextrin, edible salt, thickeners (xanthan gum, guar gum, locust bean gum, tara gum), dried chopped porcini mushrooms, food mushroom flavoring, spices, herbs and their extracts (nutmeg, coriander, allspice, cardamom), color - iron oxides.",
         "hi": ""
       },
       "allergens": [
@@ -607,15 +639,26 @@
       "shelf_life_months": 12,
       "storage_temp_c": -18,
       "nutrition_per_100g": {
-        "protein_g": null,
-        "fat_g": null,
-        "carb_g": null,
-        "kcal": null
+        "protein_g": 19,
+        "fat_g": 19,
+        "carb_g": 6,
+        "kcal": 270
       },
       "halal_status": "pending",
       "shelf_life_frozen": "12 months at -18°C",
       "shelf_life_chilled": "90 days at +2...+6°C, 75% RH",
-      "images": []
+      "images": [
+        {
+          "file": "pate_gribnoy.jpg"
+        }
+      ],
+      "about": {
+        "ru": "Грибной пшеничный паштет: нежный, ароматный, насыщенного вкуса — понравится даже самым взыскательным. В составе отборные белые грибы и шиитаке, дающие благородный, глубокий вкус. Паштет не только вкусный, но и полезный: богат растительным белком, сытный и питательный. Отлично подходит для завтрака, перекуса или как закуска на праздничный стол.",
+        "en": "Mushroom Wheat Pâté: delicate, aromatic, and rich in flavor, this pâté will delight even the most discerning palates. It features select porcini and shiitake mushrooms, which impart a refined, rich flavor. Rich in plant-based protein, it's nutritious and filling — perfect for breakfast, a snack, or as an appetizer at a holiday table.",
+        "zh": "蘑菇小麦酱：口感细腻、香气浓郁，能满足最挑剔的味蕾。选用优质牛肝菌和香菇，带来高雅醇厚的风味。富含植物蛋白，营养饱腹——非常适合早餐、小吃，或节日餐桌上的开胃菜。",
+        "hi": "मशरूम गेहूं पेट: नाज़ुक, सुगंधित और भरपूर स्वाद वाला, यह पेट सबसे नखरीले स्वाद को भी प्रसन्न करेगा। इसमें चुनिंदा पोर्सिनी और शिइताके मशरूम हैं, जो एक परिष्कृत, समृद्ध स्वाद देते हैं। प्लांट-प्रोटीन से भरपूर, पौष्टिक और तृप्तिदायक — नाश्ते, स्नैक या उत्सव की मेज़ पर ऐपेटाइज़र के लिए बिल्कुल सही।"
+      },
+      "data_note": "Вес по официальной карточке производителя — 200г, в экспортном прайс-листе — 125г. Уточнить у производителя актуальный вес для экспортной поставки."
     },
     {
       "id": "pate_chicken_free",
@@ -635,7 +678,7 @@
       "composition": {
         "ru": "клейковина пшеничная гидратированная, вода питьевая, масло подсолнечное рафинированное дезодорированное, масло кокосовое рафинированное дезодорированное, загустители: ксантановая камедь, гуаровая камедь, камедь рожкового дерева, камедь тары, каррагинан; соль пищевая, экстракт чили, стабилизатор, комплексная пищевая добавка: ароматизатор «Курица», горчица, мальтодекстрин, декстроза.",
         "zh": "水合小麦筋、饮用水、精炼脱臭葵花籽油、精炼脱臭椰子油；增稠剂：黄原胶、瓜尔豆胶、角豆胶、塔拉胶、卡拉胶；食用盐、辣椒提取物、稳定剂、复合食品添加剂：鸡肉香精、芥末、麦芽糊精、葡萄糖。",
-        "en": "hydrated wheat gluten, drinking water, refined deodorized sunflower oil, refined deodorized coconut oil, thickeners (xanthan gum, guar gum, locust bean gum, tara gum, carrageenan), salt, chili extract, stabilizer, complex food additive (\"Chicken\" flavouring, mustard, maltodextrin, dextrose).",
+        "en": "Hydrated wheat gluten, drinking water, refined deodorized sunflower oil, refined deodorized coconut oil, thickeners: guar gum, carrageenan, tara gum; edible salt, stabilizer, complex food additive: chicken flavoring, dextrose.",
         "hi": ""
       },
       "allergens": [
@@ -644,16 +687,26 @@
       "shelf_life_months": 12,
       "storage_temp_c": -18,
       "nutrition_per_100g": {
-        "protein_g": null,
-        "fat_g": null,
-        "carb_g": null,
-        "kcal": null
+        "protein_g": 15,
+        "fat_g": 24,
+        "carb_g": 8,
+        "kcal": 310
       },
       "halal_status": "pending",
-      "ingredient_flag": "Ароматизатор «Курица» — источник не указан; требует уточнения (вопрос D-11).",
+      "ingredient_flag": "chicken flavoring",
       "shelf_life_frozen": "12 months at -18°C",
       "shelf_life_chilled": "90 days at +2...+6°C, 75% RH",
-      "images": []
+      "images": [
+        {
+          "file": "pate_chicken_free.jpg"
+        }
+      ],
+      "about": {
+        "ru": "Сейтан «Чикен-Фри»: нежный, высокобелковый паштет из пшеничного зерна по собственной технологии. По вкусу почти неотличим от куриного паштета, но полностью растительный — не каждый догадается, что в составе нет мяса. Отлично подходит для быстрых и вкусных перекусов: сэндвичи, сочная шаурма, лёгкие вареники и многое другое.",
+        "en": "Chicken-Fried Wheat Seitan: a delicate, high-protein pâté made from wheat grains using a proprietary process. It tastes remarkably similar to chicken pâté, but is made entirely from plant-based ingredients. Perfect for quick and tasty snacks — sandwiches, juicy shawarma, dumplings, and more.",
+        "zh": "«鸡肉风味»面筋酱：采用专有工艺以小麦为原料制成的细腻高蛋白酱料。口感与鸡肉酱极为相似，但完全采用植物原料制成。非常适合快速美味的小吃——三明治、多汁沙威玛、饺子等。",
+        "hi": "चिकन-फ्राइड व्हीट सेइतान: एक विशेष प्रक्रिया से गेहूं के दानों से बना नाज़ुक, उच्च-प्रोटीन पेट। इसका स्वाद चिकन पेट जैसा ही है, लेकिन यह पूरी तरह प्लांट-आधारित सामग्री से बना है। सैंडविच, रसीले शवर्मा, डम्पलिंग के लिए बिल्कुल सही।"
+      }
     }
   ]
 }
