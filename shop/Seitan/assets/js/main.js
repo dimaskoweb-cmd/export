@@ -13,7 +13,7 @@
   // На GitHub Pages это ограничение не действует.
 
   const MANAGER_EMAIL = 'dimasko.web@gmail.com';
-  const ASSET_VERSION = 'v=1784280093'; // бампаем при каждом деплое — иначе GitHub Pages/браузер может отдавать старые data-файлы из кэша
+  const ASSET_VERSION = 'v=1784281717'; // бампаем при каждом деплое — иначе GitHub Pages/браузер может отдавать старые data-файлы из кэша
 
   // Настройки EmailJS — реальная автоматическая отправка (без CDN, SDK лежит локально в _shared/js/)
   const EMAILJS_SERVICE_ID = 'service_07prkee';
@@ -396,18 +396,28 @@
     lastOrderEmail = email || '';
     document.getElementById('order-form').classList.remove('open');
     const el = document.getElementById('thankyou');
+    const countdownEl = document.getElementById('thankyou-countdown');
     el.querySelector('.thankyou-text').textContent = i18n.t('thankyou_message', { email: lastOrderEmail || '—' });
     el.classList.add('visible');
 
-    // Через 30 секунд — плашка автоматически очищается и сворачивается, готова к новому заказу
-    clearTimeout(window._vvkThankYouTimer);
-    window._vvkThankYouTimer = setTimeout(() => {
-      el.classList.remove('visible');
-      cart.clear();
-      renderCatalog();
-      renderCart();
-      document.getElementById('cart-panel').classList.add('collapsed');
-    }, 30000);
+    // Обратный счётчик — плашка автоматически очищается и сворачивается через 30 секунд, готова к новому заказу
+    clearInterval(window._vvkThankYouTimer);
+    let secondsLeft = 30;
+    const tick = () => {
+      countdownEl.textContent = i18n.t('thankyou_countdown', { seconds: secondsLeft });
+      if (secondsLeft <= 0){
+        clearInterval(window._vvkThankYouTimer);
+        el.classList.remove('visible');
+        cart.clear();
+        renderCatalog();
+        renderCart();
+        document.getElementById('cart-panel').classList.add('collapsed');
+        return;
+      }
+      secondsLeft--;
+    };
+    tick();
+    window._vvkThankYouTimer = setInterval(tick, 1000);
   }
 
   function wireOrderForm(){
