@@ -1,7 +1,7 @@
 header.site{
   position:sticky; top:0; z-index:50; background:var(--paper); border-bottom:1px solid var(--line);
 }
-.site-bar{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+.site-bar{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; flex-wrap:wrap; gap:10px; }
 .site-logo{ height:40px; width:auto; display:block; }
 .lang-switch{ display:flex; gap:6px; }
 .lang-switch button{
@@ -207,8 +207,8 @@ header.site{
   font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--wheat-green-dark);
   margin-top:16px; padding-top:12px; border-top:1px dashed var(--line);
 }
-.order-form .form-row{ display:flex; gap:8px; }
-.order-form .form-row > div{ flex:1; min-width:0; }
+.order-form .form-row{ display:flex; gap:8px; flex-wrap:wrap; }
+.order-form .form-row > div{ flex:1; min-width:120px; }
 .order-form input:invalid:not(:placeholder-shown){ border-color:var(--paprika); }
 
 .thankyou{ display:none; padding:20px 16px; text-align:center; }
@@ -220,4 +220,16 @@ footer.site{ border-top:1px solid var(--line); padding:24px 0; font-size:12px; c
 
 @media (max-width:640px){
   .cart-panel{ left:16px; width:auto; }
+  .hero{ padding:40px 0 28px; }
+  .hero p{ font-size:16px; }
+  .brand-section, .ingredients-section, .audience-section{ padding:28px 0; }
+}
+
+@media (max-width:480px){
+  .container{ padding:0 16px; }
+  .clock{ display:none; } /* приоритет узкому экрану — лого и язык важнее точных часов */
+  .header-right{ gap:10px; }
+  .lang-switch button{ padding:6px 8px; }
+  .card .card-actions .btn{ min-width:70px; font-size:11px; }
+  .qty-stepper input{ width:28px; }
 }
