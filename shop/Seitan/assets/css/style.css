@@ -215,6 +215,7 @@ header.site{
 .thankyou.visible{ display:block; }
 .thankyou-title{ font-family:var(--font-display); font-size:19px; font-weight:600; margin-bottom:6px; }
 .thankyou-text{ font-size:13px; color:var(--ink-soft); line-height:1.6; }
+.thankyou-countdown{ font-family:var(--font-mono); font-size:11px; color:var(--wheat-green-dark); margin-top:10px; }
 
 footer.site{ border-top:1px solid var(--line); padding:24px 0; font-size:12px; color:var(--ink-soft); }
 
@@ -227,8 +228,10 @@ footer.site{ border-top:1px solid var(--line); padding:24px 0; font-size:12px; c
 
 @media (max-width:480px){
   .container{ padding:0 16px; }
-  .clock{ display:none; } /* приоритет узкому экрану — лого и язык важнее точных часов */
-  .header-right{ gap:10px; }
+  .site-bar{ flex-direction:column; align-items:flex-start; gap:8px; }
+  .header-right{ width:100%; justify-content:space-between; gap:10px; }
+  .lang-switch{ flex-wrap:nowrap; }
+  .clock{ font-size:10px; }
   .lang-switch button{ padding:6px 8px; }
   .card .card-actions .btn{ min-width:70px; font-size:11px; }
   .qty-stepper input{ width:28px; }
