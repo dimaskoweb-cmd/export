@@ -172,7 +172,7 @@ header.site{
 
 .cart-panel{
   position:fixed; right:16px; bottom:16px; width:min(470px, calc(100vw - 32px));
-  background:rgba(239,234,217,.35); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  background:rgba(239,234,217,.15); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
   border:1px solid var(--ink); border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,.18);
   z-index:60; max-height:80vh; display:flex; flex-direction:column; overflow-y:auto;
 }
