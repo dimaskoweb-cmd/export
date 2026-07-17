@@ -13,7 +13,7 @@
   // На GitHub Pages это ограничение не действует.
 
   const MANAGER_EMAIL = 'dimasko.web@gmail.com';
-  const ASSET_VERSION = 'v=1784248820'; // бампаем при каждом деплое — иначе GitHub Pages/браузер может отдавать старые data-файлы из кэша
+  const ASSET_VERSION = 'v=1784249978'; // бампаем при каждом деплое — иначе GitHub Pages/браузер может отдавать старые data-файлы из кэша
 
   // Настройки EmailJS — реальная автоматическая отправка (без CDN, SDK лежит локально в _shared/js/)
   const EMAILJS_SERVICE_ID = 'service_07prkee';
