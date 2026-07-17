@@ -13,7 +13,7 @@
   // На GitHub Pages это ограничение не действует.
 
   const MANAGER_EMAIL = 'dimasko.web@gmail.com';
-  const ASSET_VERSION = 'v=1784251211'; // бампаем при каждом деплое — иначе GitHub Pages/браузер может отдавать старые data-файлы из кэша
+  const ASSET_VERSION = 'v=1784280093'; // бампаем при каждом деплое — иначе GitHub Pages/браузер может отдавать старые data-файлы из кэша
 
   // Настройки EmailJS — реальная автоматическая отправка (без CDN, SDK лежит локально в _shared/js/)
   const EMAILJS_SERVICE_ID = 'service_07prkee';
@@ -276,7 +276,7 @@
             <tr><td>${i18n.t('nutri_carb')}</td><td>${nut.carb_g} g</td></tr>
             <tr><td>${i18n.t('nutri_kcal')}</td><td>${nut.kcal} kcal</td></tr>
           </table></dd>` : (nut && nut.protein_g ? `<dt>Белок / Protein</dt><dd>${nut.protein_g} г/100г</dd>` : '')}
-          ${p.ingredient_flag ? `<dt>⚠</dt><dd>${p.ingredient_flag}</dd>` : ''}
+          ${p.ingredient_flag ? `<dt>⚠</dt><dd>${p.ingredient_flag[lang] || p.ingredient_flag.en}</dd>` : ''}
         </div>
       </div>`;
     }).join('');
