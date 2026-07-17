@@ -95,6 +95,20 @@ header.site{
 .card-gallery{ display:flex; gap:6px; margin-top:8px; }
 .card-gallery img{ width:56px; height:56px; object-fit:cover; border-radius:4px; border:1px solid var(--line); }
 
+.card .thumb.has-photo{ padding:0; overflow:hidden; cursor:zoom-in; background:var(--paper-2); }
+.card .thumb.has-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.vvk-lightbox{
+  display:none; position:fixed; inset:0; background:rgba(20,18,14,.9); z-index:200;
+  align-items:center; justify-content:center; cursor:zoom-out; padding:24px;
+}
+.vvk-lightbox.open{ display:flex; }
+.vvk-lightbox img{ max-width:90vw; max-height:90vh; border-radius:6px; box-shadow:0 10px 40px rgba(0,0,0,.5); }
+
+.nutri-table{ border-collapse:collapse; font-size:13px; }
+.nutri-table td{ padding:2px 12px 2px 0; color:var(--ink-soft); }
+.nutri-table td:last-child{ font-family:var(--font-mono); color:var(--ink); text-align:right; padding-right:0; }
+
 .catalog{ padding:48px 0 100px; }
 .catalog-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:12px; }
 .filters{ display:flex; gap:8px; flex-wrap:wrap; }
@@ -121,7 +135,7 @@ header.site{
   color:var(--wheat-green-dark); background:rgba(91,107,63,.1); border-radius:999px; padding:2px 9px; margin-left:8px;
 }
 .card .thumb{
-  position:relative; aspect-ratio:4/3; background:repeating-linear-gradient(45deg, rgba(35,31,26,.05) 0 10px, transparent 10px 20px);
+  position:relative; aspect-ratio:4/5; background:repeating-linear-gradient(45deg, rgba(35,31,26,.05) 0 10px, transparent 10px 20px);
   border-radius:4px; display:flex; align-items:center; justify-content:center;
   font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); text-align:center; padding:8px;
 }
@@ -158,7 +172,7 @@ header.site{
 
 .cart-panel{
   position:fixed; right:16px; bottom:16px; width:min(470px, calc(100vw - 32px));
-  background:rgba(239,234,217,.55); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  background:rgba(239,234,217,.35); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
   border:1px solid var(--ink); border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,.18);
   z-index:60; max-height:80vh; display:flex; flex-direction:column; overflow-y:auto;
 }
