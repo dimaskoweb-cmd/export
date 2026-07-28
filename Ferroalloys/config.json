@@ -1,0 +1,10 @@
+{
+  "preview": {
+    "markets": "mkt-8e9c.pdf",
+    "calendar": "cal-8e9c.pdf"
+  },
+  "vip": {
+    "importers": "imp-8e9c.pdf",
+    "strategy": "str-8e9c.pdf"
+  }
+}
