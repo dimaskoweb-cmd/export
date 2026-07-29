@@ -452,6 +452,7 @@ body::before {
 .pri-h { background: var(--green-dim); color: var(--green); border: 1px solid rgba(16,185,129,.3); }
 .pri-m { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,.25); }
 .pri-l { background: var(--ink3); color: var(--muted); border: 1px solid var(--line); }
+#importers .tag, #importers .pri-h, #importers .pri-m, #importers .pri-l { color: #000; }
 
 /* mini bar */
 .mini-bar-wrap { display: flex; align-items: center; gap: 8px; font-size: 11px; }
@@ -1534,12 +1535,12 @@ const LEVEL_NUM = { guest: 0, preview: 1, vip: 2, full: 3 };
 // v2.9 БИЛИНГВАЛЬНЫЙ ПАКЕТ: каждая секция — объект {ru,en}, не строка.
 // doDownload() выбирает нужный файл по currentLang. См. SKILL_init ШАГ 9.21.
 const FILE_URLS_PREVIEW = {
-  markets:  { ru: 'markets_final.html',  en: 'markets_final.html' },   // markets_final.html / markets_final_EN.html
-  calendar: { ru: 'exhibitions_final.html', en: 'exhibitions_final.html' },  // exhibitions_final.html / exhibitions_final_EN.html
+  markets:  { ru: 'mkt-8e9c.pdf',  en: 'mkt-8e9c.pdf' },   // markets_final.html / markets_final_EN.html
+  calendar: { ru: 'cal-8e9c.pdf', en: 'cal-8e9c.pdf' },  // exhibitions_final.html / exhibitions_final_EN.html
 };
 const FILE_URLS_VIP = {
-  importers: { ru: 'importers_final.html', en: 'importers_final.html' }, // importers_final.html / importers_final_EN.html
-  strategy:  { ru: 'strategy_final.html',  en: 'strategy_final.html' },  // strategy_final.html / strategy_final_EN.html
+  importers: { ru: 'imp-8e9c.pdf', en: 'imp-8e9c.pdf' }, // importers_final.html / importers_final_EN.html
+  strategy:  { ru: 'str-8e9c.pdf',  en: 'str-8e9c.pdf' },  // strategy_final.html / strategy_final_EN.html
 };
 // Полные URL — собираются динамически только после разблокировки
 let FILE_URLS = {};
@@ -1989,7 +1990,7 @@ function showToast(msg, type) {
 // ═══════════════════════════════════════════════════════════════════
 // TABS
 // ═══════════════════════════════════════════════════════════════════
-function showTab(id, btn, prefix) {
+function showTabPrefixed(id, btn, prefix) {
   const strip = btn.closest('.tab-strip');
   strip.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('act'));
   btn.classList.add('act');
