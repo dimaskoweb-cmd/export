@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru"><head>
-<!-- MASTER TEMPLATE v2.8.5 | Rules: tab-strip+showTab | container wrapper | max 2 imp-cards | roadmap-steps | no PDF in download-bar | tease principle | SKILL_init_v2.1 | FIXES: slot-empty comments only, CODES_HASH full not admin, FILE_URLS .html placeholders, VIP lvl>=2 transform -->
+<!-- MASTER TEMPLATE v2.8.6 | Rules: tab-strip+showTab | container wrapper | max 2 imp-cards | roadmap-steps | no PDF in download-bar | tease principle | SKILL_init_v2.1 | FIXES: slot-empty comments only, CODES_HASH full not admin, FILE_URLS .html placeholders, VIP lvl>=2 transform -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -845,15 +845,15 @@ body::before {
 <nav class="nav">
   <div class="nav-brand">
     <div class="nav-brand-dot"></div>
-    <span data-ru="ЭКСПОРТ · АНАЛИТИКА" data-en="EXPORT · INTELLIGENCE">ЭКСПОРТ · АНАЛИТИКА</span>
+    <span data-ru="ЭКСПОРТ · АНАЛИТИКА" data-en="EXPORT · INTELLIGENCE"><span data-ru="ЭКСПОРТ · АНАЛИТИКА" data-en="EXPORT · ANALYTICS">ЭКСПОРТ · АНАЛИТИКА</span></span>
   </div>
   <ul class="nav-links">
     <li><a href="#markets" data-ru="Рынки" data-en="Markets" class="">Рынки</a></li>
-    <li><a href="#importers" data-ru="Импортёры" data-en="Importers" class="">Импортёры</a></li>
-    <li><a href="#calendar" data-ru="Выставки" data-en="Exhibitions" class="">Выставки</a></li>
-    <li><a href="#strategy" data-ru="Стратегия" data-en="Strategy" class="">Стратегия</a></li>
+    <li><a href="#importers" data-ru="Импортёры" data-en="Importers" class=""><span data-ru="Импортёры" data-en="Importers">Импортёры</span></a></li>
+    <li><a href="#calendar" data-ru="Выставки" data-en="Exhibitions" class=""><span data-ru="Выставки" data-en="Exhibitions">Выставки</span></a></li>
+    <li><a href="#strategy" data-ru="Стратегия" data-en="Strategy" class=""><span data-ru="Стратегия" data-en="Strategy">Стратегия</span></a></li>
     <li><a href="#downloads" data-ru="⬇ Скачать" data-en="⬇ Download" class="">⬇ Скачать</a></li>
-    <li><a href="#cta" data-ru="Контакт" data-en="Contact" class="">Контакт</a></li>
+    <li><a href="#cta" data-ru="Контакт" data-en="Contact" class=""><span data-ru="Контакт" data-en="Contact">Контакт</span></a></li>
   </ul>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang(&#39;ru&#39;)">RU</button>
@@ -867,11 +867,11 @@ body::before {
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobile-menu">
   <a href="#markets" onclick="toggleMenu()" data-ru="Рынки" data-en="Markets">Рынки</a>
-  <a href="#importers" onclick="toggleMenu()" data-ru="Импортёры" data-en="Importers">Импортёры</a>
-  <a href="#calendar" onclick="toggleMenu()" data-ru="Выставки" data-en="Exhibitions">Выставки</a>
-  <a href="#strategy" onclick="toggleMenu()" data-ru="Стратегия" data-en="Strategy">Стратегия</a>
+  <a href="#importers" onclick="toggleMenu()" data-ru="Импортёры" data-en="Importers"><span data-ru="Импортёры" data-en="Importers">Импортёры</span></a>
+  <a href="#calendar" onclick="toggleMenu()" data-ru="Выставки" data-en="Exhibitions"><span data-ru="Выставки" data-en="Exhibitions">Выставки</span></a>
+  <a href="#strategy" onclick="toggleMenu()" data-ru="Стратегия" data-en="Strategy"><span data-ru="Стратегия" data-en="Strategy">Стратегия</span></a>
   <a href="#downloads" onclick="toggleMenu()" data-ru="⬇ Скачать файлы" data-en="⬇ Download files">⬇ Скачать файлы</a>
-  <a href="#" onclick="toggleMenu();setTimeout(()=&gt;scrollToContacts(),300)" data-ru="Контакт" data-en="Contact">Контакт</a>
+  <a href="#" onclick="toggleMenu();setTimeout(()=&gt;scrollToContacts(),300)" data-ru="Контакт" data-en="Contact"><span data-ru="Контакт" data-en="Contact">Контакт</span></a>
 </div>
 
 <!-- ═══════════ TEMPLATE NOTICE ═══════════ -->
@@ -883,11 +883,11 @@ body::before {
   <div class="promo-label" data-ru="🔐 Код доступа:" data-en="🔐 Access code:">🔐Уровень доступа:</div>
   <div class="promo-input-wrap">
     <input class="promo-input" type="text" id="promoInput" placeholder="ВВЕДИТЕ КОД" maxlength="20" autocomplete="off">
-    <button class="promo-btn" onclick="applyPromo()" data-ru="ПРИМЕНИТЬ" data-en="UNLOCK">ПРИМЕНИТЬ</button>
+    <button class="promo-btn" onclick="applyPromo()" data-ru="ПРИМЕНИТЬ" data-en="UNLOCK"><span data-ru="ПРИМЕНИТЬ" data-en="UNLOCK">ПРИМЕНИТЬ</span></button>
     <a class="promo-btn" href="#" onclick="scrollToContacts(event)" style="background: transparent; border-color: var(--muted); color: var(--ghost); text-decoration: none; padding: 6px 14px; border-radius: 6px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 5px; transition: 0.2s;" onmouseover="this.style.borderColor=&#39;var(--cyan)&#39;;this.style.color=&#39;var(--cyan)&#39;" onmouseout="this.style.borderColor=&#39;var(--muted)&#39;;this.style.color=&#39;var(--ghost)&#39;" data-ru="↓ ЗАПРОСИТЬ" data-en="↓ REQUEST">↓ ЗАПРОСИТЬ</a>
   </div>
   <div class="promo-status" id="promoStatus"></div>
-  <div class="access-badge preview" id="accessBadge" data-ru="Режим: ГОСТЬ" data-en="Mode: GUEST">Режим: ГОСТЬ</div>
+  <div class="access-badge preview" id="accessBadge" data-ru="Режим: ГОСТЬ" data-en="Mode: GUEST"><span data-ru="Режим: ГОСТЬ" data-en="Mode: GUEST">Режим: ГОСТЬ</span></div>
 </div>
 
 <!-- ═══════════ MAIN CONTENT ═══════════ -->
@@ -902,16 +902,16 @@ body::before {
     <h1 class="hero-title fu fu-d1">
       Export
       <span class="line2">Intelligence</span>
-      <span class="line3" data-ru="Аргон · Промышл. · 5N · LAr ·" data-en="Argon · Industrial · 5N · LAr ·">Аргон · Промышл. · 5N · LAr ·</span>
-      <span class="line3" style="font-size:clamp(14px,1.8vw,22px);opacity:.75" data-ru="Марки: LAr 99,993% · 5N 99,999%" data-en="Grades: LAr 99.993% · 5N 99.999%">Марки: LAr 99,993% · 5N 99,999%</span>
+      <span class="line3" data-ru="Аргон · Промышл. · 5N · LAr ·" data-en="Argon · Industrial · 5N · LAr ·"><span data-ru="Аргон · Промышл. · 5N · LAr ·" data-en="Argon · Industrial · 5N · LAr ·">Аргон · Промышл. · 5N · LAr ·</span></span>
+      <span class="line3" style="font-size:clamp(14px,1.8vw,22px);opacity:.75" data-ru="Марки: LAr 99,993% · 5N 99,999%" data-en="Grades: LAr 99.993% · 5N 99.999%"><span data-ru="Марки: LAr 99,993% · 5N 99,999%" data-en="Grades: LAr 99.993% · 5N 99.999%">Марки: LAr 99,993% · 5N 99,999%</span></span>
     </h1>
 
     <div class="hero-grid fu fu-d2">
       <div>
         <p class="hero-brief">
-          <strong data-ru="Для кого:" data-en="Prepared for:">Для кого:</strong> <span id="client-name" data-ru="ООО «НК Агат»" data-en="NK Agat LLC">ООО «НК Агат»</span><br>
-          <strong data-ru="Продукт:" data-en="Product:">Продукт:</strong> <span id="product-name" data-ru="Аргон жидкий LAr · HS 2804.21" data-en="Liquid Argon LAr · HS 2804.21">Аргон жидкий LAr · HS 2804.21</span><br>
-          <strong data-ru="Рынки:" data-en="Target markets:">Рынки:</strong> <span data-ru="Синьцзян (XJ) · Ганьсу · Шэньси" data-en="Xinjiang (XJ) · Gansu · Shaanxi">Синьцзян (XJ) · Ганьсу · Шэньси</span><br><br>
+          <strong data-ru="Для кого:" data-en="Prepared for:"><span data-ru="Для кого:" data-en="Prepared for:">Для кого:</span></strong> <span id="client-name" data-ru="ООО «НК Агат»" data-en="NK Agat LLC"><span data-ru="ООО «НК Агат»" data-en="NK Agat LLC">ООО «НК Агат»</span></span><br>
+          <strong data-ru="Продукт:" data-en="Product:"><span data-ru="Продукт:" data-en="Product:">Продукт:</span></strong> <span id="product-name" data-ru="Аргон жидкий LAr · HS 2804.21" data-en="Liquid Argon LAr · HS 2804.21"><span data-ru="Аргон жидкий LAr · HS 2804.21" data-en="Liquid Argon LAr · HS 2804.21">Аргон жидкий LAr · HS 2804.21</span></span><br>
+          <strong data-ru="Рынки:" data-en="Target markets:"><span data-ru="Рынки:" data-en="Markets:">Рынки:</span></strong> <span data-ru="Синьцзян (XJ) · Ганьсу · Шэньси" data-en="Xinjiang (XJ) · Gansu · Shaanxi"><span data-ru="Синьцзян (XJ) · Ганьсу · Шэньси" data-en="Xinjiang (XJ) · Gansu · Shaanxi">Синьцзян (XJ) · Ганьсу · Шэньси</span></span><br><br>
           <span data-ru="ITC TradeMap · GACC · CNIA · BloombergNEF · UN Comtrade" data-en="Analysis based on Fastmarkets, SMM, Metal Bulletin, Argus Media public data, exhibition registries 2023–2025, ITC TradeMap and UN Comtrade. Methodology and strategy are original author&#39;s work.">ITC TradeMap · GACC · CNIA · BloombergNEF · UN Comtrade</span>
         </p>
 
@@ -941,36 +941,36 @@ body::before {
           <div class="meta-val">#NKA-2026 · Аргон LAr</div>
         </div>
         <div class="meta-row">
-          <div class="meta-key" data-ru="Создан" data-en="Created">Создан</div>
-          <div class="meta-val">Май 2026</div>
+          <div class="meta-key" data-ru="Создан" data-en="Created"><span data-ru="Создан" data-en="Created">Создан</span></div>
+          <div class="meta-val"><span data-ru="Май 2026" data-en="May 2026">Май 2026</span></div>
         </div>
         <div class="meta-row">
-          <div class="meta-key" data-ru="Версия" data-en="Version">Версия</div>
+          <div class="meta-key" data-ru="Версия" data-en="Version"><span data-ru="Версия" data-en="Version">Версия</span></div>
           <div class="meta-val" style="color:var(--cyan)" id="ver-meta-card"></div>
         </div>
         <div class="meta-row">
-          <div class="meta-key" data-ru="Юр. лицо" data-en="Entity">Юр. лицо</div>
-          <div class="meta-val">ООО «НК Агат»</div>
+          <div class="meta-key" data-ru="Юр. лицо" data-en="Entity"><span data-ru="Юр. лицо" data-en="Legal entity">Юр. лицо</span></div>
+          <div class="meta-val"><span data-ru="ООО «НК Агат»" data-en="NK Agat LLC">ООО «НК Агат»</span></div>
         </div>
         <div class="meta-row">
-          <div class="meta-key" data-ru="Продукт" data-en="Product">Продукт</div>
-          <div class="meta-val">Аргон LAr</div>
+          <div class="meta-key" data-ru="Продукт" data-en="Product"><span data-ru="Продукт" data-en="Product">Продукт</span></div>
+          <div class="meta-val"><span data-ru="Аргон LAr" data-en="Argon LAr">Аргон LAr</span></div>
         </div>
         <div class="meta-row">
           <div class="meta-key" data-ru="Рынки" data-en="Markets">Рынки</div>
           <div class="meta-val highlight">XJ · GS · SN</div>
         </div>
         <div class="meta-row">
-          <div class="meta-key" data-ru="Источники" data-en="Sources">Источники</div>
+          <div class="meta-key" data-ru="Источники" data-en="Sources"><span data-ru="Источники" data-en="Sources">Источники</span></div>
           <div class="meta-val dim">ITC TradeMap · UN Comtrade · GACC · CNIA · BloombergNEF · ФТС</div>
         </div>
         <div class="meta-row">
-          <div class="meta-key" data-ru="Доступ" data-en="Access">Доступ</div>
-          <div class="meta-val" id="meta-access" data-ru="Режим: ГОСТЬ" data-en="Mode: GUEST">Режим: ГОСТЬ</div>
+          <div class="meta-key" data-ru="Доступ" data-en="Access"><span data-ru="Доступ" data-en="Access">Доступ</span></div>
+          <div class="meta-val" id="meta-access" data-ru="Режим: ГОСТЬ" data-en="Mode: GUEST"><span data-ru="Режим: ГОСТЬ" data-en="Mode: GUEST">Режим: ГОСТЬ</span></div>
         </div>
         <div class="meta-row">
           <div class="meta-key" data-ru="© Автор" data-en="© Author">© Автор</div>
-          <div class="meta-val" style="color:var(--dim);font-size:11px">Скобцов Д.О. · Все права защищены</div>
+          <div class="meta-val" style="color:var(--dim);font-size:11px"><span data-ru="Скобцов Д.О. · Все права защищены" data-en="D. Skobtsov · All rights reserved">Скобцов Д.О. · Все права защищены</span></div>
         </div>
       </div>
     </div>
@@ -978,29 +978,29 @@ body::before {
     <!-- KPI STRIP -->
     <div class="kpi-strip">
       <div class="kpi-cell">
-  <div class="kpi-val">🌍 ¥12B <span>млрд $</span></div>
-  <div class="kpi-lbl" data-ru="Ёмкость рынков" data-en="Market capacity">Ёмкость рынков</div>
+  <div class="kpi-val">🌍 ¥12B <span><span data-ru="млрд $" data-en="bln $">млрд $</span></span></div>
+  <div class="kpi-lbl" data-ru="Ёмкость рынков" data-en="Market capacity"><span data-ru="Ёмкость рынков" data-en="Market capacity">Ёмкость рынков</span></div>
 </div><div class="kpi-cell">
   <div class="kpi-val">🗺 2 <span>стран</span></div>
-  <div class="kpi-lbl" data-ru="Целевых рынков" data-en="Target markets">Целевых рынков</div>
+  <div class="kpi-lbl" data-ru="Целевых рынков" data-en="Target markets"><span data-ru="Целевых рынков" data-en="Target markets">Целевых рынков</span></div>
 </div><div class="kpi-cell">
   <div class="kpi-val">🏭 25++ <span></span></div>
-  <div class="kpi-lbl" data-ru="Импортёров в базе" data-en="Importers in DB">Импортёров в базе</div>
+  <div class="kpi-lbl" data-ru="Импортёров в базе" data-en="Importers in DB"><span data-ru="Импортёров в базе" data-en="Importers in DB">Импортёров в базе</span></div>
 </div><div class="kpi-cell">
-  <div class="kpi-val">📦 LAr · 5N <span>линеек</span></div>
-  <div class="kpi-lbl" data-ru="Приор. продуктов" data-en="Priority products">Приор. продуктов</div>
+  <div class="kpi-val">📦 LAr · 5N <span><span data-ru="линеек" data-en="product lines">линеек</span></span></div>
+  <div class="kpi-lbl" data-ru="Приор. продуктов" data-en="Priority products"><span data-ru="Приор. продуктов" data-en="Priority products">Приор. продуктов</span></div>
 </div><div class="kpi-cell">
   <div class="kpi-val">💹 ~27% <span>%</span></div>
-  <div class="kpi-lbl" data-ru="Макс. маржа*" data-en="Max margin*">Макс. маржа*</div>
+  <div class="kpi-lbl" data-ru="Макс. маржа*" data-en="Max margin*"><span data-ru="Макс. маржа*" data-en="Max margin*">Макс. маржа*</span></div>
 </div><div class="kpi-cell">
   <div class="kpi-val">💰 $1.6–2.4M <span>млн $</span></div>
-  <div class="kpi-lbl" data-ru="Потенциал к 2028" data-en="Revenue 2028">Потенциал к 2028</div>
+  <div class="kpi-lbl" data-ru="Потенциал к 2028" data-en="Revenue 2028"><span data-ru="Потенциал к 2028" data-en="Potential by 2028">Потенциал к 2028</span></div>
 </div><div class="kpi-cell">
   <div class="kpi-val">📈 +8.4% <span>% CAGR</span></div>
-  <div class="kpi-lbl" data-ru="Рост рынков" data-en="Market CAGR">Рост рынков</div>
+  <div class="kpi-lbl" data-ru="Рост рынков" data-en="Market CAGR"><span data-ru="Рост рынков" data-en="Market growth">Рост рынков</span></div>
 </div><div class="kpi-cell">
   <div class="kpi-val">⏱ 6–12 <span>мес.</span></div>
-  <div class="kpi-lbl" data-ru="До поставки (рынок 1)" data-en="To shipment (market 1)">До поставки (рынок 1)</div>
+  <div class="kpi-lbl" data-ru="До поставки (рынок 1)" data-en="To shipment (market 1)"><span data-ru="До поставки (рынок 1)" data-en="To delivery (market 1)">До поставки (рынок 1)</span></div>
 </div>
     </div>
   </div>
@@ -1014,7 +1014,7 @@ body::before {
     <div class="sec-header">
       <div class="sec-num">01</div>
       <div class="sec-titles">
-        <div class="sec-title" data-ru="Экспортные рынки" data-en="Export Markets">Экспортные рынки</div>
+        <div class="sec-title" data-ru="Экспортные рынки" data-en="Export Markets"><span data-ru="Экспортные рынки" data-en="Export Markets">Экспортные рынки</span></div>
         <div class="sec-sub" data-ru="XJ Промышленный · XJ 5N Полисиликон · Ганьсу · Шэньси" data-en="XJ Industrial · XJ 5N Polysilicon · Gansu · Shaanxi">XJ Промышленный · XJ 5N Полисиликон · Ганьсу · Шэньси</div>
       </div>
     </div>
@@ -1024,32 +1024,32 @@ body::before {
     <!-- INSERT_SECTION_01_MARKETS_HERE -->
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
   <div style="background:var(--ivory2);border:1px solid var(--line);border-radius:8px;padding:14px;">
-    <div style="font-family:var(--font-mono);font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">Сегмент A · Промышленный аргон · K-Score 88</div>
+    <div style="font-family:var(--font-mono);font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;"><span data-ru="Сегмент A · Промышленный аргон · K-Score 88" data-en="Segment A · Industrial Argon · K-Score 88">Сегмент A · Промышленный аргон · K-Score 88</span></div>
     <div style="font-family:var(--font-serif);font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;">XJ · Металлургия + Сварка</div>
     <div style="font-size:11px;color:var(--dim);line-height:1.6;margin-bottom:8px;">3 200 т/год · CAGR +15.4% · CIF $620/т · Пошлина 0% · T75 коридор КЗ→XJ. Linde уязвим: +2 000 км и $80–140/т дороже vs РФ.</div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <span style="background:rgba(74,103,65,.12);color:var(--green);font-family:var(--font-mono);font-size:9px;padding:3px 8px;border-radius:4px;">Маржа ~22%</span>
+      <span style="background:rgba(74,103,65,.12);color:var(--green);font-family:var(--font-mono);font-size:9px;padding:3px 8px;border-radius:4px;"><span data-ru="Маржа ~22%" data-en="Margin ~22%">Маржа ~22%</span></span>
       <span style="background:rgba(139,105,20,.1);color:var(--gold);font-family:var(--font-mono);font-size:9px;padding:3px 8px;border-radius:4px;">CAGR +15.4%</span>
     </div>
   </div>
   <div style="background:var(--ivory2);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:4px;padding:14px;">
-    <div style="font-family:var(--font-mono);font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">Сегмент B · 5N Аргон · K-Score 94 · ПРИОРИТЕТ</div>
+    <div style="font-family:var(--font-mono);font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;"><span data-ru="Сегмент B · 5N Аргон · K-Score 94 · ПРИОРИТЕТ" data-en="Segment B · 5N Argon · K-Score 94 · PRIORITY">Сегмент B · 5N Аргон · K-Score 94 · ПРИОРИТЕТ</span></div>
     <div style="font-family:var(--font-serif);font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;">XJ · Полисиликон / Cz-метод</div>
     <div style="font-size:11px;color:var(--dim);line-height:1.6;margin-bottom:8px;">1 215 т/год · CAGR +30% · CIF $1 100/т · GCL + Daqo + East Hope. 45% мирового полисиликона в Синьцзяне. Только при DD-1 (5N офтейк).</div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <span style="background:rgba(74,103,65,.12);color:var(--green);font-family:var(--font-mono);font-size:9px;padding:3px 8px;border-radius:4px;">Маржа ~27%</span>
+      <span style="background:rgba(74,103,65,.12);color:var(--green);font-family:var(--font-mono);font-size:9px;padding:3px 8px;border-radius:4px;"><span data-ru="Маржа ~27%" data-en="Margin ~27%">Маржа ~27%</span></span>
       <span style="background:rgba(74,103,65,.12);color:var(--green);font-family:var(--font-mono);font-size:9px;padding:3px 8px;border-radius:4px;">CAGR +30%</span>
     </div>
   </div>
 </div>
 <div style="background:rgba(74,103,65,.07);border:1px solid rgba(74,103,65,.2);border-radius:8px;padding:12px 16px;font-size:11px;color:var(--dim);line-height:1.6;">
-  <strong style="color:var(--green);">Конкурентное окно РФ:</strong> Linde China (24% XJ) и Air Products (28% 5N XJ) везут с востока КНР — 8 000+ км + 35–45 сут. РФ через КЗ: 6 480 км + 14–19 сут = на 15–25 сут быстрее + $80–140/т ниже по цене.
+  <strong style="color:var(--green);"><span data-ru="Конкурентное окно РФ:" data-en="Russia competitive window:">Конкурентное окно РФ:</span></strong> Linde China (24% XJ) и Air Products (28% 5N XJ) везут с востока КНР — 8 000+ км + 35–45 сут. РФ через КЗ: 6 480 км + 14–19 сут = на 15–25 сут быстрее + $80–140/т ниже по цене.
 </div>
     <div class="download-bar">
       <a class="dl-btn" href="#" id="action-markets" onclick="downloadGated(event,'markets')" data-ru="⬇ Скачать: Анализ рынков LAr · Синьцзян" data-en="⬇ Download: LAr Market Analysis · Xinjiang">⬇ Скачать: Анализ рынков LAr · Синьцзян</a>
-      <div class="dl-locked" id="dl-lock-markets" style="display:flex">🔑 <span data-ru="Требуется код доступа уровня PREVIEW" data-en="Requires PREVIEW access code">Требуется код доступа уровня PREVIEW</span></div>
+      <div class="dl-locked" id="dl-lock-markets" style="display:flex">🔑 <span data-ru="Требуется код доступа уровня PREVIEW" data-en="Requires PREVIEW access code"><span data-ru="Требуется код доступа уровня PREVIEW" data-en="PREVIEW access code required">Требуется код доступа уровня PREVIEW</span></span></div>
     </div>
-    <div class="pdf-blurb"><div class="pdf-blurb-col"><div class="pdf-blurb-label">Содержимое</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item">market overview</span><span class="pdf-blurb-item">pricing analytics</span><span class="pdf-blurb-item">FOB/CIF spreads</span><span class="pdf-blurb-item">import dynamics</span><span class="pdf-blurb-item">HS codes</span><span class="pdf-blurb-item">margin map</span><span class="pdf-blurb-item">country risk</span><span class="pdf-blurb-item">competitor landscape</span><span class="pdf-blurb-item">logistics routes</span><span class="pdf-blurb-item">tariff barriers</span><span class="pdf-blurb-item">top opportunities</span><span class="pdf-blurb-item">recommended entry sequence</span></div></div><div class="pdf-blurb-div"></div><div class="pdf-blurb-col"><div class="pdf-blurb-label">Визуально</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item pdf-blurb-visual">heatmaps</span><span class="pdf-blurb-item pdf-blurb-visual">price charts</span><span class="pdf-blurb-item pdf-blurb-visual">market cards</span><span class="pdf-blurb-item pdf-blurb-visual">APAC geo blocks</span><span class="pdf-blurb-item pdf-blurb-visual">commodity ribbons</span></div></div></div>
+    <div class="pdf-blurb"><div class="pdf-blurb-col"><div class="pdf-blurb-label"><span data-ru="Содержимое" data-en="Contents">Содержимое</span></div><div class="pdf-blurb-tags"><span class="pdf-blurb-item">market overview</span><span class="pdf-blurb-item">pricing analytics</span><span class="pdf-blurb-item">FOB/CIF spreads</span><span class="pdf-blurb-item">import dynamics</span><span class="pdf-blurb-item">HS codes</span><span class="pdf-blurb-item">margin map</span><span class="pdf-blurb-item">country risk</span><span class="pdf-blurb-item">competitor landscape</span><span class="pdf-blurb-item">logistics routes</span><span class="pdf-blurb-item">tariff barriers</span><span class="pdf-blurb-item">top opportunities</span><span class="pdf-blurb-item">recommended entry sequence</span></div></div><div class="pdf-blurb-div"></div><div class="pdf-blurb-col"><div class="pdf-blurb-label"><span data-ru="Визуально" data-en="Preview">Визуально</span></div><div class="pdf-blurb-tags"><span class="pdf-blurb-item pdf-blurb-visual">heatmaps</span><span class="pdf-blurb-item pdf-blurb-visual">price charts</span><span class="pdf-blurb-item pdf-blurb-visual">market cards</span><span class="pdf-blurb-item pdf-blurb-visual">APAC geo blocks</span><span class="pdf-blurb-item pdf-blurb-visual">commodity ribbons</span></div></div></div>
   </div>
 </section>
 
@@ -1061,8 +1061,8 @@ body::before {
     <div class="sec-header">
       <div class="sec-num">02</div>
       <div class="sec-titles">
-        <div class="sec-title" data-ru="База импортёров" data-en="Importers Database">База импортёров</div>
-        <div class="sec-sub" data-ru="Дистрибьюторы XJ · Полисилик. заводы · Логооператоры · 25+ компаний" data-en="XJ Distributors · Polysilicon Plants · Freight Ops · 25+ Companies">Дистрибьюторы XJ · Полисилик. заводы · Логооператоры · 25+ компаний</div>
+        <div class="sec-title" data-ru="База импортёров" data-en="Importers Database"><span data-ru="База импортёров" data-en="Importers Database">База импортёров</span></div>
+        <div class="sec-sub" data-ru="Дистрибьюторы XJ · Полисилик. заводы · Логооператоры · 25+ компаний" data-en="XJ Distributors · Polysilicon Plants · Freight Ops · 25+ Companies"><span data-ru="Дистрибьюторы XJ · Полисилик. заводы · Логооператоры · 25+ компаний" data-en="XJ Distributors · Polysilicon Plants · Freight Operators · 25+ companies">Дистрибьюторы XJ · Полисилик. заводы · Логооператоры · 25+ компаний</span></div>
       </div>
     </div>
 
@@ -1073,22 +1073,22 @@ body::before {
   <div style="background:var(--ivory2);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:12px 14px;">
     <div style="font-family:var(--font-mono);font-size:9px;color:var(--gold);text-transform:uppercase;margin-bottom:4px;">Tier 1 · Дистрибьютор · K=87</div>
     <div style="font-family:var(--font-serif);font-size:16px;font-weight:700;color:var(--text);">Kunlun Industrial Gas</div>
-    <div style="font-size:10px;color:var(--dim);margin-top:4px;line-height:1.5;">Урумчи, XJ · 12 T75 собств. · Class 2 · 2 г. КЗ-транзита · ~800 т/год · Готов к эксклюзиву 3 лет</div>
+    <div style="font-size:10px;color:var(--dim);margin-top:4px;line-height:1.5;"><span data-ru="Урумчи, XJ · 12 T75 собств. · Class 2 · 2 г. КЗ-транзита · ~800 т/год · Готов к эксклюзиву 3 лет" data-en="Urumqi, XJ · 12 T75 own · Class 2 · 2y KZ transit · ~800 t/yr · Ready for 3yr exclusive">Урумчи, XJ · 12 T75 собств. · Class 2 · 2 г. КЗ-транзита · ~800 т/год · Готов к эксклюзиву 3 лет</span></div>
   </div>
   <div style="background:var(--ivory2);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 14px;">
     <div style="font-family:var(--font-mono);font-size:9px;color:var(--gold);text-transform:uppercase;margin-bottom:4px;">Tier 1 · Дист. + 5N доступ · K=79</div>
     <div style="font-family:var(--font-serif);font-size:16px;font-weight:700;color:var(--text);">XJ Special Gas Technology</div>
-    <div style="font-size:10px;color:var(--dim);margin-top:4px;line-height:1.5;">Шихэцзы, XJ · 6+18 T75 · 3 г. КЗ-активно · Охватывает Daqo · 5N квалификация возможна</div>
+    <div style="font-size:10px;color:var(--dim);margin-top:4px;line-height:1.5;"><span data-ru="Шихэцзы, XJ · 6+18 T75 · 3 г. КЗ-активно · Охватывает Daqo · 5N квалификация возможна" data-en="Shihezi, XJ · 6+18 T75 · 3y KZ active · Covers Daqo · 5N qualification possible">Шихэцзы, XJ · 6+18 T75 · 3 г. КЗ-активно · Охватывает Daqo · 5N квалификация возможна</span></div>
   </div>
 </div>
 <div style="background:var(--ivory2);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:10px;color:var(--dim);line-height:1.6;">
-  <strong style="color:var(--text);">База: 25+ компаний</strong> — дистрибьюторы пром. газов XJ + полисилициевые заводы GCL/Daqo/East Hope/Xinte (прямые конечники 5N) + логооператоры KazTransGaz/Silk Road Cryogenics. Полная база — в PDF.
+  <strong style="color:var(--text);"><span data-ru="База: 25+ компаний" data-en="Database: 25+ companies">База: 25+ компаний</span></strong> — дистрибьюторы пром. газов XJ + полисилициевые заводы GCL/Daqo/East Hope/Xinte (прямые конечники 5N) + логооператоры KazTransGaz/Silk Road Cryogenics. Полная база — в PDF.
 </div>
     <div class="download-bar" style="align-items:center;gap:12px">
       <div style="font-family:var(--font-mono);font-size:11px;color:var(--dim)" data-ru="25+ компаний XJ · Tier 1 карточки · Полисилик. заводы · Логооператоры" data-en="25+ XJ Companies · Tier 1 Cards · Polysilicon Plants · Freight Ops">25+ компаний XJ · Tier 1 карточки · Полисилик. заводы · Логооператоры</div>
       <a class="cta-btn cta-btn-primary" href="#" id="action-importers" onclick="scrollToContacts(event)" style="font-size:11px;padding:8px 16px;text-decoration:none" data-ru="📅 Пригласить на встречу" data-en="📅 Invite to meeting">📅 Пригласить на встречу</a>
     </div>
-    <div class="pdf-blurb"><div class="pdf-blurb-col"><div class="pdf-blurb-label">Содержимое</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item">importer registry</span><span class="pdf-blurb-item">verified buyers</span><span class="pdf-blurb-item">distributor chains</span><span class="pdf-blurb-item">procurement profiles</span><span class="pdf-blurb-item">trade history</span><span class="pdf-blurb-item">exhibition participation</span><span class="pdf-blurb-item">company segmentation</span><span class="pdf-blurb-item">decision-maker structure</span><span class="pdf-blurb-item">onboarding priority</span><span class="pdf-blurb-item">CRM-ready contact tables</span></div></div><div class="pdf-blurb-div"></div><div class="pdf-blurb-col"><div class="pdf-blurb-label">Визуально</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item pdf-blurb-visual">institutional registry style</span><span class="pdf-blurb-item pdf-blurb-visual">dark ivory tables</span><span class="pdf-blurb-item pdf-blurb-visual">verification badges</span><span class="pdf-blurb-item pdf-blurb-visual">relationship maps</span></div></div></div>
+    <div class="pdf-blurb"><div class="pdf-blurb-col"><div class="pdf-blurb-label"><span data-ru="Содержимое" data-en="Contents">Содержимое</span></div><div class="pdf-blurb-tags"><span class="pdf-blurb-item">importer registry</span><span class="pdf-blurb-item">verified buyers</span><span class="pdf-blurb-item">distributor chains</span><span class="pdf-blurb-item">procurement profiles</span><span class="pdf-blurb-item">trade history</span><span class="pdf-blurb-item">exhibition participation</span><span class="pdf-blurb-item">company segmentation</span><span class="pdf-blurb-item">decision-maker structure</span><span class="pdf-blurb-item">onboarding priority</span><span class="pdf-blurb-item">CRM-ready contact tables</span></div></div><div class="pdf-blurb-div"></div><div class="pdf-blurb-col"><div class="pdf-blurb-label"><span data-ru="Визуально" data-en="Preview">Визуально</span></div><div class="pdf-blurb-tags"><span class="pdf-blurb-item pdf-blurb-visual">institutional registry style</span><span class="pdf-blurb-item pdf-blurb-visual">dark ivory tables</span><span class="pdf-blurb-item pdf-blurb-visual">verification badges</span><span class="pdf-blurb-item pdf-blurb-visual">relationship maps</span></div></div></div>
   </div>
 </section>
 
@@ -1100,7 +1100,7 @@ body::before {
     <div class="sec-header">
       <div class="sec-num">03</div>
       <div class="sec-titles">
-        <div class="sec-title" data-ru="Выставки &amp; Реестр участников" data-en="Exhibitions &amp; Participant Registry">Выставки &amp; Реестр участников</div>
+        <div class="sec-title" data-ru="Выставки &amp; Реестр участников" data-en="Exhibitions &amp; Participant Registry"><span data-ru="Выставки &amp; Реестр участников" data-en="Exhibitions &amp; Exhibitors Registry">Выставки &amp; Реестр участников</span></div>
         <div class="sec-sub" data-ru="10 выставок 2026–2027 · SNEC PV · Cryo Conference · XJ Industrial Expo" data-en="10 Events 2026–2027 · SNEC PV · Cryo Conference · XJ Industrial Expo">10 выставок 2026–2027 · SNEC PV · Cryo Conference · XJ Industrial Expo</div>
       </div>
     </div>
@@ -1112,20 +1112,20 @@ body::before {
   <div style="background:var(--ivory2);border:1px solid var(--gold);border-top:3px solid var(--gold);border-radius:4px;padding:10px 12px;">
     <div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);font-weight:700;text-transform:uppercase;margin-bottom:4px;">MUST · Июнь 2026</div>
     <div style="font-weight:700;font-size:12px;color:var(--text);">SNEC PV Power Expo</div>
-    <div style="font-size:9px;color:var(--dim);margin-top:3px;">Шанхай · GCL, Daqo, TBEA · 5N аргон · Стенд 18 м²</div>
-    <div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);margin-top:5px;">Бюджет: 85 000 CNY</div>
+    <div style="font-size:9px;color:var(--dim);margin-top:3px;"><span data-ru="Шанхай · GCL, Daqo, TBEA · 5N аргон · Стенд 18 м²" data-en="Shanghai · GCL, Daqo, TBEA · 5N argon · Booth 18 m²">Шанхай · GCL, Daqo, TBEA · 5N аргон · Стенд 18 м²</span></div>
+    <div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);margin-top:5px;"><span data-ru="Бюджет: 85 000 CNY" data-en="Budget: 85,000 CNY">Бюджет: 85 000 CNY</span></div>
   </div>
   <div style="background:var(--ivory2);border:1px solid var(--gold);border-top:3px solid var(--gold);border-radius:4px;padding:10px 12px;">
     <div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);font-weight:700;text-transform:uppercase;margin-bottom:4px;">MUST · Сент. 2026</div>
     <div style="font-weight:700;font-size:12px;color:var(--text);">China Cryo Conference</div>
     <div style="font-size:9px;color:var(--dim);margin-top:3px;">CNIA · Дистрибьюторы LAr XJ · Стенд + доклад</div>
-    <div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);margin-top:5px;">Бюджет: 65 000 CNY</div>
+    <div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);margin-top:5px;"><span data-ru="Бюджет: 65 000 CNY" data-en="Budget: 65,000 CNY">Бюджет: 65 000 CNY</span></div>
   </div>
   <div style="background:var(--ivory2);border:1px solid var(--green);border-top:3px solid var(--green);border-radius:4px;padding:10px 12px;">
     <div style="font-family:var(--font-mono);font-size:8px;color:var(--green);font-weight:700;text-transform:uppercase;margin-bottom:4px;">REC · Авг. 2026</div>
     <div style="font-weight:700;font-size:12px;color:var(--text);">XJ Industrial Expo</div>
-    <div style="font-size:9px;color:var(--dim);margin-top:3px;">Урумчи · Kunlun + Tianshan + Xinsheng</div>
-    <div style="font-family:var(--font-mono);font-size:8px;color:var(--green);margin-top:5px;">Бюджет: 40 000 CNY</div>
+    <div style="font-size:9px;color:var(--dim);margin-top:3px;"><span data-ru="Урумчи · Kunlun + Tianshan + Xinsheng" data-en="Urumqi · Kunlun + Tianshan + Xinsheng">Урумчи · Kunlun + Tianshan + Xinsheng</span></div>
+    <div style="font-family:var(--font-mono);font-size:8px;color:var(--green);margin-top:5px;"><span data-ru="Бюджет: 40 000 CNY" data-en="Budget: 40,000 CNY">Бюджет: 40 000 CNY</span></div>
   </div>
 </div>
 <div style="background:var(--ivory2);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:10px;color:var(--dim);">
@@ -1133,9 +1133,9 @@ body::before {
 </div>
     <div class="download-bar">
       <a class="dl-btn" href="#" id="action-calendar" onclick="downloadGated(event,'calendar')" data-ru="⬇ Скачать: Выставочный календарь 2026–2027" data-en="⬇ Download: Exhibition Calendar 2026–2027">⬇ Скачать: Выставочный календарь 2026–2027</a>
-      <div class="dl-locked" id="dl-lock-calendar" style="display:flex">🔑 <span data-ru="Требуется PREVIEW" data-en="Requires PREVIEW">Требуется PREVIEW</span></div>
+      <div class="dl-locked" id="dl-lock-calendar" style="display:flex">🔑 <span data-ru="Требуется PREVIEW" data-en="Requires PREVIEW"><span data-ru="Требуется PREVIEW" data-en="PREVIEW required">Требуется PREVIEW</span></span></div>
     </div>
-    <div class="pdf-blurb"><div class="pdf-blurb-col"><div class="pdf-blurb-label">Содержимое</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item">exhibition calendar</span><span class="pdf-blurb-item">participant registries</span><span class="pdf-blurb-item">market relevance score</span><span class="pdf-blurb-item">exhibitor heatmap</span><span class="pdf-blurb-item">networking strategy</span><span class="pdf-blurb-item">travel windows</span><span class="pdf-blurb-item">conversion probability</span><span class="pdf-blurb-item">target booth categories</span><span class="pdf-blurb-item">follow-up workflow</span></div></div><div class="pdf-blurb-div"></div><div class="pdf-blurb-col"><div class="pdf-blurb-label">Визуально</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item pdf-blurb-visual">timeline spreads</span><span class="pdf-blurb-item pdf-blurb-visual">expo cards</span><span class="pdf-blurb-item pdf-blurb-visual">country ribbons</span><span class="pdf-blurb-item pdf-blurb-visual">event priority indicators</span></div></div></div>
+    <div class="pdf-blurb"><div class="pdf-blurb-col"><div class="pdf-blurb-label"><span data-ru="Содержимое" data-en="Contents">Содержимое</span></div><div class="pdf-blurb-tags"><span class="pdf-blurb-item">exhibition calendar</span><span class="pdf-blurb-item">participant registries</span><span class="pdf-blurb-item">market relevance score</span><span class="pdf-blurb-item">exhibitor heatmap</span><span class="pdf-blurb-item">networking strategy</span><span class="pdf-blurb-item">travel windows</span><span class="pdf-blurb-item">conversion probability</span><span class="pdf-blurb-item">target booth categories</span><span class="pdf-blurb-item">follow-up workflow</span></div></div><div class="pdf-blurb-div"></div><div class="pdf-blurb-col"><div class="pdf-blurb-label"><span data-ru="Визуально" data-en="Preview">Визуально</span></div><div class="pdf-blurb-tags"><span class="pdf-blurb-item pdf-blurb-visual">timeline spreads</span><span class="pdf-blurb-item pdf-blurb-visual">expo cards</span><span class="pdf-blurb-item pdf-blurb-visual">country ribbons</span><span class="pdf-blurb-item pdf-blurb-visual">event priority indicators</span></div></div></div>
   </div>
 </section>
 
@@ -1147,8 +1147,8 @@ body::before {
     <div class="sec-header">
       <div class="sec-num">04</div>
       <div class="sec-titles">
-        <div class="sec-title" data-ru="Стратегия экспортной экспансии" data-en="Export Expansion Strategy">Стратегия экспортной экспансии</div>
-        <div class="sec-sub" data-ru="Фаза 1–3 · SWOT × 3 рынка · Финмодель 2026–2030 · 12 страниц" data-en="Phase 1–3 · SWOT × 3 markets · Financial model 2026–2030 · 12 pages">Фаза 1–3 · SWOT × 3 рынка · Финмодель 2026–2030 · 12 страниц</div>
+        <div class="sec-title" data-ru="Стратегия экспортной экспансии" data-en="Export Expansion Strategy"><span data-ru="Стратегия экспортной экспансии" data-en="Export Expansion Strategy">Стратегия экспортной экспансии</span></div>
+        <div class="sec-sub" data-ru="Фаза 1–3 · SWOT × 3 рынка · Финмодель 2026–2030 · 12 страниц" data-en="Phase 1–3 · SWOT × 3 markets · Financial model 2026–2030 · 12 pages"><span data-ru="Фаза 1–3 · SWOT × 3 рынка · Финмодель 2026–2030 · 12 страниц" data-en="Phase 1–3 · SWOT × 3 markets · Financial model 2026–2030 · 12 pages">Фаза 1–3 · SWOT × 3 рынка · Финмодель 2026–2030 · 12 страниц</span></div>
       </div>
     </div>
 
@@ -1159,7 +1159,7 @@ body::before {
          Удалить этот комментарий после вставки. ═══ -->
     <!-- INSERT_SECTION_04_STRATEGY_HERE -->
 <div style="background:rgba(74,103,65,.07);border:1px solid rgba(74,103,65,.2);border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:11px;color:var(--dim);line-height:1.65;">
-  3 фазы 2026–2030: <strong style="color:var(--green);">Фаза 1</strong> (Q3 2026 – Q2 2027) — DD закрыт, дистрибьютор XJ, первые рейсы. <strong style="color:var(--green);">Фаза 2</strong> (2027–2028) — 5N квалификация GCL/Daqo, масштаб XJ. <strong style="color:var(--green);">Фаза 3</strong> (2029–2030) — Ганьсу + Шэньси. Выручка 2030: $1.6–2.4M/год.
+  3 фазы 2026–2030: <strong style="color:var(--green);"><span data-ru="Фаза 1" data-en="Phase 1">Фаза 1</span></strong> (Q3 2026 – Q2 2027) — DD закрыт, дистрибьютор XJ, первые рейсы. <strong style="color:var(--green);"><span data-ru="Фаза 2" data-en="Phase 2">Фаза 2</span></strong> (2027–2028) — 5N квалификация GCL/Daqo, масштаб XJ. <strong style="color:var(--green);"><span data-ru="Фаза 3" data-en="Phase 3">Фаза 3</span></strong> (2029–2030) — Ганьсу + Шэньси. Выручка 2030: $1.6–2.4M/год.
 </div>
 <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
   <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--ivory2);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;">
@@ -1172,17 +1172,17 @@ body::before {
   </div>
   <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--ivory2);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:0 6px 6px 0;">
     <div style="width:20px;height:20px;min-width:20px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:9px;font-weight:700;color:#fff;">3</div>
-    <div><div style="font-weight:700;font-size:11px;color:var(--text);">5N квалификация East Hope → GCL/Daqo · Q1–Q3 2027</div><div style="font-size:10px;color:var(--dim);margin-top:2px;">При DD-1+: маржа $298/т · $178 000+/год при 50 т/мес</div></div>
+    <div><div style="font-weight:700;font-size:11px;color:var(--text);">5N квалификация East Hope → GCL/Daqo · Q1–Q3 2027</div><div style="font-size:10px;color:var(--dim);margin-top:2px;"><span data-ru="При DD-1+: маржа $298/т · $178 000+/год при 50 т/мес" data-en="With DD-1+: margin $298/t · $178,000+/yr at 50 t/mo">При DD-1+: маржа $298/т · $178 000+/год при 50 т/мес</span></div></div>
   </div>
 </div>
 <div style="background:var(--ivory2);border:1px solid var(--line);border-radius:8px;padding:10px 14px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
-  <div style="text-align:center;"><div style="font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--text);">$2.4M</div><div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);text-transform:uppercase;margin-top:2px;">Выручка 2030</div></div>
+  <div style="text-align:center;"><div style="font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--text);">$2.4M</div><div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);text-transform:uppercase;margin-top:2px;"><span data-ru="Выручка 2030" data-en="Revenue 2030">Выручка 2030</span></div></div>
   <div style="width:1px;height:36px;background:var(--line);"></div>
-  <div style="text-align:center;"><div style="font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--green);">$600K</div><div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);text-transform:uppercase;margin-top:2px;">Маржа 2030</div></div>
+  <div style="text-align:center;"><div style="font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--green);">$600K</div><div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);text-transform:uppercase;margin-top:2px;"><span data-ru="Маржа 2030" data-en="Margin 2030">Маржа 2030</span></div></div>
   <div style="width:1px;height:36px;background:var(--line);"></div>
-  <div style="text-align:center;"><div style="font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--text);">~25%</div><div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);text-transform:uppercase;margin-top:2px;">Маржа %</div></div>
+  <div style="text-align:center;"><div style="font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--text);">~25%</div><div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);text-transform:uppercase;margin-top:2px;"><span data-ru="Маржа %" data-en="Margin %">Маржа %</span></div></div>
   <div style="width:1px;height:36px;background:var(--line);"></div>
-  <div style="text-align:center;"><div style="font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--text);">&lt;12 мес.</div><div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);text-transform:uppercase;margin-top:2px;">Окупаемость</div></div>
+  <div style="text-align:center;"><div style="font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--text);">&lt;12 мес.</div><div style="font-family:var(--font-mono);font-size:8px;color:var(--gold);text-transform:uppercase;margin-top:2px;"><span data-ru="Окупаемость" data-en="Payback">Окупаемость</span></div></div>
 </div>
     <!-- ↑ Вставить: strat-alert + strat-list (6 strat-item) + financial-horizon block -->
     <div class="download-bar" style="align-items:center;gap:12px">
@@ -1190,7 +1190,7 @@ body::before {
       <a class="cta-btn cta-btn-primary" href="#" id="action-strategy" onclick="scrollToContacts(event)" style="font-size:11px;padding:8px 16px;text-decoration:none" data-ru="📅 Пригласить на встречу" data-en="📅 Invite to meeting">📅 Пригласить на встречу</a>
     </div>
 
-    <div class="pdf-blurb"><div class="pdf-blurb-col"><div class="pdf-blurb-label">Содержимое</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item">executive summary</span><span class="pdf-blurb-item">phased expansion roadmap</span><span class="pdf-blurb-item">GTM strategy</span><span class="pdf-blurb-item">market prioritization</span><span class="pdf-blurb-item">sales architecture</span><span class="pdf-blurb-item">distributor acquisition</span><span class="pdf-blurb-item">pricing strategy</span><span class="pdf-blurb-item">negotiation strategy</span><span class="pdf-blurb-item">entry scenarios</span><span class="pdf-blurb-item">risk matrix</span><span class="pdf-blurb-item">6–12 month roadmap</span><span class="pdf-blurb-item">KPI system</span><span class="pdf-blurb-item">investment logic</span></div></div><div class="pdf-blurb-div"></div><div class="pdf-blurb-col"><div class="pdf-blurb-label">Визуально</div><div class="pdf-blurb-tags"><span class="pdf-blurb-item pdf-blurb-visual">consulting deck style</span><span class="pdf-blurb-item pdf-blurb-visual">strategy ladders</span><span class="pdf-blurb-item pdf-blurb-visual">roadmap flows</span><span class="pdf-blurb-item pdf-blurb-visual">expansion matrix</span><span class="pdf-blurb-item pdf-blurb-visual">decision trees</span></div></div></div>
+    <div class="pdf-blurb"><div class="pdf-blurb-col"><div class="pdf-blurb-label"><span data-ru="Содержимое" data-en="Contents">Содержимое</span></div><div class="pdf-blurb-tags"><span class="pdf-blurb-item">executive summary</span><span class="pdf-blurb-item">phased expansion roadmap</span><span class="pdf-blurb-item">GTM strategy</span><span class="pdf-blurb-item">market prioritization</span><span class="pdf-blurb-item">sales architecture</span><span class="pdf-blurb-item">distributor acquisition</span><span class="pdf-blurb-item">pricing strategy</span><span class="pdf-blurb-item">negotiation strategy</span><span class="pdf-blurb-item">entry scenarios</span><span class="pdf-blurb-item">risk matrix</span><span class="pdf-blurb-item">6–12 month roadmap</span><span class="pdf-blurb-item">KPI system</span><span class="pdf-blurb-item">investment logic</span></div></div><div class="pdf-blurb-div"></div><div class="pdf-blurb-col"><div class="pdf-blurb-label"><span data-ru="Визуально" data-en="Preview">Визуально</span></div><div class="pdf-blurb-tags"><span class="pdf-blurb-item pdf-blurb-visual">consulting deck style</span><span class="pdf-blurb-item pdf-blurb-visual">strategy ladders</span><span class="pdf-blurb-item pdf-blurb-visual">roadmap flows</span><span class="pdf-blurb-item pdf-blurb-visual">expansion matrix</span><span class="pdf-blurb-item pdf-blurb-visual">decision trees</span></div></div></div>
   </div>
 </section>
 
@@ -1202,8 +1202,8 @@ body::before {
     <div class="sec-header">
       <div class="sec-num">05</div>
       <div class="sec-titles">
-        <div class="sec-title" data-ru="Скачать материалы" data-en="Download Materials">Скачать материалы</div>
-        <div class="sec-sub" data-ru="Матрица доступа · Уровни открытия файлов · Промо-коды" data-en="Access matrix · File unlock levels · Promo codes">Матрица доступа · Уровни открытия файлов · Промо-коды</div>
+        <div class="sec-title" data-ru="Скачать материалы" data-en="Download Materials"><span data-ru="Скачать материалы" data-en="Download Materials">Скачать материалы</span></div>
+        <div class="sec-sub" data-ru="Матрица доступа · Уровни открытия файлов · Промо-коды" data-en="Access matrix · File unlock levels · Promo codes"><span data-ru="Матрица доступа · Уровни открытия файлов · Промо-коды" data-en="Access Matrix · File unlock levels · Promo codes">Матрица доступа · Уровни открытия файлов · Промо-коды</span></div>
       </div>
     </div>
 
@@ -1212,7 +1212,7 @@ body::before {
       <table style="width:100%;border-collapse:collapse;min-width:640px">
         <thead>
           <tr>
-            <th style="font-family:var(--font-mono);font-size:10px;text-align:left;padding:10px 16px;background:var(--ink3);color:var(--muted);border:1px solid var(--line);text-transform:uppercase;letter-spacing:.08em" data-ru="Файл / Содержание" data-en="File / Contents">Файл / Содержание</th>
+            <th style="font-family:var(--font-mono);font-size:10px;text-align:left;padding:10px 16px;background:var(--ink3);color:var(--muted);border:1px solid var(--line);text-transform:uppercase;letter-spacing:.08em" data-ru="Файл / Содержание" data-en="File / Contents"><span data-ru="Файл / Содержание" data-en="File / Contents">Файл / Содержание</span></th>
             <th style="font-family:var(--font-mono);font-size:10px;text-align:center;padding:10px 16px;background:var(--ink3);color:var(--muted);border:1px solid var(--line);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap">ГОСТЬ</th>
             <th style="font-family:var(--font-mono);font-size:10px;text-align:center;padding:10px 16px;background:rgba(34,211,238,.08);color:var(--cyan);border:1px solid var(--line);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap">PREVIEW</th>
             <th style="font-family:var(--font-mono);font-size:10px;text-align:center;padding:10px 16px;background:rgba(139,92,246,.08);color:var(--purple);border:1px solid var(--line);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap">VIP</th>
@@ -1258,10 +1258,10 @@ body::before {
           <!-- CODE ROW -->
           <tr>
             <td style="padding:12px 16px;border:1px solid var(--line);background:var(--ink3)">
-              <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em" data-ru="КОД ДОСТУПА" data-en="ACCESS CODE">КОД ДОСТУПА</div>
+              <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em" data-ru="КОД ДОСТУПА" data-en="ACCESS CODE"><span data-ru="КОД ДОСТУПА" data-en="ACCESS CODE">КОД ДОСТУПА</span></div>
             </td>
             <td style="padding:12px 16px;border:1px solid var(--line);text-align:center;background:var(--ink3)">
-              <span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)" data-ru="Не требуется" data-en="None required">Не требуется</span>
+              <span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)" data-ru="Не требуется" data-en="None required"><span data-ru="Не требуется" data-en="Not required">Не требуется</span></span>
             </td>
             <td style="padding:12px 16px;border:1px solid var(--line);text-align:center;background:rgba(34,211,238,.06)">
               <button onclick="scrollToContacts(event)" style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--cyan); background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.3); padding: 6px 16px; border-radius: 6px; cursor: pointer; letter-spacing: 0.06em; transition: 0.2s;" onmouseover="this.style.background=&#39;rgba(34,211,238,.2)&#39;" onmouseout="this.style.background=&#39;rgba(34,211,238,.1)&#39;" data-ru="↓ ЗАПРОСИТЬ" data-en="↓ REQUEST">↓ ЗАПРОСИТЬ</button>
@@ -1282,7 +1282,7 @@ body::before {
         <div style="font-size:11px;font-weight:600;color:var(--bright)" data-ru="📊 Анализ рынков LAr · Синьцзян" data-en="📊 LAr Market Analysis · Xinjiang">📊 Анализ рынков LAr · Синьцзян</div>
         <div style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.2);width:fit-content">PREVIEW: эелктронный формат</div>
         <a class="dl-btn" id="dl-btn-markets" href="#" onclick="triggerDownload(event,&#39;markets&#39;)" data-ru="⬇ Скачать PDF" data-en="⬇ Download PDF" style="opacity: 0.4; pointer-events: none; border-color: var(--blue); color: var(--blue);">⬇ Скачать PDF</a>
-        <div class="dl-locked" id="dl-lock-markets" style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">🔑 <span data-ru="Введите код PREVIEW" data-en="Enter PREVIEW code">Введите код PREVIEW</span></div>
+        <div class="dl-locked" id="dl-lock-markets" style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">🔑 <span data-ru="Введите код PREVIEW" data-en="Enter PREVIEW code"><span data-ru="Введите код PREVIEW" data-en="Enter PREVIEW code">Введите код PREVIEW</span></span></div>
       </div>
 
       <!-- File 2: calendar — PREVIEW -->
@@ -1290,23 +1290,23 @@ body::before {
         <div style="font-size:11px;font-weight:600;color:var(--bright)" data-ru="🗓 Календарь выставок 2026–2027" data-en="🗓 Exhibition Calendar 2026–2027">🗓 Календарь выставок 2026–2027</div>
         <div style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.2);width:fit-content">PREVIEW: эелктронный формат</div>
         <a class="dl-btn" id="dl-btn-calendar" href="#" onclick="triggerDownload(event,&#39;calendar&#39;)" data-ru="⬇ Скачать PDF" data-en="⬇ Download PDF" style="opacity: 0.4; pointer-events: none; border-color: var(--blue); color: var(--blue);">⬇ Скачать PDF</a>
-        <div class="dl-locked" id="dl-lock-calendar" style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">🔑 <span data-ru="Введите код PREVIEW" data-en="Enter PREVIEW code">Введите код PREVIEW</span></div>
+        <div class="dl-locked" id="dl-lock-calendar" style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">🔑 <span data-ru="Введите код PREVIEW" data-en="Enter PREVIEW code"><span data-ru="Введите код PREVIEW" data-en="Enter PREVIEW code">Введите код PREVIEW</span></span></div>
       </div>
 
       <!-- File 3: importers — VIP → встреча / ADMIN → скачать -->
       <div id="card-importers" style="background:var(--ink2);border:1px solid rgba(139,92,246,.2);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px">
         <div style="font-size:11px;font-weight:600;color:var(--bright)" data-ru="🏭 База импортёров по рынкам" data-en="🏭 Importers Database">🏭 База импортёров по рынкам</div>
-        <div id="badge-importers" style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(139,92,246,.15);color:var(--purple);border:1px solid rgba(139,92,246,.3);width:fit-content" data-ru="ТОЛЬКО НА ВСТРЕЧЕ" data-en="MEETING ONLY">БУМАЖНЫЙ ФОРМАТ (ОЗНАКОМЛЕНИЕ)</div>
-        <div id="desc-importers" style="font-size:11px;color:var(--dim)" data-ru="Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ" data-en="XJ Distributors · Polysilicon Plants · Freight Operators KZ→XJ">Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ</div>
+        <div id="badge-importers" style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(139,92,246,.15);color:var(--purple);border:1px solid rgba(139,92,246,.3);width:fit-content" data-ru="ТОЛЬКО НА ВСТРЕЧЕ" data-en="MEETING ONLY"><span data-ru="БУМАЖНЫЙ ФОРМАТ (ОЗНАКОМЛЕНИЕ)" data-en="PRINT FORMAT (OVERVIEW)">БУМАЖНЫЙ ФОРМАТ (ОЗНАКОМЛЕНИЕ)</span></div>
+        <div id="desc-importers" style="font-size:11px;color:var(--dim)" data-ru="Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ" data-en="XJ Distributors · Polysilicon Plants · Freight Operators KZ→XJ"><span data-ru="Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ" data-en="XJ Distributors · Polysilicon plants · KZ→XJ freight operators">Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ</span></div>
         <!-- old desc removed -->
-        <div style="display:none" data-ru="Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ" data-en="XJ Distributors · Polysilicon Plants · Freight Operators KZ→XJ">Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ</div>
+        <div style="display:none" data-ru="Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ" data-en="XJ Distributors · Polysilicon Plants · Freight Operators KZ→XJ"><span data-ru="Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ" data-en="XJ Distributors · Polysilicon plants · KZ→XJ freight operators">Дистрибьюторы XJ · Полисилик. заводы · Логооператоры коридора КЗ→XJ</span></div>
         <a id="action-importers-bar" class="cta-btn cta-btn-primary" href="#" onclick="scrollToContacts(event)" style="font-size:11px;padding:8px 14px;text-align:center;border-radius:6px;text-decoration:none" data-ru="📅 Пригласить на встречу" data-en="📅 Invite to meeting">📅 Пригласить на встречу</a>
       </div>
 
       <!-- File 4: strategy — VIP → встреча / ADMIN → скачать -->
       <div id="card-strategy" style="background:var(--ink2);border:1px solid rgba(139,92,246,.2);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px">
         <div style="font-size:11px;font-weight:600;color:var(--bright)" data-ru="📋 Стратегия для собственника" data-en="📋 Owner Strategy Document">📋 Стратегия для собственника</div>
-        <div style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(139,92,246,.15);color:var(--purple);border:1px solid rgba(139,92,246,.3);width:fit-content" data-ru="ТОЛЬКО НА ВСТРЕЧЕ" data-en="MEETING ONLY">БУМАЖНЫЙ ФОРМАТ (ОЗНАКОМЛЕНИЕ)</div>
+        <div style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(139,92,246,.15);color:var(--purple);border:1px solid rgba(139,92,246,.3);width:fit-content" data-ru="ТОЛЬКО НА ВСТРЕЧЕ" data-en="MEETING ONLY"><span data-ru="БУМАЖНЫЙ ФОРМАТ (ОЗНАКОМЛЕНИЕ)" data-en="PRINT FORMAT (OVERVIEW)">БУМАЖНЫЙ ФОРМАТ (ОЗНАКОМЛЕНИЕ)</span></div>
         <div style="font-size:11px;color:var(--dim)" data-ru="3 фазы · SWOT · Roadmap · Финмодель 2026–2030" data-en="3 phases · SWOT · Roadmap · Financial model 2026–2030">3 фазы · SWOT · Roadmap · Финмодель 2026–2030</div>
         <a id="action-strategy-bar" class="cta-btn cta-btn-primary" href="#" onclick="scrollToContacts(event)" style="font-size:11px;padding:8px 14px;text-align:center;border-radius:6px;text-decoration:none" data-ru="📅 Пригласить на встречу" data-en="📅 Invite to meeting">📅 Пригласить на встречу</a>
       </div>
@@ -1334,38 +1334,38 @@ body::before {
 
     <!-- ФОРМАТ СОТРУДНИЧЕСТВА -->
     <div style="margin-bottom:20px;text-align:center">
-      <div style="font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--blue);letter-spacing:.18em;text-transform:uppercase" data-ru="Возможный формат сотрудничества" data-en="Possible cooperation format">Возможный формат сотрудничества</div>
+      <div style="font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--blue);letter-spacing:.18em;text-transform:uppercase" data-ru="Возможный формат сотрудничества" data-en="Possible cooperation format"><span data-ru="Возможный формат сотрудничества" data-en="Possible cooperation formats">Возможный формат сотрудничества</span></div>
     </div>
     <div style="margin:0 0 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
 
       <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:16px 18px">
         <div style="font-family:var(--font-mono);font-size:10px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">● ШТАТ</div>
-        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="Зам. КД по ВЭД / Рук. отдела ВЭД" data-en="Deputy CD / Head of FEA dept.">Зам. КД по ВЭД / Рук. отдела ВЭД</div>
-        <div style="font-size:11px;color:var(--dim)" data-ru="Оперативное управление: контракты, логистика, комплаенс, выход на АТР. Полная дорожная карта реализуется изнутри." data-en="Operations: contracts, logistics, compliance, APAC entry. Full roadmap implemented internally.">Оперативное управление экспортными контрактами: документы, логистика, комплаенс, согласно запросам вакансии.</div>
+        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="Зам. КД по ВЭД / Рук. отдела ВЭД" data-en="Deputy CD / Head of FEA dept."><span data-ru="Зам. КД по ВЭД / Рук. отдела ВЭД" data-en="Deputy CE for FEA / Head of FEA Dept">Зам. КД по ВЭД / Рук. отдела ВЭД</span></div>
+        <div style="font-size:11px;color:var(--dim)" data-ru="Оперативное управление: контракты, логистика, комплаенс, выход на АТР. Полная дорожная карта реализуется изнутри." data-en="Operations: contracts, logistics, compliance, APAC entry. Full roadmap implemented internally."><span data-ru="Оперативное управление экспортными контрактами: документы, логистика, комплаенс, согласно запросам вакансии." data-en="Operational management of export contracts: documents, logistics, compliance per vacancy requirements.">Оперативное управление экспортными контрактами: документы, логистика, комплаенс, согласно запросам вакансии.</span></div>
       </div>
 
       <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:16px 18px">
         <div style="font-family:var(--font-mono);font-size:10px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">● АГЕНТ</div>
-        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="Внешний агент по экспорту" data-en="External Export Agent">Внешний агент по экспорту</div>
+        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="Внешний агент по экспорту" data-en="External Export Agent"><span data-ru="Внешний агент по экспорту" data-en="External Export Agent">Внешний агент по экспорту</span></div>
         <div style="font-size:11px;color:var(--dim)" data-ru="Поиск покупателей, переговоры, подготовка сделки. Комиссия от закрытых контрактов. Нулевые постоянные расходы для компании." data-en="Buyer search, negotiations, deal prep. Commission on closed contracts. Zero fixed costs." class="">Поиск покупателей, переговоры от лица производства, подготовка сделки. Комиссия от закрытых контрактов. Нулевые постоянные расходы для компании.</div>
       </div>
 
       <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:16px 18px">
         <div style="font-family:var(--font-mono);font-size:10px;color:var(--amber);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">● ПРОЕКТ</div>
-        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="Проектный контракт (ГПХ)" data-en="Project Contract (GPC)">Проектный контракт (ГПХ)</div>
-        <div style="font-size:11px;color:var(--dim)" data-ru="Фиксированный оклад за проект: аналитика → пилот → рамочный контракт → поставка." data-en="Fixed fee per project: analytics → pilot → framework contract → delivery.">Фиксированный оклад за проект: аналитика → пилот → рамочный контракт → поставка.</div>
+        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="Проектный контракт (ГПХ)" data-en="Project Contract (GPC)"><span data-ru="Проектный контракт (ГПХ)" data-en="Project contract (GPC)">Проектный контракт (ГПХ)</span></div>
+        <div style="font-size:11px;color:var(--dim)" data-ru="Фиксированный оклад за проект: аналитика → пилот → рамочный контракт → поставка." data-en="Fixed fee per project: analytics → pilot → framework contract → delivery."><span data-ru="Фиксированный оклад за проект: аналитика → пилот → рамочный контракт → поставка." data-en="Fixed fee per project: analytics → pilot → framework contract → delivery.">Фиксированный оклад за проект: аналитика → пилот → рамочный контракт → поставка.</span></div>
       </div>
 
       <div style="background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);border-radius:10px;padding:16px 18px">
         <div style="font-family:var(--font-mono);font-size:10px;color:var(--purple);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">● ПРЕДСТАВИТЕЛЬ</div>
-        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="Представитель в стране экспорта" data-en="In-country Representative">Представитель в стране экспорта</div>
+        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="Представитель в стране экспорта" data-en="In-country Representative"><span data-ru="Представитель в стране экспорта" data-en="In-country Export Representative">Представитель в стране экспорта</span></div>
         <div style="font-size:11px;color:var(--dim)" data-ru="Релокация. Контроль поставок на склад. Выход на локальные торговые онлайн-площадки. Управление офисом и складом представительства." data-en="Relocation. Shipment control to warehouse. Local retail market entry. Office and warehouse management.">Релокация. Контроль поставок на склад. Выход на локальные торговые онлайн-площадки. Управление офисом и складом представительства.</div>
       </div>
 
       <div style="background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.2);border-radius:10px;padding:16px 18px">
         <div style="font-family:var(--font-mono);font-size:10px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">● АУТСОРС</div>
-        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="ВЭД на аутсорсе (абонемент)" data-en="FEA Outsourcing (retainer)">ВЭД на аутсорсе (абонемент)</div>
-        <div style="font-size:11px;color:var(--dim)" data-ru="Ведение всей имеющейся ВЭД удалённо: документы, таможня, валютный контроль, логистика." data-en="Remote management of all existing FEA: docs, customs, FX control, logistics.">Ведение всей имеющейся ВЭД юр.лица удалённо: документы, таможня, валютный контроль, логистика.</div>
+        <div style="font-size:13px;color:var(--bright);font-weight:600;margin-bottom:6px" data-ru="ВЭД на аутсорсе (абонемент)" data-en="FEA Outsourcing (retainer)"><span data-ru="ВЭД на аутсорсе (абонемент)" data-en="FEA outsourcing (retainer)">ВЭД на аутсорсе (абонемент)</span></div>
+        <div style="font-size:11px;color:var(--dim)" data-ru="Ведение всей имеющейся ВЭД удалённо: документы, таможня, валютный контроль, логистика." data-en="Remote management of all existing FEA: docs, customs, FX control, logistics."><span data-ru="Ведение всей имеющейся ВЭД юр.лица удалённо: документы, таможня, валютный контроль, логистика." data-en="Full remote FEA management: documents, customs, currency control, logistics.">Ведение всей имеющейся ВЭД юр.лица удалённо: документы, таможня, валютный контроль, логистика.</span></div>
       </div>
 
     </div>
@@ -1374,11 +1374,11 @@ body::before {
     <div style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);border-radius:12px;padding:20px 24px;margin-bottom:32px">
       <div style="font-family:var(--font-mono);font-size:10px;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px" data-ru="📋 Формат предметной встречи" data-en="📋 Meeting agenda">📋 Формат предметной встречи</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;font-size:12px;color:var(--ghost)">
-        <div><span style="color:var(--blue);font-family:var(--font-mono)">01 /</span> <span data-ru="Обратная связь по дашборду и стратегии (15 мин)" data-en="Dashboard &amp; strategy feedback (15 min)">Обратная связь по дашборду и стратегии (15 мин)</span></div>
-        <div><span style="color:var(--blue);font-family:var(--font-mono)">02 /</span> <span data-ru="Уточнение продукта, объёма, целевого рынка" data-en="Product, volume, target market clarification">Уточнение продукта, объёма, целевого рынка</span></div>
-        <div><span style="color:var(--blue);font-family:var(--font-mono)">03 /</span> <span data-ru="Целевая цена экспорта (CIF / FOB / DAP) и сертификация" data-en="Target export price (CIF/FOB/DAP) + certification">Целевая цена экспорта (CIF / FOB / DAP) и сертификация</span></div>
-        <div><span style="color:var(--blue);font-family:var(--font-mono)">04 /</span> <span data-ru="Разрешительная документация и уникальность продукта" data-en="Permits, licenses, product uniqueness">Разрешительная документация и уникальность продукта</span></div>
-        <div><span style="color:var(--blue);font-family:var(--font-mono)">05 /</span> <span data-ru="Решение: формат сотрудничества и следующий шаг" data-en="Decision: cooperation format &amp; next step">Решение: формат сотрудничества и следующий шаг</span></div>
+        <div><span style="color:var(--blue);font-family:var(--font-mono)">01 /</span> <span data-ru="Обратная связь по дашборду и стратегии (15 мин)" data-en="Dashboard &amp; strategy feedback (15 min)"><span data-ru="Обратная связь по дашборду и стратегии (15 мин)" data-en="Dashboard & strategy feedback (15 min)">Обратная связь по дашборду и стратегии (15 мин)</span></span></div>
+        <div><span style="color:var(--blue);font-family:var(--font-mono)">02 /</span> <span data-ru="Уточнение продукта, объёма, целевого рынка" data-en="Product, volume, target market clarification"><span data-ru="Уточнение продукта, объёма, целевого рынка" data-en="Clarify product, volume, target market">Уточнение продукта, объёма, целевого рынка</span></span></div>
+        <div><span style="color:var(--blue);font-family:var(--font-mono)">03 /</span> <span data-ru="Целевая цена экспорта (CIF / FOB / DAP) и сертификация" data-en="Target export price (CIF/FOB/DAP) + certification"><span data-ru="Целевая цена экспорта (CIF / FOB / DAP) и сертификация" data-en="Target export price (CIF / FOB / DAP) and certification">Целевая цена экспорта (CIF / FOB / DAP) и сертификация</span></span></div>
+        <div><span style="color:var(--blue);font-family:var(--font-mono)">04 /</span> <span data-ru="Разрешительная документация и уникальность продукта" data-en="Permits, licenses, product uniqueness"><span data-ru="Разрешительная документация и уникальность продукта" data-en="Permitting documentation and product uniqueness">Разрешительная документация и уникальность продукта</span></span></div>
+        <div><span style="color:var(--blue);font-family:var(--font-mono)">05 /</span> <span data-ru="Решение: формат сотрудничества и следующий шаг" data-en="Decision: cooperation format &amp; next step"><span data-ru="Решение: формат сотрудничества и следующий шаг" data-en="Decision: cooperation format and next step">Решение: формат сотрудничества и следующий шаг</span></span></div>
       </div>
     </div>
 
